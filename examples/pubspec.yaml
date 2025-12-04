@@ -1,0 +1,14 @@
+name: example_models
+description: Example Dart models using dart_json_annotations
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  dart_json_annotations:
+    path: ../../dart_json_annotations
+  flutter_bloc: ^9.1.1
+  test: ^1.28.0
+

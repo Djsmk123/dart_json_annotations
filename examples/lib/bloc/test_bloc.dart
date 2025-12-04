@@ -1,0 +1,28 @@
+import 'package:example_models/bloc/test_state.dart';
+import 'package:example_models/bloc/test_state.gen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+part 'test_event.dart';
+
+class TestBloc extends Bloc<TestEvent, TestState> {
+  TestBloc() : super(TestStateInitial()) {
+    on<TestEventIncrement>(_onTestEventIncrement);
+    on<TestEventDecrement>(_onTestEventDecrement);
+    on<TestEventFetchData>(_onTestEventFetchData);
+  }
+
+  Future<void> _onTestEventIncrement(TestEventIncrement event, Emitter<TestState> emit) async {
+    final currentState = state as TestStateLoaded;
+    emit(currentState.copyWith(counter: currentState.counter + 1,errorMessage: 'Error message'));
+  }
+
+  Future<void> _onTestEventDecrement(TestEventDecrement event, Emitter<TestState> emit) async {
+    final currentState = state as TestStateLoaded;
+    emit(currentState.copyWith(counter: currentState.counter - event.value));
+  }
+
+  Future<void> _onTestEventFetchData(TestEventFetchData event, Emitter<TestState> emit) async {
+    emit(TestStateLoading());
+    await Future.delayed(const Duration(seconds: 2));
+    emit(TestStateLoaded(counter: 10, isLoading: false, errorMessage: null));
+  }
+}

@@ -1,0 +1,17 @@
+# Rust build output
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+

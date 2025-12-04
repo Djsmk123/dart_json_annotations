@@ -1,0 +1,33 @@
+[package]
+name = "dart_json_gen"
+version = "1.0.0"
+edition = "2021"
+description = "Rust-powered code generator for Dart JSON serialization"
+authors = ["Your Name"]
+
+[dependencies]
+# CLI argument parsing
+clap = { version = "4.4", features = ["derive"] }
+
+# File system operations
+walkdir = "2.4"
+
+# Regex for parsing
+regex = "1.10"
+
+# Serialization for config
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Colored terminal output
+colored = "2.1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+

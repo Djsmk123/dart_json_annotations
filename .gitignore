@@ -1,0 +1,75 @@
+# Dart/Flutter
+.dart_tool/
+.packages
+build/
+.pub-cache/
+.pub/
+pubspec.lock
+
+# Rust (codegen)
+codegen/target/
+codegen/Cargo.lock
+
+# Generated files
+*.gen.dart
+*.g.dart
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+*.lcov
+
+# Logs
+*.log
+
+
+
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# Dart/Flutter
+.dart_tool/
+.packages
+build/
+.pub-cache/
+.pub/
+pubspec.lock
+
+# Generated files
+*.gen.dart
+*.g.dart
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+*.lcov
+
+# Logs
+*.log
+
+
+.dart_tool/

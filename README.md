@@ -47,6 +47,18 @@ dart_json_gen -i lib/models
 - **Dart SDK** >= 3.0.0
 - **Rust** (for building the codegen binary) - [Install Rust](https://rustup.rs/)
 
+
+## Install Rust from 
+```bash
+# Install Rust for your platform
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Add Rust to your PATH
+source $HOME/.cargo/env (on Mac/Linux)
+# Please check official documentation for more details: https://doc.rust-lang.org/cargo/getting-started/installation.html
+setx PATH "%PATH%;%USERPROFILE%\.cargo\bin" (on Windows) 
+```
+
 ## Quick Start
 
 ### 1. Annotate your models
@@ -147,16 +159,19 @@ OPTIONS:
   -i, --input <PATH>      Input directory or file (required for generation)
   --build                 Build Rust binary only (no input required)
   --rebuild               Force rebuild of Rust binary before generation
+  --clean                 Delete all .gen.dart files in path (or current dir)
   --single-file           Generate one combined .gen.dart file
   --rust                  Also generate Rust structs
   --rust-output <PATH>    Output directory for Rust files (default: rust_gen)
   -v, --verbose           Show detailed parsing output
 
 EXAMPLES:
-  dart_json_gen --build              # Build binary only
-  dart_json_gen -i lib/models        # Generate code
-  dart_json_gen -i lib/models -v     # Generate with verbose output
-  dart_json_gen --rebuild -i lib     # Rebuild binary, then generate
+  dart_json_gen --build               # Build binary only
+  dart_json_gen -i lib/models         # Generate code
+  dart_json_gen -i lib/models -v      # Generate with verbose output
+  dart_json_gen --rebuild -i lib      # Rebuild binary, then generate
+  dart_json_gen --clean               # Delete all .gen.dart in current dir
+  dart_json_gen --clean -i lib/models # Delete .gen.dart in lib/models only
 ```
 
 ## Type Mappings

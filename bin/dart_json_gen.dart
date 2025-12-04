@@ -18,11 +18,10 @@ Future<int> runGenerator(List<String> args) async {
     return 1;
   }
 
-  // Check for --build flag (build only, no generation)
+  // Check for special flags
   final buildOnly = args.contains('--build');
-  
-  // Check for --rebuild flag
   final shouldRebuild = args.contains('--rebuild');
+  final cleanMode = args.contains('--clean');
   final filteredArgs = args.where((a) => a != '--rebuild' && a != '--build').toList();
 
   // Path to the Rust codegen directory
@@ -75,8 +74,11 @@ Future<int> runGenerator(List<String> args) async {
     }
   }
 
-  // If no input args provided, show help
-  if (filteredArgs.isEmpty || !filteredArgs.any((a) => a == '-i' || a == '--input')) {
+  // Clean mode can work without input (uses current directory)
+  final hasInput = filteredArgs.any((a) => a == '-i' || a == '--input');
+  
+  // If no input args provided and not in clean mode, show help
+  if (filteredArgs.isEmpty || (!hasInput && !cleanMode)) {
     stdout.writeln('');
     stdout.writeln('Usage: dart_json_gen [OPTIONS]');
     stdout.writeln('');
@@ -84,14 +86,17 @@ Future<int> runGenerator(List<String> args) async {
     stdout.writeln('  -i, --input <PATH>   Input directory or file (required for generation)');
     stdout.writeln('  --build              Build Rust binary only (no generation)');
     stdout.writeln('  --rebuild            Force rebuild of Rust binary');
+    stdout.writeln('  --clean              Delete all .gen.dart files in path (or current dir)');
     stdout.writeln('  --single-file        Generate one combined .gen.dart file');
     stdout.writeln('  --rust               Also generate Rust structs');
     stdout.writeln('  -v, --verbose        Show detailed output');
     stdout.writeln('');
     stdout.writeln('Examples:');
-    stdout.writeln('  dart_json_gen --build              # Build binary only');
-    stdout.writeln('  dart_json_gen -i lib/models        # Generate code');
-    stdout.writeln('  dart_json_gen -i lib/models -v     # Generate with verbose output');
+    stdout.writeln('  dart_json_gen --build               # Build binary only');
+    stdout.writeln('  dart_json_gen -i lib/models         # Generate code');
+    stdout.writeln('  dart_json_gen -i lib/models -v      # Generate with verbose output');
+    stdout.writeln('  dart_json_gen --clean               # Delete all .gen.dart in current dir');
+    stdout.writeln('  dart_json_gen --clean -i lib/models # Delete .gen.dart in lib/models');
     return 0;
   }
 

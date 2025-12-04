@@ -3,4 +3,5 @@ linter:
     - always_declare_return_types
     - prefer_const_constructors
     - prefer_final_fields
+    - avoid_relative_lib_imports
 

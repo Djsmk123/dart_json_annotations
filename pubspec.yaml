@@ -3,10 +3,10 @@ description: >-
   High-performance JSON serialization, copyWith, equatable, and toString 
   code generation for Dart/Flutter using a Rust-powered CLI. Zero runtime dependency.
 version: 1.0.0
-homepage: https://github.com/smkwinner/dart_json_annotations
-repository: https://github.com/smkwinner/dart_json_annotations
-issue_tracker: https://github.com/smkwinner/dart_json_annotations/issues
-documentation: https://github.com/smkwinner/dart_json_annotations#readme
+homepage: https://github.com/djsmk123/dart_json_annotations
+repository: https://github.com/djsmk123/dart_json_annotations
+issue_tracker: https://github.com/djsmk123/dart_json_annotations/issues
+documentation: https://github.com/djsmk123/dart_json_annotations#readme
 
 topics:
   - json

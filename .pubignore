@@ -35,3 +35,5 @@ codegen/Cargo.lock
 .git/
 .gitignore
 
+
+pubspec.lock

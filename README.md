@@ -29,8 +29,11 @@ dependencies:
 ### Global Installation
 
 ```bash
-# Activate globally
+# Activate globally locally
 dart pub global activate --source path ./dart_json_annotations
+
+# Activate globally from pub.dev
+dart pub global activate dart_json_annotations
 
 # Build the Rust binary only (no input required)
 dart_json_gen --build

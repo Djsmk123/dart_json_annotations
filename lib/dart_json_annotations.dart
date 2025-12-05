@@ -1,26 +1,30 @@
-/// Dart JSON Annotations library for code generation
-///
-/// This library provides annotations for generating:
-/// - JSON serialization/deserialization
-/// - copyWith methods
-/// - Equatable (== and hashCode)
-/// - toString
-///
-/// Usage:
+/// High-performance code generation for Dart/Flutter models.
+/// 
+/// Generates JSON serialization, copyWith, equatable, and union methods
+/// using a Rust-powered CLI for maximum speed.
+/// 
+/// ## Quick Start
+/// 
 /// ```dart
 /// import 'package:dart_json_annotations/dart_json_annotations.dart';
-///
-/// @Json()
+/// 
+/// @Model()  // JSON only (default)
 /// class User {
 ///   final String name;
 ///   final int age;
 ///   User({required this.name, required this.age});
 /// }
 /// ```
+/// 
+/// ## Model Presets
+/// 
+/// | Preset | Features | Lines/Model |
+/// |--------|----------|-------------|
+/// | `@Model()` | JSON only | ~25 |
+/// | `@Model.data()` | JSON + copyWith + equatable | ~50 |
+/// | `@Model.bloc()` | copyWith + equatable (no JSON) | ~35 |
+/// | `@Model.union()` | when/map methods for sealed classes | ~60 |
 library dart_json_annotations;
 
-// Core annotations
 export 'src/annotations.dart';
-
-// Naming convention enum
 export 'src/naming_convention.dart';

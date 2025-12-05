@@ -1,232 +1,256 @@
-# dart_json_annotations
+# dart_json_annotations v2.0
 
-> ⚠️ **EXPERIMENTAL** - This package is under active development and is **not recommended for production use**. APIs may change without notice.
+> ⚠️ **EXPERIMENTAL** - This package is under active development. APIs may change without notice.
 
-A high-performance Dart code generator powered by Rust. Generates JSON serializers, `copyWith`, `Equatable`, and `toString` methods from annotated Dart classes.
+A high-performance Dart code generator powered by Rust. Generates JSON serializers, `copyWith`, `Equatable`, and `toString` methods with **optimized output size** for large codebases.
+
+## Why v2.0?
+
+- **70% smaller output** - Optimized for 200+ models (< 10k lines)
+- **Parallel processing** - Uses Rust's rayon for multi-core builds
+- **Single `@Model` annotation** - Replaces 4+ separate annotations
+- **Sealed class support** - `when`/`map` methods like Freezed
+- **Preset patterns** - One-liner for common use cases
 
 ## Features
 
-- 🦀 **Rust-powered** - Fast code generation using Rust CLI
+- 🦀 **Rust-powered** - Fast parallel code generation
 - 📦 **Zero runtime dependency** - Generated pure Dart code
 - 🔄 **JSON serialization** - `toJson()`, `fromJson()`, `toJsonString()`
-- 📋 **copyWith** - Immutable state updates with `copyWith()` and `copyWithNull()`
-- ⚖️ **Equatable** - Value equality with `equals()`, `props`, `propsHashCode`
-- 🔤 **toString** - Debug-friendly `toStringRepresentation()`
-- 🏷️ **Naming conventions** - snake_case, camelCase, PascalCase, SCREAMING_SNAKE_CASE
-- ✅ **Checksum caching** - Skip unchanged files for faster builds
+- 📋 **copyWith** - Immutable state updates
+- ⚖️ **Equatable** - Value equality
+- 🎯 **Sealed/Union classes** - `when`, `map`, `maybeWhen`, `maybeMap`
+- ✅ **Checksum caching** - Skip unchanged files
 
 ## Installation
 
-Add to your `pubspec.yaml`:
-
 ```yaml
 dependencies:
-  dart_json_annotations:
-    path: ../dart_json_annotations  # Local path
-    # Or when published: dart_json_annotations: ^1.0.0
-```
-
-### Global Installation
-
-```bash
-# Activate globally locally
-dart pub global activate --source path ./dart_json_annotations
-
-# Activate globally from pub.dev
-dart pub global activate dart_json_annotations
-
-# Build the Rust binary only (no input required)
-dart_json_gen --build
-
-# Run from anywhere
-dart_json_gen -i lib/models
+  dart_json_annotations: ^2.0.0
 ```
 
 ### Requirements
 
 - **Dart SDK** >= 3.0.0
-- **Rust** (for building the codegen binary) - [Install Rust](https://rustup.rs/)
+- **Rust** - [Install Rust](https://rustup.rs/)
 
-
-## Install Rust from 
 ```bash
-# Install Rust for your platform
+# Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
-# Add Rust to your PATH
-source $HOME/.cargo/env (on Mac/Linux)
-# Please check official documentation for more details: https://doc.rust-lang.org/cargo/getting-started/installation.html
-setx PATH "%PATH%;%USERPROFILE%\.cargo\bin" (on Windows) 
+### Global Installation
+
+```bash
+dart pub global activate dart_json_annotations
+
+# Build the Rust binary (first time only)
+dart_json_gen --build
+
+# Generate code
+dart_json_gen -i lib/models
 ```
 
 ## Quick Start
 
-### 1. Annotate your models
+### @Model Presets
+
+| Preset | Features | Output Size |
+|--------|----------|-------------|
+| `@Model()` | JSON only | ~25 lines |
+| `@Model.data()` | JSON + copyWith + equatable | ~50 lines |
+| `@Model.bloc()` | copyWith + equatable (no JSON) | ~35 lines |
+| `@Model.full()` | Everything | ~70 lines |
+| `@Model.union()` | Sealed class with when/map | ~60 lines |
+
+### Example: JSON-only (minimal)
 
 ```dart
 import 'package:dart_json_annotations/dart_json_annotations.dart';
+import 'user.gen.dart';
 
-@Json()
-@JsonType(NamingConvention.snakeCase)
+@Model()  // JSON only - smallest output
 class User {
   final int id;
   final String name;
   final String? email;
-  final DateTime createdAt;
-
-  User({
-    required this.id,
-    required this.name,
-    this.email,
-    required this.createdAt,
-  });
-
-  // Add factory constructor for convenient access
+  
+  User({required this.id, required this.name, this.email});
+  
   factory User.fromJson(Map<String, dynamic> json) => $UserSerializer.fromJson(json);
 }
 ```
 
-### 2. Generate code
-
-```bash
-# From your project root
-dart run dart_json_annotations:dart_json_gen -i lib/models
-
-# Or with verbose output
-dart run dart_json_annotations:dart_json_gen -i lib/models -v
-```
-
-### 3. Use the generated code
+### Example: Data class (common pattern)
 
 ```dart
-import 'models/user.dart';
-import 'models/user.gen.dart';
-
-void main() {
-  // Create from JSON
-  final user = User.fromJson({'id': 1, 'name': 'John', 'created_at': '2024-01-01T00:00:00.000'});
+@Model.data(namingConvention: NamingConvention.snakeCase)
+class UserProfile {
+  @JsonKey(name: 'user_id')
+  final int userId;
   
-  // Or use serializer directly
-  final user2 = $UserSerializer.fromJsonString('{"id": 2, "name": "Jane"}');
+  final String firstName;
+  final String lastName;
   
-  // Serialize
-  final json = user.toJson();
-  final jsonStr = user.toJsonString();
+  @Ignore.equality()  // Exclude from == comparison
+  final DateTime updatedAt;
   
-  // copyWith
-  final updated = user.copyWith(name: 'John Doe');
-  final cleared = user.copyWithNull(email: true);
-  
-  // Equality
-  print(user.equals(user2)); // false
-  print(user.props);         // [1, 'John', null, DateTime...]
-  
-  // toString
-  print(user.toStringRepresentation());
+  UserProfile({...});
 }
 ```
 
-## Annotations
+### Example: Bloc state (no JSON)
 
-### Class-level
+```dart
+@Model.bloc()  // copyWith + equatable, NO json
+class CounterState {
+  final int count;
+  final bool isLoading;
+  final String? error;
+  
+  CounterState({required this.count, required this.isLoading, this.error});
+}
+
+// Generated usage:
+final newState = state.copyWith(count: state.count + 1);
+if (state1.equals(state2)) { ... }
+```
+
+### Example: Sealed/Union class
+
+```dart
+@Model.union()
+sealed class Result {
+  const factory Result.success(String data) = ResultSuccess;
+  const factory Result.failure(String error, int code) = ResultFailure;
+  const factory Result.loading() = ResultLoading;
+}
+
+// Generated usage:
+final message = result.when(
+  success: (data) => 'Got: $data',
+  failure: (error, code) => 'Error $code: $error',
+  loading: () => 'Loading...',
+);
+
+// Optional handling
+result.maybeWhen(
+  success: (data) => print(data),
+  orElse: () => print('Not success'),
+);
+
+// Type checks
+if (result.isSuccess) {
+  final data = result.asSuccess!.data;
+}
+```
+
+## Annotations Reference
+
+### @Model Options
+
+```dart
+@Model(
+  json: true,          // Generate toJson/fromJson (default: true)
+  copyWith: false,     // Generate copyWith (default: false)
+  copyWithNull: false, // Generate copyWithNull (default: false)
+  equatable: false,    // Generate equals/props (default: false)
+  stringify: false,    // Generate toString (default: false)
+  union: false,        // Generate when/map for sealed classes
+  namingConvention: NamingConvention.snakeCase,
+)
+```
+
+### Field Annotations
 
 | Annotation | Description |
 |------------|-------------|
-| `@Json()` | Full features: JSON + copyWith + equatable + toString |
-| `@Model()` | copyWith + equatable + toString (no JSON) |
-| `@DataClass()` | Same as `@Json()` |
-| `@CopyWith()` | Only copyWith methods |
-| `@Equatable()` | Only equality methods |
-| `@JsonType(NamingConvention.snakeCase)` | Set naming convention |
+| `@JsonKey(name: 'custom')` | Custom JSON key |
+| `@JsonKey(ignore: true)` | Skip in JSON |
+| `@JsonKey(defaultValue: '0')` | Default value |
+| `@Ignore()` | Ignore from ALL features |
+| `@Ignore.json()` | Ignore from JSON only |
+| `@Ignore.equality()` | Ignore from == comparison |
+| `@Ignore.copyWith()` | Ignore from copyWith |
+| `@Ignore.stringify()` | Ignore from toString |
 
-### Field-level
-
-| Annotation | Description |
-|------------|-------------|
-| `@JsonKey(name: 'custom')` | Custom JSON key name |
-| `@JsonKey(ignore: true)` | Exclude from serialization |
-| `@JsonKey(includeIfNull: true)` | Include null values in JSON |
-| `@IgnoreEquality()` | Exclude from equality comparison |
-| `@IgnoreCopyWith()` | Exclude from copyWith |
-| `@IgnoreToString()` | Exclude from toString |
-
-## CLI Options
+## CLI Usage
 
 ```bash
 dart_json_gen [OPTIONS]
 
 OPTIONS:
-  -i, --input <PATH>      Input directory or file (required for generation)
-  --build                 Build Rust binary only (no input required)
-  --rebuild               Force rebuild of Rust binary before generation
-  --clean                 Delete all .gen.dart files in path (or current dir)
-  --single-file           Generate one combined .gen.dart file
-  --rust                  Also generate Rust structs
-  --rust-output <PATH>    Output directory for Rust files (default: rust_gen)
-  -v, --verbose           Show detailed parsing output
+  -i, --input <PATH>    Input directory or file
+  --build               Build Rust binary only
+  --rebuild             Force rebuild before generation
+  --clean               Delete all .gen.dart files
+  --threads <N>         Parallel threads (0 = auto)
+  -v, --verbose         Detailed output
+  -h, --help            Show help
 
 EXAMPLES:
-  dart_json_gen --build               # Build binary only
+  dart_json_gen --build               # Build binary
   dart_json_gen -i lib/models         # Generate code
-  dart_json_gen -i lib/models -v      # Generate with verbose output
-  dart_json_gen --rebuild -i lib      # Rebuild binary, then generate
-  dart_json_gen --clean               # Delete all .gen.dart in current dir
-  dart_json_gen --clean -i lib/models # Delete .gen.dart in lib/models only
+  dart_json_gen --clean -i lib        # Clean generated files
 ```
 
-## Type Mappings
+## Output Size Comparison
 
-| Dart Type | Generated |
-|-----------|-----------|
-| `String` | `String` |
-| `int` | `int` (via `num.toInt()`) |
-| `double` | `double` (via `num.toDouble()`) |
-| `bool` | `bool` |
-| `DateTime` | ISO 8601 string |
-| `List<T>` | `List<T>` |
-| `Map<K, V>` | `Map<K, V>` |
-| `T?` | Nullable handling |
-| Custom class | Nested serializer |
+For 200 models:
+
+| Preset | Lines/Model | Total |
+|--------|-------------|-------|
+| `@Model()` | 25 | **5,000** ✅ |
+| `@Model.data()` | 50 | **10,000** |
+| `@Model.bloc()` | 35 | **7,000** ✅ |
+| `@Model.full()` | 70 | **14,000** |
+
+**Tip:** Use `@Model()` (JSON only) as default, add features only when needed.
+
+## Migration from v1.x
+
+```dart
+// v1.x (deprecated)
+@Json()
+@CopyWith()
+@Equatable()
+class User { ... }
+
+// v2.0 (recommended)
+@Model.data()  // Same features, less code
+class User { ... }
+```
 
 ## Project Structure
 
 ```
 dart_json_annotations/
-├── bin/
-│   └── dart_json_gen.dart    # Dart CLI entry point
+├── bin/dart_json_gen.dart     # Dart CLI
 ├── codegen/                   # Rust source
 │   ├── Cargo.toml
 │   └── src/
 │       ├── main.rs
-│       ├── models/mod.rs
 │       ├── parser/mod.rs
-│       └── generator/mod.rs
+│       └── models/mod.rs
 ├── lib/
 │   ├── dart_json_annotations.dart
-│   └── src/
-│       ├── annotations.dart
-│       └── naming_convention.dart
-└── pubspec.yaml
+│   └── src/annotations.dart
+└── examples/
 ```
 
 ## Roadmap
 
-- [x] JSON serialization (toJson/fromJson)
+- [x] JSON serialization
 - [x] copyWith / copyWithNull
-- [x] Equatable (props, equals, propsHashCode)
-- [x] toString representation
+- [x] Equatable
 - [x] Naming conventions
-- [x] Checksum-based caching
-- [x] Global CLI activation
-- [ ] Enum support with @JsonEnum
-- [ ] Custom mapper functions
-- [ ] Watch mode for development
-- [ ] Config file (.dart_json_gen.yaml)
-- [ ] Nested generic types (e.g., `List<List<T>>`)
-
-## Contributing
-
-This project is experimental. Issues and PRs are welcome!
+- [x] Checksum caching
+- [x] Parallel processing (rayon)
+- [x] @Model presets
+- [x] Sealed/Union class support
+- [ ] Enum support
+- [ ] Watch mode
+- [ ] Config file
 
 ## License
 

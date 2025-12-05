@@ -104,7 +104,7 @@ impl RustGenerator {
     }
 
     fn generate_field(&self, field: &DartField) -> String {
-        if field.ignore {
+        if field.ignore_json {
             return String::new();
         }
 

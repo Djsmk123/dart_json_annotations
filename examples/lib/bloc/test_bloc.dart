@@ -1,8 +1,8 @@
-import 'package:example_models/bloc/test_state.dart';
+import 'package:dart_json_annotations/dart_json_annotations.dart';
 import 'package:example_models/bloc/test_state.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+part 'test_state.dart';
 part 'test_event.dart';
-
 class TestBloc extends Bloc<TestEvent, TestState> {
   TestBloc() : super(TestStateInitial()) {
     on<TestEventIncrement>(_onTestEventIncrement);
@@ -17,7 +17,7 @@ class TestBloc extends Bloc<TestEvent, TestState> {
 
   Future<void> _onTestEventDecrement(TestEventDecrement event, Emitter<TestState> emit) async {
     final currentState = state as TestStateLoaded;
-    emit(currentState.copyWith(counter: currentState.counter - event.value));
+    emit(currentState.copyWith(counter: currentState.counter - event.value, errorMessage: 'Error message'));
   }
 
   Future<void> _onTestEventFetchData(TestEventFetchData event, Emitter<TestState> emit) async {

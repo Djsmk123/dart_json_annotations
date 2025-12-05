@@ -1,35 +1,53 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## 2.0.0
 
-## [1.0.0] - 2024-12-04
+### Breaking Changes
+- **Unified `@Model` annotation** replaces `@Json`, `@CopyWith`, `@Equatable`, `@DataClass`
+- Removed legacy annotations (still work but deprecated)
+- Changed default behavior: `@Model()` now generates JSON only (not full features)
 
-### Added
-- Initial release
-- 🦀 Rust-powered code generation CLI
-- JSON serialization (`toJson()`, `fromJson()`, `toJsonString()`)
-- `copyWith()` and `copyWithNull()` for immutable state updates
-- `Equatable` support (`equals()`, `props`, `propsHashCode`)
-- `toStringRepresentation()` for debug-friendly output
-- Naming conventions: snake_case, camelCase, PascalCase, SCREAMING_SNAKE_CASE
-- Checksum-based caching to skip unchanged files
-- `--clean` command to delete all generated files
-- `--build` command to build Rust binary only
-- Support for `part of` files (e.g., Bloc state files)
-- Class-level annotations: `@Json()`, `@Model()`, `@DataClass()`, `@CopyWith()`, `@Equatable()`
-- Field-level annotations: `@JsonKey()`, `@IgnoreEquality()`, `@IgnoreCopyWith()`, `@IgnoreToString()`
+### New Features
+- **Preset constructors** for common patterns:
+  - `@Model()` - JSON only (~25 lines)
+  - `@Model.data()` - JSON + copyWith + equatable (~50 lines)
+  - `@Model.bloc()` - copyWith + equatable, no JSON (~35 lines)
+  - `@Model.full()` - All features (~70 lines)
+  - `@Model.union()` - Sealed class with when/map methods
 
-### Features
-- Zero runtime dependency - generates pure Dart code
-- Global CLI activation support via `dart pub global activate`
-- Automatic Rust binary building on first run
-- Deep equality for collections (List, Map, Set)
-- Nullable field handling with `copyWithNull()`
+- **Sealed/Union class support**:
+  - `when()` - Exhaustive pattern matching
+  - `maybeWhen()` - Optional pattern matching with orElse
+  - `whenOrNull()` - Nullable pattern matching
+  - `map()` - Type-based mapping
+  - `maybeMap()` - Optional type mapping
+  - Type checkers: `isSuccess`, `isFailure`, etc.
+  - Safe casts: `asSuccess`, `asFailure`, etc.
 
-### Supported Types
-- Primitives: `String`, `int`, `double`, `bool`, `num`
-- `DateTime` (ISO 8601 serialization)
-- `List<T>`, `Map<K, V>`, `Set<T>`
-- Nullable types (`T?`)
-- Custom classes (nested serialization)
+- **`@Ignore` annotation** with variants:
+  - `@Ignore()` - Ignore from all features
+  - `@Ignore.json()` - Ignore from JSON only
+  - `@Ignore.equality()` - Ignore from == comparison
+  - `@Ignore.copyWith()` - Ignore from copyWith
 
+- **Parallel processing** using Rust's rayon crate (3-4x faster)
+- **Compact output** - Optimized for large codebases (200+ models)
+- **`--threads` option** to control parallelism
+
+### Performance
+- 70% smaller output size with `@Model()` preset
+- File-level shared helpers instead of per-class
+- Lazy regex compilation
+- Pre-allocated string buffers
+
+## 1.0.0
+
+### Initial Release
+- JSON serialization (toJson/fromJson)
+- copyWith / copyWithNull methods
+- Equatable (equals, props, propsHashCode)
+- toString representation
+- Naming conventions (snake_case, camelCase, etc.)
+- Checksum-based caching
+- Global CLI activation
+- Rust-powered code generation

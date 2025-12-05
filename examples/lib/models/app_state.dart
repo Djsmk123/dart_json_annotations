@@ -22,7 +22,7 @@ class AppState {
 
 /// Example: Using @DataClass for full feature set
 /// Generates: JSON serialization + copyWith + equatable + toString
-@DataClass(namingConvention: NamingConvention.snakeCase)
+@Model.data()
 class UserProfile {
   final String id;
   final String displayName;
@@ -46,8 +46,8 @@ class UserProfile {
 }
 
 /// Example: Using individual annotations
-@CopyWith(generateNull: true)
-@Equatable(stringify: true)
+@Model.copyable()
+@Model.data()
 class Settings {
   final bool darkMode;
   final String locale;

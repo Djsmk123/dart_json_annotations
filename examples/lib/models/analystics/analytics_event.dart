@@ -1,8 +1,9 @@
 // Example: Analytics payload (frequently serialized)
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-@JsonType(NamingConvention.snakeCase)
-@Json()
+@Model(
+  namingConvention: NamingConvention.snakeCase,
+)
 class AnalyticsEvent {
   @JsonKey(name: 'event_name')
   final String eventName;
@@ -32,7 +33,9 @@ class AnalyticsEvent {
 }
 
 @JsonType(NamingConvention.snakeCase)
-@Json()
+@Model(
+  namingConvention: NamingConvention.snakeCase,
+)
 class DeviceInfo {
   final String deviceId;
   final String deviceModel;
@@ -55,7 +58,9 @@ class DeviceInfo {
   });
 }
 
-@Json()
+@Model(
+  namingConvention: NamingConvention.snakeCase,
+)
 class AnalyticsBatch {
   final String batchId;
   final List<AnalyticsEvent> events;

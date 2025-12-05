@@ -1,7 +1,8 @@
 // Example: E-commerce product model
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-@Json()
+/// Full-featured product model
+@Model.full()
 class Product {
   final String id;
   final String name;
@@ -24,7 +25,8 @@ class Product {
   });
 }
 
-@Json()
+/// JSON-only variant model
+@Model()
 class ProductVariant {
   final String sku;
   final String color;
@@ -41,8 +43,8 @@ class ProductVariant {
   });
 }
 
-@JsonType(NamingConvention.snakeCase)
-@Json()
+/// Data model with snake_case
+@Model.data(namingConvention: NamingConvention.snakeCase)
 class ProductMeta {
   @JsonKey(name: 'seo_title')
   final String seoTitle;
@@ -60,4 +62,3 @@ class ProductMeta {
     required this.customAttributes,
   });
 }
-

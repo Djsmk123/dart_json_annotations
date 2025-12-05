@@ -1,8 +1,8 @@
 // Example: Chat/messaging model (high-volume, performance-critical)
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-@JsonType(NamingConvention.snakeCase)
-@Json()
+/// JSON-only with snake_case (optimized for high volume)
+@Model.json(namingConvention: NamingConvention.snakeCase)
 class ChatMessage {
   final String id;
   final String senderId;
@@ -27,7 +27,8 @@ class ChatMessage {
   });
 }
 
-@Json()
+/// Simple JSON-only attachment
+@Model()
 class Attachment {
   final String id;
   final String url;
@@ -44,11 +45,9 @@ class Attachment {
   });
 }
 
-// Note: Enums would need special handling
-// This is a placeholder - the parser would need enum support
-@Json()
+/// Message type enum placeholder
+@Model()
 class MessageType {
   final String value;
   MessageType(this.value);
 }
-

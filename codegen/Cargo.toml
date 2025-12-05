@@ -1,8 +1,8 @@
 [package]
 name = "dart_json_gen"
-version = "1.0.0"
+version = "2.0.0"
 edition = "2021"
-description = "Rust-powered code generator for Dart JSON serialization"
+description = "Rust-powered code generator for Dart models - JSON, copyWith, equatable, unions"
 authors = ["Your Name"]
 
 [dependencies]
@@ -26,8 +26,14 @@ thiserror = "1.0"
 # Colored terminal output
 colored = "2.1"
 
+# Parallel processing
+rayon = "1.10"
+
+# Lazy static for regex compilation
+lazy_static = "1.5"
+
 [profile.release]
-opt-level = "s"
+opt-level = 3
 lto = true
 codegen-units = 1
-
+strip = true

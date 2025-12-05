@@ -12,13 +12,11 @@ pub enum NamingConvention {
 
 impl NamingConvention {
     pub fn from_str(s: &str) -> Option<Self> {
-        match s.to_lowercase().as_str() {
-            "camelcase" | "camel_case" | "camel" => Some(NamingConvention::CamelCase),
-            "snakecase" | "snake_case" | "snake" => Some(NamingConvention::SnakeCase),
-            "pascalcase" | "pascal_case" | "pascal" => Some(NamingConvention::PascalCase),
-            "screamingsnakecase" | "screaming_snake_case" | "screaming" => {
-                Some(NamingConvention::ScreamingSnakeCase)
-            }
+        match s.to_lowercase().replace('_', "").as_str() {
+            "camelcase" | "camel" => Some(NamingConvention::CamelCase),
+            "snakecase" | "snake" => Some(NamingConvention::SnakeCase),
+            "pascalcase" | "pascal" => Some(NamingConvention::PascalCase),
+            "screamingsnakecase" | "screaming" => Some(NamingConvention::ScreamingSnakeCase),
             _ => None,
         }
     }
@@ -41,6 +39,28 @@ pub struct GenerationFeatures {
     pub copy_with_null: bool,
     pub equatable: bool,
     pub stringify: bool,
+    pub union: bool,
+}
+
+impl GenerationFeatures {
+    /// Check if any feature is enabled
+    pub fn has_any(&self) -> bool {
+        self.json || self.copy_with || self.copy_with_null || 
+        self.equatable || self.stringify || self.union
+    }
+}
+
+/// Represents a union case (subtype of a sealed class)
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UnionCase {
+    /// The case name (e.g., "success", "failure")
+    pub name: String,
+    /// The class name (e.g., "ResultSuccess")
+    pub class_name: String,
+    /// Constructor parameters
+    pub fields: Vec<DartField>,
+    /// Discriminator value for JSON
+    pub discriminator_value: String,
 }
 
 /// Represents a parsed Dart class with annotations
@@ -52,6 +72,28 @@ pub struct DartClass {
     pub source_file: String,
     pub uses_named_params: bool,
     pub features: GenerationFeatures,
+    /// For sealed/union classes: the discriminator field name
+    pub discriminator: String,
+    /// For sealed/union classes: the cases (subtypes)
+    pub union_cases: Vec<UnionCase>,
+    /// Whether this is a sealed class
+    pub is_sealed: bool,
+}
+
+impl Default for DartClass {
+    fn default() -> Self {
+        Self {
+            name: String::new(),
+            fields: Vec::new(),
+            naming_convention: None,
+            source_file: String::new(),
+            uses_named_params: true,
+            features: GenerationFeatures::default(),
+            discriminator: "type".to_string(),
+            union_cases: Vec::new(),
+            is_sealed: false,
+        }
+    }
 }
 
 /// Represents a field in a Dart class
@@ -60,21 +102,43 @@ pub struct DartField {
     pub name: String,
     pub dart_type: DartType,
     pub json_key: Option<String>,
-    pub mapper: Option<String>,
+    pub from_json: Option<String>,
+    pub to_json: Option<String>,
     pub is_nullable: bool,
     pub has_default: bool,
     pub default_value: Option<String>,
     pub naming_convention: Option<NamingConvention>,
-    pub ignore: bool,
-    pub include_if_null: bool,
-    pub flatten: bool,
+    pub ignore_json: bool,
     pub ignore_equality: bool,
     pub ignore_copy_with: bool,
     pub ignore_to_string: bool,
-    pub is_required: bool,
+    pub include_if_null: bool,
+    pub flatten: bool,
 }
 
-/// Represents Dart types that map to Rust types
+impl Default for DartField {
+    fn default() -> Self {
+        Self {
+            name: String::new(),
+            dart_type: DartType::Dynamic,
+            json_key: None,
+            from_json: None,
+            to_json: None,
+            is_nullable: false,
+            has_default: false,
+            default_value: None,
+            naming_convention: None,
+            ignore_json: false,
+            ignore_equality: false,
+            ignore_copy_with: false,
+            ignore_to_string: false,
+            include_if_null: false,
+            flatten: false,
+        }
+    }
+}
+
+/// Represents Dart types
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum DartType {
     String,
@@ -92,25 +156,6 @@ pub enum DartType {
 }
 
 impl DartType {
-    pub fn to_rust_type(&self) -> String {
-        match self {
-            DartType::String => "String".to_string(),
-            DartType::Int => "i64".to_string(),
-            DartType::Double => "f64".to_string(),
-            DartType::Bool => "bool".to_string(),
-            DartType::DateTime => "String".to_string(),
-            DartType::List(inner) => format!("Vec<{}>", inner.to_rust_type()),
-            DartType::Map(key, value) => {
-                format!("std::collections::HashMap<{}, {}>", key.to_rust_type(), value.to_rust_type())
-            }
-            DartType::Set(inner) => format!("std::collections::HashSet<{}>", inner.to_rust_type()),
-            DartType::Optional(inner) => format!("Option<{}>", inner.to_rust_type()),
-            DartType::Custom(name) => name.clone(),
-            DartType::Dynamic => "serde_json::Value".to_string(),
-            DartType::Num => "f64".to_string(),
-        }
-    }
-
     pub fn to_dart_type(&self) -> String {
         match self {
             DartType::String => "String".to_string(),
@@ -128,8 +173,33 @@ impl DartType {
         }
     }
 
+    pub fn to_rust_type(&self) -> String {
+        match self {
+            DartType::String => "String".to_string(),
+            DartType::Int => "i64".to_string(),
+            DartType::Double => "f64".to_string(),
+            DartType::Bool => "bool".to_string(),
+            DartType::DateTime => "String".to_string(),
+            DartType::List(inner) => format!("Vec<{}>", inner.to_rust_type()),
+            DartType::Map(key, value) => format!("std::collections::HashMap<{}, {}>", key.to_rust_type(), value.to_rust_type()),
+            DartType::Set(inner) => format!("std::collections::HashSet<{}>", inner.to_rust_type()),
+            DartType::Optional(inner) => format!("Option<{}>", inner.to_rust_type()),
+            DartType::Custom(name) => name.clone(),
+            DartType::Dynamic => "serde_json::Value".to_string(),
+            DartType::Num => "f64".to_string(),
+        }
+    }
+
     pub fn is_dynamic(&self) -> bool {
         matches!(self, DartType::Dynamic)
+    }
+
+    pub fn is_primitive(&self) -> bool {
+        matches!(self, DartType::String | DartType::Int | DartType::Double | DartType::Bool | DartType::Num)
+    }
+
+    pub fn is_collection(&self) -> bool {
+        matches!(self, DartType::List(_) | DartType::Map(_, _) | DartType::Set(_))
     }
 
     pub fn parse(type_str: &str) -> Self {
@@ -180,22 +250,15 @@ impl DartType {
 
 fn split_map_types(inner: &str) -> Option<(String, String)> {
     let mut depth = 0;
-    let mut split_pos = None;
-    
     for (i, c) in inner.chars().enumerate() {
         match c {
             '<' => depth += 1,
             '>' => depth -= 1,
             ',' if depth == 0 => {
-                split_pos = Some(i);
-                break;
+                return Some((inner[..i].trim().to_string(), inner[i + 1..].trim().to_string()));
             }
             _ => {}
         }
     }
-    
-    split_pos.map(|pos| {
-        (inner[..pos].trim().to_string(), inner[pos + 1..].trim().to_string())
-    })
+    None
 }
-

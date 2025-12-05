@@ -1,8 +1,9 @@
-// Example Dart model with @Json annotation
+// Example Dart model with @Model annotation
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 import 'user.gen.dart';
 
-@Json()
+/// Basic JSON model (~25 lines generated)
+@Model()
 class User {
   final int id;
   final String name;
@@ -24,8 +25,8 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => $UserSerializer.fromJson(json);
 }
 
-@JsonType(NamingConvention.snakeCase)
-@Json()
+/// Data model with snake_case JSON keys (~50 lines generated)
+@Model.data(namingConvention: NamingConvention.snakeCase)
 class UserProfile {
   @JsonKey(name: 'user_id')
   final int userId;
@@ -48,4 +49,3 @@ class UserProfile {
     required this.metadata,
   });
 }
-

@@ -3,7 +3,7 @@
 import 'dart:io';
 import 'package:path/path.dart' as path;
 
-/// Main entry point for the dart_json_gen CLI
+/// Main entry point for the dart_json_gen CLI v2.0
 void main(List<String> args) async {
   final exitCode = await runGenerator(args);
   exit(exitCode);
@@ -22,6 +22,7 @@ Future<int> runGenerator(List<String> args) async {
   final buildOnly = args.contains('--build');
   final shouldRebuild = args.contains('--rebuild');
   final cleanMode = args.contains('--clean');
+  final showHelp = args.contains('-h') || args.contains('--help');
   final filteredArgs = args.where((a) => a != '--rebuild' && a != '--build').toList();
 
   // Path to the Rust codegen directory
@@ -41,7 +42,7 @@ Future<int> runGenerator(List<String> args) async {
 
   // Build the binary if needed or requested
   if (!binaryFile.existsSync() || shouldRebuild || buildOnly) {
-    stdout.writeln('🔨 Building Rust binary...');
+    stdout.writeln('🔨 Building Rust binary (v2.0)...');
     
     // Check if cargo is available
     final cargoCheck = await Process.run('cargo', ['--version'], runInShell: true);
@@ -78,25 +79,8 @@ Future<int> runGenerator(List<String> args) async {
   final hasInput = filteredArgs.any((a) => a == '-i' || a == '--input');
   
   // If no input args provided and not in clean mode, show help
-  if (filteredArgs.isEmpty || (!hasInput && !cleanMode)) {
-    stdout.writeln('');
-    stdout.writeln('Usage: dart_json_gen [OPTIONS]');
-    stdout.writeln('');
-    stdout.writeln('OPTIONS:');
-    stdout.writeln('  -i, --input <PATH>   Input directory or file (required for generation)');
-    stdout.writeln('  --build              Build Rust binary only (no generation)');
-    stdout.writeln('  --rebuild            Force rebuild of Rust binary');
-    stdout.writeln('  --clean              Delete all .gen.dart files in path (or current dir)');
-    stdout.writeln('  --single-file        Generate one combined .gen.dart file');
-    stdout.writeln('  --rust               Also generate Rust structs');
-    stdout.writeln('  -v, --verbose        Show detailed output');
-    stdout.writeln('');
-    stdout.writeln('Examples:');
-    stdout.writeln('  dart_json_gen --build               # Build binary only');
-    stdout.writeln('  dart_json_gen -i lib/models         # Generate code');
-    stdout.writeln('  dart_json_gen -i lib/models -v      # Generate with verbose output');
-    stdout.writeln('  dart_json_gen --clean               # Delete all .gen.dart in current dir');
-    stdout.writeln('  dart_json_gen --clean -i lib/models # Delete .gen.dart in lib/models');
+  if (showHelp || filteredArgs.isEmpty || (!hasInput && !cleanMode)) {
+    _printHelp();
     return 0;
   }
 
@@ -111,6 +95,40 @@ Future<int> runGenerator(List<String> args) async {
   stderr.write(result.stderr);
   
   return result.exitCode;
+}
+
+void _printHelp() {
+  stdout.writeln('');
+  stdout.writeln('dart_json_gen v2.0 - High-performance Dart code generator');
+  stdout.writeln('');
+  stdout.writeln('USAGE:');
+  stdout.writeln('  dart_json_gen [OPTIONS]');
+  stdout.writeln('');
+  stdout.writeln('OPTIONS:');
+  stdout.writeln('  -i, --input <PATH>    Input directory or file (required for generation)');
+  stdout.writeln('  --build               Build Rust binary only (no generation)');
+  stdout.writeln('  --rebuild             Force rebuild of Rust binary');
+  stdout.writeln('  --clean               Delete all .gen.dart files in path (or current dir)');
+  stdout.writeln('  --single-file         Generate one combined .gen.dart file');
+  stdout.writeln('  --threads <N>         Number of parallel threads (0 = auto)');
+  stdout.writeln('  -v, --verbose         Show detailed output');
+  stdout.writeln('  -h, --help            Show this help');
+  stdout.writeln('');
+  stdout.writeln('ANNOTATION PRESETS:');
+  stdout.writeln('  @Model()              JSON only (~25 lines/model)');
+  stdout.writeln('  @Model.data()         JSON + copyWith + equatable (~50 lines)');
+  stdout.writeln('  @Model.bloc()         copyWith + equatable, no JSON (~35 lines)');
+  stdout.writeln('  @Model.union()        Sealed class with when/map methods (~60 lines)');
+  stdout.writeln('  @Model.full()         All features enabled (~70 lines)');
+  stdout.writeln('');
+  stdout.writeln('EXAMPLES:');
+  stdout.writeln('  dart_json_gen --build               # Build binary only');
+  stdout.writeln('  dart_json_gen -i lib/models         # Generate code');
+  stdout.writeln('  dart_json_gen -i lib/models -v      # Generate with verbose output');
+  stdout.writeln('  dart_json_gen --clean               # Delete all .gen.dart in current dir');
+  stdout.writeln('  dart_json_gen --clean -i lib/models # Delete .gen.dart in lib/models');
+  stdout.writeln('');
+  stdout.writeln('For 200+ models, use @Model() (JSON only) to keep output under 10k lines.');
 }
 
 /// Find the package root directory

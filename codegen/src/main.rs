@@ -5,11 +5,16 @@ mod models;
 use anyhow::Result;
 use clap::Parser;
 use colored::Colorize;
+use rayon::prelude::*;
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 use std::path::PathBuf;
+use std::sync::atomic::{AtomicUsize, Ordering};
+use std::sync::Mutex;
 use walkdir::WalkDir;
 
+use crate::models::{DartClass, DartType, GenerationFeatures, NamingConvention};
+use regex::Regex;
 use crate::parser::DartParser;
 
 fn calculate_checksum(content: &str) -> u64 {
@@ -19,45 +24,59 @@ fn calculate_checksum(content: &str) -> u64 {
 }
 
 fn extract_checksum(content: &str) -> Option<u64> {
-    for line in content.lines().take(5) {
-        if line.starts_with("// Checksum: ") {
-            return line.strip_prefix("// Checksum: ")?.parse().ok();
-        }
-    }
-    None
+    content.lines().take(5)
+        .find(|line| line.starts_with("// Checksum: "))
+        .and_then(|line| line.strip_prefix("// Checksum: ")?.parse().ok())
 }
 
 #[derive(Parser, Debug)]
 #[command(name = "dart_json_gen")]
-#[command(about = "Generate Dart serializers, copyWith, equatable from annotated models")]
+#[command(version = "2.0.0")]
+#[command(about = "Generate Dart serializers, copyWith, equatable, unions from @Model annotations")]
 struct Args {
     #[arg(short, long)]
     input: Option<PathBuf>,
+    
     #[arg(long, default_value_t = false)]
     rust: bool,
+    
     #[arg(long, default_value = "rust_gen")]
     rust_output: PathBuf,
+    
     #[arg(long, default_value_t = false)]
     single_file: bool,
+    
     #[arg(short, long)]
     output: Option<PathBuf>,
+    
     #[arg(short, long, default_value_t = false)]
     verbose: bool,
-    /// Delete all .gen.dart files in the specified path (or current directory if no input)
+    
+    /// Delete all .gen.dart files
     #[arg(long, default_value_t = false)]
     clean: bool,
+    
+    /// Number of parallel threads (0 = auto)
+    #[arg(long, default_value_t = 0)]
+    threads: usize,
 }
 
 fn main() -> Result<()> {
     let args = Args::parse();
     
-    // Handle clean mode
+    // Configure thread pool
+    if args.threads > 0 {
+        rayon::ThreadPoolBuilder::new()
+            .num_threads(args.threads)
+            .build_global()
+            .ok();
+    }
+    
     if args.clean {
         let clean_path = args.input.clone().unwrap_or_else(|| PathBuf::from("."));
         return clean_gen_files(&clean_path);
     }
     
-    // Require input for generation mode
     let input = match args.input {
         Some(ref path) => path.clone(),
         None => {
@@ -67,144 +86,711 @@ fn main() -> Result<()> {
         }
     };
     
-    println!("{}", "🦀 Dart Code Generator".green().bold());
+    println!("{}", "🦀 Dart Code Generator v2.0".green().bold());
     println!("Input: {}", input.display().to_string().cyan());
-    println!("Output: {}", "alongside source files".cyan());
-    if args.rust { println!("Rust Output: {}", args.rust_output.display().to_string().cyan()); }
     println!();
 
     let dart_files = collect_dart_files(&input)?;
-    if dart_files.is_empty() { println!("{}", "No .dart files found!".yellow()); return Ok(()); }
+    if dart_files.is_empty() {
+        println!("{}", "No .dart files found!".yellow());
+        return Ok(());
+    }
     println!("Found {} .dart file(s)", dart_files.len().to_string().green());
 
+    // Parse files in parallel
     let parser = DartParser::new();
-    let mut all_classes = Vec::new();
-    let mut files_with_classes: Vec<(PathBuf, Vec<models::DartClass>)> = Vec::new();
-    let mut files_without_classes: Vec<PathBuf> = Vec::new();
+    let results: Vec<_> = dart_files.par_iter()
+        .filter_map(|file_path| {
+            let content = std::fs::read_to_string(file_path).ok()?;
+            let classes = parser.parse(&content, file_path).ok()?;
+            Some((file_path.clone(), content, classes))
+        })
+        .collect();
 
-    for file_path in &dart_files {
-        if args.verbose { println!("  Parsing: {}", file_path.display()); }
-        let content = std::fs::read_to_string(file_path)?;
-        let classes = parser.parse(&content, file_path)?;
-        if !classes.is_empty() {
-            let mut file_classes = Vec::new();
-            for class in classes {
-                let features = format_features(&class.features);
-                println!("  {} {} ({} fields) {}", "✓".green(), class.name.cyan(), class.fields.len(), features.dimmed());
-                file_classes.push(class.clone());
-                all_classes.push(class);
-            }
-            files_with_classes.push((file_path.clone(), file_classes));
+    let mut files_with_classes: Vec<(PathBuf, String, Vec<DartClass>)> = Vec::new();
+    let mut files_without_classes: Vec<PathBuf> = Vec::new();
+    let mut all_classes = Vec::new();
+
+    for (path, content, classes) in results {
+        if classes.is_empty() {
+            files_without_classes.push(path);
         } else {
-            files_without_classes.push(file_path.clone());
+            for class in &classes {
+                let features = format_features(&class.features);
+                let class_type = if class.is_sealed { "sealed" } else { "class" };
+                println!("  {} {} {} ({} fields) {}", 
+                    "✓".green(), 
+                    class_type.dimmed(),
+                    class.name.cyan(), 
+                    class.fields.len() + class.union_cases.len(), 
+                    features.dimmed()
+                );
+                all_classes.push(class.clone());
+            }
+            files_with_classes.push((path, content, classes));
         }
     }
 
-    let mut cleaned_count = 0;
-    for source_path in &files_without_classes {
+    // Clean orphaned gen files
+    let cleaned_count = AtomicUsize::new(0);
+    files_without_classes.par_iter().for_each(|source_path| {
         let gen_path = get_gen_path(source_path);
         if gen_path.exists() {
-            std::fs::remove_file(&gen_path)?;
-            println!("  {} {} (no annotations)", "🗑".red(), gen_path.display().to_string().yellow());
-            cleaned_count += 1;
+            if std::fs::remove_file(&gen_path).is_ok() {
+                cleaned_count.fetch_add(1, Ordering::Relaxed);
+                println!("  {} {} (no annotations)", "🗑".red(), gen_path.display().to_string().yellow());
+            }
         }
+    });
+    
+    let cleaned = cleaned_count.load(Ordering::Relaxed);
+    if cleaned > 0 {
+        println!("Cleaned {} orphaned .gen.dart file(s)", cleaned.to_string().yellow());
     }
-    if cleaned_count > 0 { println!("Cleaned {} orphaned .gen.dart file(s)", cleaned_count.to_string().yellow()); }
-    if all_classes.is_empty() { println!("{}", "No annotated classes found!".yellow()); return Ok(()); }
+    
+    if all_classes.is_empty() {
+        println!("{}", "No @Model annotated classes found!".yellow());
+        return Ok(());
+    }
 
     println!();
     println!("Found {} annotated class(es)", all_classes.len().to_string().green());
     println!();
     println!("{}", "Generating Dart code...".blue());
 
-    if args.single_file {
-        let output_dir = args.output.clone().unwrap_or_else(|| input.parent().unwrap_or(&input).to_path_buf());
-        std::fs::create_dir_all(&output_dir)?;
-        let mut dart_code = String::new();
-        dart_code.push_str("// GENERATED CODE - DO NOT MODIFY BY HAND\n// Generated by: dart_json_gen (Rust)\n\nimport 'dart:convert';\n\n");
-        for (source_path, _) in &files_with_classes {
-            let source_name = source_path.file_name().and_then(|n| n.to_str()).unwrap_or("model.dart");
-            dart_code.push_str(&format!("import '{}';\n", source_name));
-        }
-        dart_code.push_str("\n");
-        let needs_deep_equals = all_classes.iter().any(|c| c.features.equatable && c.fields.iter().any(|f| !f.ignore_equality && matches!(f.dart_type, models::DartType::List(_) | models::DartType::Map(_, _) | models::DartType::Set(_))));
-        for class in &all_classes { dart_code.push_str(&generate_class_code(class)); dart_code.push_str("\n"); }
-        if needs_deep_equals { dart_code.push_str(&generate_deep_equals_helper()); }
-        let output_path = output_dir.join("models.gen.dart");
-        std::fs::write(&output_path, dart_code)?;
-        println!("  {} {}", "→".green(), output_path.display().to_string().cyan());
-    } else {
-        for (source_path, classes) in &files_with_classes {
-            let gen_path = get_gen_path(source_path);
-            let source_name = source_path.file_stem().and_then(|n| n.to_str()).unwrap_or("model");
-            let source_content = std::fs::read_to_string(source_path)?;
-            let source_checksum = calculate_checksum(&source_content);
-            if gen_path.exists() {
-                if let Ok(existing_content) = std::fs::read_to_string(&gen_path) {
-                    if let Some(existing_checksum) = extract_checksum(&existing_content) {
-                        if existing_checksum == source_checksum {
-                            println!("  {} {} (unchanged)", "⏭".dimmed(), gen_path.display().to_string().dimmed());
-                            continue;
-                        }
+    // Generate files in parallel
+    let generated = Mutex::new(Vec::new());
+    let skipped = AtomicUsize::new(0);
+
+    files_with_classes.par_iter().for_each(|(source_path, source_content, classes)| {
+        let gen_path = get_gen_path(source_path);
+        let source_checksum = calculate_checksum(source_content);
+        
+        // Check if unchanged
+        if gen_path.exists() {
+            if let Ok(existing_content) = std::fs::read_to_string(&gen_path) {
+                if let Some(existing_checksum) = extract_checksum(&existing_content) {
+                    if existing_checksum == source_checksum {
+                        skipped.fetch_add(1, Ordering::Relaxed);
+                        return;
                     }
                 }
             }
-            
-            // Check if this is a part file and get the main library to import
-            let import_file = if let Some(part_of_target) = extract_part_of(&source_content) {
-                // Remove .dart extension if present, then add it back
-                let target = part_of_target.trim_end_matches(".dart");
-                format!("{}.dart", target)
-            } else {
-                format!("{}.dart", source_name)
-            };
-            
-            let mut dart_code = String::new();
-            dart_code.push_str("// GENERATED CODE - DO NOT MODIFY BY HAND\n// Generated by: dart_json_gen (Rust)\n");
-            dart_code.push_str(&format!("// Checksum: {}\n\nimport 'dart:convert';\nimport '{}';\n\n", source_checksum, import_file));
-            let needs_deep_equals = classes.iter().any(|c| c.features.equatable && c.fields.iter().any(|f| !f.ignore_equality && matches!(f.dart_type, models::DartType::List(_) | models::DartType::Map(_, _) | models::DartType::Set(_))));
-            for class in classes { dart_code.push_str(&generate_class_code(class)); dart_code.push_str("\n"); }
-            if needs_deep_equals { dart_code.push_str(&generate_deep_equals_helper()); }
-            std::fs::write(&gen_path, dart_code)?;
-            println!("  {} {}", "→".green(), gen_path.display().to_string().cyan());
         }
+        
+        let source_name = source_path.file_stem().and_then(|n| n.to_str()).unwrap_or("model");
+        let import_file = extract_part_of(source_content)
+            .map(|t| format!("{}.dart", t.trim_end_matches(".dart")))
+            .unwrap_or_else(|| format!("{}.dart", source_name));
+        
+        let dart_code = generate_file_code(classes, &import_file, source_checksum);
+        
+        if std::fs::write(&gen_path, dart_code).is_ok() {
+            generated.lock().unwrap().push(gen_path);
+        }
+    });
+
+    let generated_files = generated.into_inner().unwrap();
+    for path in &generated_files {
+        println!("  {} {}", "→".green(), path.display().to_string().cyan());
+    }
+    
+    let skip_count = skipped.load(Ordering::Relaxed);
+    if skip_count > 0 {
+        println!("  {} {} file(s) unchanged", "⏭".dimmed(), skip_count.to_string().dimmed());
     }
 
-    if args.rust {
-        println!();
-        println!("{}", "Generating Rust structs...".blue());
-        let rust_generator = generator::RustGenerator::new();
-        std::fs::create_dir_all(&args.rust_output)?;
-        if args.single_file {
-            let rust_code = rust_generator.generate_all(&all_classes);
-            let output_path = args.rust_output.join("models.rs");
-            std::fs::write(&output_path, rust_code)?;
-            println!("  {} {}", "→".green(), output_path.display().to_string().cyan());
-        } else {
-            for class in &all_classes {
-                let rust_code = rust_generator.generate_single(class);
-                let file_name = to_snake_case(&class.name) + ".rs";
-                let output_path = args.rust_output.join(&file_name);
-                std::fs::write(&output_path, rust_code)?;
-                println!("  {} {}", "→".green(), output_path.display().to_string().cyan());
-            }
-            let mod_content = rust_generator.generate_mod_file(&all_classes);
-            let mod_path = args.rust_output.join("mod.rs");
-            std::fs::write(&mod_path, mod_content)?;
-            println!("  {} {}", "→".green(), mod_path.display().to_string().cyan());
-        }
-    }
     println!();
-    println!("{}", "✅ Generation complete!".green().bold());
+    println!("{} Generated {} file(s)", "✅".green(), generated_files.len().to_string().green());
     Ok(())
 }
 
-fn format_features(features: &models::GenerationFeatures) -> String {
+fn generate_file_code(classes: &[DartClass], import_file: &str, checksum: u64) -> String {
+    let mut output = String::with_capacity(classes.len() * 1000);
+    
+    // Header
+    output.push_str("// GENERATED CODE - DO NOT MODIFY BY HAND\n");
+    output.push_str("// Generator: dart_json_gen v2.0 (Rust)\n");
+    output.push_str(&format!("// Checksum: {}\n\n", checksum));
+    
+    // Imports
+    let needs_convert = classes.iter().any(|c| c.features.json);
+    if needs_convert {
+        output.push_str("import 'dart:convert';\n");
+    }
+    output.push_str(&format!("import '{}';\n\n", import_file));
+    
+    // Check if we need shared helpers
+    let needs_deep_equals = classes.iter().any(|c| {
+        c.features.equatable && c.fields.iter().any(|f| {
+            !f.ignore_equality && matches!(f.dart_type, DartType::List(_) | DartType::Map(_, _) | DartType::Set(_))
+        })
+    });
+    
+    // Generate each class
+    for class in classes {
+        output.push_str(&generate_class_code(class));
+    }
+    
+    // Shared helpers at the end
+    if needs_deep_equals {
+        output.push_str(&generate_deep_equals_helper());
+    }
+    
+    output
+}
+
+fn generate_class_code(class: &DartClass) -> String {
+    let mut output = String::new();
+    
+    if class.is_sealed && class.features.union {
+        output.push_str(&generate_union_extension(class));
+    }
+    
+    if class.features.json {
+        if class.is_sealed {
+            output.push_str(&generate_union_serializer(class));
+        } else {
+            output.push_str(&generate_json_code(class));
+        }
+    }
+    
+    if class.features.copy_with && !class.is_sealed {
+        output.push_str(&generate_copy_with(class));
+    }
+    
+    if class.features.equatable && !class.is_sealed {
+        output.push_str(&generate_equatable(class));
+    }
+    
+    if class.features.stringify && !class.is_sealed {
+        output.push_str(&generate_to_string(class));
+    }
+    
+    output
+}
+
+// ============================================================
+// Union/Sealed Class Generation
+// ============================================================
+
+fn generate_union_extension(class: &DartClass) -> String {
+    let name = &class.name;
+    let cases = &class.union_cases;
+    
+    if cases.is_empty() {
+        return String::new();
+    }
+    
+    let mut out = String::new();
+    
+    // Extension with when/map methods
+    out.push_str(&format!("extension ${}Union on {} {{\n", name, name));
+    
+    // when - exhaustive pattern matching with field destructuring
+    out.push_str("  T when<T>({\n");
+    for case in cases {
+        let params = case.fields.iter()
+            .map(|f| format!("{} {}", f.dart_type.to_dart_type(), f.name))
+            .collect::<Vec<_>>()
+            .join(", ");
+        out.push_str(&format!("    required T Function({}) {},\n", params, case.name));
+    }
+    out.push_str("  }) {\n    final self = this;\n");
+    for case in cases {
+        let args = case.fields.iter().map(|f| format!("self.{}", f.name)).collect::<Vec<_>>().join(", ");
+        out.push_str(&format!("    if (self is {}) return {}({});\n", case.class_name, case.name, args));
+    }
+    out.push_str(&format!("    throw StateError('Unknown {} subtype: $this');\n  }}\n\n", name));
+    
+    // maybeWhen - optional handlers with orElse
+    out.push_str("  T maybeWhen<T>({\n");
+    for case in cases {
+        let params = case.fields.iter()
+            .map(|f| format!("{} {}", f.dart_type.to_dart_type(), f.name))
+            .collect::<Vec<_>>()
+            .join(", ");
+        out.push_str(&format!("    T Function({})? {},\n", params, case.name));
+    }
+    out.push_str("    required T Function() orElse,\n  }) {\n    final self = this;\n");
+    for case in cases {
+        let args = case.fields.iter().map(|f| format!("self.{}", f.name)).collect::<Vec<_>>().join(", ");
+        out.push_str(&format!("    if (self is {} && {} != null) return {}({});\n", case.class_name, case.name, case.name, args));
+    }
+    out.push_str("    return orElse();\n  }\n\n");
+    
+    // whenOrNull - nullable return
+    out.push_str("  T? whenOrNull<T>({\n");
+    for case in cases {
+        let params = case.fields.iter()
+            .map(|f| format!("{} {}", f.dart_type.to_dart_type(), f.name))
+            .collect::<Vec<_>>()
+            .join(", ");
+        out.push_str(&format!("    T Function({})? {},\n", params, case.name));
+    }
+    out.push_str("  }) {\n    final self = this;\n");
+    for case in cases {
+        let args = case.fields.iter().map(|f| format!("self.{}", f.name)).collect::<Vec<_>>().join(", ");
+        out.push_str(&format!("    if (self is {} && {} != null) return {}({});\n", case.class_name, case.name, case.name, args));
+    }
+    out.push_str("    return null;\n  }\n\n");
+    
+    // map - exhaustive type mapping
+    out.push_str("  T map<T>({\n");
+    for case in cases {
+        out.push_str(&format!("    required T Function({}) {},\n", case.class_name, case.name));
+    }
+    out.push_str("  }) {\n    final self = this;\n");
+    for case in cases {
+        out.push_str(&format!("    if (self is {}) return {}(self);\n", case.class_name, case.name));
+    }
+    out.push_str(&format!("    throw StateError('Unknown {} subtype: $this');\n  }}\n\n", name));
+    
+    // maybeMap - optional with orElse
+    out.push_str("  T maybeMap<T>({\n");
+    for case in cases {
+        out.push_str(&format!("    T Function({})? {},\n", case.class_name, case.name));
+    }
+    out.push_str("    required T Function() orElse,\n  }) {\n    final self = this;\n");
+    for case in cases {
+        out.push_str(&format!("    if (self is {} && {} != null) return {}(self);\n", case.class_name, case.name, case.name));
+    }
+    out.push_str("    return orElse();\n  }\n\n");
+    
+    // mapOrNull - nullable
+    out.push_str("  T? mapOrNull<T>({\n");
+    for case in cases {
+        out.push_str(&format!("    T Function({})? {},\n", case.class_name, case.name));
+    }
+    out.push_str("  }) {\n    final self = this;\n");
+    for case in cases {
+        out.push_str(&format!("    if (self is {} && {} != null) return {}(self);\n", case.class_name, case.name, case.name));
+    }
+    out.push_str("    return null;\n  }\n\n");
+    
+    // Type checkers
+    for case in cases {
+        out.push_str(&format!("  bool get is{} => this is {};\n", 
+            capitalize(&case.name), case.class_name));
+    }
+    out.push_str("\n");
+    
+    // Safe casts
+    for case in cases {
+        out.push_str(&format!("  {}? get as{} => this is {} ? this as {} : null;\n",
+            case.class_name, capitalize(&case.name), case.class_name, case.class_name));
+    }
+    
+    out.push_str("}\n\n");
+    out
+}
+
+fn generate_union_serializer(class: &DartClass) -> String {
+    let name = &class.name;
+    let cases = &class.union_cases;
+    let disc = &class.discriminator;
+    
+    if cases.is_empty() {
+        return String::new();
+    }
+    
+    let mut out = String::new();
+    
+    out.push_str(&format!("class ${}Serializer {{\n", name));
+    
+    // fromJson
+    out.push_str(&format!("  static {} fromJson(Map<String, dynamic> json) {{\n", name));
+    out.push_str(&format!("    switch (json['{}'] as String?) {{\n", disc));
+    for case in cases {
+        out.push_str(&format!("      case '{}': return ${}Serializer.fromJson(json);\n", 
+            case.discriminator_value, case.class_name));
+    }
+    out.push_str(&format!("      default: throw FormatException('Unknown {} type: ${{json[\"{}\"]}}');\n", name, disc));
+    out.push_str("    }\n  }\n\n");
+    
+    // fromJsonString
+    out.push_str(&format!("  static {} fromJsonString(String json) => fromJson(jsonDecode(json) as Map<String, dynamic>);\n", name));
+    out.push_str(&format!("  static List<{}> fromJsonList(List<dynamic> list) => list.map((e) => fromJson(e as Map<String, dynamic>)).toList();\n", name));
+    
+    // toJson
+    out.push_str(&format!("\n  static Map<String, dynamic> toJson({} value) {{\n", name));
+    out.push_str("    return value.map(\n");
+    for (i, case) in cases.iter().enumerate() {
+        let comma = if i < cases.len() - 1 { "," } else { "" };
+        out.push_str(&format!("      {}: (v) => {{'{}': '{}', ...v.toJson()}}{}\n", 
+            case.name, disc, case.discriminator_value, comma));
+    }
+    out.push_str("    );\n  }\n");
+    
+    out.push_str("}\n\n");
+    out
+}
+
+// ============================================================
+// JSON Generation (Compact)
+// ============================================================
+
+fn generate_json_code(class: &DartClass) -> String {
+    let name = &class.name;
+    let fields: Vec<_> = class.fields.iter().filter(|f| !f.ignore_json).collect();
+    
+    let mut out = String::new();
+    
+    // Extension for toJson
+    out.push_str(&format!("extension ${}Json on {} {{\n", name, name));
+    out.push_str("  Map<String, dynamic> toJson() => <String, dynamic>{\n");
+    for field in &fields {
+        let key = get_json_key(field, class.naming_convention.as_ref());
+        let expr = field_to_json_expr(field);
+        if field.is_nullable && !field.include_if_null {
+            out.push_str(&format!("    if ({} != null) '{}': {},\n", field.name, key, expr));
+        } else {
+            out.push_str(&format!("    '{}': {},\n", key, expr));
+        }
+    }
+    out.push_str("  };\n");
+    out.push_str("  String toJsonString() => jsonEncode(toJson());\n");
+    out.push_str("}\n\n");
+    
+    // Serializer class for fromJson
+    out.push_str(&format!("class ${}Serializer {{\n", name));
+    out.push_str(&format!("  static {} fromJson(Map<String, dynamic> json) => {}(\n", name, name));
+    for (i, field) in fields.iter().enumerate() {
+        let key = get_json_key(field, class.naming_convention.as_ref());
+        let expr = field_from_json_expr(field, &key);
+        let comma = if i < fields.len() - 1 { "," } else { "" };
+        if class.uses_named_params {
+            out.push_str(&format!("    {}: {}{}\n", field.name, expr, comma));
+        } else {
+            out.push_str(&format!("    {}{}\n", expr, comma));
+        }
+    }
+    out.push_str("  );\n");
+    out.push_str(&format!("  static {} fromJsonString(String json) => fromJson(jsonDecode(json) as Map<String, dynamic>);\n", name));
+    out.push_str(&format!("  static List<{}> fromJsonList(List<dynamic> list) => list.map((e) => fromJson(e as Map<String, dynamic>)).toList();\n", name));
+    out.push_str("}\n\n");
+    
+    out
+}
+
+// ============================================================
+// CopyWith Generation (Compact)
+// ============================================================
+
+fn generate_copy_with(class: &DartClass) -> String {
+    let name = &class.name;
+    let copy_fields: Vec<_> = class.fields.iter().filter(|f| !f.ignore_copy_with).collect();
+    let uses_named = class.uses_named_params;
+    
+    let mut out = String::new();
+    out.push_str(&format!("extension ${}CopyWith on {} {{\n", name, name));
+    
+    // copyWith
+    out.push_str(&format!("  {} copyWith({{\n", name));
+    for field in &copy_fields {
+        out.push_str(&format!("    {}? {},\n", field.dart_type.to_dart_type(), field.name));
+    }
+    out.push_str(&format!("  }}) => {}(\n", name));
+    for field in &class.fields {
+        if uses_named {
+            if field.ignore_copy_with {
+                out.push_str(&format!("    {}: this.{},\n", field.name, field.name));
+            } else {
+                out.push_str(&format!("    {}: {} ?? this.{},\n", field.name, field.name, field.name));
+            }
+        } else if field.ignore_copy_with {
+            out.push_str(&format!("    this.{},\n", field.name));
+        } else {
+            out.push_str(&format!("    {} ?? this.{},\n", field.name, field.name));
+        }
+    }
+    out.push_str("  );\n");
+    
+    // copyWithNull
+    if class.features.copy_with_null {
+        let nullable_fields: Vec<_> = copy_fields.iter().filter(|f| f.is_nullable).collect();
+        if !nullable_fields.is_empty() {
+            out.push_str(&format!("\n  {} copyWithNull({{\n", name));
+            for field in &nullable_fields {
+                out.push_str(&format!("    bool {} = false,\n", field.name));
+            }
+            out.push_str(&format!("  }}) => {}(\n", name));
+            for field in &class.fields {
+                if uses_named {
+                    if field.ignore_copy_with {
+                        out.push_str(&format!("    {}: this.{},\n", field.name, field.name));
+                    } else if field.is_nullable {
+                        out.push_str(&format!("    {}: {} ? null : this.{},\n", field.name, field.name, field.name));
+                    } else {
+                        out.push_str(&format!("    {}: this.{},\n", field.name, field.name));
+                    }
+                } else if field.ignore_copy_with {
+                    out.push_str(&format!("    this.{},\n", field.name));
+                } else if field.is_nullable {
+                    out.push_str(&format!("    {} ? null : this.{},\n", field.name, field.name));
+                } else {
+                    out.push_str(&format!("    this.{},\n", field.name));
+                }
+            }
+            out.push_str("  );\n");
+        }
+    }
+    
+    out.push_str("}\n\n");
+    out
+}
+
+// ============================================================
+// Equatable Generation (Compact)
+// ============================================================
+
+fn generate_equatable(class: &DartClass) -> String {
+    let name = &class.name;
+    let eq_fields: Vec<_> = class.fields.iter().filter(|f| !f.ignore_equality).collect();
+    
+    let mut out = String::new();
+    out.push_str(&format!("extension ${}Equatable on {} {{\n", name, name));
+    
+    // props
+    out.push_str("  List<Object?> get props => [");
+    out.push_str(&eq_fields.iter().map(|f| f.name.as_str()).collect::<Vec<_>>().join(", "));
+    out.push_str("];\n\n");
+    
+    // equals
+    out.push_str(&format!("  bool equals({} other) => ", name));
+    if eq_fields.is_empty() {
+        out.push_str("true;\n");
+    } else {
+        let conditions: Vec<String> = eq_fields.iter().map(|f| {
+            if matches!(f.dart_type, DartType::List(_) | DartType::Map(_, _) | DartType::Set(_)) {
+                format!("_deepEquals({}, other.{})", f.name, f.name)
+            } else {
+                format!("{} == other.{}", f.name, f.name)
+            }
+        }).collect();
+        out.push_str(&conditions.join(" && "));
+        out.push_str(";\n");
+    }
+    
+    // hashCode
+    out.push_str("\n  int get propsHashCode => Object.hashAll(props);\n");
+    
+    out.push_str("}\n\n");
+    out
+}
+
+// ============================================================
+// ToString Generation (Compact)
+// ============================================================
+
+fn generate_to_string(class: &DartClass) -> String {
+    let name = &class.name;
+    let str_fields: Vec<_> = class.fields.iter().filter(|f| !f.ignore_to_string).collect();
+    
+    let mut out = String::new();
+    out.push_str(&format!("extension ${}String on {} {{\n", name, name));
+    
+    let field_strs: Vec<String> = str_fields.iter()
+        .map(|f| format!("{}: ${{{}}}", f.name, f.name))
+        .collect();
+    out.push_str(&format!("  String toStringRepresentation() => '{}({})';\n", name, field_strs.join(", ")));
+    
+    out.push_str("}\n\n");
+    out
+}
+
+// ============================================================
+// Helper Functions
+// ============================================================
+
+fn generate_deep_equals_helper() -> String {
+    r#"bool _deepEquals(dynamic a, dynamic b) {
+  if (identical(a, b)) return true;
+  if (a is List && b is List) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) if (!_deepEquals(a[i], b[i])) return false;
+    return true;
+  }
+  if (a is Map && b is Map) {
+    if (a.length != b.length) return false;
+    for (final k in a.keys) if (!b.containsKey(k) || !_deepEquals(a[k], b[k])) return false;
+    return true;
+  }
+  if (a is Set && b is Set) return a.length == b.length && a.containsAll(b);
+  return a == b;
+}
+"#.to_string()
+}
+
+fn get_json_key(field: &models::DartField, class_convention: Option<&NamingConvention>) -> String {
+    if let Some(ref key) = field.json_key { return key.clone(); }
+    let convention = field.naming_convention.as_ref().or(class_convention);
+    convention.map_or_else(|| field.name.clone(), |c| convert_case(&field.name, c))
+}
+
+fn convert_case(s: &str, convention: &NamingConvention) -> String {
+    match convention {
+        NamingConvention::SnakeCase => to_snake_case(s),
+        NamingConvention::CamelCase => s.to_string(),
+        NamingConvention::PascalCase => {
+            let mut chars = s.chars();
+            chars.next().map_or(String::new(), |first| first.to_uppercase().collect::<String>() + chars.as_str())
+        }
+        NamingConvention::ScreamingSnakeCase => to_snake_case(s).to_uppercase(),
+    }
+}
+
+fn to_snake_case(s: &str) -> String {
+    let mut result = String::new();
+    for (i, c) in s.chars().enumerate() {
+        if c.is_uppercase() {
+            if i > 0 { result.push('_'); }
+            result.push(c.to_lowercase().next().unwrap());
+        } else {
+            result.push(c);
+        }
+    }
+    result
+}
+
+fn capitalize(s: &str) -> String {
+    let mut chars = s.chars();
+    chars.next().map_or(String::new(), |first| first.to_uppercase().collect::<String>() + chars.as_str())
+}
+
+fn field_to_json_expr(field: &models::DartField) -> String {
+    let name = &field.name;
+    
+    // Custom toJson function
+    if let Some(ref func) = field.to_json {
+        return format!("{}({})", func, name);
+    }
+    
+    match &field.dart_type {
+        DartType::DateTime => {
+            if field.is_nullable { format!("{}?.toIso8601String()", name) }
+            else { format!("{}.toIso8601String()", name) }
+        }
+        DartType::List(inner) if needs_mapping(inner) => {
+            if field.is_nullable { format!("{}?.map((e) => e.toJson()).toList()", name) }
+            else { format!("{}.map((e) => e.toJson()).toList()", name) }
+        }
+        DartType::Custom(_) => {
+            if field.is_nullable { format!("{}?.toJson()", name) }
+            else { format!("{}.toJson()", name) }
+        }
+        _ => name.clone(),
+    }
+}
+
+fn field_from_json_expr(field: &models::DartField, json_key: &str) -> String {
+    let accessor = format!("json['{}']", json_key);
+    
+    // Custom fromJson function
+    if let Some(ref func) = field.from_json {
+        return format!("{}({})", func, accessor);
+    }
+    
+    // Handle default value
+    let default_suffix = field.default_value.as_ref()
+        .map(|d| format!(" ?? {}", d))
+        .unwrap_or_default();
+    
+    let expr = match &field.dart_type {
+        DartType::String => {
+            if field.is_nullable { format!("{} as String?", accessor) }
+            else { format!("{} as String", accessor) }
+        }
+        DartType::Int => {
+            if field.is_nullable { format!("({} as num?)?.toInt()", accessor) }
+            else { format!("({} as num).toInt()", accessor) }
+        }
+        DartType::Double | DartType::Num => {
+            if field.is_nullable { format!("({} as num?)?.toDouble()", accessor) }
+            else { format!("({} as num).toDouble()", accessor) }
+        }
+        DartType::Bool => {
+            if field.is_nullable { format!("{} as bool?", accessor) }
+            else { format!("{} as bool", accessor) }
+        }
+        DartType::DateTime => {
+            if field.is_nullable {
+                format!("{} != null ? DateTime.parse({} as String) : null", accessor, accessor)
+            } else {
+                format!("DateTime.parse({} as String)", accessor)
+            }
+        }
+        DartType::List(inner) => {
+            let item_expr = list_item_from_json(inner);
+            if field.is_nullable {
+                format!("({} as List?)?.map((e) => {}).toList()", accessor, item_expr)
+            } else {
+                format!("({} as List).map((e) => {}).toList()", accessor, item_expr)
+            }
+        }
+        DartType::Map(_, value_type) => {
+            if value_type.is_dynamic() {
+                if field.is_nullable {
+                    format!("{} as Map<String, dynamic>?", accessor)
+                } else {
+                    format!("{} as Map<String, dynamic>", accessor)
+                }
+            } else {
+                let value_cast = map_value_cast(value_type);
+                if field.is_nullable {
+                    format!("({} as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, {}))", accessor, value_cast)
+                } else {
+                    format!("({} as Map<String, dynamic>).map((k, v) => MapEntry(k, {}))", accessor, value_cast)
+                }
+            }
+        }
+        DartType::Custom(type_name) => {
+            if field.is_nullable {
+                format!("{} != null ? ${}Serializer.fromJson({} as Map<String, dynamic>) : null", accessor, type_name, accessor)
+            } else {
+                format!("${}Serializer.fromJson({} as Map<String, dynamic>)", type_name, accessor)
+            }
+        }
+        _ => accessor.clone(),
+    };
+    
+    format!("{}{}", expr, default_suffix)
+}
+
+fn needs_mapping(dart_type: &DartType) -> bool {
+    matches!(dart_type, DartType::Custom(_) | DartType::DateTime)
+}
+
+fn map_value_cast(value_type: &DartType) -> String {
+    match value_type {
+        DartType::String => "v as String".to_string(),
+        DartType::Int => "(v as num).toInt()".to_string(),
+        DartType::Double | DartType::Num => "(v as num).toDouble()".to_string(),
+        DartType::Bool => "v as bool".to_string(),
+        DartType::Custom(name) => format!("${}Serializer.fromJson(v as Map<String, dynamic>)", name),
+        _ => "v".to_string(),
+    }
+}
+
+fn list_item_from_json(inner: &DartType) -> String {
+    match inner {
+        DartType::String => "e as String".to_string(),
+        DartType::Int => "(e as num).toInt()".to_string(),
+        DartType::Double | DartType::Num => "(e as num).toDouble()".to_string(),
+        DartType::Bool => "e as bool".to_string(),
+        DartType::DateTime => "DateTime.parse(e as String)".to_string(),
+        DartType::Custom(name) => format!("${}Serializer.fromJson(e as Map<String, dynamic>)", name),
+        _ => "e".to_string(),
+    }
+}
+
+fn format_features(features: &GenerationFeatures) -> String {
     let mut parts = Vec::new();
     if features.json { parts.push("json"); }
     if features.copy_with { parts.push("copyWith"); }
     if features.equatable { parts.push("=="); }
     if features.stringify { parts.push("toString"); }
+    if features.union { parts.push("union"); }
     if parts.is_empty() { String::new() } else { format!("[{}]", parts.join(", ")) }
 }
 
@@ -217,40 +803,40 @@ fn get_gen_path(source_path: &PathBuf) -> PathBuf {
 fn collect_dart_files(path: &PathBuf) -> Result<Vec<PathBuf>> {
     let mut files = Vec::new();
     if path.is_file() {
-        if path.extension().map_or(false, |ext| ext == "dart") && !path.to_string_lossy().ends_with(".gen.dart") && !path.to_string_lossy().ends_with(".g.dart") {
+        if path.extension().map_or(false, |ext| ext == "dart") 
+            && !path.to_string_lossy().ends_with(".gen.dart") 
+            && !path.to_string_lossy().ends_with(".g.dart") 
+        {
             files.push(path.clone());
         }
     } else if path.is_dir() {
-        for entry in WalkDir::new(path).into_iter().filter_map(|e| e.ok()).filter(|e| e.path().extension().map_or(false, |ext| ext == "dart")).filter(|e| !e.path().to_string_lossy().ends_with(".gen.dart")).filter(|e| !e.path().to_string_lossy().ends_with(".g.dart")) {
+        for entry in WalkDir::new(path)
+            .into_iter()
+            .filter_map(|e| e.ok())
+            .filter(|e| e.path().extension().map_or(false, |ext| ext == "dart"))
+            .filter(|e| !e.path().to_string_lossy().ends_with(".gen.dart"))
+            .filter(|e| !e.path().to_string_lossy().ends_with(".g.dart"))
+        {
             files.push(entry.path().to_path_buf());
         }
     }
     Ok(files)
 }
 
-/// Clean (delete) all .gen.dart files in the specified path
 fn clean_gen_files(path: &PathBuf) -> Result<()> {
     println!("{}", "🧹 Cleaning generated files...".blue().bold());
     
-    let mut deleted_count = 0;
-    let mut gen_files = Vec::new();
-    
-    if path.is_file() {
-        // If it's a specific .dart file, delete its corresponding .gen.dart
+    let gen_files: Vec<PathBuf> = if path.is_file() {
         let gen_path = get_gen_path(path);
-        if gen_path.exists() {
-            gen_files.push(gen_path);
-        }
-    } else if path.is_dir() {
-        // Find all .gen.dart files in the directory
-        for entry in WalkDir::new(path)
+        if gen_path.exists() { vec![gen_path] } else { vec![] }
+    } else {
+        WalkDir::new(path)
             .into_iter()
             .filter_map(|e| e.ok())
             .filter(|e| e.path().to_string_lossy().ends_with(".gen.dart"))
-        {
-            gen_files.push(entry.path().to_path_buf());
-        }
-    }
+            .map(|e| e.path().to_path_buf())
+            .collect()
+    };
     
     if gen_files.is_empty() {
         println!("{}", "No .gen.dart files found.".yellow());
@@ -259,237 +845,22 @@ fn clean_gen_files(path: &PathBuf) -> Result<()> {
     
     println!("Found {} .gen.dart file(s)", gen_files.len().to_string().cyan());
     
-    for gen_file in gen_files {
-        match std::fs::remove_file(&gen_file) {
-            Ok(_) => {
-                println!("  {} {}", "🗑".red(), gen_file.display().to_string().yellow());
-                deleted_count += 1;
-            }
-            Err(e) => {
-                eprintln!("  {} Failed to delete {}: {}", "✗".red(), gen_file.display(), e);
-            }
+    let deleted = AtomicUsize::new(0);
+    gen_files.par_iter().for_each(|gen_file| {
+        if std::fs::remove_file(gen_file).is_ok() {
+            println!("  {} {}", "🗑".red(), gen_file.display().to_string().yellow());
+            deleted.fetch_add(1, Ordering::Relaxed);
         }
-    }
+    });
     
     println!();
-    println!("{} Deleted {} file(s)", "✅".green(), deleted_count.to_string().green());
+    println!("{} Deleted {} file(s)", "✅".green(), deleted.load(Ordering::Relaxed).to_string().green());
     Ok(())
 }
 
-/// Extract the `part of` target file from a Dart file content
-/// Returns Some(filename) if file is a part file, None otherwise
 fn extract_part_of(content: &str) -> Option<String> {
-    use regex::Regex;
-    let part_of_re = Regex::new(r#"part\s+of\s+['"]([^'"]+)['"]"#).unwrap();
-    part_of_re.captures(content).and_then(|cap| cap.get(1).map(|m| m.as_str().to_string()))
-}
-
-fn to_snake_case(s: &str) -> String {
-    let mut result = String::new();
-    for (i, c) in s.chars().enumerate() {
-        if c.is_uppercase() { if i > 0 { result.push('_'); } result.push(c.to_lowercase().next().unwrap()); } else { result.push(c); }
+    lazy_static::lazy_static! {
+        static ref PART_OF_RE: Regex = Regex::new(r#"part\s+of\s+['"]([^'"]+)['"]"#).unwrap();
     }
-    result
+    PART_OF_RE.captures(content).and_then(|cap| cap.get(1).map(|m| m.as_str().to_string()))
 }
-
-fn generate_class_code(class: &models::DartClass) -> String {
-    let mut output = String::new();
-    if class.features.json { output.push_str(&generate_json_extension(class)); output.push_str(&generate_serializer_class(class)); }
-    if class.features.copy_with { output.push_str(&generate_copy_with(class)); }
-    if class.features.equatable { output.push_str(&generate_equatable(class)); }
-    if class.features.stringify { output.push_str(&generate_to_string(class)); }
-    output
-}
-
-fn generate_deep_equals_helper() -> String {
-    r#"bool _deepEquals(dynamic a, dynamic b) {
-  if (identical(a, b)) return true;
-  if (a is List && b is List) { if (a.length != b.length) return false; for (var i = 0; i < a.length; i++) { if (!_deepEquals(a[i], b[i])) return false; } return true; }
-  if (a is Map && b is Map) { if (a.length != b.length) return false; for (final key in a.keys) { if (!b.containsKey(key) || !_deepEquals(a[key], b[key])) return false; } return true; }
-  if (a is Set && b is Set) { if (a.length != b.length) return false; return a.containsAll(b); }
-  return a == b;
-}
-"#.to_string()
-}
-
-fn generate_json_extension(class: &models::DartClass) -> String {
-    let mut output = String::new();
-    let name = &class.name;
-    output.push_str(&format!("extension ${}JsonExtension on {} {{\n  Map<String, dynamic> toJson() {{\n    return <String, dynamic>{{\n", name, name));
-    for field in &class.fields {
-        if field.ignore { continue; }
-        let json_key = get_json_key(field, class.naming_convention.as_ref());
-        let value_expr = field_to_json_expr(field);
-        if field.is_nullable && !field.include_if_null {
-            output.push_str(&format!("      if ({} != null) '{}': {},\n", field.name, json_key, value_expr));
-        } else {
-            output.push_str(&format!("      '{}': {},\n", json_key, value_expr));
-        }
-    }
-    output.push_str("    };\n  }\n\n  String toJsonString() => jsonEncode(toJson());\n}\n\n");
-    output
-}
-
-fn generate_serializer_class(class: &models::DartClass) -> String {
-    let mut output = String::new();
-    let name = &class.name;
-    output.push_str(&format!("class ${}Serializer {{\n  static {} fromJson(Map<String, dynamic> json) {{\n    return {}(\n", name, name, name));
-    let non_ignored_fields: Vec<_> = class.fields.iter().filter(|f| !f.ignore).collect();
-    for (i, field) in non_ignored_fields.iter().enumerate() {
-        let json_key = get_json_key(field, class.naming_convention.as_ref());
-        let value_expr = field_from_json_expr(field, &json_key);
-        if class.uses_named_params { output.push_str(&format!("      {}: {},\n", field.name, value_expr)); }
-        else { let comma = if i < non_ignored_fields.len() - 1 { "," } else { "" }; output.push_str(&format!("      {}{}\n", value_expr, comma)); }
-    }
-    output.push_str(&format!("    );\n  }}\n\n  static {} fromJsonString(String json) => fromJson(jsonDecode(json) as Map<String, dynamic>);\n  static List<{}> fromJsonList(List<dynamic> jsonList) => jsonList.map((e) => fromJson(e as Map<String, dynamic>)).toList();\n  static List<{}> fromJsonStringList(String json) => fromJsonList(jsonDecode(json) as List<dynamic>);\n}}\n\n", name, name, name));
-    output
-}
-
-fn generate_copy_with(class: &models::DartClass) -> String {
-    let mut output = String::new();
-    let name = &class.name;
-    let uses_named = class.uses_named_params;
-    let copy_fields: Vec<_> = class.fields.iter().filter(|f| !f.ignore_copy_with).collect();
-    output.push_str(&format!("extension ${}CopyWithExtension on {} {{\n  {} copyWith({{\n", name, name, name));
-    for field in &copy_fields { output.push_str(&format!("    {}? {},\n", field.dart_type.to_dart_type(), field.name)); }
-    output.push_str(&format!("  }}) {{\n    return {}(\n", name));
-    if uses_named {
-        for field in &class.fields {
-            if field.ignore_copy_with { output.push_str(&format!("      {}: this.{},\n", field.name, field.name)); }
-            else { output.push_str(&format!("      {}: {} ?? this.{},\n", field.name, field.name, field.name)); }
-        }
-    } else {
-        for field in &class.fields {
-            if field.ignore_copy_with { output.push_str(&format!("      this.{},\n", field.name)); }
-            else { output.push_str(&format!("      {} ?? this.{},\n", field.name, field.name)); }
-        }
-    }
-    output.push_str("    );\n  }\n");
-    if class.features.copy_with_null {
-        let nullable_fields: Vec<_> = copy_fields.iter().filter(|f| f.is_nullable).collect();
-        if !nullable_fields.is_empty() {
-            output.push_str(&format!("\n  {} copyWithNull({{\n", name));
-            for field in &nullable_fields { output.push_str(&format!("    bool {} = false,\n", field.name)); }
-            output.push_str(&format!("  }}) {{\n    return {}(\n", name));
-            if uses_named {
-                for field in &class.fields {
-                    if field.ignore_copy_with { output.push_str(&format!("      {}: this.{},\n", field.name, field.name)); }
-                    else if field.is_nullable { output.push_str(&format!("      {}: {} ? null : this.{},\n", field.name, field.name, field.name)); }
-                    else { output.push_str(&format!("      {}: this.{},\n", field.name, field.name)); }
-                }
-            } else {
-                for field in &class.fields {
-                    if field.ignore_copy_with { output.push_str(&format!("      this.{},\n", field.name)); }
-                    else if field.is_nullable { output.push_str(&format!("      {} ? null : this.{},\n", field.name, field.name)); }
-                    else { output.push_str(&format!("      this.{},\n", field.name)); }
-                }
-            }
-            output.push_str("    );\n  }\n");
-        }
-    }
-    output.push_str("}\n\n");
-    output
-}
-
-fn generate_equatable(class: &models::DartClass) -> String {
-    let mut output = String::new();
-    let name = &class.name;
-    let eq_fields: Vec<_> = class.fields.iter().filter(|f| !f.ignore_equality).collect();
-    output.push_str(&format!("extension ${}EquatableExtension on {} {{\n  List<Object?> get props => [\n", name, name));
-    for field in &eq_fields { output.push_str(&format!("    {},\n", field.name)); }
-    output.push_str(&format!("  ];\n\n  bool equals({} other) {{\n", name));
-    if eq_fields.is_empty() { output.push_str("    return true;\n"); }
-    else {
-        output.push_str("    return ");
-        let conditions: Vec<String> = eq_fields.iter().map(|f| {
-            match &f.dart_type {
-                models::DartType::List(_) | models::DartType::Map(_, _) | models::DartType::Set(_) => format!("_deepEquals({}, other.{})", f.name, f.name),
-                _ => format!("{} == other.{}", f.name, f.name)
-            }
-        }).collect();
-        output.push_str(&conditions.join(" &&\n        "));
-        output.push_str(";\n");
-    }
-    output.push_str("  }\n\n  int get propsHashCode {\n");
-    if eq_fields.is_empty() { output.push_str("    return 0;\n"); } else { output.push_str("    return Object.hashAll(props);\n"); }
-    output.push_str("  }\n}\n\n");
-    output
-}
-
-fn generate_to_string(class: &models::DartClass) -> String {
-    let mut output = String::new();
-    let name = &class.name;
-    let str_fields: Vec<_> = class.fields.iter().filter(|f| !f.ignore_to_string).collect();
-    output.push_str(&format!("extension ${}StringExtension on {} {{\n  String toStringRepresentation() {{\n", name, name));
-    let field_strs: Vec<String> = str_fields.iter().map(|f| format!("{}: ${}", f.name, f.name)).collect();
-    output.push_str(&format!("    return '{}({})';\n  }}\n}}\n\n", name, field_strs.join(", ")));
-    output
-}
-
-fn get_json_key(field: &models::DartField, class_convention: Option<&models::NamingConvention>) -> String {
-    if let Some(ref key) = field.json_key { return key.clone(); }
-    let convention = field.naming_convention.as_ref().or(class_convention);
-    if let Some(conv) = convention { return convert_case(&field.name, conv); }
-    field.name.clone()
-}
-
-fn convert_case(s: &str, convention: &models::NamingConvention) -> String {
-    match convention {
-        models::NamingConvention::SnakeCase => to_snake_case(s),
-        models::NamingConvention::CamelCase => s.to_string(),
-        models::NamingConvention::PascalCase => { let mut chars = s.chars(); match chars.next() { None => String::new(), Some(first) => first.to_uppercase().collect::<String>() + chars.as_str() } }
-        models::NamingConvention::ScreamingSnakeCase => to_snake_case(s).to_uppercase(),
-    }
-}
-
-fn field_to_json_expr(field: &models::DartField) -> String {
-    let name = &field.name;
-    match &field.dart_type {
-        models::DartType::DateTime => if field.is_nullable { format!("{}?.toIso8601String()", name) } else { format!("{}.toIso8601String()", name) },
-        models::DartType::List(inner) => if needs_mapping(inner) { if field.is_nullable { format!("{}?.map((e) => e.toJson()).toList()", name) } else { format!("{}.map((e) => e.toJson()).toList()", name) } } else { name.clone() },
-        models::DartType::Custom(_) => if field.is_nullable { format!("{}?.toJson()", name) } else { format!("{}.toJson()", name) },
-        _ => name.clone(),
-    }
-}
-
-fn needs_mapping(dart_type: &models::DartType) -> bool { matches!(dart_type, models::DartType::Custom(_) | models::DartType::DateTime) }
-
-fn field_from_json_expr(field: &models::DartField, json_key: &str) -> String {
-    let accessor = format!("json['{}']", json_key);
-    match &field.dart_type {
-        models::DartType::String => if field.is_nullable { format!("{} as String?", accessor) } else { format!("{} as String", accessor) },
-        models::DartType::Int => if field.is_nullable { format!("({} as num?)?.toInt()", accessor) } else { format!("({} as num).toInt()", accessor) },
-        models::DartType::Double | models::DartType::Num => if field.is_nullable { format!("({} as num?)?.toDouble()", accessor) } else { format!("({} as num).toDouble()", accessor) },
-        models::DartType::Bool => if field.is_nullable { format!("{} as bool?", accessor) } else { format!("{} as bool", accessor) },
-        models::DartType::DateTime => if field.is_nullable { format!("{} != null ? DateTime.parse({} as String) : null", accessor, accessor) } else { format!("DateTime.parse({} as String)", accessor) },
-        models::DartType::List(inner) => { let inner_expr = list_item_from_json(inner); if field.is_nullable { format!("({} as List<dynamic>?)?.map((e) => {}).toList()", accessor, inner_expr) } else { format!("({} as List<dynamic>).map((e) => {}).toList()", accessor, inner_expr) } },
-        models::DartType::Map(key_type, value_type) => { let key_dart = key_type.to_dart_type(); let value_dart = value_type.to_dart_type(); if value_type.is_dynamic() { if field.is_nullable { format!("{} as Map<{}, {}>?", accessor, key_dart, value_dart) } else { format!("{} as Map<{}, {}>", accessor, key_dart, value_dart) } } else { let value_cast = map_value_cast(value_type); if field.is_nullable { format!("({} as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, {}))", accessor, value_cast) } else { format!("({} as Map<String, dynamic>).map((k, v) => MapEntry(k, {}))", accessor, value_cast) } } },
-        models::DartType::Custom(type_name) => if field.is_nullable { format!("{} != null ? ${}Serializer.fromJson({} as Map<String, dynamic>) : null", accessor, type_name, accessor) } else { format!("${}Serializer.fromJson({} as Map<String, dynamic>)", type_name, accessor) },
-        models::DartType::Dynamic => accessor,
-        _ => accessor,
-    }
-}
-
-fn map_value_cast(value_type: &models::DartType) -> String {
-    match value_type {
-        models::DartType::String => "v as String".to_string(),
-        models::DartType::Int => "(v as num).toInt()".to_string(),
-        models::DartType::Double | models::DartType::Num => "(v as num).toDouble()".to_string(),
-        models::DartType::Bool => "v as bool".to_string(),
-        models::DartType::Custom(type_name) => format!("${}Serializer.fromJson(v as Map<String, dynamic>)", type_name),
-        _ => "v".to_string(),
-    }
-}
-
-fn list_item_from_json(inner: &models::DartType) -> String {
-    match inner {
-        models::DartType::String => "e as String".to_string(),
-        models::DartType::Int => "(e as num).toInt()".to_string(),
-        models::DartType::Double | models::DartType::Num => "(e as num).toDouble()".to_string(),
-        models::DartType::Bool => "e as bool".to_string(),
-        models::DartType::DateTime => "DateTime.parse(e as String)".to_string(),
-        models::DartType::Custom(type_name) => format!("${}Serializer.fromJson(e as Map<String, dynamic>)", type_name),
-        _ => "e".to_string(),
-    }
-}
-

@@ -119,9 +119,6 @@ impl RustGenerator {
             attrs.push(format!("rename_all = \"{}\"", naming.to_serde_attr()));
         }
 
-        if field.flatten {
-            attrs.push("flatten".to_string());
-        }
 
         if field.is_nullable && !field.include_if_null {
             attrs.push("skip_serializing_if = \"Option::is_none\"".to_string());

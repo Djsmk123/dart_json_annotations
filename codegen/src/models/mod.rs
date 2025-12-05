@@ -34,32 +34,37 @@ impl NamingConvention {
 /// Features to generate for a class
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct GenerationFeatures {
-    pub json: bool,
+    pub from_json: bool,
+    pub to_json: bool,
     pub copy_with: bool,
     pub copy_with_null: bool,
     pub equatable: bool,
     pub stringify: bool,
-    pub union: bool,
 }
 
 impl GenerationFeatures {
     /// Check if any feature is enabled
     pub fn has_any(&self) -> bool {
-        self.json || self.copy_with || self.copy_with_null || 
-        self.equatable || self.stringify || self.union
+        self.from_json || self.to_json || self.copy_with || 
+        self.copy_with_null || self.equatable || self.stringify
+    }
+    
+    /// Check if JSON features are enabled
+    pub fn has_json(&self) -> bool {
+        self.from_json || self.to_json
     }
 }
 
-/// Represents a union case (subtype of a sealed class)
+/// Represents a union variant (factory constructor in sealed class)
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UnionCase {
-    /// The case name (e.g., "success", "failure")
+pub struct UnionVariant {
+    /// The variant name (e.g., "userJoined" from ChatEvent.userJoined)
     pub name: String,
-    /// The class name (e.g., "ResultSuccess")
+    /// The implementation class name (e.g., "ChatEventUserJoined")
     pub class_name: String,
-    /// Constructor parameters
+    /// Constructor parameters (parsed as fields)
     pub fields: Vec<DartField>,
-    /// Discriminator value for JSON
+    /// Discriminator value for JSON (from @ModelUnionValue or derived from name)
     pub discriminator_value: String,
 }
 
@@ -74,10 +79,14 @@ pub struct DartClass {
     pub features: GenerationFeatures,
     /// For sealed/union classes: the discriminator field name
     pub discriminator: String,
-    /// For sealed/union classes: the cases (subtypes)
-    pub union_cases: Vec<UnionCase>,
-    /// Whether this is a sealed class
-    pub is_sealed: bool,
+    /// For sealed/union classes: the variants (factory constructors)
+    pub variants: Vec<UnionVariant>,
+    /// Whether this is a sealed class with factory constructors
+    pub is_union: bool,
+    /// Whether this is an enum
+    pub is_enum: bool,
+    /// Parent class name if this class extends another
+    pub parent_class: Option<String>,
 }
 
 impl Default for DartClass {
@@ -90,8 +99,10 @@ impl Default for DartClass {
             uses_named_params: true,
             features: GenerationFeatures::default(),
             discriminator: "type".to_string(),
-            union_cases: Vec::new(),
-            is_sealed: false,
+            variants: Vec::new(),
+            is_union: false,
+            is_enum: false,
+            parent_class: None,
         }
     }
 }
@@ -102,9 +113,10 @@ pub struct DartField {
     pub name: String,
     pub dart_type: DartType,
     pub json_key: Option<String>,
-    pub from_json: Option<String>,
-    pub to_json: Option<String>,
+    pub from_json_func: Option<String>,
+    pub to_json_func: Option<String>,
     pub is_nullable: bool,
+    pub is_required: bool,
     pub has_default: bool,
     pub default_value: Option<String>,
     pub naming_convention: Option<NamingConvention>,
@@ -113,7 +125,6 @@ pub struct DartField {
     pub ignore_copy_with: bool,
     pub ignore_to_string: bool,
     pub include_if_null: bool,
-    pub flatten: bool,
 }
 
 impl Default for DartField {
@@ -122,9 +133,10 @@ impl Default for DartField {
             name: String::new(),
             dart_type: DartType::Dynamic,
             json_key: None,
-            from_json: None,
-            to_json: None,
+            from_json_func: None,
+            to_json_func: None,
             is_nullable: false,
+            is_required: false,
             has_default: false,
             default_value: None,
             naming_convention: None,
@@ -133,7 +145,6 @@ impl Default for DartField {
             ignore_copy_with: false,
             ignore_to_string: false,
             include_if_null: false,
-            flatten: false,
         }
     }
 }

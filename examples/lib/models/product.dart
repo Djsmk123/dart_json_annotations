@@ -1,5 +1,8 @@
 // Example: E-commerce product model
+
 import 'package:dart_json_annotations/dart_json_annotations.dart';
+
+part 'product.gen.dart';
 
 /// Full-featured product model
 @Model.full()
@@ -23,10 +26,12 @@ class Product {
     required this.variants,
     this.meta,
   });
+  
+  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
 }
 
-/// JSON-only variant model
-@Model()
+/// JSON-only variant model (no features so not processed)
+@Model(fromJson: true, toJson: true)
 class ProductVariant {
   final String sku;
   final String color;
@@ -41,6 +46,15 @@ class ProductVariant {
     required this.additionalPrice,
     required this.inStock,
   });
+  
+  Map<String, dynamic> toJson() => {
+    'sku': sku,
+    'color': color,
+    'size': size,
+    'additionalPrice': additionalPrice,
+    'inStock': inStock,
+  };
+  factory ProductVariant.fromJson(Map<String, dynamic> json) => _$ProductVariantFromJson(json);
 }
 
 /// Data model with snake_case
@@ -61,4 +75,6 @@ class ProductMeta {
     required this.tags,
     required this.customAttributes,
   });
+  
+  factory ProductMeta.fromJson(Map<String, dynamic> json) => _$ProductMetaFromJson(json);
 }

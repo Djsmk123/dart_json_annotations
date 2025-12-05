@@ -8,7 +8,10 @@ class TestStateInitial extends TestState {}
 class TestStateLoading extends TestState {}
 
 /// Bloc state with copyWith + equatable (no JSON needed)
-@Model.bloc()
+@Model(
+  copyWith: true,
+  equatable: true,
+)
 class TestStateLoaded extends TestState {
   final int counter;
   final bool isLoading;

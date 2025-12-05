@@ -51,6 +51,8 @@ dart_json_gen --build
 dart_json_gen -i lib/models
 ```
 
+### Local Installation
+
 ## Quick Start
 
 ### @Model Presets

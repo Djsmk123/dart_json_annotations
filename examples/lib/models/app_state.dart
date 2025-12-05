@@ -1,5 +1,6 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
+part 'app_state.gen.dart';
 /// Example: Using @Model for non-JSON classes (e.g., Bloc state)
 /// Generates: copyWith, copyWithNull, equatable, toString
 @Model()
@@ -9,7 +10,7 @@ class AppState {
   @JsonKey(ignore: true)
   final String? errorMessage;
   
-  @IgnoreEquality()
+  @Ignore.equality()
   final DateTime lastUpdated;
   
   AppState({
@@ -29,10 +30,10 @@ class UserProfile {
   final String? bio;
   final List<String> tags;
   
-  @IgnoreCopyWith()
+  @Ignore.copyWith()
   final DateTime createdAt;
   
-  @IgnoreToString()
+  @Ignore.stringify()
   final String internalToken;
   
   UserProfile({
@@ -46,7 +47,6 @@ class UserProfile {
 }
 
 /// Example: Using individual annotations
-@Model.copyable()
 @Model.data()
 class Settings {
   final bool darkMode;

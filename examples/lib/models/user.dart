@@ -1,9 +1,10 @@
-// Example Dart model with @Model annotation
+
 import 'package:dart_json_annotations/dart_json_annotations.dart';
-import 'user.gen.dart';
+
+part 'user.gen.dart';
 
 /// Basic JSON model (~25 lines generated)
-@Model()
+@Model(fromJson: true, toJson: true)
 class User {
   final int id;
   final String name;
@@ -22,11 +23,17 @@ class User {
   });
   
   /// Factory constructor for JSON deserialization
-  factory User.fromJson(Map<String, dynamic> json) => $UserSerializer.fromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 
 /// Data model with snake_case JSON keys (~50 lines generated)
-@Model.data(namingConvention: NamingConvention.snakeCase)
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+  namingConvention: NamingConvention.snakeCase,
+)
 class UserProfile {
   @JsonKey(name: 'user_id')
   final int userId;
@@ -48,4 +55,6 @@ class UserProfile {
     required this.interests,
     required this.metadata,
   });
+  
+  factory UserProfile.fromJson(Map<String, dynamic> json) => _$UserProfileFromJson(json);
 }

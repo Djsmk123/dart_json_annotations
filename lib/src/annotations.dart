@@ -1,30 +1,43 @@
 import 'naming_convention.dart';
 
 // ============================================================
-// Main Model Annotation (v2.0)
+// Main Model Annotation (v2.1)
 // ============================================================
 
-/// Main annotation for code generation.
+/// Unified model annotation with feature flags.
 /// 
-/// Use named constructors for common patterns:
+/// **Regular class:**
 /// ```dart
-/// @Model()           // JSON only (default, smallest output)
-/// @Model.json()      // Same as @Model()
-/// @Model.copyable()  // copyWith + copyWithNull only
-/// @Model.data()      // json + copyWith + equatable
-/// @Model.bloc()      // copyWith + equatable (no json)
-/// @Model.full()      // everything enabled
-/// @Model.union()     // sealed class with when/map methods
-/// @Model.unionJson() // union + JSON serialization
+/// part 'user.gen.dart';
+/// 
+/// @Model(fromJson: true, toJson: true, copyWith: true)
+/// class User {
+///   final int id;
+///   final String name;
+///   User({required this.id, required this.name});
+///   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+/// }
 /// ```
 /// 
-/// Or use explicit flags:
+/// **Union/Sealed class:**
 /// ```dart
-/// @Model(json: true, copyWith: true, equatable: false)
+/// part 'chat_event.gen.dart';
+/// 
+/// @Model(fromJson: true, toJson: true, equatable: true, discriminator: 'event_type')
+/// sealed class ChatEvent {
+///   const ChatEvent._();
+///   factory ChatEvent.fromJson(Map<String, dynamic> json) => _$ChatEventFromJson(json);
+///   
+///   const factory ChatEvent.userJoined({required String userId}) = ChatEventUserJoined;
+///   const factory ChatEvent.messageSent({required String text}) = ChatEventMessageSent;
+/// }
 /// ```
 class Model {
-  /// Generate toJson/fromJson methods
-  final bool json;
+  /// Generate fromJson method/function
+  final bool fromJson;
+  
+  /// Generate toJson method
+  final bool toJson;
   
   /// Generate copyWith method
   final bool copyWith;
@@ -32,126 +45,91 @@ class Model {
   /// Generate copyWithNull method for nullable fields
   final bool copyWithNull;
   
-  /// Generate equals/hashCode/props (Equatable)
+  /// Generate equals/hashCode (Equatable)
   final bool equatable;
   
   /// Generate toString method
   final bool stringify;
   
-  /// Generate union methods (when/map/maybeWhen/maybeMap) for sealed classes
-  final bool union;
-  
   /// JSON naming convention for all fields
   final NamingConvention? namingConvention;
   
-  /// Custom discriminator field for union JSON serialization
+  /// Discriminator field name for union JSON serialization (default: 'type')
   final String discriminator;
 
   const Model({
-    this.json = true,
+    this.fromJson = false,
+    this.toJson = false,
     this.copyWith = false,
     this.copyWithNull = false,
     this.equatable = false,
     this.stringify = false,
-    this.union = false,
     this.namingConvention,
     this.discriminator = 'type',
   });
 
-  /// JSON serialization only (smallest output)
-  /// ~25-30 lines per model
-  const Model.json({
-    this.namingConvention,
-  }) : json = true,
-       copyWith = false,
-       copyWithNull = false,
-       equatable = false,
-       stringify = false,
-       union = false,
-       discriminator = 'type';
-
-  /// copyWith + copyWithNull only (no JSON)
-  /// ~25 lines per model
-  const Model.copyable()
-      : json = false,
-        copyWith = true,
-        copyWithNull = true,
-        equatable = false,
-        stringify = false,
-        union = false,
-        namingConvention = null,
-        discriminator = 'type';
-
-  /// JSON + copyWith + equatable (common pattern)
-  /// ~50-55 lines per model
-  const Model.data({
-    this.namingConvention,
-  }) : json = true,
-       copyWith = true,
-       copyWithNull = false,
-       equatable = true,
-       stringify = false,
-       union = false,
-       discriminator = 'type';
-
-  /// copyWith + equatable without JSON (ideal for Bloc states)
-  /// ~35-40 lines per model
-  const Model.bloc()
-      : json = false,
-        copyWith = true,
-        copyWithNull = false,
-        equatable = true,
-        stringify = false,
-        union = false,
-        namingConvention = null,
-        discriminator = 'type';
-
-  /// All features enabled
-  /// ~70-80 lines per model
-  const Model.full({
-    this.namingConvention,
-  }) : json = true,
-       copyWith = true,
-       copyWithNull = true,
-       equatable = true,
-       stringify = true,
-       union = false,
-       discriminator = 'type';
-
-  /// Union/sealed class with when/map methods (no JSON)
-  /// ~60-70 lines per union
-  const Model.union()
-      : json = false,
+  /// JSON serialization only (~25 lines per model)
+  const Model.json({this.namingConvention})
+      : fromJson = true,
+        toJson = true,
         copyWith = false,
         copyWithNull = false,
         equatable = false,
         stringify = false,
-        union = true,
+        discriminator = 'type';
+
+  /// Data class: JSON + copyWith + equatable (~50 lines)
+  const Model.data({this.namingConvention})
+      : fromJson = true,
+        toJson = true,
+        copyWith = true,
+        copyWithNull = false,
+        equatable = true,
+        stringify = false,
+        discriminator = 'type';
+
+  /// Bloc state: copyWith + equatable, no JSON (~35 lines)
+  const Model.bloc()
+      : fromJson = false,
+        toJson = false,
+        copyWith = true,
+        copyWithNull = false,
+        equatable = true,
+        stringify = false,
         namingConvention = null,
         discriminator = 'type';
 
-  /// Union/sealed class with JSON serialization
-  /// ~80-90 lines per union
-  const Model.unionJson({
-    this.discriminator = 'type',
-    this.namingConvention,
-  }) : json = true,
-       copyWith = false,
-       copyWithNull = false,
-       equatable = false,
-       stringify = false,
-       union = true;
+  /// Full features (~70 lines)
+  const Model.full({this.namingConvention})
+      : fromJson = true,
+        toJson = true,
+        copyWith = true,
+        copyWithNull = true,
+        equatable = true,
+        stringify = true,
+        discriminator = 'type';
+}
 
-  /// Union with full features
-  const Model.unionFull({
-    this.discriminator = 'type',
-    this.namingConvention,
-  }) : json = true,
-       copyWith = true,
-       copyWithNull = false,
-       equatable = true,
-       stringify = false,
-       union = true;
+// ============================================================
+// Union/Sealed Class Annotations
+// ============================================================
+
+/// Custom discriminator value for a union variant.
+/// 
+/// ```dart
+/// @Model(fromJson: true, toJson: true, discriminator: 'event_type')
+/// sealed class ChatEvent {
+///   const ChatEvent._();
+///   
+///   const factory ChatEvent.userJoined({...}) = ChatEventUserJoined;
+///   
+///   @ModelUnionValue('user_left_chat')  // Custom value instead of 'userLeft'
+///   const factory ChatEvent.userLeft({...}) = ChatEventUserLeft;
+/// }
+/// ```
+class ModelUnionValue {
+  final String value;
+  const ModelUnionValue(this.value);
 }
 
 // ============================================================
@@ -161,13 +139,16 @@ class Model {
 /// Customizes JSON serialization for a specific field.
 /// 
 /// ```dart
-/// @Model()
+/// @Model(fromJson: true, toJson: true)
 /// class User {
 ///   @JsonKey(name: 'user_id')
 ///   final int id;
 ///   
 ///   @JsonKey(ignore: true)
 ///   final String cache;
+///   
+///   @JsonKey(defaultValue: '0')
+///   final int count;
 /// }
 /// ```
 class JsonKey {
@@ -209,11 +190,6 @@ class JsonType {
   const JsonType(this.convention);
 }
 
-/// Marks a field to be flattened into the parent JSON object.
-class JsonFlatten {
-  const JsonFlatten();
-}
-
 // ============================================================
 // Feature Exclusion Annotations
 // ============================================================
@@ -221,7 +197,7 @@ class JsonFlatten {
 /// Ignore this field from specific features.
 /// 
 /// ```dart
-/// @Model.data()
+/// @Model(fromJson: true, toJson: true, copyWith: true, equatable: true)
 /// class User {
 ///   final String id;
 ///   
@@ -233,9 +209,6 @@ class JsonFlatten {
 ///   
 ///   @Ignore.equality()     // Ignore from == comparison
 ///   final DateTime updatedAt;
-///   
-///   @Ignore.copyWith()     // Cannot change via copyWith
-///   final String createdBy;
 /// }
 /// ```
 class Ignore {
@@ -278,36 +251,6 @@ class Ignore {
         equality = false,
         copyWith = false,
         stringify = true;
-}
-
-// Legacy aliases (will be removed in future)
-typedef IgnoreEquality = Ignore;
-typedef IgnoreCopyWith = Ignore;
-typedef IgnoreToString = Ignore;
-
-// ============================================================
-// Union/Sealed Class Annotations  
-// ============================================================
-
-/// Marks a class as a union case (subtype of sealed class).
-/// 
-/// ```dart
-/// @Model.union()
-/// sealed class Result {
-///   const factory Result.success(String data) = ResultSuccess;
-///   const factory Result.failure(String error) = ResultFailure;
-/// }
-/// 
-/// @UnionCase('success')
-/// class ResultSuccess implements Result {
-///   final String data;
-///   const ResultSuccess(this.data);
-/// }
-/// ```
-class UnionCase {
-  /// The discriminator value for JSON serialization
-  final String value;
-  const UnionCase(this.value);
 }
 
 // ============================================================

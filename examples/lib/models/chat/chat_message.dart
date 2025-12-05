@@ -1,6 +1,8 @@
 // Example: Chat/messaging model (high-volume, performance-critical)
 import 'package:dart_json_annotations/dart_json_annotations.dart';
+import 'package:example_models/models/user.dart';
 
+part 'chat_message.gen.dart';
 /// JSON-only with snake_case (optimized for high volume)
 @Model.json(namingConvention: NamingConvention.snakeCase)
 class ChatMessage {
@@ -13,6 +15,7 @@ class ChatMessage {
   final DateTime? readAt;
   final List<Attachment>? attachments;
   final Map<String, dynamic>? reactions;
+  final User? sender;
   
   ChatMessage({
     required this.id,
@@ -24,18 +27,20 @@ class ChatMessage {
     this.readAt,
     this.attachments,
     this.reactions,
+    this.sender,
   });
+  factory ChatMessage.fromJson(Map<String, dynamic> json) => _$ChatMessageFromJson(json);
 }
 
 /// Simple JSON-only attachment
-@Model()
+@Model(fromJson: true, toJson: true)
 class Attachment {
   final String id;
   final String url;
   final String mimeType;
   final int fileSize;
   final String? thumbnail;
-  
+  factory Attachment.fromJson(Map<String, dynamic> json) => _$AttachmentFromJson(json);
   Attachment({
     required this.id,
     required this.url,
@@ -43,11 +48,20 @@ class Attachment {
     required this.fileSize,
     this.thumbnail,
   });
+
 }
 
 /// Message type enum placeholder
-@Model()
+@Model(
+  fromJson: true,
+  toJson: true,
+  namingConvention: NamingConvention.snakeCase,
+)
 class MessageType {
   final String value;
   MessageType(this.value);
+  factory MessageType.fromJson(Map<String, dynamic> json) => _$MessageTypeFromJson(json);
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'value': value,
+  };
 }

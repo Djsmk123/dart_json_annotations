@@ -1,8 +1,10 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
-import 'package:example_models/bloc/test_state.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-part 'test_state.dart';
+
 part 'test_event.dart';
+part 'test_state.dart';
+part 'test_state.gen.dart';
+
 class TestBloc extends Bloc<TestEvent, TestState> {
   TestBloc() : super(TestStateInitial()) {
     on<TestEventIncrement>(_onTestEventIncrement);

@@ -1,5 +1,5 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
-import 'package:example_models/models/chat/chat_message.dart';
+import 'package:example_models/models/dart_json_gen/chat/chat_message.dart';
 part 'chat_event.gen.dart';
 
 

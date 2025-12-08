@@ -1,6 +1,6 @@
 // Example: Chat/messaging model (high-volume, performance-critical)
 import 'package:dart_json_annotations/dart_json_annotations.dart';
-import 'package:example_models/models/user.dart';
+import 'package:example_models/models/dart_json_gen/user.dart';
 
 part 'chat_message.gen.dart';
 /// JSON-only with snake_case (optimized for high volume)

@@ -44,6 +44,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```bash
 dart pub global activate dart_json_annotations
 
+# Active local
+dart pub global activate -s path .
 # Build the Rust binary (first time only)
 dart_json_gen --build
 

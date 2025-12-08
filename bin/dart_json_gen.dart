@@ -84,15 +84,23 @@ Future<int> runGenerator(List<String> args) async {
     return 0;
   }
 
+  // --- GENERATION TIME LOGGING MODIFICATION START ---
+  final stopwatch = Stopwatch()..start();
+  stdout.writeln('⏳ Generating files...');
   // Run the binary
   final result = await Process.run(
     binaryPath,
     filteredArgs,
     runInShell: Platform.isWindows,
   );
+  stopwatch.stop();
+  final elapsedSeconds = stopwatch.elapsedMilliseconds / 1000.0;
 
   stdout.write(result.stdout);
   stderr.write(result.stderr);
+
+  stdout.writeln('⏱️  Total generation time: ${elapsedSeconds.toStringAsFixed(2)} seconds');
+  // --- GENERATION TIME LOGGING MODIFICATION END ---
   
   return result.exitCode;
 }

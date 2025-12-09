@@ -44,6 +44,7 @@ class UserProfile {
     required this.createdAt,
     required this.internalToken,
   });
+  factory UserProfile.fromJson(Map<String, dynamic> json) => _$UserProfileFromJson(json);
 }
 
 /// Example: Using individual annotations
@@ -58,5 +59,6 @@ class Settings {
     required this.locale,
     this.fontSize,
   });
+  factory Settings.fromJson(Map<String, dynamic> json) => _$SettingsFromJson(json);
 }
 

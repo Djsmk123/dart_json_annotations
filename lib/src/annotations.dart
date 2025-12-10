@@ -108,6 +108,18 @@ class Model {
         equatable = true,
         stringify = true,
         discriminator = 'type';
+
+  /// Mutable class preset (no final fields, no ==/hashCode)
+  const Model.mutable(
+    {
+      this.fromJson = false,
+      this.toJson = false,
+      this.equatable = false,
+      this.stringify = false,
+      this.namingConvention = null,
+      this.discriminator = 'type',
+    }) : copyWith = true,
+        copyWithNull = false;
 }
 
 // ============================================================
@@ -273,4 +285,137 @@ enum JsonEnumValue {
 class JsonValue {
   final dynamic value;
   const JsonValue(this.value);
+}
+
+// ============================================================
+// Default Values and Validation
+// ============================================================
+
+/// Sets a default value for a field.
+/// 
+/// ```dart
+/// @Model(fromJson: true, toJson: true)
+/// class Example {
+///   @Default(42)
+///   final int value;
+///   
+///   Example({this.value = 42});
+/// }
+/// ```
+class Default {
+  final dynamic value;
+  const Default(this.value);
+}
+
+/// Adds validation assertion for a field.
+/// 
+/// ```dart
+/// @Model()
+/// class Person {
+///   @Assert('name.isNotEmpty', 'name cannot be empty')
+///   final String name;
+///   
+///   Person({required this.name}) : assert(name.isNotEmpty, 'name cannot be empty');
+/// }
+/// ```
+class Assert {
+  final String condition;
+  final String message;
+  const Assert(this.condition, [this.message = '']);
+}
+
+// ============================================================
+// Mutable Classes
+// ============================================================
+
+/// Mutable class annotation (equivalent to Freezed's @unfreezed).
+/// 
+/// ```dart
+/// @Model.mutable()
+/// class Person {
+///   String name;  // Mutable, no final
+///   Person({required this.name});
+/// }
+/// ```
+/// 
+/// Note: Use `@Model.mutable()` - the mutable constructor is defined on the Model class.
+
+// ============================================================
+// Generic Classes Support
+// ============================================================
+
+/// Configuration for generic classes with fromJson factories.
+class GenericConfig {
+  /// Enable generic argument factories for fromJson
+  final bool genericArgumentFactories;
+  
+  const GenericConfig({this.genericArgumentFactories = false});
+}
+
+// ============================================================
+// Custom Converters
+// ============================================================
+
+/// Custom JSON converter for a field.
+/// 
+/// ```dart
+/// class DateTimeConverter implements JsonConverter<DateTime, String> {
+///   const DateTimeConverter();
+///   @override
+///   DateTime fromJson(String json) => DateTime.parse(json);
+///   @override
+///   String toJson(DateTime object) => object.toIso8601String();
+/// }
+/// 
+/// @Model()
+/// class Event {
+///   @JsonConverter(DateTimeConverter())
+///   final DateTime timestamp;
+///   Event({required this.timestamp});
+/// }
+/// ```
+class JsonConverter {
+  final dynamic converter;
+  const JsonConverter(this.converter);
+}
+
+// ============================================================
+// Mixins and Interfaces for Union Variants
+// ============================================================
+
+/// Implements an interface for a union variant.
+/// 
+/// ```dart
+/// abstract class GeographicArea {
+///   int get population;
+///   String get name;
+/// }
+/// 
+/// @Model()
+/// sealed class Example {
+///   const factory Example.person(String name) = Person;
+///   
+///   @Implements<GeographicArea>()
+///   const factory Example.city(String name, int population) = City;
+/// }
+/// ```
+class Implements<T> {
+  const Implements();
+}
+
+/// Mixes in a class for a union variant.
+/// 
+/// ```dart
+/// mixin Timestamped {
+///   DateTime get createdAt => DateTime.now();
+/// }
+/// 
+/// @Model()
+/// sealed class Example {
+///   @With<Timestamped>()
+///   const factory Example.event() = Event;
+/// }
+/// ```
+class With<T> {
+  const With();
 }

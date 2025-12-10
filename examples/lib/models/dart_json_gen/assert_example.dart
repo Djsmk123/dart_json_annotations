@@ -6,6 +6,8 @@ part 'assert_example.gen.dart';
 @Model(fromJson: true, toJson: true)
 class AssertExample {
   @Assert('name.isNotEmpty', 'name cannot be empty')
+
+  
   final String name;
   
   @Assert('age >= 0', 'age must be non-negative')

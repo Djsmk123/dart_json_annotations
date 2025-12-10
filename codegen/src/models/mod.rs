@@ -66,6 +66,8 @@ pub struct UnionVariant {
     pub fields: Vec<DartField>,
     /// Discriminator value for JSON (from @ModelUnionValue or derived from name)
     pub discriminator_value: String,
+    /// Whether this variant uses named parameters (false = positional)
+    pub uses_named_params: bool,
 }
 
 /// Represents a parsed Dart class with annotations
@@ -87,6 +89,24 @@ pub struct DartClass {
     pub is_enum: bool,
     /// Parent class name if this class extends another
     pub parent_class: Option<String>,
+    /// Whether this is a mutable class (no final fields, no ==/hashCode)
+    pub is_mutable: bool,
+    /// Whether collections should be unmodifiable (default: true for immutable)
+    pub make_collections_unmodifiable: bool,
+    /// Generic type parameters
+    pub generic_params: Vec<String>,
+    /// Whether generic argument factories are enabled
+    pub generic_argument_factories: bool,
+    /// For enums: the serialization type (string, ordinal, custom)
+    pub enum_value_type: Option<EnumValueType>,
+}
+
+/// Enum serialization value type
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum EnumValueType {
+    String,
+    Ordinal,
+    Custom,
 }
 
 impl Default for DartClass {
@@ -103,6 +123,11 @@ impl Default for DartClass {
             is_union: false,
             is_enum: false,
             parent_class: None,
+            is_mutable: false,
+            make_collections_unmodifiable: true,
+            generic_params: Vec::new(),
+            generic_argument_factories: false,
+            enum_value_type: None,
         }
     }
 }
@@ -125,6 +150,12 @@ pub struct DartField {
     pub ignore_copy_with: bool,
     pub ignore_to_string: bool,
     pub include_if_null: bool,
+    /// Assert condition for validation
+    pub assert_condition: Option<String>,
+    /// Assert message for validation
+    pub assert_message: Option<String>,
+    /// Custom JSON converter
+    pub json_converter: Option<String>,
 }
 
 impl Default for DartField {
@@ -145,6 +176,9 @@ impl Default for DartField {
             ignore_copy_with: false,
             ignore_to_string: false,
             include_if_null: false,
+            assert_condition: None,
+            assert_message: None,
+            json_converter: None,
         }
     }
 }

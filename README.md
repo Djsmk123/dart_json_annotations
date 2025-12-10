@@ -252,9 +252,9 @@ dart_json_annotations/
 - [x] Parallel processing (rayon)
 - [x] @Model presets
 - [x] Sealed/Union class support
-- [ ] Enum support
-- [ ] Watch mode
-- [ ] Config file
+- [x] Enum support
+- [ ] Watch mode    || Do we really need this? because it is already instant generation 
+- [ ] Config file 
 
 ## License
 

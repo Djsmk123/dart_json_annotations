@@ -3,7 +3,7 @@ use lazy_static::lazy_static;
 use regex::Regex;
 use std::path::Path;
 
-use crate::models::{DartClass, DartField, DartType, GenerationFeatures, NamingConvention, UnionVariant};
+use crate::models::{DartClass, DartField, DartType, GenerationFeatures, NamingConvention, UnionVariant, EnumValueType};
 
 lazy_static! {
     // @Model annotation pattern - handles multi-line annotations
@@ -17,15 +17,17 @@ lazy_static! {
         r"(?s)(@Model(?:\.\w+)?\s*\([^)]*(?:\([^)]*\)[^)]*)*\)\s*(?:\s*\n\s*)*)sealed\s+class\s+(\w+)"
     ).unwrap();
     
-    // Regular class with @Model
+    // Regular class with @Model - allows any whitespace (including newlines) between annotation and class
+    // Comments are removed before this pattern is applied
     static ref CLASS_PATTERN: Regex = Regex::new(
         r"(?s)(@Model(?:\.\w+)?\s*\([^)]*(?:\([^)]*\)[^)]*)*\)\s*)class\s+(\w+)"
     ).unwrap();
     
     // Factory constructor pattern for union variants
-    // Handles multiline parameters with @JsonKey annotations
+    // Handles both named {param} and positional (param) parameters
+    // Also handles @With and @Implements annotations
     static ref FACTORY_PATTERN: Regex = Regex::new(
-        r#"(?s)(?:@ModelUnionValue\s*\(\s*['"]([^'"]+)['"]\s*\)\s*)?const\s+factory\s+\w+\.(\w+)\s*\(\s*\{([^}]*)\}\s*\)\s*=\s*(\w+)\s*;"#
+        r#"(?s)(?:@(?:ModelUnionValue|With|Implements)[^)]*\)\s*)*const\s+factory\s+\w+\.(\w+)\s*\(\s*(?:\{([^}]*)\}|([^)]+))\s*\)\s*=\s*(\w+)\s*;"#
     ).unwrap();
     
     // Field pattern
@@ -38,9 +40,11 @@ lazy_static! {
         r"@JsonKey\s*\(([^)]*)\)"
     ).unwrap();
     
-    // Enum pattern
+    // Enum pattern - matches both @Model and @JsonEnum
+    // Note: This pattern needs to handle nested braces in enum values
+    // Capture groups: (annotation, enum_name)
     static ref ENUM_PATTERN: Regex = Regex::new(
-        r"(?s)(@Model(?:\.\w+)?\s*\([^)]*(?:\([^)]*\)[^)]*)*\)\s*)?enum\s+(\w+)\s*\{([^}]+)\}"
+        r"(?s)(@(?:Model(?:\.\w+)?|JsonEnum)\s*\([^)]*(?:\([^)]*\)[^)]*)*\)\s*)?enum\s+(\w+)\s*\{"
     ).unwrap();
     
     // @Ignore pattern
@@ -52,6 +56,26 @@ lazy_static! {
     static ref JSON_TYPE_PATTERN: Regex = Regex::new(
         r"@JsonType\s*\(\s*(?:NamingConvention\.)?(\w+)\s*\)"
     ).unwrap();
+    
+    // @Default pattern
+    static ref DEFAULT_PATTERN: Regex = Regex::new(
+        r#"@Default\s*\(\s*([^)]+)\s*\)"#
+    ).unwrap();
+    
+    // @Assert pattern - handles both single and double quotes
+    static ref ASSERT_PATTERN: Regex = Regex::new(
+        r#"@Assert\s*\(\s*(["'])([^"']+)\1\s*(?:,\s*(["'])([^"']+)\3)?\s*\)"#
+    ).unwrap();
+    
+    // @JsonConverter pattern
+    static ref JSON_CONVERTER_PATTERN: Regex = Regex::new(
+        r#"@JsonConverter\s*\(\s*([^)]+)\s*\)"#
+    ).unwrap();
+    
+    // Generic type parameters pattern
+    static ref GENERIC_PATTERN: Regex = Regex::new(
+        r"<([^>]+)>"
+    ).unwrap();
 }
 
 #[derive(Debug, Default)]
@@ -61,6 +85,7 @@ struct FieldAnnotations {
     to_json_func: Option<String>,
     default_value: Option<String>,
     ignore_json: bool,
+    json_converter: Option<String>,
     ignore_equality: bool,
     ignore_copy_with: bool,
     ignore_to_string: bool,
@@ -108,6 +133,11 @@ impl DartParser {
                     is_union: true,
                     is_enum: false,
                     parent_class: None,
+                    is_mutable: false,
+                    make_collections_unmodifiable: true,
+                    generic_params: Vec::new(),
+                    generic_argument_factories: false,
+                    enum_value_type: None,
                 });
             }
         }
@@ -163,6 +193,7 @@ impl DartParser {
             
             let uses_named_params = self.detect_named_params(class_name, &class_body);
             let fields = self.parse_fields(&class_body)?;
+            let is_mutable = self.parse_is_mutable(annotation);
             
             classes.push(DartClass {
                 name: class_name.to_string(),
@@ -176,6 +207,11 @@ impl DartParser {
                 is_union: false,
                 is_enum: false,
                 parent_class: parent_class_name,
+                is_mutable,
+                make_collections_unmodifiable: !is_mutable, // Mutable classes allow modifiable collections
+                generic_params: Vec::new(),
+                generic_argument_factories: false,
+                enum_value_type: None,
             });
         }
         
@@ -183,9 +219,36 @@ impl DartParser {
         for cap in ENUM_PATTERN.captures_iter(&content) {
             let annotation = cap.get(1).map_or("", |m| m.as_str());
             let enum_name = cap.get(2).context("Failed to capture enum name")?.as_str();
-            let enum_body = cap.get(3).map_or("", |m| m.as_str());
             
-            let features = self.parse_model_annotation(annotation);
+            // Find enum body by locating the opening brace and matching it
+            // The regex match should end at or after the opening brace
+            let match_end = cap.get(0).map_or(0, |m| m.end());
+            // Check if the match already includes the opening brace
+            let brace_start = if match_end > 0 && content.chars().nth(match_end - 1) == Some('{') {
+                match_end - 1
+            } else {
+                // Find the opening brace after the match
+                content[match_end..].find('{')
+                    .map(|pos| match_end + pos)
+                    .unwrap_or(match_end)
+            };
+            // Extract body starting from the opening brace
+            let enum_body = extract_class_body(&content[brace_start..]).unwrap_or_default();
+            
+            // If @JsonEnum is present (even without params like @JsonEnum()), enable JSON features and parse valueType
+            // Also check if @Model is present
+            let (mut features, enum_value_type) = if annotation.contains("@JsonEnum") {
+                let mut f = GenerationFeatures::default();
+                f.from_json = true;
+                f.to_json = true;
+                let value_type = self.parse_enum_value_type(annotation);
+                (f, value_type)
+            } else if annotation.contains("@Model") {
+                (self.parse_model_annotation(annotation), None)
+            } else {
+                // No annotation - skip
+                (GenerationFeatures::default(), None)
+            };
             
             // Skip if no features enabled
             if !features.has_any() {
@@ -193,7 +256,7 @@ impl DartParser {
             }
             
             // Parse enum values
-            let values = self.parse_enum_values(enum_body)?;
+            let values = self.parse_enum_values(&enum_body)?;
             
             if !values.is_empty() {
                 // Create a pseudo-class for enum (we'll handle it specially in generation)
@@ -209,6 +272,11 @@ impl DartParser {
                     is_union: false,
                     is_enum: true,
                     parent_class: None,
+                    is_mutable: false,
+                    make_collections_unmodifiable: true,
+                    generic_params: Vec::new(),
+                    generic_argument_factories: false,
+                    enum_value_type,
                 });
             }
         }
@@ -228,36 +296,43 @@ impl DartParser {
         let mut values = Vec::new();
         let lines: Vec<&str> = enum_body.lines().collect();
         let mut i = 0;
+        let mut json_value_pending: Option<String> = None;
         
         while i < lines.len() {
-            let line = lines[i].trim();
-            if line.is_empty() || line.starts_with("//") {
+            let original_line = lines[i].trim();
+            
+            // Skip empty lines
+            if original_line.is_empty() {
                 i += 1;
                 continue;
             }
             
+            // Skip comment-only lines
+            if original_line.starts_with("//") {
+                i += 1;
+                continue;
+            }
+            
+            // Remove inline comments (everything after //)
+            let line = original_line.split("//").next().unwrap_or("").trim();
+            
+            // Skip if line is empty after removing comments
+            if line.is_empty() {
+                i += 1;
+                continue;
+            }
+            
+            // Stop if we hit a closing brace (end of enum)
+            if line == "}" {
+                break;
+            }
+            
             // Check if this line is only @JsonValue annotation (value is on next line)
-            if line.starts_with("@JsonValue") && !line.contains(',') {
+            if line.starts_with("@JsonValue") && !line.contains(',') && !line.contains('{') {
                 // Get the annotation value
                 let re = Regex::new(r#"@JsonValue\s*\(\s*['"]([^'"]+)['"]\s*\)"#).unwrap();
-                let json_value = re.captures(line)
+                json_value_pending = re.captures(line)
                     .and_then(|cap| cap.get(1).map(|m| m.as_str().to_string()));
-                
-                // Look for the enum value on the next line
-                if i + 1 < lines.len() {
-                    let next_line = lines[i + 1].trim();
-                    let value_name = next_line.split(',').next().unwrap_or("").trim().to_string();
-                    if !value_name.is_empty() {
-                        values.push(DartField {
-                            name: value_name,
-                            dart_type: DartType::String,
-                            json_key: json_value,
-                            ..Default::default()
-                        });
-                        i += 2; // Skip both annotation and value lines
-                        continue;
-                    }
-                }
                 i += 1;
                 continue;
             }
@@ -270,27 +345,59 @@ impl DartParser {
                     .and_then(|cap| cap.get(1).map(|m| m.as_str().to_string()));
             }
             
-            // Extract enum value name (remove @JsonValue, commas, etc.)
-            let value_name = line
-                .replace("@JsonValue", "")
-                .replace(r#"('"# , "")
-                .replace(r#"')"# , "")
-                .replace(r#"(""# , "")
-                .replace(r#"")"# , "")
-                .trim()
-                .split(',')
-                .next()
-                .unwrap_or("")
-                .trim()
-                .to_string();
+            // Use pending json_value if we have one
+            if json_value.is_none() {
+                json_value = json_value_pending.take();
+            }
             
-            if !value_name.is_empty() && !value_name.starts_with("@") {
-                values.push(DartField {
-                    name: value_name.clone(),
-                    dart_type: DartType::String,
-                    json_key: json_value,
-                    ..Default::default()
-                });
+            // Extract enum value name - look for identifier before comma or end of line
+            // Pattern: identifier (possibly with @JsonValue before it)
+            // Must be a valid Dart identifier (word characters only, not keywords)
+            // Enum values are simple: just an identifier followed by comma or end of line
+            // First try to match a line that's just an identifier with optional comma
+            let simple_enum_re = Regex::new(r#"^\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*,?\s*$"#).unwrap();
+            if let Some(cap) = simple_enum_re.captures(line) {
+                let value_name = cap.get(1).map(|m| m.as_str().to_string()).unwrap_or_default();
+                
+                // Filter out keywords and invalid identifiers
+                let keywords = ["class", "final", "factory", "const", "required", "this", "void", "return", "if", "else", "for", "while", "TestingEnumModel"];
+                
+                // Only accept if it's a simple identifier (no dots, no parentheses, no special chars)
+                if !value_name.is_empty() && 
+                   value_name.chars().all(|c| c.is_alphanumeric() || c == '_') &&
+                   !value_name.starts_with("@") && 
+                   !keywords.contains(&value_name.as_str()) {
+                    values.push(DartField {
+                        name: value_name,
+                        dart_type: DartType::String,
+                        json_key: json_value,
+                        ..Default::default()
+                    });
+                    i += 1;
+                    continue;
+                }
+            }
+            
+            // Try pattern with @JsonValue on same line (e.g., "@JsonValue('active') active,")
+            let enum_value_re = Regex::new(r#"^\s*@JsonValue\s*\([^)]+\)\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*,?\s*$"#).unwrap();
+            if let Some(cap) = enum_value_re.captures(line) {
+                let value_name = cap.get(1).map(|m| m.as_str().to_string()).unwrap_or_default();
+                
+                let keywords = ["class", "final", "factory", "const", "required", "this", "void", "return", "if", "else", "for", "while", "TestingEnumModel"];
+                
+                if !value_name.is_empty() && 
+                   value_name.chars().all(|c| c.is_alphanumeric() || c == '_') &&
+                   !value_name.starts_with("@") && 
+                   !keywords.contains(&value_name.as_str()) {
+                    values.push(DartField {
+                        name: value_name,
+                        dart_type: DartType::String,
+                        json_key: json_value,
+                        ..Default::default()
+                    });
+                    i += 1;
+                    continue;
+                }
             }
             
             i += 1;
@@ -303,13 +410,29 @@ impl DartParser {
         let mut variants = Vec::new();
         
         for cap in FACTORY_PATTERN.captures_iter(class_body) {
-            let custom_value = cap.get(1).map(|m| m.as_str().to_string());
-            let variant_name = cap.get(2).map_or("", |m| m.as_str());
-            let params_str = cap.get(3).map_or("", |m| m.as_str());
+            // Capture groups: variant_name, named_params, positional_params, impl_class
+            let variant_name = cap.get(1).map_or("", |m| m.as_str());
+            let named_params = cap.get(2).map_or("", |m| m.as_str());
+            let positional_params = cap.get(3).map_or("", |m| m.as_str());
             let impl_class = cap.get(4).map_or("", |m| m.as_str());
             
-            // Parse parameters as fields
-            let fields = self.parse_factory_params(params_str)?;
+            // Use named params if available, otherwise positional
+            let params_str = if !named_params.is_empty() {
+                named_params
+            } else {
+                positional_params
+            };
+            
+            // Extract @ModelUnionValue if present (check before the factory)
+            let custom_value = self.extract_union_value_before_factory(class_body, variant_name);
+            
+            // Parse parameters as fields (handle both named and positional)
+            let uses_named = !named_params.is_empty();
+            let fields = if uses_named {
+                self.parse_factory_params(params_str)?
+            } else {
+                self.parse_positional_params(params_str)?
+            };
             
             // Generate discriminator value
             let discriminator_value = custom_value.unwrap_or_else(|| {
@@ -326,6 +449,7 @@ impl DartParser {
                 class_name: impl_class.to_string(),
                 fields,
                 discriminator_value,
+                uses_named_params: uses_named,
             });
         }
         
@@ -396,6 +520,80 @@ impl DartParser {
         Ok(fields)
     }
     
+    fn parse_positional_params(&self, params: &str) -> Result<Vec<DartField>> {
+        let mut fields = Vec::new();
+        let params = params.trim();
+        if params.is_empty() {
+            return Ok(fields);
+        }
+        
+        // Split by comma, handling generics
+        let mut current_param = String::new();
+        let mut depth = 0;
+        
+        for c in params.chars() {
+            if c == '<' {
+                depth += 1;
+                current_param.push(c);
+            } else if c == '>' {
+                depth -= 1;
+                current_param.push(c);
+            } else if c == ',' && depth == 0 {
+                let param = current_param.trim();
+                if !param.is_empty() {
+                    if let Some(field) = self.parse_single_positional_param(param)? {
+                        fields.push(field);
+                    }
+                }
+                current_param.clear();
+            } else {
+                current_param.push(c);
+            }
+        }
+        
+        // Handle last parameter
+        let param = current_param.trim();
+        if !param.is_empty() {
+            if let Some(field) = self.parse_single_positional_param(param)? {
+                fields.push(field);
+            }
+        }
+        
+        Ok(fields)
+    }
+    
+    fn parse_single_positional_param(&self, param: &str) -> Result<Option<DartField>> {
+        let param = param.trim();
+        if param.is_empty() {
+            return Ok(None);
+        }
+        
+        // Parse: Type name (positional parameters don't have "required" keyword)
+        // Split type and name - handle nullable types
+        let parts: Vec<&str> = param.split_whitespace().collect();
+        if parts.len() >= 2 {
+            let mut type_str = parts[0];
+            let name = parts[1].trim_end_matches(',');
+            let is_nullable = type_str.ends_with('?');
+            
+            // Strip trailing ? before parsing the type
+            if is_nullable {
+                type_str = &type_str[..type_str.len() - 1];
+            }
+            
+            Ok(Some(DartField {
+                name: name.to_string(),
+                dart_type: DartType::parse(type_str),
+                is_nullable,
+                is_required: true, // Positional params are always required
+                json_key: None,
+                ..Default::default()
+            }))
+        } else {
+            Ok(None)
+        }
+    }
+    
     fn parse_single_factory_param(&self, param: &str) -> Result<Option<DartField>> {
         let param = param.trim();
         if param.is_empty() {
@@ -464,12 +662,49 @@ impl DartParser {
             Ok(None)
         }
     }
+    
+    fn extract_union_value_before_factory(&self, class_body: &str, variant_name: &str) -> Option<String> {
+        // Look for @ModelUnionValue before the factory constructor
+        let pattern = format!(r#"@ModelUnionValue\s*\(\s*['"]([^'"]+)['"]\s*\)\s*(?:@(?:With|Implements)[^)]*\)\s*)*const\s+factory\s+\w+\.{}"#, variant_name);
+        if let Ok(re) = Regex::new(&pattern) {
+            if let Some(cap) = re.captures(class_body) {
+                return cap.get(1).map(|m| m.as_str().to_string());
+            }
+        }
+        None
+    }
 
+    fn parse_is_mutable(&self, annotation: &str) -> bool {
+        annotation.contains("@Model.mutable")
+    }
+    
+    fn parse_bool_param(&self, annotation: &str, param_name: &str) -> bool {
+        // Look for "paramName: true" or "paramName:true" (with or without space)
+        let pattern1 = format!("{}: true", param_name);
+        let pattern2 = format!("{}:true", param_name);
+        annotation.contains(&pattern1) || annotation.contains(&pattern2)
+    }
+    
     fn parse_model_annotation(&self, annotation: &str) -> GenerationFeatures {
         let mut features = GenerationFeatures::default();
         
         // Check for preset constructors
-        if annotation.contains("@Model.bloc") {
+        if annotation.contains("@Model.mutable") {
+            // Mutable classes: parse parameters but always set copyWith=true, copyWithNull=false
+            // Users can enable fromJson, toJson, equatable, stringify via parameters
+            features.copy_with = true;
+            features.copy_with_null = false;
+            
+            // Parse parameters from @Model.mutable(...)
+            // Extract the parameters part from @Model.mutable(...)
+            if let Some(cap) = MODEL_PATTERN.captures(annotation) {
+                let params = cap.get(2).map_or("", |m| m.as_str());
+                features.from_json = params.contains("fromJson: true") || params.contains("fromJson:true");
+                features.to_json = params.contains("toJson: true") || params.contains("toJson:true");
+                features.equatable = params.contains("equatable: true") || params.contains("equatable:true");
+                features.stringify = params.contains("stringify: true") || params.contains("stringify:true");
+            }
+        } else if annotation.contains("@Model.bloc") {
             features.copy_with = true;
             features.equatable = true;
         } else if annotation.contains("@Model.full") {
@@ -512,6 +747,27 @@ impl DartParser {
             .unwrap_or_else(|| "type".to_string())
     }
 
+    fn parse_enum_value_type(&self, annotation: &str) -> Option<EnumValueType> {
+        // Parse valueType from @JsonEnum(valueType: JsonEnumValue.string|ordinal|custom)
+        let re = Regex::new(r"valueType\s*:\s*JsonEnumValue\.(\w+)").unwrap();
+        if let Some(cap) = re.captures(annotation) {
+            if let Some(m) = cap.get(1) {
+                match m.as_str().to_lowercase().as_str() {
+                    "string" => return Some(EnumValueType::String),
+                    "ordinal" => return Some(EnumValueType::Ordinal),
+                    "custom" => return Some(EnumValueType::Custom),
+                    _ => {}
+                }
+            }
+        }
+        // Default to string if @JsonEnum is present but valueType not specified
+        if annotation.contains("@JsonEnum") {
+            Some(EnumValueType::String)
+        } else {
+            None
+        }
+    }
+    
     fn parse_naming_convention(&self, annotation: &str) -> Option<NamingConvention> {
         // Check for namingConvention in @Model params
         let naming_re = Regex::new(r"namingConvention\s*:\s*(?:NamingConvention\.)?(\w+)").unwrap();
@@ -603,6 +859,9 @@ impl DartParser {
                     ignore_copy_with: field_annots.ignore_copy_with,
                     ignore_to_string: field_annots.ignore_to_string,
                     include_if_null: field_annots.include_if_null,
+                    assert_condition: None,
+                    assert_message: None,
+                    json_converter: field_annots.json_converter.clone(),
                 });
             }
             
@@ -677,17 +936,38 @@ impl DartParser {
             .and_then(|cap| cap.get(1))
             .and_then(|m| NamingConvention::from_str(m.as_str()));
         
+        // Parse @JsonConverter
+        if let Some(cap) = JSON_CONVERTER_PATTERN.captures(annotations) {
+            let converter_expr = cap.get(1).map_or("", |m| m.as_str()).trim();
+            // Extract converter class name (e.g., "DurationConverter()" -> "DurationConverter")
+            // Handle both "ConverterName()" and "const ConverterName()"
+            // Also handle "const ConverterName()" with spaces
+            let converter_name = converter_expr
+                .trim_start_matches("const")
+                .trim()
+                .split('(')
+                .next()
+                .unwrap_or("")
+                .trim();
+            if !converter_name.is_empty() {
+                result.json_converter = Some(converter_name.to_string());
+            }
+        }
+        
         result
     }
 
     fn remove_comments(&self, content: &str) -> String {
         let mut result = String::with_capacity(content.len());
         let mut chars = content.chars().peekable();
+        let mut in_string = false;
+        let mut string_char = None;
         
         while let Some(c) = chars.next() {
-            if c == '/' {
+            if !in_string && c == '/' {
                 if let Some(&next) = chars.peek() {
                     if next == '/' {
+                        // Single-line comment: skip until newline
                         while let Some(c) = chars.next() {
                             if c == '\n' {
                                 result.push('\n');
@@ -696,6 +976,7 @@ impl DartParser {
                         }
                         continue;
                     } else if next == '*' {
+                        // Multi-line comment: skip until */
                         chars.next();
                         while let Some(c) = chars.next() {
                             if c == '*' {
@@ -709,6 +990,25 @@ impl DartParser {
                     }
                 }
             }
+            
+            // Track string state
+            if c == '"' || c == '\'' {
+                if !in_string {
+                    in_string = true;
+                    string_char = Some(c);
+                } else if Some(c) == string_char {
+                    in_string = false;
+                    string_char = None;
+                }
+            } else if c == '\\' && in_string {
+                // Skip escaped character in string
+                result.push(c);
+                if let Some(next) = chars.next() {
+                    result.push(next);
+                }
+                continue;
+            }
+            
             result.push(c);
         }
         

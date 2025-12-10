@@ -13,7 +13,7 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Mutex;
 use walkdir::WalkDir;
 
-use crate::models::{DartClass, DartType, GenerationFeatures, NamingConvention};
+use crate::models::{DartClass, DartType, GenerationFeatures, NamingConvention, EnumValueType};
 use regex::Regex;
 use crate::parser::DartParser;
 
@@ -102,8 +102,16 @@ fn main() -> Result<()> {
     let results: Vec<_> = dart_files.par_iter()
         .filter_map(|file_path| {
             let content = std::fs::read_to_string(file_path).ok()?;
-            let classes = parser.parse(&content, file_path).ok()?;
-            Some((file_path.clone(), content, classes))
+            match parser.parse(&content, file_path) {
+                Ok(classes) => Some((file_path.clone(), content, classes)),
+                Err(e) => {
+                    // Only warn for files that should have classes (have @Model in them)
+                    if content.contains("@Model") || content.contains("@JsonEnum") {
+                        eprintln!("Warning: Failed to parse {}: {}", file_path.display(), e);
+                    }
+                    None
+                }
+            }
         })
         .collect();
 
@@ -240,6 +248,7 @@ fn generate_file_code(classes: &[DartClass], import_file: &str, checksum: u64) -
     });
     
     // Collect class names in current file (for cross-file type detection)
+    // Include both classes and enums
     let current_file_classes: HashSet<String> = classes.iter()
         .map(|c| c.name.clone())
         .collect();
@@ -447,16 +456,30 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
             ));
         }
         
-        // Constructor
-        out.push_str(&format!("\n  const {}({{\n", variant_name));
-        for f in fields {
-            if f.is_required && !f.is_nullable {
-                out.push_str(&format!("    required this.{},\n", f.name));
-            } else {
-                out.push_str(&format!("    this.{},\n", f.name));
+        // Constructor - match factory signature (named or positional)
+        if v.uses_named_params {
+            out.push_str(&format!("\n  const {}({{\n", variant_name));
+            for f in fields {
+                if f.is_required && !f.is_nullable {
+                    out.push_str(&format!("    required this.{},\n", f.name));
+                } else {
+                    out.push_str(&format!("    this.{},\n", f.name));
+                }
             }
+            out.push_str(&format!("  }}) : super._();\n"));
+        } else {
+            // Positional parameters - use this.fieldName syntax
+            let params: Vec<String> = fields.iter()
+                .map(|f| {
+                    format!("{}{} this.{}", 
+                        f.dart_type.to_dart_type(),
+                        if f.is_nullable { "?" } else { "" },
+                        f.name
+                    )
+                })
+                .collect();
+            out.push_str(&format!("\n  const {}({}) : super._();\n", variant_name, params.join(", ")));
         }
-        out.push_str(&format!("  }}) : super._();\n"));
         
         // Factory fromJson
         if features.from_json {
@@ -495,14 +518,24 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
         let variant_name = &v.class_name;
         let fields = &v.fields;
         
-        // _$VariantFromJson function
+        // _$VariantFromJson function - match constructor signature
         out.push_str(&format!("{} _${}FromJson(Map<String, dynamic> json) => {}(\n", 
             variant_name, variant_name, variant_name));
-        for (i, f) in fields.iter().enumerate() {
-            let key = get_json_key(f, naming.as_ref());
-            let expr = field_from_json_expr(f, &key, current_file_classes);
-            let comma = if i < fields.len() - 1 { "," } else { "" };
-            out.push_str(&format!("  {}: {}{}\n", f.name, expr, comma));
+        if v.uses_named_params {
+            for (i, f) in fields.iter().enumerate() {
+                let key = get_json_key(f, naming.as_ref());
+                let expr = field_from_json_expr(f, &key, current_file_classes);
+                let comma = if i < fields.len() - 1 { "," } else { "" };
+                out.push_str(&format!("  {}: {}{}\n", f.name, expr, comma));
+            }
+        } else {
+            // Positional parameters
+            for (i, f) in fields.iter().enumerate() {
+                let key = get_json_key(f, naming.as_ref());
+                let expr = field_from_json_expr(f, &key, current_file_classes);
+                let comma = if i < fields.len() - 1 { ", " } else { "" };
+                out.push_str(&format!("{}{}", expr, comma));
+            }
         }
         out.push_str(");\n\n");
         
@@ -755,6 +788,7 @@ fn generate_equatable(class: &DartClass) -> String {
 fn generate_enum_code(class: &DartClass) -> String {
     let name = &class.name;
     let values = &class.fields;
+    let value_type = class.enum_value_type.unwrap_or(EnumValueType::String);
     
     let mut out = String::new();
     
@@ -762,10 +796,23 @@ fn generate_enum_code(class: &DartClass) -> String {
     if class.features.from_json {
         out.push_str(&format!("{} _${}FromJson(dynamic json) {{\n", name, name));
         out.push_str("  return switch (json) {\n");
-        for value in values {
-            let json_value = value.json_key.as_ref().unwrap_or(&value.name);
-            out.push_str(&format!("    '{}' => {}.{},\n", json_value, name, value.name));
+        
+        match value_type {
+            EnumValueType::Ordinal => {
+                // Ordinal: json is an int (0, 1, 2, ...)
+                for (index, value) in values.iter().enumerate() {
+                    out.push_str(&format!("    {} => {}.{},\n", index, name, value.name));
+                }
+            }
+            EnumValueType::String | EnumValueType::Custom => {
+                // String/Custom: json is a string, use @JsonValue or enum name
+                for value in values {
+                    let json_value = value.json_key.as_ref().unwrap_or(&value.name);
+                    out.push_str(&format!("    '{}' => {}.{},\n", json_value, name, value.name));
+                }
+            }
         }
+        
         out.push_str(&format!("    _ => throw FormatException('Unknown {} value: $json'),\n", name));
         out.push_str("  };\n}\n\n");
     }
@@ -774,10 +821,23 @@ fn generate_enum_code(class: &DartClass) -> String {
     if class.features.to_json {
         out.push_str(&format!("extension ${}Json on {} {{\n", name, name));
         out.push_str("  dynamic toJson() => switch (this) {\n");
-        for value in values {
-            let json_value = value.json_key.as_ref().unwrap_or(&value.name);
-            out.push_str(&format!("    {}.{} => '{}',\n", name, value.name, json_value));
+        
+        match value_type {
+            EnumValueType::Ordinal => {
+                // Ordinal: return int index
+                for (index, value) in values.iter().enumerate() {
+                    out.push_str(&format!("    {}.{} => {},\n", name, value.name, index));
+                }
+            }
+            EnumValueType::String | EnumValueType::Custom => {
+                // String/Custom: return string value
+                for value in values {
+                    let json_value = value.json_key.as_ref().unwrap_or(&value.name);
+                    out.push_str(&format!("    {}.{} => '{}',\n", name, value.name, json_value));
+                }
+            }
         }
+        
         out.push_str("  };\n}\n\n");
     }
     
@@ -866,6 +926,15 @@ fn capitalize(s: &str) -> String {
 fn field_to_json_expr(field: &models::DartField) -> String {
     let name = &field.name;
     
+    // Use JsonConverter if present
+    if let Some(ref converter) = field.json_converter {
+        if field.is_nullable {
+            return format!("{} != null ? const {}().toJson({}) : null", name, converter, name);
+        } else {
+            return format!("const {}().toJson({})", converter, name);
+        }
+    }
+    
     // Custom toJson function
     if let Some(ref func) = field.to_json_func {
         return format!("{}({})", func, name);
@@ -881,6 +950,8 @@ fn field_to_json_expr(field: &models::DartField) -> String {
             else { format!("{}.map((e) => e.toJson()).toList()", name) }
         }
         DartType::Custom(_) => {
+            // For custom types (including enums), use the extension's toJson() method
+            // Enums have extensions like `extension $EnumNameJson on EnumName`
             if field.is_nullable { format!("{}?.toJson()", name) }
             else { format!("{}.toJson()", name) }
         }
@@ -890,6 +961,18 @@ fn field_to_json_expr(field: &models::DartField) -> String {
 
 fn field_from_json_expr(field: &models::DartField, json_key: &str, current_file_classes: &HashSet<String>) -> String {
     let accessor = format!("json['{}']", json_key);
+    
+    // Use JsonConverter if present
+    if let Some(ref converter) = field.json_converter {
+        let default_suffix = field.default_value.as_ref()
+            .map(|d| format!(" ?? {}", d))
+            .unwrap_or_default();
+        if field.is_nullable {
+            return format!("{} != null ? const {}().fromJson({}) : null{}", accessor, converter, accessor, default_suffix);
+        } else {
+            return format!("const {}().fromJson({}){}", converter, accessor, default_suffix);
+        }
+    }
     
     // Custom fromJson function
     if let Some(ref func) = field.from_json_func {
@@ -951,15 +1034,31 @@ fn field_from_json_expr(field: &models::DartField, json_key: &str, current_file_
         }
         DartType::Custom(type_name) => {
             // Use factory constructor for cross-file types, private function for same-file types
+            // Enums use _$EnumNameFromJson(dynamic), classes use _$ClassNameFromJson(Map) or ClassName.fromJson(Map)
             let from_json_call = if current_file_classes.contains(type_name) {
+                // Same file: use private function (works for both enums and classes)
                 format!("_${}FromJson", type_name)
             } else {
+                // Cross-file: use factory constructor (ClassName.fromJson)
                 format!("{}.fromJson", type_name)
             };
-            if field.is_nullable {
-                format!("{} != null ? {}({} as Map<String, dynamic>) : null", accessor, from_json_call, accessor)
+            
+            // For cross-file types, we need to cast to Map<String, dynamic>
+            // For same-file types (including enums), we pass the value directly
+            if current_file_classes.contains(type_name) {
+                // Same file: pass value directly (enum takes dynamic, class takes Map)
+                if field.is_nullable {
+                    format!("{} != null ? {}({}) : null", accessor, from_json_call, accessor)
+                } else {
+                    format!("{}({})", from_json_call, accessor)
+                }
             } else {
-                format!("{}({} as Map<String, dynamic>)", from_json_call, accessor)
+                // Cross-file: cast to Map<String, dynamic>
+                if field.is_nullable {
+                    format!("{} != null ? {}({} as Map<String, dynamic>) : null", accessor, from_json_call, accessor)
+                } else {
+                    format!("{}({} as Map<String, dynamic>)", from_json_call, accessor)
+                }
             }
         }
         _ => accessor.clone(),

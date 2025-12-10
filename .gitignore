@@ -1,34 +1,13 @@
-# Dart/Flutter
-.dart_tool/
-.packages
-build/
-.pub-cache/
-.pub/
-pubspec.lock
+# MkDocs
+site/
+.mkdocs_cache/
+docs/.mkdocs_cache/
 
-# Rust (codegen)
-codegen/target/
-codegen/Cargo.lock
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
 
-# Generated files
-*.gen.dart
-*.g.dart
-
-# IDE
-.idea/
-*.iml
-.vscode/
-*.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Coverage
-coverage/
-*.lcov
-
-# Logs
-*.log
+# Old manual HTML site
+docs/site/*.html
+docs/site/convert_md_to_html.*

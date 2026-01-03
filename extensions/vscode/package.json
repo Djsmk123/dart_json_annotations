@@ -1,0 +1,124 @@
+{
+  "name": "dart-json-gen",
+  "displayName": "Dart JSON Generator",
+  "description": "Generate Dart JSON serialization code from @Model annotations",
+  "version": "1.0.0",
+  "publisher": "dart-json-annotations",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/djsmk123/dart_json_annotations.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dartJsonGen.generateFile",
+        "title": "Dart JSON: Generate for File",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "dartJsonGen.generateFolder",
+        "title": "Dart JSON: Generate for Folder",
+        "icon": "$(folder-library)"
+      },
+      {
+        "command": "dartJsonGen.cleanFile",
+        "title": "Dart JSON: Clean Generated File",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "dartJsonGen.cleanFolder",
+        "title": "Dart JSON: Clean Generated Files",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "dartJsonGen.generateFile",
+          "when": "resourceExtname == '.dart'",
+          "group": "2_workspace@1"
+        },
+        {
+          "command": "dartJsonGen.generateFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@2"
+        },
+        {
+          "command": "dartJsonGen.cleanFile",
+          "when": "resourceExtname == '.dart'",
+          "group": "2_workspace@3"
+        },
+        {
+          "command": "dartJsonGen.cleanFolder",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@4"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "dartJsonGen.generateFile",
+          "when": "resourceExtname == '.dart'",
+          "group": "1_modification@1"
+        },
+        {
+          "command": "dartJsonGen.cleanFile",
+          "when": "resourceExtname == '.dart'",
+          "group": "1_modification@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "dartJsonGen.generateFile",
+          "when": "resourceExtname == '.dart'"
+        },
+        {
+          "command": "dartJsonGen.generateFolder"
+        },
+        {
+          "command": "dartJsonGen.cleanFile",
+          "when": "resourceExtname == '.dart'"
+        },
+        {
+          "command": "dartJsonGen.cleanFolder"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Dart JSON Generator",
+      "properties": {
+        "dartJsonGen.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically refresh file explorer after generation"
+        },
+        "dartJsonGen.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show success/error notifications"
+        },
+        "dartJsonGen.verboseOutput": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show verbose output in the output channel"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^5.0.0"
+  }
+}

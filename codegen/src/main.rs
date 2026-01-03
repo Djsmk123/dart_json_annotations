@@ -444,8 +444,18 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
         let variant_name = &v.class_name;
         let fields = &v.fields;
         
-        // Class definition
-        out.push_str(&format!("class {} extends {} {{\n", variant_name, name));
+        // Class definition - handle generics
+        let generic_suffix = if class.generic_params.is_empty() {
+            String::new()
+        } else {
+            format!("<{}>", class.generic_params.join(", "))
+        };
+        let base_generic_suffix = if class.generic_params.is_empty() {
+            String::new()
+        } else {
+            format!("<{}>", class.generic_params.join(", "))
+        };
+        out.push_str(&format!("class {}{} extends {}{} {{\n", variant_name, generic_suffix, name, base_generic_suffix));
         
         // Fields
         for f in fields {
@@ -481,10 +491,28 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
             out.push_str(&format!("\n  const {}({}) : super._();\n", variant_name, params.join(", ")));
         }
         
-        // Factory fromJson
+        // Factory fromJson - check if variant needs converter functions
         if features.from_json {
-            out.push_str(&format!("\n  factory {}.fromJson(Map<String, dynamic> json) => _${}FromJson(json);\n", 
-                variant_name, variant_name));
+            let variant_has_generic = v.fields.iter().any(|f| {
+                if let DartType::Custom(type_name) = &f.dart_type {
+                    class.generic_params.contains(type_name)
+                } else {
+                    false
+                }
+            });
+            
+            if variant_has_generic && !class.generic_params.is_empty() {
+                let converter_params = class.generic_params.iter()
+                    .map(|param| format!("{} Function(Object?) fromJson{}", param, param))
+                    .collect::<Vec<_>>()
+                    .join(", ");
+                out.push_str(&format!("\n  factory {}.fromJson(Map<String, dynamic> json, {}) => _${}FromJson(json, {});\n", 
+                    variant_name, converter_params, variant_name,
+                    class.generic_params.iter().map(|p| format!("fromJson{}", p)).collect::<Vec<_>>().join(", ")));
+            } else {
+                out.push_str(&format!("\n  factory {}.fromJson(Map<String, dynamic> json) => _${}FromJson(json);\n", 
+                    variant_name, variant_name));
+            }
         }
         
         // Equatable methods (must be in class, not extension)
@@ -503,12 +531,64 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
         out.push_str("}\n\n");
     }
     
-    // Generate _$BaseFromJson function (used by user's factory)
-    out.push_str(&format!("{} _${}FromJson(Map<String, dynamic> json) {{\n", name, name));
+    // Check if any variant has fields with generic type parameters
+    let has_generic_fields = variants.iter().any(|v| {
+        v.fields.iter().any(|f| {
+            if let DartType::Custom(type_name) = &f.dart_type {
+                class.generic_params.contains(type_name)
+            } else {
+                false
+            }
+        })
+    });
+    
+    // Generate _$BaseFromJson function (used by user's factory) - handle generics
+    let generic_params_str = if class.generic_params.is_empty() {
+        String::new()
+    } else {
+        format!("<{}>", class.generic_params.join(", "))
+    };
+    
+    // Add converter function parameters if this is a generic union class with generic fields
+    let converter_params = if has_generic_fields && !class.generic_params.is_empty() {
+        class.generic_params.iter()
+            .map(|param| format!("{} Function(Object?) fromJson{}", param, param))
+            .collect::<Vec<_>>()
+            .join(", ")
+    } else {
+        String::new()
+    };
+    
+    let func_params = if converter_params.is_empty() {
+        "Map<String, dynamic> json".to_string()
+    } else {
+        format!("Map<String, dynamic> json, {}", converter_params)
+    };
+    
+    out.push_str(&format!("{}{} _${}FromJson{}({}) {{\n", name, generic_params_str, name, generic_params_str, func_params));
     out.push_str(&format!("  return switch (json['{}'] as String?) {{\n", disc));
     for v in variants {
-        out.push_str(&format!("    '{}' => _${}FromJson(json),\n", 
-            v.discriminator_value, v.class_name));
+        // Check if this specific variant has generic fields
+        let variant_has_generic = v.fields.iter().any(|f| {
+            if let DartType::Custom(type_name) = &f.dart_type {
+                class.generic_params.contains(type_name)
+            } else {
+                false
+            }
+        });
+        
+        if variant_has_generic && !class.generic_params.is_empty() {
+            // Pass converter functions to variant fromJson
+            let converter_args = class.generic_params.iter()
+                .map(|param| format!("fromJson{}", param))
+                .collect::<Vec<_>>()
+                .join(", ");
+            out.push_str(&format!("    '{}' => _${}FromJson(json, {}),\n", 
+                v.discriminator_value, v.class_name, converter_args));
+        } else {
+            out.push_str(&format!("    '{}' => _${}FromJson(json),\n", 
+                v.discriminator_value, v.class_name));
+        }
     }
     out.push_str(&format!("    _ => throw FormatException('Unknown {} type: ${{json[\"{}\"]}}'),\n", name, disc));
     out.push_str("  };\n}\n\n");
@@ -518,13 +598,59 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
         let variant_name = &v.class_name;
         let fields = &v.fields;
         
-        // _$VariantFromJson function - match constructor signature
-        out.push_str(&format!("{} _${}FromJson(Map<String, dynamic> json) => {}(\n", 
-            variant_name, variant_name, variant_name));
+        // Check if this variant has generic fields
+        let variant_has_generic = v.fields.iter().any(|f| {
+            if let DartType::Custom(type_name) = &f.dart_type {
+                class.generic_params.contains(type_name)
+            } else {
+                false
+            }
+        });
+        
+        // _$VariantFromJson function - match constructor signature - handle generics
+        let variant_generic_suffix = if class.generic_params.is_empty() {
+            String::new()
+        } else {
+            format!("<{}>", class.generic_params.join(", "))
+        };
+        
+        // Add converter function parameters if variant has generic fields
+        let converter_params = if variant_has_generic && !class.generic_params.is_empty() {
+            class.generic_params.iter()
+                .map(|param| format!("{} Function(Object?) fromJson{}", param, param))
+                .collect::<Vec<_>>()
+                .join(", ")
+        } else {
+            String::new()
+        };
+        
+        let func_params = if converter_params.is_empty() {
+            "Map<String, dynamic> json".to_string()
+        } else {
+            format!("Map<String, dynamic> json, {}", converter_params)
+        };
+        
+        out.push_str(&format!("{}{} _${}FromJson{}({}) => {}{}(\n", 
+            variant_name, variant_generic_suffix, variant_name, variant_generic_suffix, func_params, variant_name, variant_generic_suffix));
         if v.uses_named_params {
             for (i, f) in fields.iter().enumerate() {
                 let key = get_json_key(f, naming.as_ref());
-                let expr = field_from_json_expr(f, &key, current_file_classes);
+                // Use converter function if field type is a generic parameter
+                let expr = if let DartType::Custom(type_name) = &f.dart_type {
+                    if class.generic_params.contains(type_name) {
+                        // Use converter function for generic type
+                        let converter_name = format!("fromJson{}", type_name);
+                        if f.is_nullable {
+                            format!("json['{}'] != null ? {}(json['{}']) : null", key, converter_name, key)
+                        } else {
+                            format!("{}(json['{}'])", converter_name, key)
+                        }
+                    } else {
+                        field_from_json_expr(f, &key, current_file_classes)
+                    }
+                } else {
+                    field_from_json_expr(f, &key, current_file_classes)
+                };
                 let comma = if i < fields.len() - 1 { "," } else { "" };
                 out.push_str(&format!("  {}: {}{}\n", f.name, expr, comma));
             }
@@ -532,7 +658,22 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
             // Positional parameters
             for (i, f) in fields.iter().enumerate() {
                 let key = get_json_key(f, naming.as_ref());
-                let expr = field_from_json_expr(f, &key, current_file_classes);
+                // Use converter function if field type is a generic parameter
+                let expr = if let DartType::Custom(type_name) = &f.dart_type {
+                    if class.generic_params.contains(type_name) {
+                        // Use converter function for generic type
+                        let converter_name = format!("fromJson{}", type_name);
+                        if f.is_nullable {
+                            format!("json['{}'] != null ? {}(json['{}']) : null", key, converter_name, key)
+                        } else {
+                            format!("{}(json['{}'])", converter_name, key)
+                        }
+                    } else {
+                        field_from_json_expr(f, &key, current_file_classes)
+                    }
+                } else {
+                    field_from_json_expr(f, &key, current_file_classes)
+                };
                 let comma = if i < fields.len() - 1 { ", " } else { "" };
                 out.push_str(&format!("{}{}", expr, comma));
             }
@@ -541,12 +682,49 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
         
         // toJson extension for this variant
         if features.to_json {
-            out.push_str(&format!("extension ${}Json on {} {{\n", variant_name, variant_name));
-            out.push_str("  Map<String, dynamic> toJson() => <String, dynamic>{\n");
+            let variant_has_generic = v.fields.iter().any(|f| {
+                if let DartType::Custom(type_name) = &f.dart_type {
+                    class.generic_params.contains(type_name)
+                } else {
+                    false
+                }
+            });
+            
+            // Make extension generic if variant has generic fields
+            // Syntax: extension ExtensionName<T> on ClassName<T>
+            if variant_has_generic && !class.generic_params.is_empty() {
+                let generic_params = format!("<{}>", class.generic_params.join(", "));
+                out.push_str(&format!("extension ${}Json{} on {}{} {{\n", variant_name, generic_params, variant_name, generic_params));
+            } else {
+                out.push_str(&format!("extension ${}Json on {} {{\n", variant_name, variant_name));
+            }
+            
+            // Add converter function parameter if variant has generic fields
+            if variant_has_generic && !class.generic_params.is_empty() {
+                let converter_params = class.generic_params.iter()
+                    .map(|param| format!("{} Function({}) toJson{}", param, param, param))
+                    .collect::<Vec<_>>()
+                    .join(", ");
+                out.push_str(&format!("  Map<String, dynamic> toJson({}) => <String, dynamic>{{\n", converter_params));
+            } else {
+                out.push_str("  Map<String, dynamic> toJson() => <String, dynamic>{\n");
+            }
+            
             out.push_str(&format!("    '{}': '{}',\n", disc, v.discriminator_value));
             for f in fields {
                 let key = get_json_key(f, naming.as_ref());
-                let expr = field_to_json_expr(f);
+                // Use converter function if field type is a generic parameter
+                let expr = if let DartType::Custom(type_name) = &f.dart_type {
+                    if class.generic_params.contains(type_name) {
+                        // Use converter function for generic type
+                        let converter_name = format!("toJson{}", type_name);
+                        format!("{}({})", converter_name, f.name)
+                    } else {
+                        field_to_json_expr(f)
+                    }
+                } else {
+                    field_to_json_expr(f)
+                };
                 if f.is_nullable {
                     out.push_str(&format!("    if ({} != null) '{}': {},\n", f.name, key, expr));
                 } else {
@@ -574,10 +752,57 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
     
     // toJson extension on base class
     if features.to_json {
-        out.push_str(&format!("extension ${}Json on {} {{\n", name, name));
-        out.push_str("  Map<String, dynamic> toJson() => switch (this) {\n");
-        for v in variants {
-            out.push_str(&format!("    {} v => v.toJson(),\n", v.class_name));
+        let has_generic_fields = variants.iter().any(|v| {
+            v.fields.iter().any(|f| {
+                if let DartType::Custom(type_name) = &f.dart_type {
+                    class.generic_params.contains(type_name)
+                } else {
+                    false
+                }
+            })
+        });
+        
+        // Make extension generic if class has generic params
+        // Syntax: extension ExtensionName<T> on ClassName<T>
+        if has_generic_fields && !class.generic_params.is_empty() {
+            let generic_params = format!("<{}>", class.generic_params.join(", "));
+            out.push_str(&format!("extension ${}Json{} on {}{} {{\n", name, generic_params, name, generic_params));
+        } else {
+            out.push_str(&format!("extension ${}Json on {} {{\n", name, name));
+        }
+        
+        // Add converter function parameter if any variant has generic fields
+        if has_generic_fields && !class.generic_params.is_empty() {
+            let converter_params = class.generic_params.iter()
+                .map(|param| format!("{} Function({}) toJson{}", param, param, param))
+                .collect::<Vec<_>>()
+                .join(", ");
+            out.push_str(&format!("  Map<String, dynamic> toJson({}) => switch (this) {{\n", converter_params));
+            for v in variants {
+                // Check if this specific variant has generic fields
+                let variant_has_generic = v.fields.iter().any(|f| {
+                    if let DartType::Custom(type_name) = &f.dart_type {
+                        class.generic_params.contains(type_name)
+                    } else {
+                        false
+                    }
+                });
+                
+                if variant_has_generic {
+                    let converter_args = class.generic_params.iter()
+                        .map(|param| format!("toJson{}", param))
+                        .collect::<Vec<_>>()
+                        .join(", ");
+                    out.push_str(&format!("    {} v => v.toJson({}),\n", v.class_name, converter_args));
+                } else {
+                    out.push_str(&format!("    {} v => v.toJson(),\n", v.class_name));
+                }
+            }
+        } else {
+            out.push_str("  Map<String, dynamic> toJson() => switch (this) {\n");
+            for v in variants {
+                out.push_str(&format!("    {} v => v.toJson(),\n", v.class_name));
+            }
         }
         out.push_str(&format!("    _ => throw StateError('Unknown {} type'),\n", name));
         out.push_str("  };\n}\n\n");
@@ -979,56 +1204,90 @@ fn field_from_json_expr(field: &models::DartField, json_key: &str, current_file_
         return format!("{}({})", func, accessor);
     }
     
-    // Handle default value
-    let default_suffix = field.default_value.as_ref()
-        .map(|d| format!(" ?? {}", d))
-        .unwrap_or_default();
+    // Handle default value - need to check if field has default
+    let has_default = field.default_value.is_some();
+    let default_value_str = field.default_value.as_ref().map(|d| d.as_str()).unwrap_or("");
     
     let expr = match &field.dart_type {
         DartType::String => {
-            if field.is_nullable { format!("{} as String?", accessor) }
-            else { format!("{} as String", accessor) }
+            if has_default {
+                // For fields with defaults, handle null first
+                format!("({} as String?) ?? {}", accessor, default_value_str)
+            } else {
+                if field.is_nullable { format!("{} as String?", accessor) }
+                else { format!("{} as String", accessor) }
+            }
         }
         DartType::Int => {
-            if field.is_nullable { format!("({} as num?)?.toInt()", accessor) }
-            else { format!("({} as num).toInt()", accessor) }
+            if has_default {
+                // For fields with defaults, handle null first with nullable cast
+                format!("({} as num?)?.toInt() ?? {}", accessor, default_value_str)
+            } else {
+                if field.is_nullable { format!("({} as num?)?.toInt()", accessor) }
+                else { format!("({} as num).toInt()", accessor) }
+            }
         }
         DartType::Double | DartType::Num => {
-            if field.is_nullable { format!("({} as num?)?.toDouble()", accessor) }
-            else { format!("({} as num).toDouble()", accessor) }
+            if has_default {
+                format!("({} as num?)?.toDouble() ?? {}", accessor, default_value_str)
+            } else {
+                if field.is_nullable { format!("({} as num?)?.toDouble()", accessor) }
+                else { format!("({} as num).toDouble()", accessor) }
+            }
         }
         DartType::Bool => {
-            if field.is_nullable { format!("{} as bool?", accessor) }
-            else { format!("{} as bool", accessor) }
+            if has_default {
+                format!("({} as bool?) ?? {}", accessor, default_value_str)
+            } else {
+                if field.is_nullable { format!("{} as bool?", accessor) }
+                else { format!("{} as bool", accessor) }
+            }
         }
         DartType::DateTime => {
-            if field.is_nullable {
-                format!("{} != null ? DateTime.parse({} as String) : null", accessor, accessor)
+            if has_default {
+                format!("{} != null ? DateTime.parse({} as String) : {}", accessor, accessor, default_value_str)
             } else {
-                format!("DateTime.parse({} as String)", accessor)
+                if field.is_nullable {
+                    format!("{} != null ? DateTime.parse({} as String) : null", accessor, accessor)
+                } else {
+                    format!("DateTime.parse({} as String)", accessor)
+                }
             }
         }
         DartType::List(inner) => {
             let item_expr = list_item_from_json(inner, current_file_classes);
-            if field.is_nullable {
-                format!("({} as List?)?.map((e) => {}).toList()", accessor, item_expr)
+            if has_default {
+                format!("({} as List?)?.map((e) => {}).toList() ?? {}", accessor, item_expr, default_value_str)
             } else {
-                format!("({} as List).map((e) => {}).toList()", accessor, item_expr)
+                if field.is_nullable {
+                    format!("({} as List?)?.map((e) => {}).toList()", accessor, item_expr)
+                } else {
+                    format!("({} as List).map((e) => {}).toList()", accessor, item_expr)
+                }
             }
         }
         DartType::Map(_, value_type) => {
-            if value_type.is_dynamic() {
-                if field.is_nullable {
-                    format!("{} as Map<String, dynamic>?", accessor)
+            if has_default {
+                if value_type.is_dynamic() {
+                    format!("({} as Map<String, dynamic>?) ?? {}", accessor, default_value_str)
                 } else {
-                    format!("{} as Map<String, dynamic>", accessor)
+                    let value_cast = map_value_cast(value_type, current_file_classes);
+                    format!("({} as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, {})) ?? {}", accessor, value_cast, default_value_str)
                 }
             } else {
-                let value_cast = map_value_cast(value_type, current_file_classes);
-                if field.is_nullable {
-                    format!("({} as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, {}))", accessor, value_cast)
+                if value_type.is_dynamic() {
+                    if field.is_nullable {
+                        format!("{} as Map<String, dynamic>?", accessor)
+                    } else {
+                        format!("{} as Map<String, dynamic>", accessor)
+                    }
                 } else {
-                    format!("({} as Map<String, dynamic>).map((k, v) => MapEntry(k, {}))", accessor, value_cast)
+                    let value_cast = map_value_cast(value_type, current_file_classes);
+                    if field.is_nullable {
+                        format!("({} as Map<String, dynamic>?)?.map((k, v) => MapEntry(k, {}))", accessor, value_cast)
+                    } else {
+                        format!("({} as Map<String, dynamic>).map((k, v) => MapEntry(k, {}))", accessor, value_cast)
+                    }
                 }
             }
         }
@@ -1061,10 +1320,16 @@ fn field_from_json_expr(field: &models::DartField, json_key: &str, current_file_
                 }
             }
         }
-        _ => accessor.clone(),
+        _ => {
+            if has_default {
+                format!("{} ?? {}", accessor, field.default_value.as_ref().unwrap())
+            } else {
+                accessor.clone()
+            }
+        }
     };
     
-    format!("{}{}", expr, default_suffix)
+    expr
 }
 
 fn needs_mapping(dart_type: &DartType) -> bool {

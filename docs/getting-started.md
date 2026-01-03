@@ -189,7 +189,14 @@ Use `@Model()` with sealed classes for pattern matching.
 sealed class Result<T> {
   const Result._();
   
-  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
+  // Note: For generic union classes, fromJson must accept converter functions
+  factory Result.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) => _$ResultFromJson(json, fromJsonT);
+  
+  // toJson should also accept a converter function
+  Map<String, dynamic> toJson(T Function(T) toJsonT) => _$ResultToJson(this, toJsonT);
   
   const factory Result.success(T data) = ResultSuccess<T>;
   const factory Result.failure(String error) = ResultFailure<T>;
@@ -202,6 +209,8 @@ final message = result.when(
   failure: (error) => 'Error: $error',
 );
 ```
+
+**Important:** Generic union classes (sealed classes with type parameters) require manual `fromJson` and `toJson` implementation that accepts converter functions, similar to regular generic classes. The code generator cannot automatically generate `fromJson`/`toJson` for generic union classes.
 
 ---
 

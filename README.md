@@ -61,19 +61,20 @@ dart_json_gen -i lib/models
 
 | Preset | Features | Output Size |
 |--------|----------|-------------|
-| `@Model()` | JSON only | ~25 lines |
+| `@Model.json()` | JSON only | ~25 lines |
 | `@Model.data()` | JSON + copyWith + equatable | ~50 lines |
 | `@Model.bloc()` | copyWith + equatable (no JSON) | ~35 lines |
 | `@Model.full()` | Everything | ~70 lines |
-| `@Model.union()` | Sealed class with when/map | ~60 lines |
+| `@Model.mutable()` | copyWith (always) | ~40 lines |
 
 ### Example: JSON-only (minimal)
 
 ```dart
 import 'package:dart_json_annotations/dart_json_annotations.dart';
-import 'user.gen.dart';
 
-@Model()  // JSON only - smallest output
+part 'user.gen.dart';
+
+@Model.json()  // JSON only - smallest output
 class User {
   final int id;
   final String name;
@@ -81,13 +82,15 @@ class User {
   
   User({required this.id, required this.name, this.email});
   
-  factory User.fromJson(Map<String, dynamic> json) => $UserSerializer.fromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 ```
 
 ### Example: Data class (common pattern)
 
 ```dart
+part 'user_profile.gen.dart';
+
 @Model.data(namingConvention: NamingConvention.snakeCase)
 class UserProfile {
   @JsonKey(name: 'user_id')
@@ -99,13 +102,17 @@ class UserProfile {
   @Ignore.equality()  // Exclude from == comparison
   final DateTime updatedAt;
   
-  UserProfile({...});
+  UserProfile({required this.userId, required this.firstName, required this.lastName, required this.updatedAt});
+  
+  factory UserProfile.fromJson(Map<String, dynamic> json) => _$UserProfileFromJson(json);
 }
 ```
 
 ### Example: Bloc state (no JSON)
 
 ```dart
+part 'counter_state.gen.dart';
+
 @Model.bloc()  // copyWith + equatable, NO json
 class CounterState {
   final int count;
@@ -117,14 +124,20 @@ class CounterState {
 
 // Generated usage:
 final newState = state.copyWith(count: state.count + 1);
-if (state1.equals(state2)) { ... }
+if (state1 == state2) { ... }  // Uses generated == operator
 ```
 
 ### Example: Sealed/Union class
 
 ```dart
-@Model.union()
+part 'result.gen.dart';
+
+@Model(fromJson: true, toJson: true, equatable: true)
 sealed class Result {
+  const Result._();
+  
+  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
+  
   const factory Result.success(String data) = ResultSuccess;
   const factory Result.failure(String error, int code) = ResultFailure;
   const factory Result.loading() = ResultLoading;
@@ -155,13 +168,14 @@ if (result.isSuccess) {
 
 ```dart
 @Model(
-  json: true,          // Generate toJson/fromJson (default: true)
+  fromJson: false,     // Generate fromJson (default: false)
+  toJson: false,       // Generate toJson (default: false)
   copyWith: false,     // Generate copyWith (default: false)
   copyWithNull: false, // Generate copyWithNull (default: false)
-  equatable: false,    // Generate equals/props (default: false)
+  equatable: false,    // Generate == and hashCode (default: false)
   stringify: false,    // Generate toString (default: false)
-  union: false,        // Generate when/map for sealed classes
-  namingConvention: NamingConvention.snakeCase,
+  namingConvention: NamingConvention.camelCase,  // Naming convention
+  discriminator: 'type',  // Discriminator field for union classes
 )
 ```
 
@@ -204,12 +218,12 @@ For 200 models:
 
 | Preset | Lines/Model | Total |
 |--------|-------------|-------|
-| `@Model()` | 25 | **5,000** ✅ |
+| `@Model.json()` | 25 | **5,000** ✅ |
 | `@Model.data()` | 50 | **10,000** |
 | `@Model.bloc()` | 35 | **7,000** ✅ |
 | `@Model.full()` | 70 | **14,000** |
 
-**Tip:** Use `@Model()` (JSON only) as default, add features only when needed.
+**Tip:** Use `@Model.json()` (JSON only) as default, add features only when needed.
 
 ## Migration from v1.x
 

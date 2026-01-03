@@ -1,8 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 11388093393227144595
+// Checksum: 9628710907245836043
 
 part of 'app_state.dart';
+
+extension $AppStateJson on AppState {
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'counter': counter,
+    'isLoading': isLoading,
+    'lastUpdated': lastUpdated.toIso8601String(),
+  };
+}
+
+AppState _$AppStateFromJson(Map<String, dynamic> json) => AppState(
+  counter: (json['counter'] as num).toInt(),
+  isLoading: json['isLoading'] as bool,
+  lastUpdated: DateTime.parse(json['lastUpdated'] as String)
+);
 
 extension $UserProfileJson on UserProfile {
   Map<String, dynamic> toJson() => <String, dynamic>{

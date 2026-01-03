@@ -12,9 +12,11 @@ lazy_static! {
     ).unwrap();
     
     // Sealed class detection - just find @Model...sealed class Name
-    // Handles blank lines between annotation and class
+    // Handles blank lines and other content between annotation and class
+    // Also captures optional generic type parameters like <T> or <T, U>
+    // Uses a more flexible pattern that allows any content between @Model and sealed class
     static ref SEALED_CLASS_PATTERN: Regex = Regex::new(
-        r"(?s)(@Model(?:\.\w+)?\s*\([^)]*(?:\([^)]*\)[^)]*)*\)\s*(?:\s*\n\s*)*)sealed\s+class\s+(\w+)"
+        r"(?s)(@Model(?:\.\w+)?\s*\([^)]*(?:\([^)]*\)[^)]*)*\)\s*.*?)sealed\s+class\s+(\w+)(?:<([^>]+)>)?"
     ).unwrap();
     
     // Regular class with @Model - allows any whitespace (including newlines) between annotation and class
@@ -26,8 +28,9 @@ lazy_static! {
     // Factory constructor pattern for union variants
     // Handles both named {param} and positional (param) parameters
     // Also handles @With and @Implements annotations
+    // Handles generics in implementation class (e.g., ResultSuccess<T>)
     static ref FACTORY_PATTERN: Regex = Regex::new(
-        r#"(?s)(?:@(?:ModelUnionValue|With|Implements)[^)]*\)\s*)*const\s+factory\s+\w+\.(\w+)\s*\(\s*(?:\{([^}]*)\}|([^)]+))\s*\)\s*=\s*(\w+)\s*;"#
+        r#"(?s)(?:@(?:ModelUnionValue|With|Implements)[^)]*\)\s*)*const\s+factory\s+\w+\.(\w+)\s*\(\s*(?:\{([^}]*)\}|([^)]+))\s*\)\s*=\s*(\w+)(?:<[^>]+>)?\s*;"#
     ).unwrap();
     
     // Field pattern
@@ -104,10 +107,138 @@ impl DartParser {
         let mut classes = Vec::new();
         let content = self.remove_comments(content);
         
+        // Debug: Check content
+        let has_sealed = content.contains("sealed class");
+        let has_model = content.contains("@Model");
+        if has_sealed || has_model {
+            eprintln!("DEBUG {}: has_sealed={}, has_model={}, preview: {}", 
+                file_path.file_name().unwrap_or_default().to_string_lossy(),
+                has_sealed, has_model, &content[..content.len().min(300)]);
+        }
+        
         // Parse sealed classes (unions) first
+        // Try to find sealed class with @Model annotation (annotation can be anywhere before sealed class)
+        if has_sealed && has_model {
+            // Find all sealed class declarations - be more flexible with whitespace
+            let sealed_class_regex = Regex::new(r"sealed\s+class\s+(\w+)(?:<([^>]+)>)?\s*\{").unwrap();
+            let matches: Vec<_> = sealed_class_regex.captures_iter(&content).collect();
+            eprintln!("DEBUG: Found {} sealed class matches", matches.len());
+            for cap in matches {
+                eprintln!("DEBUG: Matched sealed class: {}", cap.get(1).map_or("", |m| m.as_str()));
+                let class_name = cap.get(1).map_or("", |m| m.as_str());
+                let generic_params_str = cap.get(2).map_or("", |m| m.as_str()).trim();
+                let generic_params: Vec<String> = if generic_params_str.is_empty() {
+                    Vec::new()
+                } else {
+                    generic_params_str
+                        .split(',')
+                        .map(|s| s.trim().to_string())
+                        .filter(|s| !s.is_empty())
+                        .collect()
+                };
+                
+                // Find the @Model annotation before this sealed class
+                let match_start = cap.get(0).map_or(0, |m| m.start());
+                let before_class = &content[..match_start];
+                
+                // Look for @Model annotation - find the last occurrence before sealed class
+                // Try multiple patterns to handle different annotation formats
+                let mut annotation: Option<&str> = None;
+                
+                // Pattern 1: Single-line @Model(...)
+                let pattern1 = Regex::new(r"@Model(?:\.\w+)?\s*\([^)\n]*\)").unwrap();
+                if let Some(m) = pattern1.find_iter(before_class).last() {
+                    annotation = Some(m.as_str());
+                }
+                
+                // Pattern 2: Multi-line @Model(...) - match until balanced closing paren
+                if annotation.is_none() {
+                    if let Some(start_pos) = before_class.rfind("@Model") {
+                        let mut paren_count = 0;
+                        let mut found_open = false;
+                        let mut end_pos = start_pos;
+                        for (idx, ch) in before_class[start_pos..].char_indices() {
+                            if ch == '(' {
+                                paren_count += 1;
+                                found_open = true;
+                            } else if ch == ')' {
+                                paren_count -= 1;
+                                if found_open && paren_count == 0 {
+                                    end_pos = start_pos + idx + 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if end_pos > start_pos {
+                            annotation = Some(&before_class[start_pos..end_pos]);
+                        }
+                    }
+                }
+                
+                eprintln!("DEBUG: Annotation found: {}", annotation.is_some());
+                if let Some(annotation) = annotation {
+                    eprintln!("DEBUG: Annotation text: {}", annotation);
+                    
+                    // Find class body - the regex match includes the opening brace
+                    let match_end = cap.get(0).map_or(0, |m| m.end());
+                    // The match includes the opening brace, so start from one char before match_end
+                    let body_start = if match_end > 0 { match_end - 1 } else { 0 };
+                    let body_input = &content[body_start..];
+                    eprintln!("DEBUG: body_start={}, body_input length={}, preview: {}", body_start, body_input.len(), &body_input[..body_input.len().min(200)]);
+                    let class_body = extract_class_body(body_input).unwrap_or_default();
+                    eprintln!("DEBUG: Class body (first 300 chars): {}", &class_body[..class_body.len().min(300)]);
+                    
+                    let features = self.parse_model_annotation(annotation);
+                    let naming_convention = self.parse_naming_convention(annotation);
+                    let discriminator = self.parse_discriminator(annotation);
+                    
+                    // Parse factory constructors as variants
+                    let variants = self.parse_factory_constructors(&class_body, &naming_convention)?;
+                    eprintln!("DEBUG: Found {} variants", variants.len());
+                    for v in &variants {
+                        eprintln!("DEBUG: Variant: {} with {} fields", v.name, v.fields.len());
+                    }
+                    
+                    if !variants.is_empty() {
+                        classes.push(DartClass {
+                            name: class_name.to_string(),
+                            fields: Vec::new(),
+                            naming_convention,
+                            source_file: file_path.display().to_string(),
+                            uses_named_params: true,
+                            features,
+                            discriminator,
+                            variants,
+                            is_union: true,
+                            is_enum: false,
+                            parent_class: None,
+                            is_mutable: false,
+                            make_collections_unmodifiable: true,
+                            generic_params,
+                            generic_argument_factories: false,
+                            enum_value_type: None,
+                        });
+                    }
+                }
+            }
+        }
+        
+        // Old pattern-based approach (kept for backward compatibility)
         for cap in SEALED_CLASS_PATTERN.captures_iter(&content) {
             let annotation = cap.get(1).map_or("", |m| m.as_str());
             let class_name = cap.get(2).context("Failed to capture sealed class name")?.as_str();
+            
+            // Extract generic type parameters (e.g., "T" from "<T>" or "T, U" from "<T, U>")
+            let generic_params_str = cap.get(3).map_or("", |m| m.as_str()).trim();
+            let generic_params: Vec<String> = if generic_params_str.is_empty() {
+                Vec::new()
+            } else {
+                generic_params_str
+                    .split(',')
+                    .map(|s| s.trim().to_string())
+                    .filter(|s| !s.is_empty())
+                    .collect()
+            };
             
             // Find class body by locating the opening brace and matching it
             let match_end = cap.get(0).map_or(0, |m| m.end());
@@ -135,7 +266,7 @@ impl DartParser {
                     parent_class: None,
                     is_mutable: false,
                     make_collections_unmodifiable: true,
-                    generic_params: Vec::new(),
+                    generic_params,
                     generic_argument_factories: false,
                     enum_value_type: None,
                 });
@@ -951,6 +1082,16 @@ impl DartParser {
                 .trim();
             if !converter_name.is_empty() {
                 result.json_converter = Some(converter_name.to_string());
+            }
+        }
+        
+        // Parse @Default
+        if let Some(cap) = DEFAULT_PATTERN.captures(annotations) {
+            let default_expr = cap.get(1).map_or("", |m| m.as_str()).trim();
+            // Extract the default value (e.g., "0", "'empty'", "true", "[]", "{}", "null")
+            // Keep the value as-is (it will be used directly in generated code)
+            if !default_expr.is_empty() {
+                result.default_value = Some(default_expr.to_string());
             }
         }
         

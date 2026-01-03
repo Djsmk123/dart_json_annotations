@@ -17,11 +17,11 @@ extension $DefaultExampleJson on DefaultExample {
 
 DefaultExample _$DefaultExampleFromJson(Map<String, dynamic> json) => DefaultExample(
   id: (json['id'] as num).toInt(),
-  count: (json['count'] as num).toInt(),
-  name: json['name'] as String,
-  isActive: json['isActive'] as bool,
-  tags: (json['tags'] as List).map((e) => e as String).toList(),
-  metadata: json['metadata'] as Map<String, dynamic>
+  count: (json['count'] as num?)?.toInt() ?? 0,
+  name: (json['name'] as String?) ?? '',
+  isActive: (json['isActive'] as bool?) ?? true,
+  tags: (json['tags'] as List?)?.map((e) => e as String).toList() ?? [],
+  metadata: (json['metadata'] as Map<String, dynamic>?) ?? {}
 );
 
 extension $DefaultNullableExampleJson on DefaultNullableExample {
@@ -34,7 +34,7 @@ extension $DefaultNullableExampleJson on DefaultNullableExample {
 
 DefaultNullableExample _$DefaultNullableExampleFromJson(Map<String, dynamic> json) => DefaultNullableExample(
   id: json['id'] as String,
-  description: json['description'] as String?,
-  score: (json['score'] as num?)?.toInt()
+  description: (json['description'] as String?) ?? null,
+  score: (json['score'] as num?)?.toInt() ?? 0
 );
 

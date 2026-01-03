@@ -389,6 +389,46 @@ final response = Response<User>.fromJson(
 );
 ```
 
+### Generic Union Classes
+
+**Important:** Generic union classes (sealed classes with type parameters) cannot have `fromJson`/`toJson` automatically generated. You must manually implement them with converter functions, similar to regular generic classes.
+
+```dart
+part 'result.gen.dart';
+
+@Model(fromJson: true, toJson: true, equatable: true)
+sealed class Result<T> {
+  const Result._();
+  
+  // Manual implementation required for generic union classes
+  // Must accept converter function for the generic type
+  factory Result.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) => _$ResultFromJson(json, fromJsonT);
+  
+  // toJson should also accept a converter function
+  Map<String, dynamic> toJson(T Function(T) toJsonT) => _$ResultToJson(this, toJsonT);
+  
+  const factory Result.success(T data) = ResultSuccess<T>;
+  const factory Result.failure(String error) = ResultFailure<T>;
+}
+```
+
+**Usage:**
+```dart
+// Deserialization
+final result = Result<User>.fromJson(
+  json,
+  (json) => User.fromJson(json as Map<String, dynamic>),
+);
+
+// Serialization
+final json = result.toJson((user) => user.toJson());
+```
+
+The code generator will generate the variant classes (`ResultSuccess<T>` and `ResultFailure<T>`) and helper methods (`when`, `map`, etc.), but the `fromJson` and `toJson` methods for the sealed class itself must be manually implemented with converter functions.
+
 ---
 
 ## Custom Converters

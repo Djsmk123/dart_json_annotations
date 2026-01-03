@@ -139,11 +139,36 @@ Use `@Model()` with sealed classes for pattern matching.
 @Model(fromJson: true, toJson: true, equatable: true)
 sealed class Result<T> {
   const Result._();
-  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
+  
+  // Note: For generic union classes, fromJson must accept converter functions
+  factory Result.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object?) fromJsonT,
+  ) => _$ResultFromJson(json, fromJsonT);
+  
+  // toJson should also accept a converter function
+  Map<String, dynamic> toJson(T Function(T) toJsonT) => _$ResultToJson(this, toJsonT);
+  
   const factory Result.success(T data) = ResultSuccess<T>;
   const factory Result.failure(String error) = ResultFailure<T>;
 }
+
+// Usage
+final result = Result.success('data');
+final message = result.when(
+  success: (data) => 'Got: $data',
+  failure: (error) => 'Error: $error',
+);
+
+// Usage with JSON serialization
+final jsonResult = Result<String>.fromJson(
+  json,
+  (json) => json as String, // Converter function for String
+);
+final json = result.toJson((data) => data); // Converter function for toJson
 ```
+
+**Important:** Generic union classes (sealed classes with type parameters) require manual `fromJson` and `toJson` implementation that accepts converter functions, similar to regular generic classes. The code generator cannot automatically generate `fromJson`/`toJson` for generic union classes.
 
 ---
 
@@ -219,6 +244,8 @@ class Response<T> {
     => _$ResponseFromJson(json, fromJsonT);
 }
 ```
+
+**Note:** Generic union classes (sealed classes with type parameters) cannot have `fromJson`/`toJson` automatically generated. You must manually implement them with converter functions, similar to regular generic classes. See [Pattern 4: Sealed/Union Classes](#pattern-4-sealedunion-classes) for an example.
 
 See [Examples](examples.md#generic-classes) for complete example.
 

@@ -3,7 +3,7 @@ import 'package:dart_json_annotations/dart_json_annotations.dart';
 part 'app_state.gen.dart';
 /// Example: Using @Model for non-JSON classes (e.g., Bloc state)
 /// Generates: copyWith, copyWithNull, equatable, toString
-@Model()
+@Model.json()
 class AppState {
   final int counter;
   final bool isLoading;
@@ -19,6 +19,7 @@ class AppState {
     this.errorMessage,
     required this.lastUpdated,
   });
+  factory AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 }
 
 /// Example: Using @DataClass for full feature set

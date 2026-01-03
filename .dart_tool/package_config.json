@@ -297,8 +297,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.10.1",
+  "generatorVersion": "3.10.4",
   "flutterRoot": "file:///Users/smkwinner/fvm/versions/3.38.3",
-  "flutterVersion": "3.38.3",
+  "flutterVersion": "3.38.5",
   "pubCache": "file:///Users/smkwinner/.pub-cache"
 }

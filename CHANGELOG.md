@@ -5,15 +5,15 @@
 ### Breaking Changes
 - **Unified `@Model` annotation** replaces `@Json`, `@CopyWith`, `@Equatable`, `@DataClass`
 - Removed legacy annotations (still work but deprecated)
-- Changed default behavior: `@Model()` now generates JSON only (not full features)
+- Changed default behavior: Use `@Model.json()` for JSON-only generation
 
 ### New Features
 - **Preset constructors** for common patterns:
-  - `@Model()` - JSON only (~25 lines)
+  - `@Model.json()` - JSON only (~25 lines)
   - `@Model.data()` - JSON + copyWith + equatable (~50 lines)
   - `@Model.bloc()` - copyWith + equatable, no JSON (~35 lines)
   - `@Model.full()` - All features (~70 lines)
-  - `@Model.union()` - Sealed class with when/map methods
+  - `@Model.mutable()` - Mutable classes with copyWith (~40 lines)
 
 - **Sealed/Union class support**:
   - `when()` - Exhaustive pattern matching
@@ -35,7 +35,7 @@
 - **`--threads` option** to control parallelism
 
 ### Performance
-- 70% smaller output size with `@Model()` preset
+- 70% smaller output size with `@Model.json()` preset
 - File-level shared helpers instead of per-class
 - Lazy regex compilation
 - Pre-allocated string buffers

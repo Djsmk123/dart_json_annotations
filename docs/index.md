@@ -72,6 +72,14 @@ dart_json_gen --build
 dart_json_gen -i lib/models
 ```
 
+## Custom Configuration
+
+If you need to customize the generated code, you can use the `dart_json_gen.yaml` file. for e.g. you need to change `.gen.dart`(default) to `.t.dart` you can do it by adding the following to the `dart_json_gen.yaml` file:
+
+```yaml
+generated_extension: .t.dart
+```
+
 ## Support
 
 - **Issues:** [GitHub Issues](https://github.com/djsmk123/dart_json_annotations/issues)

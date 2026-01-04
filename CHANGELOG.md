@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.0.1
+
+### New Features
+- **Configurable file extensions**: Support for `dart_json_gen.yaml` to customize generated file extensions (e.g., `.t.dart`, `.g.dart`).
+- **Flexible Cleanup**: The `--clean` command now accepts paths to specific files or directories for targeted deletion of generated files.
+- **Improved Config Loading**: Automatic configuration discovery by searching parent directories upwards from the input path.
+
+### Bug Fixes
+- Removed unreachable `_ => throw StateError` case in generated `toJson` methods for sealed classes, resolving Dart analyzer warnings.
+- Fixed thread-safety issues in parallel processing for CLI operations.
+
+### Improvements
+- Enhanced verbose output with more detailed parsing and generation logs.
+- Better error handling for missing input paths.
+
+
 ## 2.0.0
 
 ### Breaking Changes

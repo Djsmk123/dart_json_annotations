@@ -153,7 +153,7 @@ fn main() -> Result<()> {
         }
     };
     
-    println!("{}", "🦀 Dart Code Generator v2.0".green().bold());
+    println!("{}", "🦀 Dart Code Generator v2.0.1".green().bold());
     println!("Input: {}", input.display().to_string().cyan());
     if verbose {
         println!("[VERBOSE] Verbose mode enabled");

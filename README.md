@@ -1,4 +1,4 @@
-# dart_json_annotations v2.0
+# dart_json_annotations v2.0.1
 
 > ⚠️ **EXPERIMENTAL** - This package is under active development. APIs may change without notice.
 
@@ -26,7 +26,7 @@ A high-performance Dart code generator powered by Rust. Generates JSON serialize
 
 ```yaml
 dependencies:
-  dart_json_annotations: ^2.0.0
+  dart_json_annotations: ^2.0.1
 ```
 
 ### Requirements

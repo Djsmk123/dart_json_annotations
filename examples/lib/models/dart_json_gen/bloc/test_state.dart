@@ -11,6 +11,8 @@ class TestStateLoading extends TestState {}
 @Model(
   copyWith: true,
   equatable: true,
+  fromJson: false,
+  toJson: false,
 )
 class TestStateLoaded extends TestState {
   final int counter;
@@ -18,9 +20,8 @@ class TestStateLoaded extends TestState {
   final String? errorMessage;
 
   TestStateLoaded({
-    required this.counter, 
-    required this.isLoading, 
+    required this.counter,
+    required this.isLoading,
     this.errorMessage,
   });
-
 }

@@ -1,5 +1,6 @@
 // Example: Analytics payload (frequently serialized)
 import 'package:dart_json_annotations/dart_json_annotations.dart';
+part 'analytics_event.t.dart';
 
 @Model(
   namingConvention: NamingConvention.snakeCase,
@@ -7,10 +8,10 @@ import 'package:dart_json_annotations/dart_json_annotations.dart';
 class AnalyticsEvent {
   @JsonKey(name: 'event_name')
   final String eventName;
-  
+
   @JsonKey(name: 'event_id')
   final String eventId;
-  
+
   final String userId;
   final String sessionId;
   final DateTime timestamp;
@@ -18,7 +19,7 @@ class AnalyticsEvent {
   final String appVersion;
   final Map<String, dynamic> properties;
   final DeviceInfo deviceInfo;
-  
+
   AnalyticsEvent({
     required this.eventName,
     required this.eventId,
@@ -30,6 +31,9 @@ class AnalyticsEvent {
     required this.properties,
     required this.deviceInfo,
   });
+
+  factory AnalyticsEvent.fromJson(Map<String, dynamic> json) =>
+      _$AnalyticsEventFromJson(json);
 }
 
 @JsonType(NamingConvention.snakeCase)
@@ -45,7 +49,7 @@ class DeviceInfo {
   final String timezone;
   final int screenWidth;
   final int screenHeight;
-  
+
   DeviceInfo({
     required this.deviceId,
     required this.deviceModel,
@@ -56,6 +60,9 @@ class DeviceInfo {
     required this.screenWidth,
     required this.screenHeight,
   });
+
+  factory DeviceInfo.fromJson(Map<String, dynamic> json) =>
+      _$DeviceInfoFromJson(json);
 }
 
 @Model(
@@ -65,11 +72,12 @@ class AnalyticsBatch {
   final String batchId;
   final List<AnalyticsEvent> events;
   final DateTime createdAt;
-  
+
   AnalyticsBatch({
     required this.batchId,
     required this.events,
     required this.createdAt,
   });
+  factory AnalyticsBatch.fromJson(Map<String, dynamic> json) =>
+      _$AnalyticsBatchFromJson(json);
 }
-

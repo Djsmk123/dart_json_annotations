@@ -35,13 +35,8 @@ class GenericResponse<T> {
   factory GenericResponse.fromJson(
     Map<String, dynamic> json,
     T Function(Object?) fromJsonT,
-  ) {
-    return GenericResponse<T>(
-      success: json['success'] as bool,
-      message: json['message'] as String,
-      data: json['data'] != null ? fromJsonT(json['data']) : null,
-    );
-  }
+  ) =>
+      _$GenericResponseFromJson(json, fromJsonT);
 }
 
 /// Example: Nested generic class
@@ -63,14 +58,8 @@ class PaginatedResponse<T> {
   factory PaginatedResponse.fromJson(
     Map<String, dynamic> json,
     T Function(Object?) fromJsonT,
-  ) {
-    return PaginatedResponse<T>(
-      items: (json['items'] as List).map((e) => fromJsonT(e)).toList(),
-      totalCount: (json['totalCount'] as num).toInt(),
-      page: (json['page'] as num).toInt(),
-      pageSize: (json['pageSize'] as num).toInt(),
-    );
-  }
+  ) =>
+      _$PaginatedResponseFromJson(json, fromJsonT);
 }
 
 /// Example: Multiple generic parameters
@@ -89,10 +78,22 @@ class Pair<T, U> {
     Map<String, dynamic> json,
     T Function(Object?) fromJsonT,
     U Function(Object?) fromJsonU,
-  ) {
-    return Pair<T, U>(
-      first: fromJsonT(json['first']),
-      second: fromJsonU(json['second']),
-    );
-  }
+  ) =>
+      _$PairFromJson(json, fromJsonT, fromJsonU);
+}
+
+void main() {
+  GenericResponse<int> response = GenericResponse<int>(
+    success: true,
+    message: 'Success',
+    data: 1,
+  );
+  print(response.toJson((int value) => value));
+  //pair from json constructor
+  Pair<int, String> pair = Pair<int, String>.fromJson({
+    'first': 1,
+    'second': 'test',
+  }, (Object? value) => value as int, (Object? value) => value as String);
+
+  print("first pair ${pair.first} second ${pair.second} ");
 }

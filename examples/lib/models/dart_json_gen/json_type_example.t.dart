@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// Generator: dart_json_gen v2.0 (Rust)
+// Generator: dart_json_gen v2.0.1 (Rust)
 // Checksum: 7505251473784242090
 
 part of 'json_type_example.dart';

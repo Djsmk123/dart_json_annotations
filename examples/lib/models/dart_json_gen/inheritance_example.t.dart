@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// Generator: dart_json_gen v2.0 (Rust)
+// Generator: dart_json_gen v2.0.1 (Rust)
 // Checksum: 15195573420765132569
 
 part of 'inheritance_example.dart';
@@ -23,9 +23,9 @@ extension $ProductJson on Product {
     'id': id,
     'created_at': createdAt.toIso8601String(),
     'updated_at': updatedAt.toIso8601String(),
-    'product_name': productName,
+    'productName': productName,
     'price': price,
-    'stock_quantity': stockQuantity,
+    'stockQuantity': stockQuantity,
   };
 }
 
@@ -33,9 +33,9 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
   id: json['id'] as String,
   createdAt: DateTime.parse(json['created_at'] as String),
   updatedAt: DateTime.parse(json['updated_at'] as String),
-  productName: json['product_name'] as String,
+  productName: json['productName'] as String,
   price: (json['price'] as num).toDouble(),
-  stockQuantity: (json['stock_quantity'] as num).toInt()
+  stockQuantity: (json['stockQuantity'] as num).toInt()
 );
 
 extension $CategoryJson on Category {

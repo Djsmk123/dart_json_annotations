@@ -25,13 +25,8 @@ class CustomUser extends BaseUser {
     required super.email,
   });
 
-  factory CustomUser.fromJson(Map<String, dynamic> json) {
-    return CustomUser(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      email: json['email'] as String,
-    );
-  }
+  factory CustomUser.fromJson(Map<String, dynamic> json) =>
+      _$CustomUserFromJson(json);
 }
 
 /// Example: Class without fromJson - generator will create it

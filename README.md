@@ -37,12 +37,10 @@ dependencies:
 ```bash
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
 
-### Global Installation
-
-```bash
-dart pub global activate dart_json_annotations
+# Clone and setup
+git clone https://github.com/djsmk123/dart_json_annotations.git
+cd dart_json_annotations
 
 # Active local
 dart pub global activate -s path .
@@ -58,14 +56,13 @@ dart_json_gen -i lib/models
 ## Quick Start
 
 ### @Model Presets
-
-| Preset | Features | Output Size |
-|--------|----------|-------------|
-| `@Model.json()` | JSON only | ~25 lines |
-| `@Model.data()` | JSON + copyWith + equatable | ~50 lines |
-| `@Model.bloc()` | copyWith + equatable (no JSON) | ~35 lines |
-| `@Model.full()` | Everything | ~70 lines |
-| `@Model.mutable()` | copyWith (always) | ~40 lines |
+| Preset | Features |
+|--------|----------|
+| `@Model.json()` | JSON only |
+| `@Model.data()` | JSON + copyWith + equatable |
+| `@Model.bloc()` | copyWith + equatable (no JSON) |
+| `@Model.full()` | Everything |
+| `@Model.mutable()` | copyWith (always) |
 
 ### Example: JSON-only (minimal)
 
@@ -201,15 +198,75 @@ OPTIONS:
   -i, --input <PATH>    Input directory or file
   --build               Build Rust binary only
   --rebuild             Force rebuild before generation
-  --clean               Delete all .gen.dart files
+  --clean               Delete generated files (use with -i to specify path)
   --threads <N>         Parallel threads (0 = auto)
-  -v, --verbose         Detailed output
+  -v, --verbose         Detailed output (shows parsing, generation steps)
   -h, --help            Show help
 
 EXAMPLES:
-  dart_json_gen --build               # Build binary
-  dart_json_gen -i lib/models         # Generate code
-  dart_json_gen --clean -i lib        # Clean generated files
+  dart_json_gen --build                    # Build binary
+  dart_json_gen -i lib/models              # Generate code
+  dart_json_gen -i lib/models --verbose    # Generate with detailed logs
+  dart_json_gen --clean -i lib/models      # Clean generated files in lib/models
+  dart_json_gen --clean -i lib/user.dart   # Clean specific file's generated code
+  dart_json_gen -i lib --threads 4         # Use 4 threads
+```
+
+### Configuration File
+
+Create a `dart_json_gen.yaml` (or `dart_json_gen.yml`) file in your project root to customize the generator:
+
+```yaml
+# Custom extension for generated files
+# Default: .gen.dart
+# Examples: .g.dart, .t.dart, .generated.dart
+generated_extension: ".gen.dart"
+```
+
+**Example configurations:**
+
+```yaml
+# Use .g.dart extension (like json_serializable)
+generated_extension: ".g.dart"
+```
+
+```yaml
+# Use .t.dart extension
+generated_extension: ".t.dart"
+```
+
+```yaml
+# Use .generated.dart extension
+generated_extension: ".generated.dart"
+```
+
+**Note:** After changing the extension in the config file:
+1. Clean old generated files: `dart_json_gen --clean -i lib/models`
+2. Regenerate with new extension: `dart_json_gen -i lib/models`
+
+### Verbose Mode
+
+Use `--verbose` or `-v` to see detailed logging during code generation:
+
+```bash
+dart_json_gen -i lib/models --verbose
+```
+
+Output includes:
+- Files being parsed
+- Classes found in each file
+- Variant names for union/sealed classes
+- Files being generated or skipped
+- Detailed generation progress
+
+Example verbose output:
+```
+[VERBOSE] Parsing 10 Dart files...
+[VERBOSE] Found 3 class(es) in lib/models/user.dart
+[VERBOSE]   Source: lib/models/user.dart
+[VERBOSE] Processing: lib/models/user.dart
+[VERBOSE] Generating code for 3 class(es) in user.gen.dart
+[VERBOSE] Written: lib/models/user.gen.dart
 ```
 
 ## Output Size Comparison

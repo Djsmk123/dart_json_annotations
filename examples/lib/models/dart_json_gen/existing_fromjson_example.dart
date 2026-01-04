@@ -1,13 +1,13 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-part 'existing_fromjson_example.gen.dart';
+part 'existing_fromjson_example.t.dart';
 
 @Model(fromJson: false, toJson: false)
 abstract class BaseUser {
   final int id;
   final String name;
   final String email;
-  
+
   const BaseUser({
     required this.id,
     required this.name,
@@ -29,7 +29,7 @@ class CustomUser extends BaseUser {
     return CustomUser(
       id: json['id'] as int,
       name: json['name'] as String,
-      email: json['email'] as String,  
+      email: json['email'] as String,
     );
   }
 }
@@ -39,12 +39,11 @@ class CustomUser extends BaseUser {
 class SimpleUser {
   final int id;
   final String name;
-  
+
   SimpleUser({
     required this.id,
     required this.name,
   });
-  factory SimpleUser.fromJson(Map<String, dynamic> json) => _$SimpleUserFromJson(json);
-  
+  factory SimpleUser.fromJson(Map<String, dynamic> json) =>
+      _$SimpleUserFromJson(json);
 }
-

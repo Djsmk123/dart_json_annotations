@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 16239059570046432915
+// Checksum: 11489647391635460750
 
 part of 'mutable_example.dart';
 

@@ -65,7 +65,6 @@ nav:
   - API Reference: api-reference.md
   - Examples: examples.md
   - Performance: performance.md
-  - Deployment: DEPLOYMENT.md
 
 plugins:
   - search:

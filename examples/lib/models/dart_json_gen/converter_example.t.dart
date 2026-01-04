@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 17267009416438705140
+// Checksum: 13022886726695755171
 
 part of 'converter_example.dart';
 

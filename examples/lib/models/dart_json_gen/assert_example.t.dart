@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 18274577152043665756
+// Checksum: 13852048770308458848
 
 part of 'assert_example.dart';
 

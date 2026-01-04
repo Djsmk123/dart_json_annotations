@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 10470318475568849606
+// Checksum: 1220463722155540735
 
 part of 'implements_example.dart';
 
@@ -13,8 +13,7 @@ extension $LocationUnion on Location {
     final self = this;
     if (self is LocationPerson) return person(self.name);
     if (self is LocationCity) return city(self.name, self.population);
-    if (self is LocationCountry)
-      return country(self.name, self.population, self.capital);
+    if (self is LocationCountry) return country(self.name, self.population, self.capital);
     throw StateError('Unknown Location subtype: $this');
   }
 
@@ -26,10 +25,8 @@ extension $LocationUnion on Location {
   }) {
     final self = this;
     if (self is LocationPerson && person != null) return person(self.name);
-    if (self is LocationCity && city != null)
-      return city(self.name, self.population);
-    if (self is LocationCountry && country != null)
-      return country(self.name, self.population, self.capital);
+    if (self is LocationCity && city != null) return city(self.name, self.population);
+    if (self is LocationCountry && country != null) return country(self.name, self.population, self.capital);
     return orElse();
   }
 
@@ -40,10 +37,8 @@ extension $LocationUnion on Location {
   }) {
     final self = this;
     if (self is LocationPerson && person != null) return person(self.name);
-    if (self is LocationCity && city != null)
-      return city(self.name, self.population);
-    if (self is LocationCountry && country != null)
-      return country(self.name, self.population, self.capital);
+    if (self is LocationCity && city != null) return city(self.name, self.population);
+    if (self is LocationCountry && country != null) return country(self.name, self.population, self.capital);
     return null;
   }
 
@@ -88,12 +83,9 @@ extension $LocationUnion on Location {
   bool get isCity => this is LocationCity;
   bool get isCountry => this is LocationCountry;
 
-  LocationPerson? get asPerson =>
-      this is LocationPerson ? this as LocationPerson : null;
-  LocationCity? get asCity =>
-      this is LocationCity ? this as LocationCity : null;
-  LocationCountry? get asCountry =>
-      this is LocationCountry ? this as LocationCountry : null;
+  LocationPerson? get asPerson => this is LocationPerson ? this as LocationPerson : null;
+  LocationCity? get asCity => this is LocationCity ? this as LocationCity : null;
+  LocationCountry? get asCountry => this is LocationCountry ? this as LocationCountry : null;
 }
 
 class LocationPerson extends Location {
@@ -101,8 +93,7 @@ class LocationPerson extends Location {
 
   const LocationPerson(String this.name) : super._();
 
-  factory LocationPerson.fromJson(Map<String, dynamic> json) =>
-      _$LocationPersonFromJson(json);
+  factory LocationPerson.fromJson(Map<String, dynamic> json) => _$LocationPersonFromJson(json);
 }
 
 class LocationCity extends Location {
@@ -111,8 +102,7 @@ class LocationCity extends Location {
 
   const LocationCity(String this.name, int this.population) : super._();
 
-  factory LocationCity.fromJson(Map<String, dynamic> json) =>
-      _$LocationCityFromJson(json);
+  factory LocationCity.fromJson(Map<String, dynamic> json) => _$LocationCityFromJson(json);
 }
 
 class LocationCountry extends Location {
@@ -120,12 +110,9 @@ class LocationCountry extends Location {
   final int population;
   final String capital;
 
-  const LocationCountry(
-      String this.name, int this.population, String this.capital)
-      : super._();
+  const LocationCountry(String this.name, int this.population, String this.capital) : super._();
 
-  factory LocationCountry.fromJson(Map<String, dynamic> json) =>
-      _$LocationCountryFromJson(json);
+  factory LocationCountry.fromJson(Map<String, dynamic> json) => _$LocationCountryFromJson(json);
 }
 
 Location _$LocationFromJson(Map<String, dynamic> json) {
@@ -137,44 +124,44 @@ Location _$LocationFromJson(Map<String, dynamic> json) {
   };
 }
 
-LocationPerson _$LocationPersonFromJson(Map<String, dynamic> json) =>
-    LocationPerson(json['name'] as String);
+LocationPerson _$LocationPersonFromJson(Map<String, dynamic> json) => LocationPerson(
+json['name'] as String);
 
 extension $LocationPersonJson on LocationPerson {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'type': 'person',
-        'name': name,
-      };
+    'type': 'person',
+    'name': name,
+  };
 }
 
-LocationCity _$LocationCityFromJson(Map<String, dynamic> json) =>
-    LocationCity(json['name'] as String, (json['population'] as num).toInt());
+LocationCity _$LocationCityFromJson(Map<String, dynamic> json) => LocationCity(
+json['name'] as String, (json['population'] as num).toInt());
 
 extension $LocationCityJson on LocationCity {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'type': 'city',
-        'name': name,
-        'population': population,
-      };
+    'type': 'city',
+    'name': name,
+    'population': population,
+  };
 }
 
-LocationCountry _$LocationCountryFromJson(Map<String, dynamic> json) =>
-    LocationCountry(json['name'] as String, (json['population'] as num).toInt(),
-        json['capital'] as String);
+LocationCountry _$LocationCountryFromJson(Map<String, dynamic> json) => LocationCountry(
+json['name'] as String, (json['population'] as num).toInt(), json['capital'] as String);
 
 extension $LocationCountryJson on LocationCountry {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'type': 'country',
-        'name': name,
-        'population': population,
-        'capital': capital,
-      };
+    'type': 'country',
+    'name': name,
+    'population': population,
+    'capital': capital,
+  };
 }
 
 extension $LocationJson on Location {
   Map<String, dynamic> toJson() => switch (this) {
-        LocationPerson v => v.toJson(),
-        LocationCity v => v.toJson(),
-        LocationCountry v => v.toJson(),
-      };
+    LocationPerson v => v.toJson(),
+    LocationCity v => v.toJson(),
+    LocationCountry v => v.toJson(),
+  };
 }
+

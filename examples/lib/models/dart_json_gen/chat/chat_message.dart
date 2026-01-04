@@ -2,7 +2,8 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 import 'package:example_models/models/dart_json_gen/user.dart';
 
-part 'chat_message.gen.dart';
+part 'chat_message.t.dart';
+
 /// JSON-only with snake_case (optimized for high volume)
 @Model.json(namingConvention: NamingConvention.snakeCase)
 class ChatMessage {
@@ -16,7 +17,7 @@ class ChatMessage {
   final List<Attachment>? attachments;
   final Map<String, dynamic>? reactions;
   final User? sender;
-  
+
   ChatMessage({
     required this.id,
     required this.senderId,
@@ -29,7 +30,8 @@ class ChatMessage {
     this.reactions,
     this.sender,
   });
-  factory ChatMessage.fromJson(Map<String, dynamic> json) => _$ChatMessageFromJson(json);
+  factory ChatMessage.fromJson(Map<String, dynamic> json) =>
+      _$ChatMessageFromJson(json);
 }
 
 /// Simple JSON-only attachment
@@ -40,7 +42,8 @@ class Attachment {
   final String mimeType;
   final int fileSize;
   final String? thumbnail;
-  factory Attachment.fromJson(Map<String, dynamic> json) => _$AttachmentFromJson(json);
+  factory Attachment.fromJson(Map<String, dynamic> json) =>
+      _$AttachmentFromJson(json);
   Attachment({
     required this.id,
     required this.url,
@@ -48,7 +51,6 @@ class Attachment {
     required this.fileSize,
     this.thumbnail,
   });
-
 }
 
 /// Message type enum placeholder
@@ -60,8 +62,9 @@ class Attachment {
 class MessageType {
   final String value;
   MessageType(this.value);
-  factory MessageType.fromJson(Map<String, dynamic> json) => _$MessageTypeFromJson(json);
+  factory MessageType.fromJson(Map<String, dynamic> json) =>
+      _$MessageTypeFromJson(json);
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'value': value,
-  };
+        'value': value,
+      };
 }

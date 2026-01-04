@@ -131,44 +131,6 @@ class CounterState {
 }
 ```
 
-### Pattern 4: Sealed/Union Classes
-
-Use `@Model()` with sealed classes for pattern matching.
-
-```dart
-@Model(fromJson: true, toJson: true, equatable: true)
-sealed class Result<T> {
-  const Result._();
-  
-  // Note: For generic union classes, fromJson must accept converter functions
-  factory Result.fromJson(
-    Map<String, dynamic> json,
-    T Function(Object?) fromJsonT,
-  ) => _$ResultFromJson(json, fromJsonT);
-  
-  // toJson should also accept a converter function
-  Map<String, dynamic> toJson(T Function(T) toJsonT) => _$ResultToJson(this, toJsonT);
-  
-  const factory Result.success(T data) = ResultSuccess<T>;
-  const factory Result.failure(String error) = ResultFailure<T>;
-}
-
-// Usage
-final result = Result.success('data');
-final message = result.when(
-  success: (data) => 'Got: $data',
-  failure: (error) => 'Error: $error',
-);
-
-// Usage with JSON serialization
-final jsonResult = Result<String>.fromJson(
-  json,
-  (json) => json as String, // Converter function for String
-);
-final json = result.toJson((data) => data); // Converter function for toJson
-```
-
-**Important:** Generic union classes (sealed classes with type parameters) require manual `fromJson` and `toJson` implementation that accepts converter functions, similar to regular generic classes. The code generator cannot automatically generate `fromJson`/`toJson` for generic union classes.
 
 ---
 
@@ -361,6 +323,60 @@ dart_json_gen --rebuild
 
 ---
 
+## Configuration File
+
+You can customize the code generator behavior by creating a `dart_json_gen.yaml` or `dart_json_gen.yml` file in your project root.
+
+### Supported Options
+
+#### `generated_extension`
+
+Customize the file extension for generated files.
+
+**Default:** `.gen.dart`
+
+**Examples:**
+
+```yaml
+# Use .g.dart extension (compatible with json_serializable)
+generated_extension: ".g.dart"
+```
+
+```yaml
+# Use .t.dart extension
+generated_extension: ".t.dart"
+```
+
+```yaml
+# Use .generated.dart extension
+generated_extension: ".generated.dart"
+```
+
+### Changing Extensions
+
+When you change the `generated_extension`:
+
+1. **Clean old files:**
+   ```bash
+   dart_json_gen --clean -i lib/models
+   ```
+
+2. **Regenerate with new extension:**
+   ```bash
+   dart_json_gen -i lib/models
+   ```
+
+3. **Update part directives** in your Dart files:
+   ```dart
+   // Before (with .gen.dart)
+   part 'user.gen.dart';
+   
+   // After (with .g.dart)
+   part 'user.g.dart';
+   ```
+
+---
+
 ## CLI Reference
 
 ### Commands
@@ -378,8 +394,10 @@ dart_json_gen --clean -i lib/models
 # Force rebuild
 dart_json_gen --rebuild -i lib/models
 
-# Verbose output
+# Verbose output (detailed logging)
 dart_json_gen -v -i lib/models
+# or
+dart_json_gen --verbose -i lib/models
 
 # Custom thread count
 dart_json_gen --threads 4 -i lib/models
@@ -394,8 +412,47 @@ dart_json_gen --threads 4 -i lib/models
 | `--rebuild` | Force rebuild before generation |
 | `--clean` | Delete all .gen.dart files |
 | `--threads <N>` | Parallel threads (0 = auto) |
-| `-v, --verbose` | Detailed output |
+| `-v, --verbose` | Detailed output (shows parsing, generation, and file operations) |
 | `-h, --help` | Show help |
+
+### Verbose Mode Details
+
+The `--verbose` flag provides detailed logging during code generation, useful for debugging and understanding what the generator is doing:
+
+```bash
+dart_json_gen -i lib/models --verbose
+```
+
+**Output includes:**
+- Thread pool configuration
+- Files being collected and parsed
+- Number of classes found in each file
+- Source file paths
+- Variant names for union/sealed classes
+- Files being processed or skipped (cached)
+- Generation progress
+- Files being written
+
+**Example verbose output:**
+```
+[VERBOSE] Verbose mode enabled
+[VERBOSE] Collecting Dart files from: lib/models
+[VERBOSE] Parsing 10 Dart files...
+[VERBOSE] Parsing: lib/models/user.dart
+[VERBOSE] Found 3 class(es) in lib/models/user.dart
+  ✓ class User (5 fields) [json]
+[VERBOSE]   Source: lib/models/user.dart
+[VERBOSE] Processing: lib/models/user.dart
+[VERBOSE] Generating code for 3 class(es) in user.gen.dart
+[VERBOSE] Written: lib/models/user.gen.dart
+```
+
+**When to use verbose mode:**
+- Debugging generation issues
+- Understanding which files are being processed
+- Verifying that all classes are detected
+- Checking if files are being skipped due to caching
+- Troubleshooting performance issues
 
 ---
 

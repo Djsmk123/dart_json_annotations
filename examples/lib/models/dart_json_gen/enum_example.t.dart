@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 7257860800354043369
+// Checksum: 4995528116144652280
 
 part of 'enum_example.dart';
 

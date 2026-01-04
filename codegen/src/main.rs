@@ -6,16 +6,71 @@ use anyhow::Result;
 use clap::Parser;
 use colored::Colorize;
 use rayon::prelude::*;
+use serde::{Deserialize, Serialize};
 use std::collections::{hash_map::DefaultHasher, HashSet};
 use std::hash::{Hash, Hasher};
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicUsize, Ordering};
-use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 use walkdir::WalkDir;
 
 use crate::models::{DartClass, DartType, GenerationFeatures, NamingConvention, EnumValueType};
 use regex::Regex;
 use crate::parser::DartParser;
+
+// Configuration structure
+#[derive(Debug, Deserialize, Serialize)]
+struct Config {
+    #[serde(default = "default_extension")]
+    generated_extension: String,
+}
+
+fn default_extension() -> String {
+    ".gen.dart".to_string()
+}
+
+impl Default for Config {
+    fn default() -> Self {
+        Config {
+            generated_extension: default_extension(),
+        }
+    }
+}
+
+// Load configuration from dart_json_gen.yaml
+// Searches in start directory (if provided) and parent directories
+fn load_config(start_dir: Option<&Path>) -> Config {
+    let config_names = vec!["dart_json_gen.yaml", "dart_json_gen.yml"];
+    
+    // Start from provided directory or current directory
+    let mut current_dir = if let Some(dir) = start_dir {
+        if dir.is_file() {
+            dir.parent().map(|p| p.to_path_buf())
+        } else {
+            Some(dir.to_path_buf())
+        }
+    } else {
+        std::env::current_dir().ok()
+    };
+    
+    while let Some(dir) = current_dir {
+        for config_name in &config_names {
+            let config_path = dir.join(config_name);
+            if config_path.exists() {
+                if let Ok(content) = std::fs::read_to_string(&config_path) {
+                    if let Ok(config) = serde_yaml::from_str::<Config>(&content) {
+                        return config;
+                    }
+                }
+            }
+        }
+        
+        // Move to parent directory
+        current_dir = dir.parent().map(|p| p.to_path_buf());
+    }
+    
+    Config::default()
+}
 
 fn calculate_checksum(content: &str) -> u64 {
     let mut hasher = DefaultHasher::new();
@@ -52,7 +107,7 @@ struct Args {
     #[arg(short, long, default_value_t = false)]
     verbose: bool,
     
-    /// Delete all .gen.dart files
+    /// Delete generated files (use with -i to specify path)
     #[arg(long, default_value_t = false)]
     clean: bool,
     
@@ -63,6 +118,16 @@ struct Args {
 
 fn main() -> Result<()> {
     let args = Args::parse();
+    let verbose = args.verbose;
+    
+    // Determine the path to use for configuration lookup
+    let input_path = args.input.clone().unwrap_or_else(|| PathBuf::from("."));
+    
+    // Load configuration, searching from the input path upwards
+    let config = load_config(Some(&input_path));
+    if verbose {
+        println!("[VERBOSE] Using extension: {}", config.generated_extension);
+    }
     
     // Configure thread pool
     if args.threads > 0 {
@@ -70,11 +135,13 @@ fn main() -> Result<()> {
             .num_threads(args.threads)
             .build_global()
             .ok();
+        if verbose {
+            println!("[VERBOSE] Using {} threads", args.threads);
+        }
     }
     
     if args.clean {
-        let clean_path = args.input.clone().unwrap_or_else(|| PathBuf::from("."));
-        return clean_gen_files(&clean_path);
+        return clean_gen_files(&input_path, &config.generated_extension);
     }
     
     let input = match args.input {
@@ -88,8 +155,14 @@ fn main() -> Result<()> {
     
     println!("{}", "🦀 Dart Code Generator v2.0".green().bold());
     println!("Input: {}", input.display().to_string().cyan());
+    if verbose {
+        println!("[VERBOSE] Verbose mode enabled");
+    }
     println!();
 
+    if verbose {
+        println!("[VERBOSE] Collecting Dart files from: {}", input.display());
+    }
     let dart_files = collect_dart_files(&input)?;
     if dart_files.is_empty() {
         println!("{}", "No .dart files found!".yellow());
@@ -98,12 +171,24 @@ fn main() -> Result<()> {
     println!("Found {} .dart file(s)", dart_files.len().to_string().green());
 
     // Parse files in parallel
+    if verbose {
+        println!("[VERBOSE] Parsing {} Dart files...", dart_files.len());
+    }
     let parser = DartParser::new();
+    let verbose_flag = verbose;
     let results: Vec<_> = dart_files.par_iter()
         .filter_map(|file_path| {
+            if verbose_flag {
+                println!("[VERBOSE] Parsing: {}", file_path.display());
+            }
             let content = std::fs::read_to_string(file_path).ok()?;
             match parser.parse(&content, file_path) {
-                Ok(classes) => Some((file_path.clone(), content, classes)),
+                Ok(classes) => {
+                    if verbose_flag && !classes.is_empty() {
+                        println!("[VERBOSE] Found {} class(es) in {}", classes.len(), file_path.display());
+                    }
+                    Some((file_path.clone(), content, classes))
+                },
                 Err(e) => {
                     // Only warn for files that should have classes (have @Model in them)
                     if content.contains("@Model") || content.contains("@JsonEnum") {
@@ -137,6 +222,12 @@ fn main() -> Result<()> {
                     class.fields.len() + class.variants.len(), 
                     features.dimmed()
                 );
+                if verbose {
+                    println!("[VERBOSE]   Source: {}", path.display());
+                    if class.is_union {
+                        println!("[VERBOSE]   Variants: {}", class.variants.iter().map(|v| v.name.as_str()).collect::<Vec<_>>().join(", "));
+                    }
+                }
                 all_classes.push(class.clone());
             }
             files_with_classes.push((path, content, classes));
@@ -144,12 +235,14 @@ fn main() -> Result<()> {
     }
 
     // Clean orphaned gen files
-    let cleaned_count = AtomicUsize::new(0);
-    files_without_classes.par_iter().for_each(|source_path| {
-        let gen_path = get_gen_path(source_path);
+    let cleaned_count = Arc::new(AtomicUsize::new(0));
+    let extension = config.generated_extension.clone();
+    let cleaned_count_clone = Arc::clone(&cleaned_count);
+    files_without_classes.par_iter().for_each(move |source_path| {
+        let gen_path = get_gen_path(source_path, &extension);
         if gen_path.exists() {
             if std::fs::remove_file(&gen_path).is_ok() {
-                cleaned_count.fetch_add(1, Ordering::Relaxed);
+                cleaned_count_clone.fetch_add(1, Ordering::Relaxed);
                 println!("  {} {} (no annotations)", "🗑".red(), gen_path.display().to_string().yellow());
             }
         }
@@ -169,21 +262,35 @@ fn main() -> Result<()> {
     println!("Found {} annotated class(es)", all_classes.len().to_string().green());
     println!();
     println!("{}", "Generating Dart code...".blue());
+    if verbose {
+        println!("[VERBOSE] Generating code for {} file(s)", files_with_classes.len());
+    }
 
     // Generate files in parallel
-    let generated = Mutex::new(Vec::new());
-    let skipped = AtomicUsize::new(0);
+    let generated = Arc::new(Mutex::new(Vec::new()));
+    let skipped = Arc::new(AtomicUsize::new(0));
 
-    files_with_classes.par_iter().for_each(|(source_path, source_content, classes)| {
-        let gen_path = get_gen_path(source_path);
+    let verbose_flag = verbose;
+    let extension = config.generated_extension.clone();
+    let generated_clone = Arc::clone(&generated);
+    let skipped_clone = Arc::clone(&skipped);
+    files_with_classes.par_iter().for_each(move |(source_path, source_content, classes)| {
+        let gen_path = get_gen_path(source_path, &extension);
         let source_checksum = calculate_checksum(source_content);
+        
+        if verbose_flag {
+            println!("[VERBOSE] Processing: {}", source_path.display());
+        }
         
         // Check if unchanged
         if gen_path.exists() {
             if let Ok(existing_content) = std::fs::read_to_string(&gen_path) {
                 if let Some(existing_checksum) = extract_checksum(&existing_content) {
                     if existing_checksum == source_checksum {
-                        skipped.fetch_add(1, Ordering::Relaxed);
+                        if verbose_flag {
+                            println!("[VERBOSE] Skipping unchanged: {}", gen_path.display());
+                        }
+                        skipped_clone.fetch_add(1, Ordering::Relaxed);
                         return;
                     }
                 }
@@ -195,14 +302,21 @@ fn main() -> Result<()> {
             .map(|t| format!("{}.dart", t.trim_end_matches(".dart")))
             .unwrap_or_else(|| format!("{}.dart", source_name));
         
+        if verbose_flag {
+            println!("[VERBOSE] Generating code for {} class(es) in {}", classes.len(), gen_path.display());
+        }
+        
         let dart_code = generate_file_code(classes, &import_file, source_checksum);
         
         if std::fs::write(&gen_path, dart_code).is_ok() {
-            generated.lock().unwrap().push(gen_path);
+            if verbose_flag {
+                println!("[VERBOSE] Written: {}", gen_path.display());
+            }
+            generated_clone.lock().unwrap().push(gen_path);
         }
     });
 
-    let generated_files = generated.into_inner().unwrap();
+    let generated_files = Arc::try_unwrap(generated).unwrap().into_inner().unwrap();
     for path in &generated_files {
         println!("  {} {}", "→".green(), path.display().to_string().cyan());
     }
@@ -804,7 +918,7 @@ fn generate_union_serializer(class: &DartClass, current_file_classes: &HashSet<S
                 out.push_str(&format!("    {} v => v.toJson(),\n", v.class_name));
             }
         }
-        out.push_str(&format!("    _ => throw StateError('Unknown {} type'),\n", name));
+        // Note: No wildcard case needed for sealed classes - all variants are explicitly covered
         out.push_str("  };\n}\n\n");
     }
     
@@ -1382,10 +1496,10 @@ fn format_features(features: &GenerationFeatures) -> String {
     if parts.is_empty() { String::new() } else { format!("[{}]", parts.join(", ")) }
 }
 
-fn get_gen_path(source_path: &PathBuf) -> PathBuf {
+fn get_gen_path(source_path: &PathBuf, extension: &str) -> PathBuf {
     let parent = source_path.parent().unwrap_or(source_path);
     let stem = source_path.file_stem().and_then(|s| s.to_str()).unwrap_or("model");
-    parent.join(format!("{}.gen.dart", stem))
+    parent.join(format!("{}{}", stem, extension))
 }
 
 fn collect_dart_files(path: &PathBuf) -> Result<Vec<PathBuf>> {
@@ -1411,27 +1525,27 @@ fn collect_dart_files(path: &PathBuf) -> Result<Vec<PathBuf>> {
     Ok(files)
 }
 
-fn clean_gen_files(path: &PathBuf) -> Result<()> {
+fn clean_gen_files(path: &PathBuf, extension: &str) -> Result<()> {
     println!("{}", "🧹 Cleaning generated files...".blue().bold());
     
     let gen_files: Vec<PathBuf> = if path.is_file() {
-        let gen_path = get_gen_path(path);
+        let gen_path = get_gen_path(path, extension);
         if gen_path.exists() { vec![gen_path] } else { vec![] }
     } else {
         WalkDir::new(path)
             .into_iter()
             .filter_map(|e| e.ok())
-            .filter(|e| e.path().to_string_lossy().ends_with(".gen.dart"))
+            .filter(|e| e.path().to_string_lossy().ends_with(extension))
             .map(|e| e.path().to_path_buf())
             .collect()
     };
     
     if gen_files.is_empty() {
-        println!("{}", "No .gen.dart files found.".yellow());
+        println!("No {} files found.", extension.yellow());
         return Ok(());
     }
     
-    println!("Found {} .gen.dart file(s)", gen_files.len().to_string().cyan());
+    println!("Found {} {} file(s)", gen_files.len().to_string().cyan(), extension);
     
     let deleted = AtomicUsize::new(0);
     gen_files.par_iter().for_each(|gen_file| {

@@ -1,7 +1,6 @@
-
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-part 'user.gen.dart';
+part 'user.t.dart';
 
 /// Basic JSON model (~25 lines generated)
 @Model(fromJson: true, toJson: true)
@@ -12,7 +11,7 @@ class User {
   final int? age;
   final bool isActive;
   final DateTime createdAt;
-  
+
   User({
     required this.id,
     required this.name,
@@ -21,7 +20,7 @@ class User {
     required this.isActive,
     required this.createdAt,
   });
-  
+
   /// Factory constructor for JSON deserialization
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
@@ -37,16 +36,16 @@ class User {
 class UserProfile {
   @JsonKey(name: 'user_id')
   final int userId;
-  
+
   final String firstName;
   final String lastName;
-  
+
   @JsonKey(name: 'profile_picture_url')
   final String? avatarUrl;
-  
+
   final List<String> interests;
   final Map<String, dynamic> metadata;
-  
+
   UserProfile({
     required this.userId,
     required this.firstName,
@@ -55,6 +54,7 @@ class UserProfile {
     required this.interests,
     required this.metadata,
   });
-  
-  factory UserProfile.fromJson(Map<String, dynamic> json) => _$UserProfileFromJson(json);
+
+  factory UserProfile.fromJson(Map<String, dynamic> json) =>
+      _$UserProfileFromJson(json);
 }

@@ -28,7 +28,6 @@ lazy_static! {
     // Factory constructor pattern for union variants
     // Handles both named {param} and positional (param) parameters
     // Also handles @With and @Implements annotations
-    // Handles generics in implementation class (e.g., ResultSuccess<T>)
     static ref FACTORY_PATTERN: Regex = Regex::new(
         r#"(?s)(?:@(?:ModelUnionValue|With|Implements)[^)]*\)\s*)*const\s+factory\s+\w+\.(\w+)\s*\(\s*(?:\{([^}]*)\}|([^)]+))\s*\)\s*=\s*(\w+)(?:<[^>]+>)?\s*;"#
     ).unwrap();
@@ -107,14 +106,9 @@ impl DartParser {
         let mut classes = Vec::new();
         let content = self.remove_comments(content);
         
-        // Debug: Check content
+        // Check content
         let has_sealed = content.contains("sealed class");
         let has_model = content.contains("@Model");
-        if has_sealed || has_model {
-            eprintln!("DEBUG {}: has_sealed={}, has_model={}, preview: {}", 
-                file_path.file_name().unwrap_or_default().to_string_lossy(),
-                has_sealed, has_model, &content[..content.len().min(300)]);
-        }
         
         // Parse sealed classes (unions) first
         // Try to find sealed class with @Model annotation (annotation can be anywhere before sealed class)
@@ -122,9 +116,7 @@ impl DartParser {
             // Find all sealed class declarations - be more flexible with whitespace
             let sealed_class_regex = Regex::new(r"sealed\s+class\s+(\w+)(?:<([^>]+)>)?\s*\{").unwrap();
             let matches: Vec<_> = sealed_class_regex.captures_iter(&content).collect();
-            eprintln!("DEBUG: Found {} sealed class matches", matches.len());
             for cap in matches {
-                eprintln!("DEBUG: Matched sealed class: {}", cap.get(1).map_or("", |m| m.as_str()));
                 let class_name = cap.get(1).map_or("", |m| m.as_str());
                 let generic_params_str = cap.get(2).map_or("", |m| m.as_str()).trim();
                 let generic_params: Vec<String> = if generic_params_str.is_empty() {
@@ -175,18 +167,13 @@ impl DartParser {
                     }
                 }
                 
-                eprintln!("DEBUG: Annotation found: {}", annotation.is_some());
                 if let Some(annotation) = annotation {
-                    eprintln!("DEBUG: Annotation text: {}", annotation);
-                    
                     // Find class body - the regex match includes the opening brace
                     let match_end = cap.get(0).map_or(0, |m| m.end());
                     // The match includes the opening brace, so start from one char before match_end
                     let body_start = if match_end > 0 { match_end - 1 } else { 0 };
                     let body_input = &content[body_start..];
-                    eprintln!("DEBUG: body_start={}, body_input length={}, preview: {}", body_start, body_input.len(), &body_input[..body_input.len().min(200)]);
                     let class_body = extract_class_body(body_input).unwrap_or_default();
-                    eprintln!("DEBUG: Class body (first 300 chars): {}", &class_body[..class_body.len().min(300)]);
                     
                     let features = self.parse_model_annotation(annotation);
                     let naming_convention = self.parse_naming_convention(annotation);
@@ -194,10 +181,6 @@ impl DartParser {
                     
                     // Parse factory constructors as variants
                     let variants = self.parse_factory_constructors(&class_body, &naming_convention)?;
-                    eprintln!("DEBUG: Found {} variants", variants.len());
-                    for v in &variants {
-                        eprintln!("DEBUG: Variant: {} with {} fields", v.name, v.fields.len());
-                    }
                     
                     if !variants.is_empty() {
                         classes.push(DartClass {
@@ -227,6 +210,11 @@ impl DartParser {
         for cap in SEALED_CLASS_PATTERN.captures_iter(&content) {
             let annotation = cap.get(1).map_or("", |m| m.as_str());
             let class_name = cap.get(2).context("Failed to capture sealed class name")?.as_str();
+            
+            // Skip if already processed by the new flexible approach
+            if classes.iter().any(|c| c.name == class_name && c.is_union) {
+                continue;
+            }
             
             // Extract generic type parameters (e.g., "T" from "<T>" or "T, U" from "<T, U>")
             let generic_params_str = cap.get(3).map_or("", |m| m.as_str()).trim();

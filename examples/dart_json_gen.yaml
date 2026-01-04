@@ -1,0 +1,6 @@
+# dart_json_gen configuration file for examples
+# This demonstrates using a custom extension for generated files
+
+# Custom extension for generated files
+# Using .t.dart instead of the default .gen.dart
+generated_extension: ".t.dart"

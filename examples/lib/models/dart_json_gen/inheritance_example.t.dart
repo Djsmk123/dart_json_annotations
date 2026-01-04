@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 5051477801960639051
+// Checksum: 15195573420765132569
 
 part of 'inheritance_example.dart';
 

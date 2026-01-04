@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 14400729038104242829
+// Checksum: 8311774312655566635
 
 part of 'simplified_keys_example.dart';
 

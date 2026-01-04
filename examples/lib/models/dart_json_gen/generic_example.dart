@@ -1,12 +1,12 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-part 'generic_example.gen.dart';
+part 'generic_example.t.dart';
 
 /// Example: Generic class with @GenericConfig
-/// 
+///
 /// **Note:** Generic support with `@GenericConfig` is currently experimental.
 /// The code generator needs to properly handle the `fromJsonT` parameter in the generated code.
-/// 
+///
 /// When fully supported, the generated `_$GenericResponseFromJson` function should accept
 /// the converter function as a parameter:
 /// ```dart
@@ -25,13 +25,13 @@ class GenericResponse<T> {
   final bool success;
   final String message;
   final T? data;
-  
+
   GenericResponse({
     required this.success,
     required this.message,
     this.data,
   });
-  
+
   factory GenericResponse.fromJson(
     Map<String, dynamic> json,
     T Function(Object?) fromJsonT,
@@ -52,14 +52,14 @@ class PaginatedResponse<T> {
   final int totalCount;
   final int page;
   final int pageSize;
-  
+
   PaginatedResponse({
     required this.items,
     required this.totalCount,
     required this.page,
     required this.pageSize,
   });
-  
+
   factory PaginatedResponse.fromJson(
     Map<String, dynamic> json,
     T Function(Object?) fromJsonT,
@@ -79,12 +79,12 @@ class PaginatedResponse<T> {
 class Pair<T, U> {
   final T first;
   final U second;
-  
+
   Pair({
     required this.first,
     required this.second,
   });
-  
+
   factory Pair.fromJson(
     Map<String, dynamic> json,
     T Function(Object?) fromJsonT,
@@ -96,4 +96,3 @@ class Pair<T, U> {
     );
   }
 }
-

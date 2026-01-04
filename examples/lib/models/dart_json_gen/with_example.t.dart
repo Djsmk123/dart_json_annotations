@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 1551620907067846172
+// Checksum: 2295545500126793647
 
 part of 'with_example.dart';
 
@@ -24,12 +24,9 @@ extension $EventUnion on Event {
     required T Function() orElse,
   }) {
     final self = this;
-    if (self is EventUserAction && userAction != null)
-      return userAction(self.userId);
-    if (self is EventTimestampedEvent && timestampedEvent != null)
-      return timestampedEvent(self.userId);
-    if (self is EventFullEvent && fullEvent != null)
-      return fullEvent(self.userId, self.id);
+    if (self is EventUserAction && userAction != null) return userAction(self.userId);
+    if (self is EventTimestampedEvent && timestampedEvent != null) return timestampedEvent(self.userId);
+    if (self is EventFullEvent && fullEvent != null) return fullEvent(self.userId, self.id);
     return orElse();
   }
 
@@ -39,12 +36,9 @@ extension $EventUnion on Event {
     T Function(String userId, String id)? fullEvent,
   }) {
     final self = this;
-    if (self is EventUserAction && userAction != null)
-      return userAction(self.userId);
-    if (self is EventTimestampedEvent && timestampedEvent != null)
-      return timestampedEvent(self.userId);
-    if (self is EventFullEvent && fullEvent != null)
-      return fullEvent(self.userId, self.id);
+    if (self is EventUserAction && userAction != null) return userAction(self.userId);
+    if (self is EventTimestampedEvent && timestampedEvent != null) return timestampedEvent(self.userId);
+    if (self is EventFullEvent && fullEvent != null) return fullEvent(self.userId, self.id);
     return null;
   }
 
@@ -68,8 +62,7 @@ extension $EventUnion on Event {
   }) {
     final self = this;
     if (self is EventUserAction && userAction != null) return userAction(self);
-    if (self is EventTimestampedEvent && timestampedEvent != null)
-      return timestampedEvent(self);
+    if (self is EventTimestampedEvent && timestampedEvent != null) return timestampedEvent(self);
     if (self is EventFullEvent && fullEvent != null) return fullEvent(self);
     return orElse();
   }
@@ -81,8 +74,7 @@ extension $EventUnion on Event {
   }) {
     final self = this;
     if (self is EventUserAction && userAction != null) return userAction(self);
-    if (self is EventTimestampedEvent && timestampedEvent != null)
-      return timestampedEvent(self);
+    if (self is EventTimestampedEvent && timestampedEvent != null) return timestampedEvent(self);
     if (self is EventFullEvent && fullEvent != null) return fullEvent(self);
     return null;
   }
@@ -91,12 +83,9 @@ extension $EventUnion on Event {
   bool get isTimestampedEvent => this is EventTimestampedEvent;
   bool get isFullEvent => this is EventFullEvent;
 
-  EventUserAction? get asUserAction =>
-      this is EventUserAction ? this as EventUserAction : null;
-  EventTimestampedEvent? get asTimestampedEvent =>
-      this is EventTimestampedEvent ? this as EventTimestampedEvent : null;
-  EventFullEvent? get asFullEvent =>
-      this is EventFullEvent ? this as EventFullEvent : null;
+  EventUserAction? get asUserAction => this is EventUserAction ? this as EventUserAction : null;
+  EventTimestampedEvent? get asTimestampedEvent => this is EventTimestampedEvent ? this as EventTimestampedEvent : null;
+  EventFullEvent? get asFullEvent => this is EventFullEvent ? this as EventFullEvent : null;
 }
 
 class EventUserAction extends Event {
@@ -104,8 +93,7 @@ class EventUserAction extends Event {
 
   const EventUserAction(String this.userId) : super._();
 
-  factory EventUserAction.fromJson(Map<String, dynamic> json) =>
-      _$EventUserActionFromJson(json);
+  factory EventUserAction.fromJson(Map<String, dynamic> json) => _$EventUserActionFromJson(json);
 }
 
 class EventTimestampedEvent extends Event {
@@ -113,8 +101,7 @@ class EventTimestampedEvent extends Event {
 
   const EventTimestampedEvent(String this.userId) : super._();
 
-  factory EventTimestampedEvent.fromJson(Map<String, dynamic> json) =>
-      _$EventTimestampedEventFromJson(json);
+  factory EventTimestampedEvent.fromJson(Map<String, dynamic> json) => _$EventTimestampedEventFromJson(json);
 }
 
 class EventFullEvent extends Event {
@@ -123,8 +110,7 @@ class EventFullEvent extends Event {
 
   const EventFullEvent(String this.userId, String this.id) : super._();
 
-  factory EventFullEvent.fromJson(Map<String, dynamic> json) =>
-      _$EventFullEventFromJson(json);
+  factory EventFullEvent.fromJson(Map<String, dynamic> json) => _$EventFullEventFromJson(json);
 }
 
 Event _$EventFromJson(Map<String, dynamic> json) {
@@ -136,42 +122,42 @@ Event _$EventFromJson(Map<String, dynamic> json) {
   };
 }
 
-EventUserAction _$EventUserActionFromJson(Map<String, dynamic> json) =>
-    EventUserAction(json['userId'] as String);
+EventUserAction _$EventUserActionFromJson(Map<String, dynamic> json) => EventUserAction(
+json['userId'] as String);
 
 extension $EventUserActionJson on EventUserAction {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'type': 'userAction',
-        'userId': userId,
-      };
+    'type': 'userAction',
+    'userId': userId,
+  };
 }
 
-EventTimestampedEvent _$EventTimestampedEventFromJson(
-        Map<String, dynamic> json) =>
-    EventTimestampedEvent(json['userId'] as String);
+EventTimestampedEvent _$EventTimestampedEventFromJson(Map<String, dynamic> json) => EventTimestampedEvent(
+json['userId'] as String);
 
 extension $EventTimestampedEventJson on EventTimestampedEvent {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'type': 'timestampedEvent',
-        'userId': userId,
-      };
+    'type': 'timestampedEvent',
+    'userId': userId,
+  };
 }
 
-EventFullEvent _$EventFullEventFromJson(Map<String, dynamic> json) =>
-    EventFullEvent(json['userId'] as String, json['id'] as String);
+EventFullEvent _$EventFullEventFromJson(Map<String, dynamic> json) => EventFullEvent(
+json['userId'] as String, json['id'] as String);
 
 extension $EventFullEventJson on EventFullEvent {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'type': 'fullEvent',
-        'userId': userId,
-        'id': id,
-      };
+    'type': 'fullEvent',
+    'userId': userId,
+    'id': id,
+  };
 }
 
 extension $EventJson on Event {
   Map<String, dynamic> toJson() => switch (this) {
-        EventUserAction v => v.toJson(),
-        EventTimestampedEvent v => v.toJson(),
-        EventFullEvent v => v.toJson(),
-      };
+    EventUserAction v => v.toJson(),
+    EventTimestampedEvent v => v.toJson(),
+    EventFullEvent v => v.toJson(),
+  };
 }
+

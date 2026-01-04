@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0 (Rust)
-// Checksum: 9628710907245836043
+// Checksum: 16690821594121520755
 
 part of 'app_state.dart';
 

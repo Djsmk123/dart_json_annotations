@@ -1,0 +1,7 @@
+# dart_json_gen configuration file
+# This file allows you to customize the code generator behavior
+
+# Custom extension for generated files
+# Default: .gen.dart
+# Examples: .g.dart, .t.dart, .generated.dart
+generated_extension: ".gen.dart"

@@ -179,39 +179,6 @@ class CounterState {
 // Usage
 final newState = state.copyWith(count: state.count + 1);
 ```
-
-### Pattern 4: Sealed/Union Class
-
-Use `@Model()` with sealed classes for pattern matching.
-
-```dart
-@Model(fromJson: true, toJson: true, equatable: true)
-sealed class Result<T> {
-  const Result._();
-  
-  // Note: For generic union classes, fromJson must accept converter functions
-  factory Result.fromJson(
-    Map<String, dynamic> json,
-    T Function(Object?) fromJsonT,
-  ) => _$ResultFromJson(json, fromJsonT);
-  
-  // toJson should also accept a converter function
-  Map<String, dynamic> toJson(T Function(T) toJsonT) => _$ResultToJson(this, toJsonT);
-  
-  const factory Result.success(T data) = ResultSuccess<T>;
-  const factory Result.failure(String error) = ResultFailure<T>;
-}
-
-// Usage
-final result = Result.success('data');
-final message = result.when(
-  success: (data) => 'Got: $data',
-  failure: (error) => 'Error: $error',
-);
-```
-
-**Important:** Generic union classes (sealed classes with type parameters) require manual `fromJson` and `toJson` implementation that accepts converter functions, similar to regular generic classes. The code generator cannot automatically generate `fromJson`/`toJson` for generic union classes.
-
 ---
 
 ## Project Setup
@@ -348,6 +315,9 @@ dart_json_gen --build
 
 # Generate code
 dart_json_gen -i lib/models
+
+# Generate with verbose output (debugging)
+dart_json_gen -i lib/models --verbose
 
 # Clean generated files
 dart_json_gen --clean -i lib/models

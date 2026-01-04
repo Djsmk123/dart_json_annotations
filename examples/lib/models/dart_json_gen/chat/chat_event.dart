@@ -1,19 +1,18 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 import 'package:example_models/models/dart_json_gen/chat/chat_message.dart';
-part 'chat_event.gen.dart';
-
+part 'chat_event.t.dart';
 
 @Model(
   fromJson: true,
   toJson: true,
   discriminator: 'event_type',
 )
-
 sealed class ChatEvent {
   const ChatEvent._();
-  factory ChatEvent.fromJson(Map<String, dynamic> json) => _$ChatEventFromJson(json);
+  factory ChatEvent.fromJson(Map<String, dynamic> json) =>
+      _$ChatEventFromJson(json);
 
-    @ModelUnionValue('user_joined')
+  @ModelUnionValue('user_joined')
   const factory ChatEvent.UserJoined({
     @JsonKey(name: 'user_id') required String userId,
     @JsonKey(name: 'joined_at') required DateTime joinedAt,
@@ -2220,10 +2219,4 @@ sealed class ChatEvent {
     @JsonKey(name: 'username') String? username,
     ChatMessage? message,
   }) = ChatEventAppRestarted;
-
-
-
-
-
- 
 }

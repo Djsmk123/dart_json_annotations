@@ -1,6 +1,6 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-part 'mutable_example.gen.dart';
+part 'mutable_example.t.dart';
 
 /// Example: Mutable class with @Model.mutable()
 /// Generates: copyWith only (no JSON, no equatable, no stringify)
@@ -10,16 +10,17 @@ part 'mutable_example.gen.dart';
   toJson: true,
 )
 class MutablePerson {
-  String name;  // Mutable, not final
+  String name; // Mutable, not final
   int age;
   String? email;
-  
+
   MutablePerson({
     required this.name,
     required this.age,
     this.email,
   });
-  factory MutablePerson.fromJson(Map<String, dynamic> json) => _$MutablePersonFromJson(json);
+  factory MutablePerson.fromJson(Map<String, dynamic> json) =>
+      _$MutablePersonFromJson(json);
 }
 
 /// Example: Mutable class with copyWith for state management
@@ -28,11 +29,10 @@ class MutableCounterState {
   int count;
   bool isActive;
   String? lastAction;
-  
+
   MutableCounterState({
     required this.count,
     required this.isActive,
     this.lastAction,
   });
 }
-

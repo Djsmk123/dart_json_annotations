@@ -45,7 +45,7 @@ impl Default for DartField {
             ignore_equality: false,
             ignore_copy_with: false,
             ignore_to_string: false,
-            include_if_null: false,
+            include_if_null: true,
             assert_condition: None,
             assert_message: None,
             json_converter: None,

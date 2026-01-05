@@ -8,6 +8,7 @@ class User {
   final int id;
   final String name;
   final String email;
+  @JsonKey(ignoreIfNull: true)
   final int? age;
   final bool isActive;
   final DateTime createdAt;

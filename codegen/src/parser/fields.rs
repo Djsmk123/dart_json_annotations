@@ -122,7 +122,10 @@ pub fn parse_fields(class_body: &str) -> Result<Vec<DartField>> {
 }
 
 pub fn parse_field_annotations(annotations: &str) -> FieldAnnotations {
-    let mut result = FieldAnnotations::default();
+    let mut result = FieldAnnotations {
+        include_if_null: true, // Default to including nulls (User requirement)
+        ..Default::default()
+    };
     
     // Parse @JsonKey
     if let Some(cap) = JSON_KEY_PATTERN.captures(annotations) {
@@ -149,8 +152,19 @@ pub fn parse_field_annotations(annotations: &str) -> FieldAnnotations {
             result.ignore_json = true;
         }
         
+        // Handle inclusion/exclusion of nulls
+        // Priority: explicit settings override default
+        if inner.contains("includeIfNull: false") || inner.contains("includeIfNull:false") {
+            result.include_if_null = false;
+        }
         if inner.contains("includeIfNull: true") || inner.contains("includeIfNull:true") {
             result.include_if_null = true;
+        }
+        
+        // ignoreIfNull alias
+        if inner.contains("ignoreIfNull: true") || inner.contains("ignoreIfNull:true") 
+            || inner.contains("ignoreJsonIfNull: true") || inner.contains("ignoreJsonIfNull:true") {
+            result.include_if_null = false;
         }
         
         if let Some(cap) = Regex::new(r#"defaultValue\s*:\s*['"]?([^'",)]+)['"]?"#).unwrap().captures(inner) {

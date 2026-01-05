@@ -1,36 +1,39 @@
 #!/usr/bin/env dart
 
 import 'dart:io';
+import 'dart:isolate';
 import 'package:path/path.dart' as path;
 
 void main(List<String> arguments) async {
-  // Find package root by looking for pubspec.yaml with dart_json_annotations
-  String? packageRoot;
+  // Find package root using Isolate to resolve package path
+  // This works reliably for local dev, global activation (source/git/hosted), and snapshots
+  Uri? packageUri = await Isolate.resolvePackageUri(
+      Uri.parse('package:dart_json_annotations/dart_json_annotations.dart'));
 
-  // Start from current directory and go up
-  var dir = Directory.current;
-  while (dir.path != dir.parent.path) {
-    final pubspecPath = path.join(dir.path, 'pubspec.yaml');
-    if (File(pubspecPath).existsSync()) {
-      final content = await File(pubspecPath).readAsString();
-      if (content.contains('name: dart_json_annotations')) {
-        packageRoot = dir.path;
-        break;
-      }
+  String? packageRoot;
+  if (packageUri != null) {
+    // packageUri points to lib/dart_json_annotations.dart
+    // library root is .../lib
+    // package root is .../ (parent of lib)
+    packageRoot = path.dirname(path.dirname(path.fromUri(packageUri)));
+  } else {
+    // Fallback: try to resolve from script path (useful if running raw script)
+    // Script is usually strings/bin/dart_json_gen.dart
+    final scriptPath = Platform.script.toFilePath();
+    final scriptDir = path.dirname(scriptPath);
+
+    // Check if we are in bin/
+    if (path.basename(scriptDir) == 'bin') {
+      packageRoot = path.dirname(scriptDir);
     }
-    dir = dir.parent;
   }
 
-  // If not found, try the hardcoded path
-  if (packageRoot == null) {
-    packageRoot =
-        '/Users/smkwinner/Desktop/workspace/json_serialzalbe/dart_json_annotations';
-    final pubspecPath = path.join(packageRoot, 'pubspec.yaml');
-    if (!File(pubspecPath).existsSync()) {
-      print('Error: Could not find dart_json_annotations package.');
-      print('Current directory: ${Directory.current.path}');
-      exit(1);
-    }
+  // Verify pubspec.yaml exists
+  if (packageRoot == null ||
+      !File(path.join(packageRoot, 'pubspec.yaml')).existsSync()) {
+    print('Error: Could not locate dart_json_annotations package root.');
+    print('Script location: ${Platform.script}');
+    exit(1);
   }
 
   // Path to the Rust binary

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0.1 (Rust)
-// Checksum: 18146238069773660394
+// Checksum: 3874482139654995431
 
 part of 'user.dart';
 
@@ -29,7 +29,7 @@ extension $UserProfileJson on UserProfile {
     'user_id': userId,
     'first_name': firstName,
     'last_name': lastName,
-    if (avatarUrl != null) 'profile_picture_url': avatarUrl,
+    'profile_picture_url': avatarUrl,
     'interests': interests,
     'metadata': metadata,
   };

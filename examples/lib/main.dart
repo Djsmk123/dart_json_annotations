@@ -4,10 +4,19 @@ void main() {
   final User user = User(
     id: 1,
     name: 'John Doe',
-    age: 30,
+    age: null, // Should be ignored
     email: 'john.doe@example.com',
     isActive: true,
     createdAt: DateTime.now(),
   );
-  print(user.toJson());
+  print('User (age null, ignored): ${user.toJson()}');
+
+  final UserProfile profile = UserProfile(
+      userId: 1,
+      firstName: 'Jane',
+      lastName: 'Doe',
+      avatarUrl: null, // Should be included
+      interests: [],
+      metadata: {});
+  print('UserProfile (avatarUrl null, included): ${profile.toJson()}');
 }

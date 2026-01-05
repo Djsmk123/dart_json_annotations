@@ -27,8 +27,8 @@ DefaultExample _$DefaultExampleFromJson(Map<String, dynamic> json) => DefaultExa
 extension $DefaultNullableExampleJson on DefaultNullableExample {
   Map<String, dynamic> toJson() => <String, dynamic>{
     'id': id,
-    if (description != null) 'description': description,
-    if (score != null) 'score': score,
+    'description': description,
+    'score': score,
   };
 }
 

@@ -10,7 +10,7 @@ extension $TaskJson on Task {
     'title': title,
     'status': status.toJson(),
     'priority': priority.toJson(),
-    if (color != null) 'color': color?.toJson(),
+    'color': color?.toJson(),
   };
 }
 

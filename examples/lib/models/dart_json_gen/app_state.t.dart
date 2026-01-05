@@ -22,7 +22,7 @@ extension $UserProfileJson on UserProfile {
   Map<String, dynamic> toJson() => <String, dynamic>{
     'id': id,
     'displayName': displayName,
-    if (bio != null) 'bio': bio,
+    'bio': bio,
     'tags': tags,
     'createdAt': createdAt.toIso8601String(),
     'internalToken': internalToken,
@@ -67,7 +67,7 @@ extension $SettingsJson on Settings {
   Map<String, dynamic> toJson() => <String, dynamic>{
     'darkMode': darkMode,
     'locale': locale,
-    if (fontSize != null) 'fontSize': fontSize,
+    'fontSize': fontSize,
   };
 }
 

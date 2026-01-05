@@ -4,80 +4,74 @@
 
 part of 'with_example.dart';
 
+typedef _$EventSig0<T> = T Function(String userId);
+
 extension $EventUnion on Event {
   T when<T>({
-    required T Function(String userId) userAction,
-    required T Function(String userId) timestampedEvent,
+    required _$EventSig0<T> userAction,
+    required _$EventSig0<T> timestampedEvent,
     required T Function(String userId, String id) fullEvent,
-  }) {
-    final self = this;
-    if (self is EventUserAction) return userAction(self.userId);
-    if (self is EventTimestampedEvent) return timestampedEvent(self.userId);
-    if (self is EventFullEvent) return fullEvent(self.userId, self.id);
-    throw StateError('Unknown Event subtype: $this');
-  }
+  }) => switch (this) {
+    EventUserAction v => userAction(v.userId),
+    EventTimestampedEvent v => timestampedEvent(v.userId),
+    EventFullEvent v => fullEvent(v.userId, v.id),
+  };
 
   T maybeWhen<T>({
-    T Function(String userId)? userAction,
-    T Function(String userId)? timestampedEvent,
+    _$EventSig0<T>? userAction,
+    _$EventSig0<T>? timestampedEvent,
     T Function(String userId, String id)? fullEvent,
     required T Function() orElse,
-  }) {
-    final self = this;
-    if (self is EventUserAction && userAction != null) return userAction(self.userId);
-    if (self is EventTimestampedEvent && timestampedEvent != null) return timestampedEvent(self.userId);
-    if (self is EventFullEvent && fullEvent != null) return fullEvent(self.userId, self.id);
-    return orElse();
-  }
+  }) => switch (this) {
+    EventUserAction v when userAction != null => userAction(v.userId),
+    EventTimestampedEvent v when timestampedEvent != null => timestampedEvent(v.userId),
+    EventFullEvent v when fullEvent != null => fullEvent(v.userId, v.id),
+    _ => orElse(),
+  };
 
   T? whenOrNull<T>({
-    T Function(String userId)? userAction,
-    T Function(String userId)? timestampedEvent,
+    _$EventSig0<T>? userAction,
+    _$EventSig0<T>? timestampedEvent,
     T Function(String userId, String id)? fullEvent,
-  }) {
-    final self = this;
-    if (self is EventUserAction && userAction != null) return userAction(self.userId);
-    if (self is EventTimestampedEvent && timestampedEvent != null) return timestampedEvent(self.userId);
-    if (self is EventFullEvent && fullEvent != null) return fullEvent(self.userId, self.id);
-    return null;
-  }
+  }) => switch (this) {
+    EventUserAction v when userAction != null => userAction(v.userId),
+    EventTimestampedEvent v when timestampedEvent != null => timestampedEvent(v.userId),
+    EventFullEvent v when fullEvent != null => fullEvent(v.userId, v.id),
+    _ => null,
+  };
 
   T map<T>({
     required T Function(EventUserAction) userAction,
     required T Function(EventTimestampedEvent) timestampedEvent,
     required T Function(EventFullEvent) fullEvent,
-  }) {
-    final self = this;
-    if (self is EventUserAction) return userAction(self);
-    if (self is EventTimestampedEvent) return timestampedEvent(self);
-    if (self is EventFullEvent) return fullEvent(self);
-    throw StateError('Unknown Event subtype: $this');
-  }
+  }) => switch (this) {
+    EventUserAction v => userAction(v),
+    EventTimestampedEvent v => timestampedEvent(v),
+    EventFullEvent v => fullEvent(v),
+  };
 
   T maybeMap<T>({
     T Function(EventUserAction)? userAction,
     T Function(EventTimestampedEvent)? timestampedEvent,
     T Function(EventFullEvent)? fullEvent,
     required T Function() orElse,
-  }) {
-    final self = this;
-    if (self is EventUserAction && userAction != null) return userAction(self);
-    if (self is EventTimestampedEvent && timestampedEvent != null) return timestampedEvent(self);
-    if (self is EventFullEvent && fullEvent != null) return fullEvent(self);
-    return orElse();
-  }
+  }) => switch (this) {
+    EventUserAction v when userAction != null => userAction(v),
+    EventTimestampedEvent v when timestampedEvent != null => timestampedEvent(v),
+    EventFullEvent v when fullEvent != null => fullEvent(v),
+    _ => orElse(),
+  };
 
   T? mapOrNull<T>({
     T Function(EventUserAction)? userAction,
     T Function(EventTimestampedEvent)? timestampedEvent,
     T Function(EventFullEvent)? fullEvent,
-  }) {
-    final self = this;
-    if (self is EventUserAction && userAction != null) return userAction(self);
-    if (self is EventTimestampedEvent && timestampedEvent != null) return timestampedEvent(self);
-    if (self is EventFullEvent && fullEvent != null) return fullEvent(self);
-    return null;
-  }
+  }) => switch (this) {
+    EventUserAction v when userAction != null => userAction(v),
+    EventTimestampedEvent v when timestampedEvent != null => timestampedEvent(v),
+    EventFullEvent v when fullEvent != null => fullEvent(v),
+    _ => null,
+  };
 
   bool get isUserAction => this is EventUserAction;
   bool get isTimestampedEvent => this is EventTimestampedEvent;
@@ -87,6 +81,15 @@ extension $EventUnion on Event {
   EventTimestampedEvent? get asTimestampedEvent => this is EventTimestampedEvent ? this as EventTimestampedEvent : null;
   EventFullEvent? get asFullEvent => this is EventFullEvent ? this as EventFullEvent : null;
 }
+
+_Result _$EventSig0FromJson<_Result>(Map<String, dynamic> json, _Result Function(String userId) create) {
+  return create(
+json['userId'] as String  );
+}
+
+Map<String, dynamic> _$EventSig0ToJson(String userId) => <String, dynamic>{
+    'userId': userId,
+};
 
 class EventUserAction extends Event {
   final String userId;
@@ -122,23 +125,21 @@ Event _$EventFromJson(Map<String, dynamic> json) {
   };
 }
 
-EventUserAction _$EventUserActionFromJson(Map<String, dynamic> json) => EventUserAction(
-json['userId'] as String);
+EventUserAction _$EventUserActionFromJson(Map<String, dynamic> json) => _$EventSig0FromJson(json, EventUserAction.new);
 
 extension $EventUserActionJson on EventUserAction {
   Map<String, dynamic> toJson() => <String, dynamic>{
     'type': 'userAction',
-    'userId': userId,
+    ..._$EventSig0ToJson(userId),
   };
 }
 
-EventTimestampedEvent _$EventTimestampedEventFromJson(Map<String, dynamic> json) => EventTimestampedEvent(
-json['userId'] as String);
+EventTimestampedEvent _$EventTimestampedEventFromJson(Map<String, dynamic> json) => _$EventSig0FromJson(json, EventTimestampedEvent.new);
 
 extension $EventTimestampedEventJson on EventTimestampedEvent {
   Map<String, dynamic> toJson() => <String, dynamic>{
     'type': 'timestampedEvent',
-    'userId': userId,
+    ..._$EventSig0ToJson(userId),
   };
 }
 

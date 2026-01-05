@@ -4,80 +4,73 @@
 
 part of 'implements_example.dart';
 
+
 extension $LocationUnion on Location {
   T when<T>({
     required T Function(String name) person,
     required T Function(String name, int population) city,
     required T Function(String name, int population, String capital) country,
-  }) {
-    final self = this;
-    if (self is LocationPerson) return person(self.name);
-    if (self is LocationCity) return city(self.name, self.population);
-    if (self is LocationCountry) return country(self.name, self.population, self.capital);
-    throw StateError('Unknown Location subtype: $this');
-  }
+  }) => switch (this) {
+    LocationPerson v => person(v.name),
+    LocationCity v => city(v.name, v.population),
+    LocationCountry v => country(v.name, v.population, v.capital),
+  };
 
   T maybeWhen<T>({
     T Function(String name)? person,
     T Function(String name, int population)? city,
     T Function(String name, int population, String capital)? country,
     required T Function() orElse,
-  }) {
-    final self = this;
-    if (self is LocationPerson && person != null) return person(self.name);
-    if (self is LocationCity && city != null) return city(self.name, self.population);
-    if (self is LocationCountry && country != null) return country(self.name, self.population, self.capital);
-    return orElse();
-  }
+  }) => switch (this) {
+    LocationPerson v when person != null => person(v.name),
+    LocationCity v when city != null => city(v.name, v.population),
+    LocationCountry v when country != null => country(v.name, v.population, v.capital),
+    _ => orElse(),
+  };
 
   T? whenOrNull<T>({
     T Function(String name)? person,
     T Function(String name, int population)? city,
     T Function(String name, int population, String capital)? country,
-  }) {
-    final self = this;
-    if (self is LocationPerson && person != null) return person(self.name);
-    if (self is LocationCity && city != null) return city(self.name, self.population);
-    if (self is LocationCountry && country != null) return country(self.name, self.population, self.capital);
-    return null;
-  }
+  }) => switch (this) {
+    LocationPerson v when person != null => person(v.name),
+    LocationCity v when city != null => city(v.name, v.population),
+    LocationCountry v when country != null => country(v.name, v.population, v.capital),
+    _ => null,
+  };
 
   T map<T>({
     required T Function(LocationPerson) person,
     required T Function(LocationCity) city,
     required T Function(LocationCountry) country,
-  }) {
-    final self = this;
-    if (self is LocationPerson) return person(self);
-    if (self is LocationCity) return city(self);
-    if (self is LocationCountry) return country(self);
-    throw StateError('Unknown Location subtype: $this');
-  }
+  }) => switch (this) {
+    LocationPerson v => person(v),
+    LocationCity v => city(v),
+    LocationCountry v => country(v),
+  };
 
   T maybeMap<T>({
     T Function(LocationPerson)? person,
     T Function(LocationCity)? city,
     T Function(LocationCountry)? country,
     required T Function() orElse,
-  }) {
-    final self = this;
-    if (self is LocationPerson && person != null) return person(self);
-    if (self is LocationCity && city != null) return city(self);
-    if (self is LocationCountry && country != null) return country(self);
-    return orElse();
-  }
+  }) => switch (this) {
+    LocationPerson v when person != null => person(v),
+    LocationCity v when city != null => city(v),
+    LocationCountry v when country != null => country(v),
+    _ => orElse(),
+  };
 
   T? mapOrNull<T>({
     T Function(LocationPerson)? person,
     T Function(LocationCity)? city,
     T Function(LocationCountry)? country,
-  }) {
-    final self = this;
-    if (self is LocationPerson && person != null) return person(self);
-    if (self is LocationCity && city != null) return city(self);
-    if (self is LocationCountry && country != null) return country(self);
-    return null;
-  }
+  }) => switch (this) {
+    LocationPerson v when person != null => person(v),
+    LocationCity v when city != null => city(v),
+    LocationCountry v when country != null => country(v),
+    _ => null,
+  };
 
   bool get isPerson => this is LocationPerson;
   bool get isCity => this is LocationCity;

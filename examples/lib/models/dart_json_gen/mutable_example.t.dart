@@ -8,7 +8,7 @@ extension $MutablePersonJson on MutablePerson {
   Map<String, dynamic> toJson() => <String, dynamic>{
     'name': name,
     'age': age,
-    if (email != null) 'email': email,
+    'email': email,
   };
 }
 

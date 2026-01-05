@@ -6,6 +6,7 @@ part 'chat_event.t.dart';
   fromJson: true,
   toJson: true,
   discriminator: 'event_type',
+  copyWith: true,
 )
 sealed class ChatEvent {
   const ChatEvent._();

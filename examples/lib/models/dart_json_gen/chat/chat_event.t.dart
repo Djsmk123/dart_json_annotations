@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0.1 (Rust)
-// Checksum: 4556490242066671313
+// Checksum: 18201087226076747304
 
 part of 'chat_event.dart';
 
@@ -5786,6 +5786,1674 @@ extension $ChatEventUnion on ChatEvent {
       this is ChatEventAppRestarted ? this as ChatEventAppRestarted : null;
 }
 
+extension $ChatEventCopyWith on ChatEvent {
+  ChatEvent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) {
+    return switch (this) {
+      ChatEventUserJoined v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserRejoined v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserLeft v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserLeftForced v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserKicked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserBanned v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUnbanned v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserMuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUnmuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUnblocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserReported v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserVerified v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserTypingStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserTypingStopped v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserOnline v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserOffline v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserIdle v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserStatusChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserProfileUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserAvatarUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUsernameChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserRolePromoted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserRoleDemoted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserInvited v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserInviteRevoked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserFollowed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUnfollowed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserPinged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageRead v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnread v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageEdited v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDeletedForSelf v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDeletedForAll v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessagePinned v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnpinned v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageStarred v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnstarred v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageLiked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnliked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDisliked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageReacted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnreacted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageForwarded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageQuoted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageFlagged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnflagged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageSpamDetected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDeliveryFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageScheduled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageScheduledSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageScheduledFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageHidden v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageRestored v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentUploaded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentPreviewGenerated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDownloaded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDownloadStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDownloadCancelled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDownloadFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageBlurred v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageUnblurred v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageCompressed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoPlayed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoPaused v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoStopped v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoSeeked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoMuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoUnmuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioPlayed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioPaused v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioTranscribed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioTranscriptionFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFileSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFileReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFilePreviewGenerated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFileDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFileDownloaded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLinkPreviewGenerated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLinkPreviewFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReactionAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReactionRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReactionUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReactionCleared v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadCreated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadArchived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadUnarchived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelCreated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelRenamed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelDescriptionUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelArchived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelUnarchived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelLocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelUnlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelMigrated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelHidden v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelUnhidden v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupCreated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupIconUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupAdminAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupAdminRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupMemberAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupMemberRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupMemberLeft v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupMemberKicked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupInfoViewed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallEnded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallMissed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallRejected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallAccepted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallReconnecting v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallReconnected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallNetworkLow v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallMediaPermissionDenied v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallRecordingStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallRecordingStopped v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallEnded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallMissed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallRejected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallAccepted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVoiceNoteSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVoiceNoteDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVoiceNotePlayed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPollCreated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPollVoteCast v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPollVoteRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPollClosed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStoryPosted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStoryDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStoryViewed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStoryReacted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotMessageSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotMessageDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotTriggered v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotDisabled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotEnabled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemBroadcast v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemMaintenanceScheduled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemMaintenanceStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemMaintenanceEnded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemWarning v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemError v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemRecovery v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemPatchApplied v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEncryptionEnabled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEncryptionDisabled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEncryptionKeyRotated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEncryptionKeyFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSessionStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSessionExpired v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSessionRefreshed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSessionTerminated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventTypingIndicatorSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventTypingIndicatorReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPresenceSubscribed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPresenceUnsubscribed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPresenceSync v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPresenceUpdateFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPushNotificationSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPushNotificationReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPushNotificationOpened v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPushNotificationFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReadReceiptSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReadReceiptFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReadReceiptBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBackupStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBackupCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBackupFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRestoreStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRestoreCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRestoreFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactSynced v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactSyncFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactUnblocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCommandExecuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventShortcutUsed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventActionButtonClicked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminMessageSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminMessageDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminAnnouncement v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminWarning v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminSilencedUser v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSpamUserDetected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSpamUserBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSpamUserReported v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventModerationActionTaken v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventModerationFlagReviewed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventModerationMessageHidden v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventModerationMessageRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventExperimentStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventExperimentUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventExperimentCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventExperimentAborted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGiftSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGiftReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGiftRedeemed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGiftFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStickerSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStickerDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEmojiPackAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEmojiPackRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThemeChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventWallpaperChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFontSizeChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSettingsUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceRegistered v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceUnregistered v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceSwitched v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceSyncCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceSyncFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationShared v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationStopped v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationRequestSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationRequestAccepted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationRequestDeclined v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventQrScanSuccess v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventQrScanFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventQrConnectionEstablished v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventQrConnectionTerminated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRequestSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRequestReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRequestAccepted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRequestDeclined v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRefunded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentWalletUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSubscriptionStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSubscriptionExpired v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSubscriptionRenewed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSubscriptionCanceled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiSummaryGenerated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiSummaryFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiReplySuggested v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiReplySelected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiTranslationRequested v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiTranslationCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiTranslationFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCaptchaRequired v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCaptchaPassed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCaptchaFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRateLimitWarning v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRateLimitBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLogoutRequested v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLogoutCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppOpened v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppBackgrounded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppResumed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppCrashed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppRestarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+    };
+  }
+}
+
 _Result _$ChatEventSig0FromJson<_Result>(
     Map<String, dynamic> json,
     _Result Function(
@@ -10841,6 +12509,21 @@ extension $ChatEventUserJoinedJson on ChatEventUserJoined {
       };
 }
 
+extension $ChatEventUserJoinedCopyWith on ChatEventUserJoined {
+  ChatEventUserJoined copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserJoined(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserRejoined _$ChatEventUserRejoinedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserRejoined.new);
@@ -10852,6 +12535,21 @@ extension $ChatEventUserRejoinedJson on ChatEventUserRejoined {
       };
 }
 
+extension $ChatEventUserRejoinedCopyWith on ChatEventUserRejoined {
+  ChatEventUserRejoined copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserRejoined(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserLeft _$ChatEventUserLeftFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserLeft.new);
 
@@ -10860,6 +12558,21 @@ extension $ChatEventUserLeftJson on ChatEventUserLeft {
         'event_type': 'user_left',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserLeftCopyWith on ChatEventUserLeft {
+  ChatEventUserLeft copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserLeft(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserLeftForced _$ChatEventUserLeftForcedFromJson(
@@ -10873,6 +12586,21 @@ extension $ChatEventUserLeftForcedJson on ChatEventUserLeftForced {
       };
 }
 
+extension $ChatEventUserLeftForcedCopyWith on ChatEventUserLeftForced {
+  ChatEventUserLeftForced copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserLeftForced(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserKicked _$ChatEventUserKickedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserKicked.new);
 
@@ -10883,6 +12611,21 @@ extension $ChatEventUserKickedJson on ChatEventUserKicked {
       };
 }
 
+extension $ChatEventUserKickedCopyWith on ChatEventUserKicked {
+  ChatEventUserKicked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserKicked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserBanned _$ChatEventUserBannedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserBanned.new);
 
@@ -10891,6 +12634,21 @@ extension $ChatEventUserBannedJson on ChatEventUserBanned {
         'event_type': 'user_banned',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserBannedCopyWith on ChatEventUserBanned {
+  ChatEventUserBanned copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserBanned(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserUnbanned _$ChatEventUserUnbannedFromJson(
@@ -10904,6 +12662,21 @@ extension $ChatEventUserUnbannedJson on ChatEventUserUnbanned {
       };
 }
 
+extension $ChatEventUserUnbannedCopyWith on ChatEventUserUnbanned {
+  ChatEventUserUnbanned copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserUnbanned(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserMuted _$ChatEventUserMutedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserMuted.new);
 
@@ -10912,6 +12685,21 @@ extension $ChatEventUserMutedJson on ChatEventUserMuted {
         'event_type': 'user_muted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserMutedCopyWith on ChatEventUserMuted {
+  ChatEventUserMuted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserMuted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserUnmuted _$ChatEventUserUnmutedFromJson(
@@ -10925,6 +12713,21 @@ extension $ChatEventUserUnmutedJson on ChatEventUserUnmuted {
       };
 }
 
+extension $ChatEventUserUnmutedCopyWith on ChatEventUserUnmuted {
+  ChatEventUserUnmuted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserUnmuted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserBlocked _$ChatEventUserBlockedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserBlocked.new);
@@ -10934,6 +12737,21 @@ extension $ChatEventUserBlockedJson on ChatEventUserBlocked {
         'event_type': 'user_blocked',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserBlockedCopyWith on ChatEventUserBlocked {
+  ChatEventUserBlocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserBlocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserUnblocked _$ChatEventUserUnblockedFromJson(
@@ -10947,6 +12765,21 @@ extension $ChatEventUserUnblockedJson on ChatEventUserUnblocked {
       };
 }
 
+extension $ChatEventUserUnblockedCopyWith on ChatEventUserUnblocked {
+  ChatEventUserUnblocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserUnblocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserReported _$ChatEventUserReportedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserReported.new);
@@ -10956,6 +12789,21 @@ extension $ChatEventUserReportedJson on ChatEventUserReported {
         'event_type': 'user_reported',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserReportedCopyWith on ChatEventUserReported {
+  ChatEventUserReported copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserReported(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserVerified _$ChatEventUserVerifiedFromJson(
@@ -10969,6 +12817,21 @@ extension $ChatEventUserVerifiedJson on ChatEventUserVerified {
       };
 }
 
+extension $ChatEventUserVerifiedCopyWith on ChatEventUserVerified {
+  ChatEventUserVerified copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserVerified(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserTypingStarted _$ChatEventUserTypingStartedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserTypingStarted.new);
@@ -10978,6 +12841,21 @@ extension $ChatEventUserTypingStartedJson on ChatEventUserTypingStarted {
         'event_type': 'user_typing_started',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserTypingStartedCopyWith on ChatEventUserTypingStarted {
+  ChatEventUserTypingStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserTypingStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserTypingStopped _$ChatEventUserTypingStoppedFromJson(
@@ -10991,6 +12869,21 @@ extension $ChatEventUserTypingStoppedJson on ChatEventUserTypingStopped {
       };
 }
 
+extension $ChatEventUserTypingStoppedCopyWith on ChatEventUserTypingStopped {
+  ChatEventUserTypingStopped copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserTypingStopped(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserOnline _$ChatEventUserOnlineFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserOnline.new);
 
@@ -10999,6 +12892,21 @@ extension $ChatEventUserOnlineJson on ChatEventUserOnline {
         'event_type': 'user_online',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserOnlineCopyWith on ChatEventUserOnline {
+  ChatEventUserOnline copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserOnline(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserOffline _$ChatEventUserOfflineFromJson(
@@ -11012,6 +12920,21 @@ extension $ChatEventUserOfflineJson on ChatEventUserOffline {
       };
 }
 
+extension $ChatEventUserOfflineCopyWith on ChatEventUserOffline {
+  ChatEventUserOffline copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserOffline(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserIdle _$ChatEventUserIdleFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserIdle.new);
 
@@ -11020,6 +12943,21 @@ extension $ChatEventUserIdleJson on ChatEventUserIdle {
         'event_type': 'user_idle',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserIdleCopyWith on ChatEventUserIdle {
+  ChatEventUserIdle copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserIdle(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserStatusChanged _$ChatEventUserStatusChangedFromJson(
@@ -11033,6 +12971,21 @@ extension $ChatEventUserStatusChangedJson on ChatEventUserStatusChanged {
       };
 }
 
+extension $ChatEventUserStatusChangedCopyWith on ChatEventUserStatusChanged {
+  ChatEventUserStatusChanged copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserStatusChanged(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserProfileUpdated _$ChatEventUserProfileUpdatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserProfileUpdated.new);
@@ -11042,6 +12995,21 @@ extension $ChatEventUserProfileUpdatedJson on ChatEventUserProfileUpdated {
         'event_type': 'user_profile_updated',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserProfileUpdatedCopyWith on ChatEventUserProfileUpdated {
+  ChatEventUserProfileUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserProfileUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserAvatarUpdated _$ChatEventUserAvatarUpdatedFromJson(
@@ -11055,6 +13023,21 @@ extension $ChatEventUserAvatarUpdatedJson on ChatEventUserAvatarUpdated {
       };
 }
 
+extension $ChatEventUserAvatarUpdatedCopyWith on ChatEventUserAvatarUpdated {
+  ChatEventUserAvatarUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserAvatarUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserUsernameChanged _$ChatEventUserUsernameChangedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserUsernameChanged.new);
@@ -11064,6 +13047,22 @@ extension $ChatEventUserUsernameChangedJson on ChatEventUserUsernameChanged {
         'event_type': 'user_username_changed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserUsernameChangedCopyWith
+    on ChatEventUserUsernameChanged {
+  ChatEventUserUsernameChanged copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserUsernameChanged(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserRolePromoted _$ChatEventUserRolePromotedFromJson(
@@ -11077,6 +13076,21 @@ extension $ChatEventUserRolePromotedJson on ChatEventUserRolePromoted {
       };
 }
 
+extension $ChatEventUserRolePromotedCopyWith on ChatEventUserRolePromoted {
+  ChatEventUserRolePromoted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserRolePromoted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserRoleDemoted _$ChatEventUserRoleDemotedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserRoleDemoted.new);
@@ -11086,6 +13100,21 @@ extension $ChatEventUserRoleDemotedJson on ChatEventUserRoleDemoted {
         'event_type': 'user_role_demoted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserRoleDemotedCopyWith on ChatEventUserRoleDemoted {
+  ChatEventUserRoleDemoted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserRoleDemoted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserInvited _$ChatEventUserInvitedFromJson(
@@ -11099,6 +13128,21 @@ extension $ChatEventUserInvitedJson on ChatEventUserInvited {
       };
 }
 
+extension $ChatEventUserInvitedCopyWith on ChatEventUserInvited {
+  ChatEventUserInvited copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserInvited(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserInviteRevoked _$ChatEventUserInviteRevokedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserInviteRevoked.new);
@@ -11108,6 +13152,21 @@ extension $ChatEventUserInviteRevokedJson on ChatEventUserInviteRevoked {
         'event_type': 'user_invite_revoked',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserInviteRevokedCopyWith on ChatEventUserInviteRevoked {
+  ChatEventUserInviteRevoked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserInviteRevoked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventUserFollowed _$ChatEventUserFollowedFromJson(
@@ -11121,6 +13180,21 @@ extension $ChatEventUserFollowedJson on ChatEventUserFollowed {
       };
 }
 
+extension $ChatEventUserFollowedCopyWith on ChatEventUserFollowed {
+  ChatEventUserFollowed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserFollowed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserUnfollowed _$ChatEventUserUnfollowedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserUnfollowed.new);
@@ -11132,6 +13206,21 @@ extension $ChatEventUserUnfollowedJson on ChatEventUserUnfollowed {
       };
 }
 
+extension $ChatEventUserUnfollowedCopyWith on ChatEventUserUnfollowed {
+  ChatEventUserUnfollowed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserUnfollowed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventUserPinged _$ChatEventUserPingedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserPinged.new);
 
@@ -11140,6 +13229,21 @@ extension $ChatEventUserPingedJson on ChatEventUserPinged {
         'event_type': 'user_pinged',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventUserPingedCopyWith on ChatEventUserPinged {
+  ChatEventUserPinged copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventUserPinged(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageSent _$ChatEventMessageSentFromJson(
@@ -11153,6 +13257,21 @@ extension $ChatEventMessageSentJson on ChatEventMessageSent {
       };
 }
 
+extension $ChatEventMessageSentCopyWith on ChatEventMessageSent {
+  ChatEventMessageSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageReceived _$ChatEventMessageReceivedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageReceived.new);
@@ -11162,6 +13281,21 @@ extension $ChatEventMessageReceivedJson on ChatEventMessageReceived {
         'event_type': 'message_received',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageReceivedCopyWith on ChatEventMessageReceived {
+  ChatEventMessageReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageRead _$ChatEventMessageReadFromJson(
@@ -11175,6 +13309,21 @@ extension $ChatEventMessageReadJson on ChatEventMessageRead {
       };
 }
 
+extension $ChatEventMessageReadCopyWith on ChatEventMessageRead {
+  ChatEventMessageRead copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageRead(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageUnread _$ChatEventMessageUnreadFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageUnread.new);
@@ -11184,6 +13333,21 @@ extension $ChatEventMessageUnreadJson on ChatEventMessageUnread {
         'event_type': 'message_unread',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageUnreadCopyWith on ChatEventMessageUnread {
+  ChatEventMessageUnread copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageUnread(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageEdited _$ChatEventMessageEditedFromJson(
@@ -11197,6 +13361,21 @@ extension $ChatEventMessageEditedJson on ChatEventMessageEdited {
       };
 }
 
+extension $ChatEventMessageEditedCopyWith on ChatEventMessageEdited {
+  ChatEventMessageEdited copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageEdited(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageDeleted _$ChatEventMessageDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageDeleted.new);
@@ -11206,6 +13385,21 @@ extension $ChatEventMessageDeletedJson on ChatEventMessageDeleted {
         'event_type': 'message_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageDeletedCopyWith on ChatEventMessageDeleted {
+  ChatEventMessageDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageDeletedForSelf _$ChatEventMessageDeletedForSelfFromJson(
@@ -11220,6 +13414,22 @@ extension $ChatEventMessageDeletedForSelfJson
       };
 }
 
+extension $ChatEventMessageDeletedForSelfCopyWith
+    on ChatEventMessageDeletedForSelf {
+  ChatEventMessageDeletedForSelf copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageDeletedForSelf(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageDeletedForAll _$ChatEventMessageDeletedForAllFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageDeletedForAll.new);
@@ -11229,6 +13439,22 @@ extension $ChatEventMessageDeletedForAllJson on ChatEventMessageDeletedForAll {
         'event_type': 'message_deleted_for_all',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageDeletedForAllCopyWith
+    on ChatEventMessageDeletedForAll {
+  ChatEventMessageDeletedForAll copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageDeletedForAll(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessagePinned _$ChatEventMessagePinnedFromJson(
@@ -11242,6 +13468,21 @@ extension $ChatEventMessagePinnedJson on ChatEventMessagePinned {
       };
 }
 
+extension $ChatEventMessagePinnedCopyWith on ChatEventMessagePinned {
+  ChatEventMessagePinned copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessagePinned(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageUnpinned _$ChatEventMessageUnpinnedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageUnpinned.new);
@@ -11251,6 +13492,21 @@ extension $ChatEventMessageUnpinnedJson on ChatEventMessageUnpinned {
         'event_type': 'message_unpinned',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageUnpinnedCopyWith on ChatEventMessageUnpinned {
+  ChatEventMessageUnpinned copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageUnpinned(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageStarred _$ChatEventMessageStarredFromJson(
@@ -11264,6 +13520,21 @@ extension $ChatEventMessageStarredJson on ChatEventMessageStarred {
       };
 }
 
+extension $ChatEventMessageStarredCopyWith on ChatEventMessageStarred {
+  ChatEventMessageStarred copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageStarred(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageUnstarred _$ChatEventMessageUnstarredFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageUnstarred.new);
@@ -11273,6 +13544,21 @@ extension $ChatEventMessageUnstarredJson on ChatEventMessageUnstarred {
         'event_type': 'message_unstarred',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageUnstarredCopyWith on ChatEventMessageUnstarred {
+  ChatEventMessageUnstarred copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageUnstarred(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageLiked _$ChatEventMessageLikedFromJson(
@@ -11286,6 +13572,21 @@ extension $ChatEventMessageLikedJson on ChatEventMessageLiked {
       };
 }
 
+extension $ChatEventMessageLikedCopyWith on ChatEventMessageLiked {
+  ChatEventMessageLiked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageLiked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageUnliked _$ChatEventMessageUnlikedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageUnliked.new);
@@ -11295,6 +13596,21 @@ extension $ChatEventMessageUnlikedJson on ChatEventMessageUnliked {
         'event_type': 'message_unliked',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageUnlikedCopyWith on ChatEventMessageUnliked {
+  ChatEventMessageUnliked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageUnliked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageDisliked _$ChatEventMessageDislikedFromJson(
@@ -11308,6 +13624,21 @@ extension $ChatEventMessageDislikedJson on ChatEventMessageDisliked {
       };
 }
 
+extension $ChatEventMessageDislikedCopyWith on ChatEventMessageDisliked {
+  ChatEventMessageDisliked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageDisliked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageReacted _$ChatEventMessageReactedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageReacted.new);
@@ -11317,6 +13648,21 @@ extension $ChatEventMessageReactedJson on ChatEventMessageReacted {
         'event_type': 'message_reacted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageReactedCopyWith on ChatEventMessageReacted {
+  ChatEventMessageReacted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageReacted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageUnreacted _$ChatEventMessageUnreactedFromJson(
@@ -11330,6 +13676,21 @@ extension $ChatEventMessageUnreactedJson on ChatEventMessageUnreacted {
       };
 }
 
+extension $ChatEventMessageUnreactedCopyWith on ChatEventMessageUnreacted {
+  ChatEventMessageUnreacted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageUnreacted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageForwarded _$ChatEventMessageForwardedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageForwarded.new);
@@ -11339,6 +13700,21 @@ extension $ChatEventMessageForwardedJson on ChatEventMessageForwarded {
         'event_type': 'message_forwarded',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageForwardedCopyWith on ChatEventMessageForwarded {
+  ChatEventMessageForwarded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageForwarded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageQuoted _$ChatEventMessageQuotedFromJson(
@@ -11352,6 +13728,21 @@ extension $ChatEventMessageQuotedJson on ChatEventMessageQuoted {
       };
 }
 
+extension $ChatEventMessageQuotedCopyWith on ChatEventMessageQuoted {
+  ChatEventMessageQuoted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageQuoted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageFlagged _$ChatEventMessageFlaggedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageFlagged.new);
@@ -11361,6 +13752,21 @@ extension $ChatEventMessageFlaggedJson on ChatEventMessageFlagged {
         'event_type': 'message_flagged',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageFlaggedCopyWith on ChatEventMessageFlagged {
+  ChatEventMessageFlagged copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageFlagged(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageUnflagged _$ChatEventMessageUnflaggedFromJson(
@@ -11374,6 +13780,21 @@ extension $ChatEventMessageUnflaggedJson on ChatEventMessageUnflagged {
       };
 }
 
+extension $ChatEventMessageUnflaggedCopyWith on ChatEventMessageUnflagged {
+  ChatEventMessageUnflagged copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageUnflagged(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageSpamDetected _$ChatEventMessageSpamDetectedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageSpamDetected.new);
@@ -11383,6 +13804,22 @@ extension $ChatEventMessageSpamDetectedJson on ChatEventMessageSpamDetected {
         'event_type': 'message_spam_detected',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageSpamDetectedCopyWith
+    on ChatEventMessageSpamDetected {
+  ChatEventMessageSpamDetected copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageSpamDetected(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageDeliveryFailed _$ChatEventMessageDeliveryFailedFromJson(
@@ -11397,6 +13834,22 @@ extension $ChatEventMessageDeliveryFailedJson
       };
 }
 
+extension $ChatEventMessageDeliveryFailedCopyWith
+    on ChatEventMessageDeliveryFailed {
+  ChatEventMessageDeliveryFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageDeliveryFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageScheduled _$ChatEventMessageScheduledFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageScheduled.new);
@@ -11408,6 +13861,21 @@ extension $ChatEventMessageScheduledJson on ChatEventMessageScheduled {
       };
 }
 
+extension $ChatEventMessageScheduledCopyWith on ChatEventMessageScheduled {
+  ChatEventMessageScheduled copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageScheduled(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageScheduledSent _$ChatEventMessageScheduledSentFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageScheduledSent.new);
@@ -11417,6 +13885,22 @@ extension $ChatEventMessageScheduledSentJson on ChatEventMessageScheduledSent {
         'event_type': 'message_scheduled_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageScheduledSentCopyWith
+    on ChatEventMessageScheduledSent {
+  ChatEventMessageScheduledSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageScheduledSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageScheduledFailed _$ChatEventMessageScheduledFailedFromJson(
@@ -11431,6 +13915,22 @@ extension $ChatEventMessageScheduledFailedJson
       };
 }
 
+extension $ChatEventMessageScheduledFailedCopyWith
+    on ChatEventMessageScheduledFailed {
+  ChatEventMessageScheduledFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageScheduledFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventMessageHidden _$ChatEventMessageHiddenFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventMessageHidden.new);
@@ -11440,6 +13940,21 @@ extension $ChatEventMessageHiddenJson on ChatEventMessageHidden {
         'event_type': 'message_hidden',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventMessageHiddenCopyWith on ChatEventMessageHidden {
+  ChatEventMessageHidden copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageHidden(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventMessageRestored _$ChatEventMessageRestoredFromJson(
@@ -11453,6 +13968,21 @@ extension $ChatEventMessageRestoredJson on ChatEventMessageRestored {
       };
 }
 
+extension $ChatEventMessageRestoredCopyWith on ChatEventMessageRestored {
+  ChatEventMessageRestored copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventMessageRestored(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAttachmentUploaded _$ChatEventAttachmentUploadedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAttachmentUploaded.new);
@@ -11462,6 +13992,21 @@ extension $ChatEventAttachmentUploadedJson on ChatEventAttachmentUploaded {
         'event_type': 'attachment_uploaded',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAttachmentUploadedCopyWith on ChatEventAttachmentUploaded {
+  ChatEventAttachmentUploaded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAttachmentUploaded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAttachmentFailed _$ChatEventAttachmentFailedFromJson(
@@ -11475,6 +14020,21 @@ extension $ChatEventAttachmentFailedJson on ChatEventAttachmentFailed {
       };
 }
 
+extension $ChatEventAttachmentFailedCopyWith on ChatEventAttachmentFailed {
+  ChatEventAttachmentFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAttachmentFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAttachmentDeleted _$ChatEventAttachmentDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAttachmentDeleted.new);
@@ -11484,6 +14044,21 @@ extension $ChatEventAttachmentDeletedJson on ChatEventAttachmentDeleted {
         'event_type': 'attachment_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAttachmentDeletedCopyWith on ChatEventAttachmentDeleted {
+  ChatEventAttachmentDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAttachmentDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAttachmentPreviewGenerated
@@ -11498,6 +14073,22 @@ extension $ChatEventAttachmentPreviewGeneratedJson
       };
 }
 
+extension $ChatEventAttachmentPreviewGeneratedCopyWith
+    on ChatEventAttachmentPreviewGenerated {
+  ChatEventAttachmentPreviewGenerated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAttachmentPreviewGenerated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAttachmentDownloaded _$ChatEventAttachmentDownloadedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloaded.new);
@@ -11507,6 +14098,22 @@ extension $ChatEventAttachmentDownloadedJson on ChatEventAttachmentDownloaded {
         'event_type': 'attachment_downloaded',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAttachmentDownloadedCopyWith
+    on ChatEventAttachmentDownloaded {
+  ChatEventAttachmentDownloaded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAttachmentDownloaded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAttachmentDownloadStarted _$ChatEventAttachmentDownloadStartedFromJson(
@@ -11521,6 +14128,22 @@ extension $ChatEventAttachmentDownloadStartedJson
       };
 }
 
+extension $ChatEventAttachmentDownloadStartedCopyWith
+    on ChatEventAttachmentDownloadStarted {
+  ChatEventAttachmentDownloadStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAttachmentDownloadStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAttachmentDownloadCancelled
     _$ChatEventAttachmentDownloadCancelledFromJson(Map<String, dynamic> json) =>
         _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloadCancelled.new);
@@ -11531,6 +14154,22 @@ extension $ChatEventAttachmentDownloadCancelledJson
         'event_type': 'attachment_download_cancelled',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAttachmentDownloadCancelledCopyWith
+    on ChatEventAttachmentDownloadCancelled {
+  ChatEventAttachmentDownloadCancelled copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAttachmentDownloadCancelled(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAttachmentDownloadFailed _$ChatEventAttachmentDownloadFailedFromJson(
@@ -11545,6 +14184,22 @@ extension $ChatEventAttachmentDownloadFailedJson
       };
 }
 
+extension $ChatEventAttachmentDownloadFailedCopyWith
+    on ChatEventAttachmentDownloadFailed {
+  ChatEventAttachmentDownloadFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAttachmentDownloadFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventImageSent _$ChatEventImageSentFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventImageSent.new);
 
@@ -11553,6 +14208,21 @@ extension $ChatEventImageSentJson on ChatEventImageSent {
         'event_type': 'image_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventImageSentCopyWith on ChatEventImageSent {
+  ChatEventImageSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventImageSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventImageReceived _$ChatEventImageReceivedFromJson(
@@ -11566,6 +14236,21 @@ extension $ChatEventImageReceivedJson on ChatEventImageReceived {
       };
 }
 
+extension $ChatEventImageReceivedCopyWith on ChatEventImageReceived {
+  ChatEventImageReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventImageReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventImageDeleted _$ChatEventImageDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventImageDeleted.new);
@@ -11575,6 +14260,21 @@ extension $ChatEventImageDeletedJson on ChatEventImageDeleted {
         'event_type': 'image_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventImageDeletedCopyWith on ChatEventImageDeleted {
+  ChatEventImageDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventImageDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventImageBlurred _$ChatEventImageBlurredFromJson(
@@ -11588,6 +14288,21 @@ extension $ChatEventImageBlurredJson on ChatEventImageBlurred {
       };
 }
 
+extension $ChatEventImageBlurredCopyWith on ChatEventImageBlurred {
+  ChatEventImageBlurred copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventImageBlurred(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventImageUnblurred _$ChatEventImageUnblurredFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventImageUnblurred.new);
@@ -11597,6 +14312,21 @@ extension $ChatEventImageUnblurredJson on ChatEventImageUnblurred {
         'event_type': 'image_unblurred',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventImageUnblurredCopyWith on ChatEventImageUnblurred {
+  ChatEventImageUnblurred copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventImageUnblurred(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventImageCompressed _$ChatEventImageCompressedFromJson(
@@ -11610,6 +14340,21 @@ extension $ChatEventImageCompressedJson on ChatEventImageCompressed {
       };
 }
 
+extension $ChatEventImageCompressedCopyWith on ChatEventImageCompressed {
+  ChatEventImageCompressed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventImageCompressed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVideoSent _$ChatEventVideoSentFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVideoSent.new);
 
@@ -11618,6 +14363,21 @@ extension $ChatEventVideoSentJson on ChatEventVideoSent {
         'event_type': 'video_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventVideoSentCopyWith on ChatEventVideoSent {
+  ChatEventVideoSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventVideoReceived _$ChatEventVideoReceivedFromJson(
@@ -11631,6 +14391,21 @@ extension $ChatEventVideoReceivedJson on ChatEventVideoReceived {
       };
 }
 
+extension $ChatEventVideoReceivedCopyWith on ChatEventVideoReceived {
+  ChatEventVideoReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVideoPlayed _$ChatEventVideoPlayedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVideoPlayed.new);
@@ -11640,6 +14415,21 @@ extension $ChatEventVideoPlayedJson on ChatEventVideoPlayed {
         'event_type': 'video_played',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventVideoPlayedCopyWith on ChatEventVideoPlayed {
+  ChatEventVideoPlayed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoPlayed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventVideoPaused _$ChatEventVideoPausedFromJson(
@@ -11653,6 +14443,21 @@ extension $ChatEventVideoPausedJson on ChatEventVideoPaused {
       };
 }
 
+extension $ChatEventVideoPausedCopyWith on ChatEventVideoPaused {
+  ChatEventVideoPaused copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoPaused(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVideoStopped _$ChatEventVideoStoppedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVideoStopped.new);
@@ -11662,6 +14467,21 @@ extension $ChatEventVideoStoppedJson on ChatEventVideoStopped {
         'event_type': 'video_stopped',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventVideoStoppedCopyWith on ChatEventVideoStopped {
+  ChatEventVideoStopped copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoStopped(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventVideoSeeked _$ChatEventVideoSeekedFromJson(
@@ -11675,6 +14495,21 @@ extension $ChatEventVideoSeekedJson on ChatEventVideoSeeked {
       };
 }
 
+extension $ChatEventVideoSeekedCopyWith on ChatEventVideoSeeked {
+  ChatEventVideoSeeked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoSeeked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVideoDeleted _$ChatEventVideoDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVideoDeleted.new);
@@ -11686,6 +14521,21 @@ extension $ChatEventVideoDeletedJson on ChatEventVideoDeleted {
       };
 }
 
+extension $ChatEventVideoDeletedCopyWith on ChatEventVideoDeleted {
+  ChatEventVideoDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVideoMuted _$ChatEventVideoMutedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVideoMuted.new);
 
@@ -11694,6 +14544,21 @@ extension $ChatEventVideoMutedJson on ChatEventVideoMuted {
         'event_type': 'video_muted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventVideoMutedCopyWith on ChatEventVideoMuted {
+  ChatEventVideoMuted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoMuted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventVideoUnmuted _$ChatEventVideoUnmutedFromJson(
@@ -11707,6 +14572,21 @@ extension $ChatEventVideoUnmutedJson on ChatEventVideoUnmuted {
       };
 }
 
+extension $ChatEventVideoUnmutedCopyWith on ChatEventVideoUnmuted {
+  ChatEventVideoUnmuted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoUnmuted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAudioSent _$ChatEventAudioSentFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAudioSent.new);
 
@@ -11715,6 +14595,21 @@ extension $ChatEventAudioSentJson on ChatEventAudioSent {
         'event_type': 'audio_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAudioSentCopyWith on ChatEventAudioSent {
+  ChatEventAudioSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAudioSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAudioReceived _$ChatEventAudioReceivedFromJson(
@@ -11728,6 +14623,21 @@ extension $ChatEventAudioReceivedJson on ChatEventAudioReceived {
       };
 }
 
+extension $ChatEventAudioReceivedCopyWith on ChatEventAudioReceived {
+  ChatEventAudioReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAudioReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAudioPlayed _$ChatEventAudioPlayedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAudioPlayed.new);
@@ -11737,6 +14647,21 @@ extension $ChatEventAudioPlayedJson on ChatEventAudioPlayed {
         'event_type': 'audio_played',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAudioPlayedCopyWith on ChatEventAudioPlayed {
+  ChatEventAudioPlayed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAudioPlayed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAudioPaused _$ChatEventAudioPausedFromJson(
@@ -11750,6 +14675,21 @@ extension $ChatEventAudioPausedJson on ChatEventAudioPaused {
       };
 }
 
+extension $ChatEventAudioPausedCopyWith on ChatEventAudioPaused {
+  ChatEventAudioPaused copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAudioPaused(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAudioDeleted _$ChatEventAudioDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAudioDeleted.new);
@@ -11761,6 +14701,21 @@ extension $ChatEventAudioDeletedJson on ChatEventAudioDeleted {
       };
 }
 
+extension $ChatEventAudioDeletedCopyWith on ChatEventAudioDeleted {
+  ChatEventAudioDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAudioDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAudioTranscribed _$ChatEventAudioTranscribedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAudioTranscribed.new);
@@ -11770,6 +14725,21 @@ extension $ChatEventAudioTranscribedJson on ChatEventAudioTranscribed {
         'event_type': 'audio_transcribed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAudioTranscribedCopyWith on ChatEventAudioTranscribed {
+  ChatEventAudioTranscribed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAudioTranscribed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAudioTranscriptionFailed _$ChatEventAudioTranscriptionFailedFromJson(
@@ -11784,6 +14754,22 @@ extension $ChatEventAudioTranscriptionFailedJson
       };
 }
 
+extension $ChatEventAudioTranscriptionFailedCopyWith
+    on ChatEventAudioTranscriptionFailed {
+  ChatEventAudioTranscriptionFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAudioTranscriptionFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventFileSent _$ChatEventFileSentFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventFileSent.new);
 
@@ -11792,6 +14778,21 @@ extension $ChatEventFileSentJson on ChatEventFileSent {
         'event_type': 'file_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventFileSentCopyWith on ChatEventFileSent {
+  ChatEventFileSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventFileSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventFileReceived _$ChatEventFileReceivedFromJson(
@@ -11805,6 +14806,21 @@ extension $ChatEventFileReceivedJson on ChatEventFileReceived {
       };
 }
 
+extension $ChatEventFileReceivedCopyWith on ChatEventFileReceived {
+  ChatEventFileReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventFileReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventFilePreviewGenerated _$ChatEventFilePreviewGeneratedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventFilePreviewGenerated.new);
@@ -11814,6 +14830,22 @@ extension $ChatEventFilePreviewGeneratedJson on ChatEventFilePreviewGenerated {
         'event_type': 'file_preview_generated',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventFilePreviewGeneratedCopyWith
+    on ChatEventFilePreviewGenerated {
+  ChatEventFilePreviewGenerated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventFilePreviewGenerated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventFileDeleted _$ChatEventFileDeletedFromJson(
@@ -11827,6 +14859,21 @@ extension $ChatEventFileDeletedJson on ChatEventFileDeleted {
       };
 }
 
+extension $ChatEventFileDeletedCopyWith on ChatEventFileDeleted {
+  ChatEventFileDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventFileDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventFileDownloaded _$ChatEventFileDownloadedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventFileDownloaded.new);
@@ -11836,6 +14883,21 @@ extension $ChatEventFileDownloadedJson on ChatEventFileDownloaded {
         'event_type': 'file_downloaded',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventFileDownloadedCopyWith on ChatEventFileDownloaded {
+  ChatEventFileDownloaded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventFileDownloaded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventLinkPreviewGenerated _$ChatEventLinkPreviewGeneratedFromJson(
@@ -11849,6 +14911,22 @@ extension $ChatEventLinkPreviewGeneratedJson on ChatEventLinkPreviewGenerated {
       };
 }
 
+extension $ChatEventLinkPreviewGeneratedCopyWith
+    on ChatEventLinkPreviewGenerated {
+  ChatEventLinkPreviewGenerated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLinkPreviewGenerated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventLinkPreviewFailed _$ChatEventLinkPreviewFailedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventLinkPreviewFailed.new);
@@ -11858,6 +14936,21 @@ extension $ChatEventLinkPreviewFailedJson on ChatEventLinkPreviewFailed {
         'event_type': 'link_preview_failed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventLinkPreviewFailedCopyWith on ChatEventLinkPreviewFailed {
+  ChatEventLinkPreviewFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLinkPreviewFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventReactionAdded _$ChatEventReactionAddedFromJson(
@@ -11871,6 +14964,21 @@ extension $ChatEventReactionAddedJson on ChatEventReactionAdded {
       };
 }
 
+extension $ChatEventReactionAddedCopyWith on ChatEventReactionAdded {
+  ChatEventReactionAdded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventReactionAdded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventReactionRemoved _$ChatEventReactionRemovedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventReactionRemoved.new);
@@ -11880,6 +14988,21 @@ extension $ChatEventReactionRemovedJson on ChatEventReactionRemoved {
         'event_type': 'reaction_removed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventReactionRemovedCopyWith on ChatEventReactionRemoved {
+  ChatEventReactionRemoved copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventReactionRemoved(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventReactionUpdated _$ChatEventReactionUpdatedFromJson(
@@ -11893,6 +15016,21 @@ extension $ChatEventReactionUpdatedJson on ChatEventReactionUpdated {
       };
 }
 
+extension $ChatEventReactionUpdatedCopyWith on ChatEventReactionUpdated {
+  ChatEventReactionUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventReactionUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventReactionCleared _$ChatEventReactionClearedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventReactionCleared.new);
@@ -11902,6 +15040,21 @@ extension $ChatEventReactionClearedJson on ChatEventReactionCleared {
         'event_type': 'reaction_cleared',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventReactionClearedCopyWith on ChatEventReactionCleared {
+  ChatEventReactionCleared copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventReactionCleared(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventThreadCreated _$ChatEventThreadCreatedFromJson(
@@ -11915,6 +15068,21 @@ extension $ChatEventThreadCreatedJson on ChatEventThreadCreated {
       };
 }
 
+extension $ChatEventThreadCreatedCopyWith on ChatEventThreadCreated {
+  ChatEventThreadCreated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventThreadCreated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventThreadUpdated _$ChatEventThreadUpdatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventThreadUpdated.new);
@@ -11924,6 +15092,21 @@ extension $ChatEventThreadUpdatedJson on ChatEventThreadUpdated {
         'event_type': 'thread_updated',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventThreadUpdatedCopyWith on ChatEventThreadUpdated {
+  ChatEventThreadUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventThreadUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventThreadDeleted _$ChatEventThreadDeletedFromJson(
@@ -11937,6 +15120,21 @@ extension $ChatEventThreadDeletedJson on ChatEventThreadDeleted {
       };
 }
 
+extension $ChatEventThreadDeletedCopyWith on ChatEventThreadDeleted {
+  ChatEventThreadDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventThreadDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventThreadArchived _$ChatEventThreadArchivedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventThreadArchived.new);
@@ -11946,6 +15144,21 @@ extension $ChatEventThreadArchivedJson on ChatEventThreadArchived {
         'event_type': 'thread_archived',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventThreadArchivedCopyWith on ChatEventThreadArchived {
+  ChatEventThreadArchived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventThreadArchived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventThreadUnarchived _$ChatEventThreadUnarchivedFromJson(
@@ -11959,6 +15172,21 @@ extension $ChatEventThreadUnarchivedJson on ChatEventThreadUnarchived {
       };
 }
 
+extension $ChatEventThreadUnarchivedCopyWith on ChatEventThreadUnarchived {
+  ChatEventThreadUnarchived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventThreadUnarchived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventChannelCreated _$ChatEventChannelCreatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventChannelCreated.new);
@@ -11970,6 +15198,21 @@ extension $ChatEventChannelCreatedJson on ChatEventChannelCreated {
       };
 }
 
+extension $ChatEventChannelCreatedCopyWith on ChatEventChannelCreated {
+  ChatEventChannelCreated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelCreated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventChannelRenamed _$ChatEventChannelRenamedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventChannelRenamed.new);
@@ -11979,6 +15222,21 @@ extension $ChatEventChannelRenamedJson on ChatEventChannelRenamed {
         'event_type': 'channel_renamed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventChannelRenamedCopyWith on ChatEventChannelRenamed {
+  ChatEventChannelRenamed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelRenamed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventChannelDescriptionUpdated _$ChatEventChannelDescriptionUpdatedFromJson(
@@ -11993,6 +15251,22 @@ extension $ChatEventChannelDescriptionUpdatedJson
       };
 }
 
+extension $ChatEventChannelDescriptionUpdatedCopyWith
+    on ChatEventChannelDescriptionUpdated {
+  ChatEventChannelDescriptionUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelDescriptionUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventChannelDeleted _$ChatEventChannelDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventChannelDeleted.new);
@@ -12002,6 +15276,21 @@ extension $ChatEventChannelDeletedJson on ChatEventChannelDeleted {
         'event_type': 'channel_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventChannelDeletedCopyWith on ChatEventChannelDeleted {
+  ChatEventChannelDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventChannelArchived _$ChatEventChannelArchivedFromJson(
@@ -12015,6 +15304,21 @@ extension $ChatEventChannelArchivedJson on ChatEventChannelArchived {
       };
 }
 
+extension $ChatEventChannelArchivedCopyWith on ChatEventChannelArchived {
+  ChatEventChannelArchived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelArchived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventChannelUnarchived _$ChatEventChannelUnarchivedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventChannelUnarchived.new);
@@ -12024,6 +15328,21 @@ extension $ChatEventChannelUnarchivedJson on ChatEventChannelUnarchived {
         'event_type': 'channel_unarchived',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventChannelUnarchivedCopyWith on ChatEventChannelUnarchived {
+  ChatEventChannelUnarchived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelUnarchived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventChannelLocked _$ChatEventChannelLockedFromJson(
@@ -12037,6 +15356,21 @@ extension $ChatEventChannelLockedJson on ChatEventChannelLocked {
       };
 }
 
+extension $ChatEventChannelLockedCopyWith on ChatEventChannelLocked {
+  ChatEventChannelLocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelLocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventChannelUnlocked _$ChatEventChannelUnlockedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventChannelUnlocked.new);
@@ -12046,6 +15380,21 @@ extension $ChatEventChannelUnlockedJson on ChatEventChannelUnlocked {
         'event_type': 'channel_unlocked',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventChannelUnlockedCopyWith on ChatEventChannelUnlocked {
+  ChatEventChannelUnlocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelUnlocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventChannelMigrated _$ChatEventChannelMigratedFromJson(
@@ -12059,6 +15408,21 @@ extension $ChatEventChannelMigratedJson on ChatEventChannelMigrated {
       };
 }
 
+extension $ChatEventChannelMigratedCopyWith on ChatEventChannelMigrated {
+  ChatEventChannelMigrated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelMigrated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventChannelHidden _$ChatEventChannelHiddenFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventChannelHidden.new);
@@ -12068,6 +15432,21 @@ extension $ChatEventChannelHiddenJson on ChatEventChannelHidden {
         'event_type': 'channel_hidden',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventChannelHiddenCopyWith on ChatEventChannelHidden {
+  ChatEventChannelHidden copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelHidden(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventChannelUnhidden _$ChatEventChannelUnhiddenFromJson(
@@ -12081,6 +15460,21 @@ extension $ChatEventChannelUnhiddenJson on ChatEventChannelUnhidden {
       };
 }
 
+extension $ChatEventChannelUnhiddenCopyWith on ChatEventChannelUnhidden {
+  ChatEventChannelUnhidden copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventChannelUnhidden(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGroupCreated _$ChatEventGroupCreatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGroupCreated.new);
@@ -12090,6 +15484,21 @@ extension $ChatEventGroupCreatedJson on ChatEventGroupCreated {
         'event_type': 'group_created',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventGroupCreatedCopyWith on ChatEventGroupCreated {
+  ChatEventGroupCreated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupCreated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventGroupUpdated _$ChatEventGroupUpdatedFromJson(
@@ -12103,6 +15512,21 @@ extension $ChatEventGroupUpdatedJson on ChatEventGroupUpdated {
       };
 }
 
+extension $ChatEventGroupUpdatedCopyWith on ChatEventGroupUpdated {
+  ChatEventGroupUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGroupDeleted _$ChatEventGroupDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGroupDeleted.new);
@@ -12112,6 +15536,21 @@ extension $ChatEventGroupDeletedJson on ChatEventGroupDeleted {
         'event_type': 'group_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventGroupDeletedCopyWith on ChatEventGroupDeleted {
+  ChatEventGroupDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventGroupIconUpdated _$ChatEventGroupIconUpdatedFromJson(
@@ -12125,6 +15564,21 @@ extension $ChatEventGroupIconUpdatedJson on ChatEventGroupIconUpdated {
       };
 }
 
+extension $ChatEventGroupIconUpdatedCopyWith on ChatEventGroupIconUpdated {
+  ChatEventGroupIconUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupIconUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGroupAdminAdded _$ChatEventGroupAdminAddedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGroupAdminAdded.new);
@@ -12134,6 +15588,21 @@ extension $ChatEventGroupAdminAddedJson on ChatEventGroupAdminAdded {
         'event_type': 'group_admin_added',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventGroupAdminAddedCopyWith on ChatEventGroupAdminAdded {
+  ChatEventGroupAdminAdded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupAdminAdded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventGroupAdminRemoved _$ChatEventGroupAdminRemovedFromJson(
@@ -12147,6 +15616,21 @@ extension $ChatEventGroupAdminRemovedJson on ChatEventGroupAdminRemoved {
       };
 }
 
+extension $ChatEventGroupAdminRemovedCopyWith on ChatEventGroupAdminRemoved {
+  ChatEventGroupAdminRemoved copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupAdminRemoved(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGroupMemberAdded _$ChatEventGroupMemberAddedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGroupMemberAdded.new);
@@ -12156,6 +15640,21 @@ extension $ChatEventGroupMemberAddedJson on ChatEventGroupMemberAdded {
         'event_type': 'group_member_added',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventGroupMemberAddedCopyWith on ChatEventGroupMemberAdded {
+  ChatEventGroupMemberAdded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupMemberAdded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventGroupMemberRemoved _$ChatEventGroupMemberRemovedFromJson(
@@ -12169,6 +15668,21 @@ extension $ChatEventGroupMemberRemovedJson on ChatEventGroupMemberRemoved {
       };
 }
 
+extension $ChatEventGroupMemberRemovedCopyWith on ChatEventGroupMemberRemoved {
+  ChatEventGroupMemberRemoved copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupMemberRemoved(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGroupMemberLeft _$ChatEventGroupMemberLeftFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGroupMemberLeft.new);
@@ -12178,6 +15692,21 @@ extension $ChatEventGroupMemberLeftJson on ChatEventGroupMemberLeft {
         'event_type': 'group_member_left',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventGroupMemberLeftCopyWith on ChatEventGroupMemberLeft {
+  ChatEventGroupMemberLeft copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupMemberLeft(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventGroupMemberKicked _$ChatEventGroupMemberKickedFromJson(
@@ -12191,6 +15720,21 @@ extension $ChatEventGroupMemberKickedJson on ChatEventGroupMemberKicked {
       };
 }
 
+extension $ChatEventGroupMemberKickedCopyWith on ChatEventGroupMemberKicked {
+  ChatEventGroupMemberKicked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupMemberKicked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGroupInfoViewed _$ChatEventGroupInfoViewedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGroupInfoViewed.new);
@@ -12200,6 +15744,21 @@ extension $ChatEventGroupInfoViewedJson on ChatEventGroupInfoViewed {
         'event_type': 'group_info_viewed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventGroupInfoViewedCopyWith on ChatEventGroupInfoViewed {
+  ChatEventGroupInfoViewed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGroupInfoViewed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventCallStarted _$ChatEventCallStartedFromJson(
@@ -12213,6 +15772,21 @@ extension $ChatEventCallStartedJson on ChatEventCallStarted {
       };
 }
 
+extension $ChatEventCallStartedCopyWith on ChatEventCallStarted {
+  ChatEventCallStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventCallEnded _$ChatEventCallEndedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventCallEnded.new);
 
@@ -12223,6 +15797,21 @@ extension $ChatEventCallEndedJson on ChatEventCallEnded {
       };
 }
 
+extension $ChatEventCallEndedCopyWith on ChatEventCallEnded {
+  ChatEventCallEnded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallEnded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventCallMissed _$ChatEventCallMissedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventCallMissed.new);
 
@@ -12231,6 +15820,21 @@ extension $ChatEventCallMissedJson on ChatEventCallMissed {
         'event_type': 'call_missed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventCallMissedCopyWith on ChatEventCallMissed {
+  ChatEventCallMissed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallMissed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventCallRejected _$ChatEventCallRejectedFromJson(
@@ -12244,6 +15848,21 @@ extension $ChatEventCallRejectedJson on ChatEventCallRejected {
       };
 }
 
+extension $ChatEventCallRejectedCopyWith on ChatEventCallRejected {
+  ChatEventCallRejected copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallRejected(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventCallAccepted _$ChatEventCallAcceptedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventCallAccepted.new);
@@ -12253,6 +15872,21 @@ extension $ChatEventCallAcceptedJson on ChatEventCallAccepted {
         'event_type': 'call_accepted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventCallAcceptedCopyWith on ChatEventCallAccepted {
+  ChatEventCallAccepted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallAccepted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventCallReconnecting _$ChatEventCallReconnectingFromJson(
@@ -12266,6 +15900,21 @@ extension $ChatEventCallReconnectingJson on ChatEventCallReconnecting {
       };
 }
 
+extension $ChatEventCallReconnectingCopyWith on ChatEventCallReconnecting {
+  ChatEventCallReconnecting copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallReconnecting(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventCallReconnected _$ChatEventCallReconnectedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventCallReconnected.new);
@@ -12277,6 +15926,21 @@ extension $ChatEventCallReconnectedJson on ChatEventCallReconnected {
       };
 }
 
+extension $ChatEventCallReconnectedCopyWith on ChatEventCallReconnected {
+  ChatEventCallReconnected copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallReconnected(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventCallNetworkLow _$ChatEventCallNetworkLowFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventCallNetworkLow.new);
@@ -12286,6 +15950,21 @@ extension $ChatEventCallNetworkLowJson on ChatEventCallNetworkLow {
         'event_type': 'call_network_low',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventCallNetworkLowCopyWith on ChatEventCallNetworkLow {
+  ChatEventCallNetworkLow copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallNetworkLow(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventCallMediaPermissionDenied _$ChatEventCallMediaPermissionDeniedFromJson(
@@ -12300,6 +15979,22 @@ extension $ChatEventCallMediaPermissionDeniedJson
       };
 }
 
+extension $ChatEventCallMediaPermissionDeniedCopyWith
+    on ChatEventCallMediaPermissionDenied {
+  ChatEventCallMediaPermissionDenied copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallMediaPermissionDenied(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventCallRecordingStarted _$ChatEventCallRecordingStartedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventCallRecordingStarted.new);
@@ -12309,6 +16004,22 @@ extension $ChatEventCallRecordingStartedJson on ChatEventCallRecordingStarted {
         'event_type': 'call_recording_started',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventCallRecordingStartedCopyWith
+    on ChatEventCallRecordingStarted {
+  ChatEventCallRecordingStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallRecordingStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventCallRecordingStopped _$ChatEventCallRecordingStoppedFromJson(
@@ -12322,6 +16033,22 @@ extension $ChatEventCallRecordingStoppedJson on ChatEventCallRecordingStopped {
       };
 }
 
+extension $ChatEventCallRecordingStoppedCopyWith
+    on ChatEventCallRecordingStopped {
+  ChatEventCallRecordingStopped copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCallRecordingStopped(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVideoCallStarted _$ChatEventVideoCallStartedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVideoCallStarted.new);
@@ -12331,6 +16058,21 @@ extension $ChatEventVideoCallStartedJson on ChatEventVideoCallStarted {
         'event_type': 'video_call_started',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventVideoCallStartedCopyWith on ChatEventVideoCallStarted {
+  ChatEventVideoCallStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoCallStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventVideoCallEnded _$ChatEventVideoCallEndedFromJson(
@@ -12344,6 +16086,21 @@ extension $ChatEventVideoCallEndedJson on ChatEventVideoCallEnded {
       };
 }
 
+extension $ChatEventVideoCallEndedCopyWith on ChatEventVideoCallEnded {
+  ChatEventVideoCallEnded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoCallEnded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVideoCallMissed _$ChatEventVideoCallMissedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVideoCallMissed.new);
@@ -12353,6 +16110,21 @@ extension $ChatEventVideoCallMissedJson on ChatEventVideoCallMissed {
         'event_type': 'video_call_missed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventVideoCallMissedCopyWith on ChatEventVideoCallMissed {
+  ChatEventVideoCallMissed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoCallMissed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventVideoCallRejected _$ChatEventVideoCallRejectedFromJson(
@@ -12366,6 +16138,21 @@ extension $ChatEventVideoCallRejectedJson on ChatEventVideoCallRejected {
       };
 }
 
+extension $ChatEventVideoCallRejectedCopyWith on ChatEventVideoCallRejected {
+  ChatEventVideoCallRejected copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoCallRejected(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVideoCallAccepted _$ChatEventVideoCallAcceptedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVideoCallAccepted.new);
@@ -12375,6 +16162,21 @@ extension $ChatEventVideoCallAcceptedJson on ChatEventVideoCallAccepted {
         'event_type': 'video_call_accepted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventVideoCallAcceptedCopyWith on ChatEventVideoCallAccepted {
+  ChatEventVideoCallAccepted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVideoCallAccepted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventVoiceNoteSent _$ChatEventVoiceNoteSentFromJson(
@@ -12388,6 +16190,21 @@ extension $ChatEventVoiceNoteSentJson on ChatEventVoiceNoteSent {
       };
 }
 
+extension $ChatEventVoiceNoteSentCopyWith on ChatEventVoiceNoteSent {
+  ChatEventVoiceNoteSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVoiceNoteSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventVoiceNoteDeleted _$ChatEventVoiceNoteDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventVoiceNoteDeleted.new);
@@ -12397,6 +16214,21 @@ extension $ChatEventVoiceNoteDeletedJson on ChatEventVoiceNoteDeleted {
         'event_type': 'voice_note_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventVoiceNoteDeletedCopyWith on ChatEventVoiceNoteDeleted {
+  ChatEventVoiceNoteDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVoiceNoteDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventVoiceNotePlayed _$ChatEventVoiceNotePlayedFromJson(
@@ -12410,6 +16242,21 @@ extension $ChatEventVoiceNotePlayedJson on ChatEventVoiceNotePlayed {
       };
 }
 
+extension $ChatEventVoiceNotePlayedCopyWith on ChatEventVoiceNotePlayed {
+  ChatEventVoiceNotePlayed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventVoiceNotePlayed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPollCreated _$ChatEventPollCreatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPollCreated.new);
@@ -12419,6 +16266,21 @@ extension $ChatEventPollCreatedJson on ChatEventPollCreated {
         'event_type': 'poll_created',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPollCreatedCopyWith on ChatEventPollCreated {
+  ChatEventPollCreated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPollCreated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPollVoteCast _$ChatEventPollVoteCastFromJson(
@@ -12432,6 +16294,21 @@ extension $ChatEventPollVoteCastJson on ChatEventPollVoteCast {
       };
 }
 
+extension $ChatEventPollVoteCastCopyWith on ChatEventPollVoteCast {
+  ChatEventPollVoteCast copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPollVoteCast(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPollVoteRemoved _$ChatEventPollVoteRemovedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPollVoteRemoved.new);
@@ -12443,6 +16320,21 @@ extension $ChatEventPollVoteRemovedJson on ChatEventPollVoteRemoved {
       };
 }
 
+extension $ChatEventPollVoteRemovedCopyWith on ChatEventPollVoteRemoved {
+  ChatEventPollVoteRemoved copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPollVoteRemoved(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPollClosed _$ChatEventPollClosedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPollClosed.new);
 
@@ -12451,6 +16343,21 @@ extension $ChatEventPollClosedJson on ChatEventPollClosed {
         'event_type': 'poll_closed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPollClosedCopyWith on ChatEventPollClosed {
+  ChatEventPollClosed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPollClosed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventStoryPosted _$ChatEventStoryPostedFromJson(
@@ -12464,6 +16371,21 @@ extension $ChatEventStoryPostedJson on ChatEventStoryPosted {
       };
 }
 
+extension $ChatEventStoryPostedCopyWith on ChatEventStoryPosted {
+  ChatEventStoryPosted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventStoryPosted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventStoryDeleted _$ChatEventStoryDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventStoryDeleted.new);
@@ -12473,6 +16395,21 @@ extension $ChatEventStoryDeletedJson on ChatEventStoryDeleted {
         'event_type': 'story_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventStoryDeletedCopyWith on ChatEventStoryDeleted {
+  ChatEventStoryDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventStoryDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventStoryViewed _$ChatEventStoryViewedFromJson(
@@ -12486,6 +16423,21 @@ extension $ChatEventStoryViewedJson on ChatEventStoryViewed {
       };
 }
 
+extension $ChatEventStoryViewedCopyWith on ChatEventStoryViewed {
+  ChatEventStoryViewed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventStoryViewed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventStoryReacted _$ChatEventStoryReactedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventStoryReacted.new);
@@ -12495,6 +16447,21 @@ extension $ChatEventStoryReactedJson on ChatEventStoryReacted {
         'event_type': 'story_reacted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventStoryReactedCopyWith on ChatEventStoryReacted {
+  ChatEventStoryReacted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventStoryReacted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventBotMessageSent _$ChatEventBotMessageSentFromJson(
@@ -12508,6 +16475,21 @@ extension $ChatEventBotMessageSentJson on ChatEventBotMessageSent {
       };
 }
 
+extension $ChatEventBotMessageSentCopyWith on ChatEventBotMessageSent {
+  ChatEventBotMessageSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventBotMessageSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventBotMessageDeleted _$ChatEventBotMessageDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventBotMessageDeleted.new);
@@ -12517,6 +16499,21 @@ extension $ChatEventBotMessageDeletedJson on ChatEventBotMessageDeleted {
         'event_type': 'bot_message_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventBotMessageDeletedCopyWith on ChatEventBotMessageDeleted {
+  ChatEventBotMessageDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventBotMessageDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventBotTriggered _$ChatEventBotTriggeredFromJson(
@@ -12530,6 +16527,21 @@ extension $ChatEventBotTriggeredJson on ChatEventBotTriggered {
       };
 }
 
+extension $ChatEventBotTriggeredCopyWith on ChatEventBotTriggered {
+  ChatEventBotTriggered copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventBotTriggered(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventBotDisabled _$ChatEventBotDisabledFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventBotDisabled.new);
@@ -12539,6 +16551,21 @@ extension $ChatEventBotDisabledJson on ChatEventBotDisabled {
         'event_type': 'bot_disabled',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventBotDisabledCopyWith on ChatEventBotDisabled {
+  ChatEventBotDisabled copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventBotDisabled(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventBotEnabled _$ChatEventBotEnabledFromJson(Map<String, dynamic> json) =>
@@ -12551,6 +16578,21 @@ extension $ChatEventBotEnabledJson on ChatEventBotEnabled {
       };
 }
 
+extension $ChatEventBotEnabledCopyWith on ChatEventBotEnabled {
+  ChatEventBotEnabled copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventBotEnabled(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSystemBroadcast _$ChatEventSystemBroadcastFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSystemBroadcast.new);
@@ -12560,6 +16602,21 @@ extension $ChatEventSystemBroadcastJson on ChatEventSystemBroadcast {
         'event_type': 'system_broadcast',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSystemBroadcastCopyWith on ChatEventSystemBroadcast {
+  ChatEventSystemBroadcast copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSystemBroadcast(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSystemMaintenanceScheduled
@@ -12574,6 +16631,22 @@ extension $ChatEventSystemMaintenanceScheduledJson
       };
 }
 
+extension $ChatEventSystemMaintenanceScheduledCopyWith
+    on ChatEventSystemMaintenanceScheduled {
+  ChatEventSystemMaintenanceScheduled copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSystemMaintenanceScheduled(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSystemMaintenanceStarted _$ChatEventSystemMaintenanceStartedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSystemMaintenanceStarted.new);
@@ -12584,6 +16657,22 @@ extension $ChatEventSystemMaintenanceStartedJson
         'event_type': 'system_maintenance_started',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSystemMaintenanceStartedCopyWith
+    on ChatEventSystemMaintenanceStarted {
+  ChatEventSystemMaintenanceStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSystemMaintenanceStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSystemMaintenanceEnded _$ChatEventSystemMaintenanceEndedFromJson(
@@ -12598,6 +16687,22 @@ extension $ChatEventSystemMaintenanceEndedJson
       };
 }
 
+extension $ChatEventSystemMaintenanceEndedCopyWith
+    on ChatEventSystemMaintenanceEnded {
+  ChatEventSystemMaintenanceEnded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSystemMaintenanceEnded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSystemWarning _$ChatEventSystemWarningFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSystemWarning.new);
@@ -12607,6 +16712,21 @@ extension $ChatEventSystemWarningJson on ChatEventSystemWarning {
         'event_type': 'system_warning',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSystemWarningCopyWith on ChatEventSystemWarning {
+  ChatEventSystemWarning copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSystemWarning(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSystemError _$ChatEventSystemErrorFromJson(
@@ -12620,6 +16740,21 @@ extension $ChatEventSystemErrorJson on ChatEventSystemError {
       };
 }
 
+extension $ChatEventSystemErrorCopyWith on ChatEventSystemError {
+  ChatEventSystemError copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSystemError(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSystemRecovery _$ChatEventSystemRecoveryFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSystemRecovery.new);
@@ -12629,6 +16764,21 @@ extension $ChatEventSystemRecoveryJson on ChatEventSystemRecovery {
         'event_type': 'system_recovery',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSystemRecoveryCopyWith on ChatEventSystemRecovery {
+  ChatEventSystemRecovery copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSystemRecovery(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSystemPatchApplied _$ChatEventSystemPatchAppliedFromJson(
@@ -12642,6 +16792,21 @@ extension $ChatEventSystemPatchAppliedJson on ChatEventSystemPatchApplied {
       };
 }
 
+extension $ChatEventSystemPatchAppliedCopyWith on ChatEventSystemPatchApplied {
+  ChatEventSystemPatchApplied copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSystemPatchApplied(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventEncryptionEnabled _$ChatEventEncryptionEnabledFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventEncryptionEnabled.new);
@@ -12651,6 +16816,21 @@ extension $ChatEventEncryptionEnabledJson on ChatEventEncryptionEnabled {
         'event_type': 'encryption_enabled',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventEncryptionEnabledCopyWith on ChatEventEncryptionEnabled {
+  ChatEventEncryptionEnabled copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventEncryptionEnabled(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventEncryptionDisabled _$ChatEventEncryptionDisabledFromJson(
@@ -12664,6 +16844,21 @@ extension $ChatEventEncryptionDisabledJson on ChatEventEncryptionDisabled {
       };
 }
 
+extension $ChatEventEncryptionDisabledCopyWith on ChatEventEncryptionDisabled {
+  ChatEventEncryptionDisabled copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventEncryptionDisabled(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventEncryptionKeyRotated _$ChatEventEncryptionKeyRotatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventEncryptionKeyRotated.new);
@@ -12673,6 +16868,22 @@ extension $ChatEventEncryptionKeyRotatedJson on ChatEventEncryptionKeyRotated {
         'event_type': 'encryption_key_rotated',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventEncryptionKeyRotatedCopyWith
+    on ChatEventEncryptionKeyRotated {
+  ChatEventEncryptionKeyRotated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventEncryptionKeyRotated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventEncryptionKeyFailed _$ChatEventEncryptionKeyFailedFromJson(
@@ -12686,6 +16897,22 @@ extension $ChatEventEncryptionKeyFailedJson on ChatEventEncryptionKeyFailed {
       };
 }
 
+extension $ChatEventEncryptionKeyFailedCopyWith
+    on ChatEventEncryptionKeyFailed {
+  ChatEventEncryptionKeyFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventEncryptionKeyFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSessionStarted _$ChatEventSessionStartedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSessionStarted.new);
@@ -12695,6 +16922,21 @@ extension $ChatEventSessionStartedJson on ChatEventSessionStarted {
         'event_type': 'session_started',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSessionStartedCopyWith on ChatEventSessionStarted {
+  ChatEventSessionStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSessionStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSessionExpired _$ChatEventSessionExpiredFromJson(
@@ -12708,6 +16950,21 @@ extension $ChatEventSessionExpiredJson on ChatEventSessionExpired {
       };
 }
 
+extension $ChatEventSessionExpiredCopyWith on ChatEventSessionExpired {
+  ChatEventSessionExpired copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSessionExpired(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSessionRefreshed _$ChatEventSessionRefreshedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSessionRefreshed.new);
@@ -12717,6 +16974,21 @@ extension $ChatEventSessionRefreshedJson on ChatEventSessionRefreshed {
         'event_type': 'session_refreshed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSessionRefreshedCopyWith on ChatEventSessionRefreshed {
+  ChatEventSessionRefreshed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSessionRefreshed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSessionTerminated _$ChatEventSessionTerminatedFromJson(
@@ -12730,6 +17002,21 @@ extension $ChatEventSessionTerminatedJson on ChatEventSessionTerminated {
       };
 }
 
+extension $ChatEventSessionTerminatedCopyWith on ChatEventSessionTerminated {
+  ChatEventSessionTerminated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSessionTerminated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventTypingIndicatorSent _$ChatEventTypingIndicatorSentFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventTypingIndicatorSent.new);
@@ -12739,6 +17026,22 @@ extension $ChatEventTypingIndicatorSentJson on ChatEventTypingIndicatorSent {
         'event_type': 'typing_indicator_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventTypingIndicatorSentCopyWith
+    on ChatEventTypingIndicatorSent {
+  ChatEventTypingIndicatorSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventTypingIndicatorSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventTypingIndicatorReceived _$ChatEventTypingIndicatorReceivedFromJson(
@@ -12753,6 +17056,22 @@ extension $ChatEventTypingIndicatorReceivedJson
       };
 }
 
+extension $ChatEventTypingIndicatorReceivedCopyWith
+    on ChatEventTypingIndicatorReceived {
+  ChatEventTypingIndicatorReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventTypingIndicatorReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPresenceSubscribed _$ChatEventPresenceSubscribedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPresenceSubscribed.new);
@@ -12762,6 +17081,21 @@ extension $ChatEventPresenceSubscribedJson on ChatEventPresenceSubscribed {
         'event_type': 'presence_subscribed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPresenceSubscribedCopyWith on ChatEventPresenceSubscribed {
+  ChatEventPresenceSubscribed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPresenceSubscribed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPresenceUnsubscribed _$ChatEventPresenceUnsubscribedFromJson(
@@ -12775,6 +17109,22 @@ extension $ChatEventPresenceUnsubscribedJson on ChatEventPresenceUnsubscribed {
       };
 }
 
+extension $ChatEventPresenceUnsubscribedCopyWith
+    on ChatEventPresenceUnsubscribed {
+  ChatEventPresenceUnsubscribed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPresenceUnsubscribed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPresenceSync _$ChatEventPresenceSyncFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPresenceSync.new);
@@ -12784,6 +17134,21 @@ extension $ChatEventPresenceSyncJson on ChatEventPresenceSync {
         'event_type': 'presence_sync',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPresenceSyncCopyWith on ChatEventPresenceSync {
+  ChatEventPresenceSync copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPresenceSync(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPresenceUpdateFailed _$ChatEventPresenceUpdateFailedFromJson(
@@ -12797,6 +17162,22 @@ extension $ChatEventPresenceUpdateFailedJson on ChatEventPresenceUpdateFailed {
       };
 }
 
+extension $ChatEventPresenceUpdateFailedCopyWith
+    on ChatEventPresenceUpdateFailed {
+  ChatEventPresenceUpdateFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPresenceUpdateFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPushNotificationSent _$ChatEventPushNotificationSentFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPushNotificationSent.new);
@@ -12806,6 +17187,22 @@ extension $ChatEventPushNotificationSentJson on ChatEventPushNotificationSent {
         'event_type': 'push_notification_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPushNotificationSentCopyWith
+    on ChatEventPushNotificationSent {
+  ChatEventPushNotificationSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPushNotificationSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPushNotificationReceived _$ChatEventPushNotificationReceivedFromJson(
@@ -12820,6 +17217,22 @@ extension $ChatEventPushNotificationReceivedJson
       };
 }
 
+extension $ChatEventPushNotificationReceivedCopyWith
+    on ChatEventPushNotificationReceived {
+  ChatEventPushNotificationReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPushNotificationReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPushNotificationOpened _$ChatEventPushNotificationOpenedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPushNotificationOpened.new);
@@ -12830,6 +17243,22 @@ extension $ChatEventPushNotificationOpenedJson
         'event_type': 'push_notification_opened',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPushNotificationOpenedCopyWith
+    on ChatEventPushNotificationOpened {
+  ChatEventPushNotificationOpened copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPushNotificationOpened(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPushNotificationFailed _$ChatEventPushNotificationFailedFromJson(
@@ -12844,6 +17273,22 @@ extension $ChatEventPushNotificationFailedJson
       };
 }
 
+extension $ChatEventPushNotificationFailedCopyWith
+    on ChatEventPushNotificationFailed {
+  ChatEventPushNotificationFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPushNotificationFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventReadReceiptSent _$ChatEventReadReceiptSentFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventReadReceiptSent.new);
@@ -12853,6 +17298,21 @@ extension $ChatEventReadReceiptSentJson on ChatEventReadReceiptSent {
         'event_type': 'read_receipt_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventReadReceiptSentCopyWith on ChatEventReadReceiptSent {
+  ChatEventReadReceiptSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventReadReceiptSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventReadReceiptFailed _$ChatEventReadReceiptFailedFromJson(
@@ -12866,6 +17326,21 @@ extension $ChatEventReadReceiptFailedJson on ChatEventReadReceiptFailed {
       };
 }
 
+extension $ChatEventReadReceiptFailedCopyWith on ChatEventReadReceiptFailed {
+  ChatEventReadReceiptFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventReadReceiptFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventReadReceiptBlocked _$ChatEventReadReceiptBlockedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventReadReceiptBlocked.new);
@@ -12875,6 +17350,21 @@ extension $ChatEventReadReceiptBlockedJson on ChatEventReadReceiptBlocked {
         'event_type': 'read_receipt_blocked',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventReadReceiptBlockedCopyWith on ChatEventReadReceiptBlocked {
+  ChatEventReadReceiptBlocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventReadReceiptBlocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventBackupStarted _$ChatEventBackupStartedFromJson(
@@ -12888,6 +17378,21 @@ extension $ChatEventBackupStartedJson on ChatEventBackupStarted {
       };
 }
 
+extension $ChatEventBackupStartedCopyWith on ChatEventBackupStarted {
+  ChatEventBackupStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventBackupStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventBackupCompleted _$ChatEventBackupCompletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventBackupCompleted.new);
@@ -12897,6 +17402,21 @@ extension $ChatEventBackupCompletedJson on ChatEventBackupCompleted {
         'event_type': 'backup_completed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventBackupCompletedCopyWith on ChatEventBackupCompleted {
+  ChatEventBackupCompleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventBackupCompleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventBackupFailed _$ChatEventBackupFailedFromJson(
@@ -12910,6 +17430,21 @@ extension $ChatEventBackupFailedJson on ChatEventBackupFailed {
       };
 }
 
+extension $ChatEventBackupFailedCopyWith on ChatEventBackupFailed {
+  ChatEventBackupFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventBackupFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventRestoreStarted _$ChatEventRestoreStartedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventRestoreStarted.new);
@@ -12919,6 +17454,21 @@ extension $ChatEventRestoreStartedJson on ChatEventRestoreStarted {
         'event_type': 'restore_started',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventRestoreStartedCopyWith on ChatEventRestoreStarted {
+  ChatEventRestoreStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventRestoreStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventRestoreCompleted _$ChatEventRestoreCompletedFromJson(
@@ -12932,6 +17482,21 @@ extension $ChatEventRestoreCompletedJson on ChatEventRestoreCompleted {
       };
 }
 
+extension $ChatEventRestoreCompletedCopyWith on ChatEventRestoreCompleted {
+  ChatEventRestoreCompleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventRestoreCompleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventRestoreFailed _$ChatEventRestoreFailedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventRestoreFailed.new);
@@ -12941,6 +17506,21 @@ extension $ChatEventRestoreFailedJson on ChatEventRestoreFailed {
         'event_type': 'restore_failed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventRestoreFailedCopyWith on ChatEventRestoreFailed {
+  ChatEventRestoreFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventRestoreFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventContactSynced _$ChatEventContactSyncedFromJson(
@@ -12954,6 +17534,21 @@ extension $ChatEventContactSyncedJson on ChatEventContactSynced {
       };
 }
 
+extension $ChatEventContactSyncedCopyWith on ChatEventContactSynced {
+  ChatEventContactSynced copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventContactSynced(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventContactSyncFailed _$ChatEventContactSyncFailedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventContactSyncFailed.new);
@@ -12963,6 +17558,21 @@ extension $ChatEventContactSyncFailedJson on ChatEventContactSyncFailed {
         'event_type': 'contact_sync_failed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventContactSyncFailedCopyWith on ChatEventContactSyncFailed {
+  ChatEventContactSyncFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventContactSyncFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventContactAdded _$ChatEventContactAddedFromJson(
@@ -12976,6 +17586,21 @@ extension $ChatEventContactAddedJson on ChatEventContactAdded {
       };
 }
 
+extension $ChatEventContactAddedCopyWith on ChatEventContactAdded {
+  ChatEventContactAdded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventContactAdded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventContactRemoved _$ChatEventContactRemovedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventContactRemoved.new);
@@ -12985,6 +17610,21 @@ extension $ChatEventContactRemovedJson on ChatEventContactRemoved {
         'event_type': 'contact_removed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventContactRemovedCopyWith on ChatEventContactRemoved {
+  ChatEventContactRemoved copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventContactRemoved(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventContactBlocked _$ChatEventContactBlockedFromJson(
@@ -12998,6 +17638,21 @@ extension $ChatEventContactBlockedJson on ChatEventContactBlocked {
       };
 }
 
+extension $ChatEventContactBlockedCopyWith on ChatEventContactBlocked {
+  ChatEventContactBlocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventContactBlocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventContactUnblocked _$ChatEventContactUnblockedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventContactUnblocked.new);
@@ -13007,6 +17662,21 @@ extension $ChatEventContactUnblockedJson on ChatEventContactUnblocked {
         'event_type': 'contact_unblocked',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventContactUnblockedCopyWith on ChatEventContactUnblocked {
+  ChatEventContactUnblocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventContactUnblocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventCommandExecuted _$ChatEventCommandExecutedFromJson(
@@ -13020,6 +17690,21 @@ extension $ChatEventCommandExecutedJson on ChatEventCommandExecuted {
       };
 }
 
+extension $ChatEventCommandExecutedCopyWith on ChatEventCommandExecuted {
+  ChatEventCommandExecuted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCommandExecuted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventShortcutUsed _$ChatEventShortcutUsedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventShortcutUsed.new);
@@ -13029,6 +17714,21 @@ extension $ChatEventShortcutUsedJson on ChatEventShortcutUsed {
         'event_type': 'shortcut_used',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventShortcutUsedCopyWith on ChatEventShortcutUsed {
+  ChatEventShortcutUsed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventShortcutUsed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventActionButtonClicked _$ChatEventActionButtonClickedFromJson(
@@ -13042,6 +17742,22 @@ extension $ChatEventActionButtonClickedJson on ChatEventActionButtonClicked {
       };
 }
 
+extension $ChatEventActionButtonClickedCopyWith
+    on ChatEventActionButtonClicked {
+  ChatEventActionButtonClicked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventActionButtonClicked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAdminMessageSent _$ChatEventAdminMessageSentFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAdminMessageSent.new);
@@ -13051,6 +17767,21 @@ extension $ChatEventAdminMessageSentJson on ChatEventAdminMessageSent {
         'event_type': 'admin_message_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAdminMessageSentCopyWith on ChatEventAdminMessageSent {
+  ChatEventAdminMessageSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAdminMessageSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAdminMessageDeleted _$ChatEventAdminMessageDeletedFromJson(
@@ -13064,6 +17795,22 @@ extension $ChatEventAdminMessageDeletedJson on ChatEventAdminMessageDeleted {
       };
 }
 
+extension $ChatEventAdminMessageDeletedCopyWith
+    on ChatEventAdminMessageDeleted {
+  ChatEventAdminMessageDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAdminMessageDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAdminAnnouncement _$ChatEventAdminAnnouncementFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAdminAnnouncement.new);
@@ -13073,6 +17820,21 @@ extension $ChatEventAdminAnnouncementJson on ChatEventAdminAnnouncement {
         'event_type': 'admin_announcement',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAdminAnnouncementCopyWith on ChatEventAdminAnnouncement {
+  ChatEventAdminAnnouncement copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAdminAnnouncement(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAdminWarning _$ChatEventAdminWarningFromJson(
@@ -13086,6 +17848,21 @@ extension $ChatEventAdminWarningJson on ChatEventAdminWarning {
       };
 }
 
+extension $ChatEventAdminWarningCopyWith on ChatEventAdminWarning {
+  ChatEventAdminWarning copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAdminWarning(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAdminSilencedUser _$ChatEventAdminSilencedUserFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAdminSilencedUser.new);
@@ -13095,6 +17872,21 @@ extension $ChatEventAdminSilencedUserJson on ChatEventAdminSilencedUser {
         'event_type': 'admin_silenced_user',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAdminSilencedUserCopyWith on ChatEventAdminSilencedUser {
+  ChatEventAdminSilencedUser copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAdminSilencedUser(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSpamUserDetected _$ChatEventSpamUserDetectedFromJson(
@@ -13108,6 +17900,21 @@ extension $ChatEventSpamUserDetectedJson on ChatEventSpamUserDetected {
       };
 }
 
+extension $ChatEventSpamUserDetectedCopyWith on ChatEventSpamUserDetected {
+  ChatEventSpamUserDetected copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSpamUserDetected(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSpamUserBlocked _$ChatEventSpamUserBlockedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSpamUserBlocked.new);
@@ -13119,6 +17926,21 @@ extension $ChatEventSpamUserBlockedJson on ChatEventSpamUserBlocked {
       };
 }
 
+extension $ChatEventSpamUserBlockedCopyWith on ChatEventSpamUserBlocked {
+  ChatEventSpamUserBlocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSpamUserBlocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSpamUserReported _$ChatEventSpamUserReportedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSpamUserReported.new);
@@ -13128,6 +17950,21 @@ extension $ChatEventSpamUserReportedJson on ChatEventSpamUserReported {
         'event_type': 'spam_user_reported',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSpamUserReportedCopyWith on ChatEventSpamUserReported {
+  ChatEventSpamUserReported copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSpamUserReported(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventModerationActionTaken _$ChatEventModerationActionTakenFromJson(
@@ -13142,6 +17979,22 @@ extension $ChatEventModerationActionTakenJson
       };
 }
 
+extension $ChatEventModerationActionTakenCopyWith
+    on ChatEventModerationActionTaken {
+  ChatEventModerationActionTaken copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventModerationActionTaken(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventModerationFlagReviewed _$ChatEventModerationFlagReviewedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventModerationFlagReviewed.new);
@@ -13152,6 +18005,22 @@ extension $ChatEventModerationFlagReviewedJson
         'event_type': 'moderation_flag_reviewed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventModerationFlagReviewedCopyWith
+    on ChatEventModerationFlagReviewed {
+  ChatEventModerationFlagReviewed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventModerationFlagReviewed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventModerationMessageHidden _$ChatEventModerationMessageHiddenFromJson(
@@ -13166,6 +18035,22 @@ extension $ChatEventModerationMessageHiddenJson
       };
 }
 
+extension $ChatEventModerationMessageHiddenCopyWith
+    on ChatEventModerationMessageHidden {
+  ChatEventModerationMessageHidden copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventModerationMessageHidden(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventModerationMessageRemoved _$ChatEventModerationMessageRemovedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventModerationMessageRemoved.new);
@@ -13176,6 +18061,22 @@ extension $ChatEventModerationMessageRemovedJson
         'event_type': 'moderation_message_removed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventModerationMessageRemovedCopyWith
+    on ChatEventModerationMessageRemoved {
+  ChatEventModerationMessageRemoved copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventModerationMessageRemoved(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventExperimentStarted _$ChatEventExperimentStartedFromJson(
@@ -13189,6 +18090,21 @@ extension $ChatEventExperimentStartedJson on ChatEventExperimentStarted {
       };
 }
 
+extension $ChatEventExperimentStartedCopyWith on ChatEventExperimentStarted {
+  ChatEventExperimentStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventExperimentStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventExperimentUpdated _$ChatEventExperimentUpdatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventExperimentUpdated.new);
@@ -13198,6 +18114,21 @@ extension $ChatEventExperimentUpdatedJson on ChatEventExperimentUpdated {
         'event_type': 'experiment_updated',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventExperimentUpdatedCopyWith on ChatEventExperimentUpdated {
+  ChatEventExperimentUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventExperimentUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventExperimentCompleted _$ChatEventExperimentCompletedFromJson(
@@ -13211,6 +18142,22 @@ extension $ChatEventExperimentCompletedJson on ChatEventExperimentCompleted {
       };
 }
 
+extension $ChatEventExperimentCompletedCopyWith
+    on ChatEventExperimentCompleted {
+  ChatEventExperimentCompleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventExperimentCompleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventExperimentAborted _$ChatEventExperimentAbortedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventExperimentAborted.new);
@@ -13222,6 +18169,21 @@ extension $ChatEventExperimentAbortedJson on ChatEventExperimentAborted {
       };
 }
 
+extension $ChatEventExperimentAbortedCopyWith on ChatEventExperimentAborted {
+  ChatEventExperimentAborted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventExperimentAborted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGiftSent _$ChatEventGiftSentFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGiftSent.new);
 
@@ -13230,6 +18192,21 @@ extension $ChatEventGiftSentJson on ChatEventGiftSent {
         'event_type': 'gift_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventGiftSentCopyWith on ChatEventGiftSent {
+  ChatEventGiftSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGiftSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventGiftReceived _$ChatEventGiftReceivedFromJson(
@@ -13243,6 +18220,21 @@ extension $ChatEventGiftReceivedJson on ChatEventGiftReceived {
       };
 }
 
+extension $ChatEventGiftReceivedCopyWith on ChatEventGiftReceived {
+  ChatEventGiftReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGiftReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGiftRedeemed _$ChatEventGiftRedeemedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGiftRedeemed.new);
@@ -13254,6 +18246,21 @@ extension $ChatEventGiftRedeemedJson on ChatEventGiftRedeemed {
       };
 }
 
+extension $ChatEventGiftRedeemedCopyWith on ChatEventGiftRedeemed {
+  ChatEventGiftRedeemed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGiftRedeemed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventGiftFailed _$ChatEventGiftFailedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventGiftFailed.new);
 
@@ -13262,6 +18269,21 @@ extension $ChatEventGiftFailedJson on ChatEventGiftFailed {
         'event_type': 'gift_failed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventGiftFailedCopyWith on ChatEventGiftFailed {
+  ChatEventGiftFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventGiftFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventStickerSent _$ChatEventStickerSentFromJson(
@@ -13275,6 +18297,21 @@ extension $ChatEventStickerSentJson on ChatEventStickerSent {
       };
 }
 
+extension $ChatEventStickerSentCopyWith on ChatEventStickerSent {
+  ChatEventStickerSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventStickerSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventStickerDeleted _$ChatEventStickerDeletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventStickerDeleted.new);
@@ -13284,6 +18321,21 @@ extension $ChatEventStickerDeletedJson on ChatEventStickerDeleted {
         'event_type': 'sticker_deleted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventStickerDeletedCopyWith on ChatEventStickerDeleted {
+  ChatEventStickerDeleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventStickerDeleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventEmojiPackAdded _$ChatEventEmojiPackAddedFromJson(
@@ -13297,6 +18349,21 @@ extension $ChatEventEmojiPackAddedJson on ChatEventEmojiPackAdded {
       };
 }
 
+extension $ChatEventEmojiPackAddedCopyWith on ChatEventEmojiPackAdded {
+  ChatEventEmojiPackAdded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventEmojiPackAdded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventEmojiPackRemoved _$ChatEventEmojiPackRemovedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventEmojiPackRemoved.new);
@@ -13306,6 +18373,21 @@ extension $ChatEventEmojiPackRemovedJson on ChatEventEmojiPackRemoved {
         'event_type': 'emoji_pack_removed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventEmojiPackRemovedCopyWith on ChatEventEmojiPackRemoved {
+  ChatEventEmojiPackRemoved copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventEmojiPackRemoved(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventThemeChanged _$ChatEventThemeChangedFromJson(
@@ -13319,6 +18401,21 @@ extension $ChatEventThemeChangedJson on ChatEventThemeChanged {
       };
 }
 
+extension $ChatEventThemeChangedCopyWith on ChatEventThemeChanged {
+  ChatEventThemeChanged copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventThemeChanged(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventWallpaperChanged _$ChatEventWallpaperChangedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventWallpaperChanged.new);
@@ -13328,6 +18425,21 @@ extension $ChatEventWallpaperChangedJson on ChatEventWallpaperChanged {
         'event_type': 'wallpaper_changed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventWallpaperChangedCopyWith on ChatEventWallpaperChanged {
+  ChatEventWallpaperChanged copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventWallpaperChanged(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventFontSizeChanged _$ChatEventFontSizeChangedFromJson(
@@ -13341,6 +18453,21 @@ extension $ChatEventFontSizeChangedJson on ChatEventFontSizeChanged {
       };
 }
 
+extension $ChatEventFontSizeChangedCopyWith on ChatEventFontSizeChanged {
+  ChatEventFontSizeChanged copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventFontSizeChanged(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSettingsUpdated _$ChatEventSettingsUpdatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSettingsUpdated.new);
@@ -13350,6 +18477,21 @@ extension $ChatEventSettingsUpdatedJson on ChatEventSettingsUpdated {
         'event_type': 'settings_updated',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSettingsUpdatedCopyWith on ChatEventSettingsUpdated {
+  ChatEventSettingsUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSettingsUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventDeviceRegistered _$ChatEventDeviceRegisteredFromJson(
@@ -13363,6 +18505,21 @@ extension $ChatEventDeviceRegisteredJson on ChatEventDeviceRegistered {
       };
 }
 
+extension $ChatEventDeviceRegisteredCopyWith on ChatEventDeviceRegistered {
+  ChatEventDeviceRegistered copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventDeviceRegistered(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventDeviceUnregistered _$ChatEventDeviceUnregisteredFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventDeviceUnregistered.new);
@@ -13372,6 +18529,21 @@ extension $ChatEventDeviceUnregisteredJson on ChatEventDeviceUnregistered {
         'event_type': 'device_unregistered',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventDeviceUnregisteredCopyWith on ChatEventDeviceUnregistered {
+  ChatEventDeviceUnregistered copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventDeviceUnregistered(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventDeviceSwitched _$ChatEventDeviceSwitchedFromJson(
@@ -13385,6 +18557,21 @@ extension $ChatEventDeviceSwitchedJson on ChatEventDeviceSwitched {
       };
 }
 
+extension $ChatEventDeviceSwitchedCopyWith on ChatEventDeviceSwitched {
+  ChatEventDeviceSwitched copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventDeviceSwitched(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventDeviceSyncCompleted _$ChatEventDeviceSyncCompletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventDeviceSyncCompleted.new);
@@ -13394,6 +18581,22 @@ extension $ChatEventDeviceSyncCompletedJson on ChatEventDeviceSyncCompleted {
         'event_type': 'device_sync_completed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventDeviceSyncCompletedCopyWith
+    on ChatEventDeviceSyncCompleted {
+  ChatEventDeviceSyncCompleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventDeviceSyncCompleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventDeviceSyncFailed _$ChatEventDeviceSyncFailedFromJson(
@@ -13407,6 +18610,21 @@ extension $ChatEventDeviceSyncFailedJson on ChatEventDeviceSyncFailed {
       };
 }
 
+extension $ChatEventDeviceSyncFailedCopyWith on ChatEventDeviceSyncFailed {
+  ChatEventDeviceSyncFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventDeviceSyncFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventLocationShared _$ChatEventLocationSharedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventLocationShared.new);
@@ -13416,6 +18634,21 @@ extension $ChatEventLocationSharedJson on ChatEventLocationShared {
         'event_type': 'location_shared',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventLocationSharedCopyWith on ChatEventLocationShared {
+  ChatEventLocationShared copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLocationShared(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventLocationUpdated _$ChatEventLocationUpdatedFromJson(
@@ -13429,6 +18662,21 @@ extension $ChatEventLocationUpdatedJson on ChatEventLocationUpdated {
       };
 }
 
+extension $ChatEventLocationUpdatedCopyWith on ChatEventLocationUpdated {
+  ChatEventLocationUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLocationUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventLocationStopped _$ChatEventLocationStoppedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventLocationStopped.new);
@@ -13440,6 +18688,21 @@ extension $ChatEventLocationStoppedJson on ChatEventLocationStopped {
       };
 }
 
+extension $ChatEventLocationStoppedCopyWith on ChatEventLocationStopped {
+  ChatEventLocationStopped copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLocationStopped(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventLocationRequestSent _$ChatEventLocationRequestSentFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventLocationRequestSent.new);
@@ -13449,6 +18712,22 @@ extension $ChatEventLocationRequestSentJson on ChatEventLocationRequestSent {
         'event_type': 'location_request_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventLocationRequestSentCopyWith
+    on ChatEventLocationRequestSent {
+  ChatEventLocationRequestSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLocationRequestSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventLocationRequestAccepted _$ChatEventLocationRequestAcceptedFromJson(
@@ -13463,6 +18742,22 @@ extension $ChatEventLocationRequestAcceptedJson
       };
 }
 
+extension $ChatEventLocationRequestAcceptedCopyWith
+    on ChatEventLocationRequestAccepted {
+  ChatEventLocationRequestAccepted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLocationRequestAccepted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventLocationRequestDeclined _$ChatEventLocationRequestDeclinedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventLocationRequestDeclined.new);
@@ -13473,6 +18768,22 @@ extension $ChatEventLocationRequestDeclinedJson
         'event_type': 'location_request_declined',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventLocationRequestDeclinedCopyWith
+    on ChatEventLocationRequestDeclined {
+  ChatEventLocationRequestDeclined copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLocationRequestDeclined(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventQrScanSuccess _$ChatEventQrScanSuccessFromJson(
@@ -13486,6 +18797,21 @@ extension $ChatEventQrScanSuccessJson on ChatEventQrScanSuccess {
       };
 }
 
+extension $ChatEventQrScanSuccessCopyWith on ChatEventQrScanSuccess {
+  ChatEventQrScanSuccess copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventQrScanSuccess(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventQrScanFailed _$ChatEventQrScanFailedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventQrScanFailed.new);
@@ -13495,6 +18821,21 @@ extension $ChatEventQrScanFailedJson on ChatEventQrScanFailed {
         'event_type': 'qr_scan_failed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventQrScanFailedCopyWith on ChatEventQrScanFailed {
+  ChatEventQrScanFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventQrScanFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventQrConnectionEstablished _$ChatEventQrConnectionEstablishedFromJson(
@@ -13509,6 +18850,22 @@ extension $ChatEventQrConnectionEstablishedJson
       };
 }
 
+extension $ChatEventQrConnectionEstablishedCopyWith
+    on ChatEventQrConnectionEstablished {
+  ChatEventQrConnectionEstablished copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventQrConnectionEstablished(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventQrConnectionTerminated _$ChatEventQrConnectionTerminatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventQrConnectionTerminated.new);
@@ -13521,6 +18878,22 @@ extension $ChatEventQrConnectionTerminatedJson
       };
 }
 
+extension $ChatEventQrConnectionTerminatedCopyWith
+    on ChatEventQrConnectionTerminated {
+  ChatEventQrConnectionTerminated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventQrConnectionTerminated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPaymentRequestSent _$ChatEventPaymentRequestSentFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPaymentRequestSent.new);
@@ -13530,6 +18903,21 @@ extension $ChatEventPaymentRequestSentJson on ChatEventPaymentRequestSent {
         'event_type': 'payment_request_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPaymentRequestSentCopyWith on ChatEventPaymentRequestSent {
+  ChatEventPaymentRequestSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentRequestSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPaymentRequestReceived _$ChatEventPaymentRequestReceivedFromJson(
@@ -13544,6 +18932,22 @@ extension $ChatEventPaymentRequestReceivedJson
       };
 }
 
+extension $ChatEventPaymentRequestReceivedCopyWith
+    on ChatEventPaymentRequestReceived {
+  ChatEventPaymentRequestReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentRequestReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPaymentRequestAccepted _$ChatEventPaymentRequestAcceptedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPaymentRequestAccepted.new);
@@ -13554,6 +18958,22 @@ extension $ChatEventPaymentRequestAcceptedJson
         'event_type': 'payment_request_accepted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPaymentRequestAcceptedCopyWith
+    on ChatEventPaymentRequestAccepted {
+  ChatEventPaymentRequestAccepted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentRequestAccepted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPaymentRequestDeclined _$ChatEventPaymentRequestDeclinedFromJson(
@@ -13568,6 +18988,22 @@ extension $ChatEventPaymentRequestDeclinedJson
       };
 }
 
+extension $ChatEventPaymentRequestDeclinedCopyWith
+    on ChatEventPaymentRequestDeclined {
+  ChatEventPaymentRequestDeclined copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentRequestDeclined(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPaymentSent _$ChatEventPaymentSentFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPaymentSent.new);
@@ -13577,6 +19013,21 @@ extension $ChatEventPaymentSentJson on ChatEventPaymentSent {
         'event_type': 'payment_sent',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPaymentSentCopyWith on ChatEventPaymentSent {
+  ChatEventPaymentSent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentSent(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPaymentReceived _$ChatEventPaymentReceivedFromJson(
@@ -13590,6 +19041,21 @@ extension $ChatEventPaymentReceivedJson on ChatEventPaymentReceived {
       };
 }
 
+extension $ChatEventPaymentReceivedCopyWith on ChatEventPaymentReceived {
+  ChatEventPaymentReceived copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentReceived(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPaymentFailed _$ChatEventPaymentFailedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPaymentFailed.new);
@@ -13599,6 +19065,21 @@ extension $ChatEventPaymentFailedJson on ChatEventPaymentFailed {
         'event_type': 'payment_failed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPaymentFailedCopyWith on ChatEventPaymentFailed {
+  ChatEventPaymentFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventPaymentRefunded _$ChatEventPaymentRefundedFromJson(
@@ -13612,6 +19093,21 @@ extension $ChatEventPaymentRefundedJson on ChatEventPaymentRefunded {
       };
 }
 
+extension $ChatEventPaymentRefundedCopyWith on ChatEventPaymentRefunded {
+  ChatEventPaymentRefunded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentRefunded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventPaymentWalletUpdated _$ChatEventPaymentWalletUpdatedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventPaymentWalletUpdated.new);
@@ -13621,6 +19117,22 @@ extension $ChatEventPaymentWalletUpdatedJson on ChatEventPaymentWalletUpdated {
         'event_type': 'payment_wallet_updated',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventPaymentWalletUpdatedCopyWith
+    on ChatEventPaymentWalletUpdated {
+  ChatEventPaymentWalletUpdated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventPaymentWalletUpdated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSubscriptionStarted _$ChatEventSubscriptionStartedFromJson(
@@ -13634,6 +19146,22 @@ extension $ChatEventSubscriptionStartedJson on ChatEventSubscriptionStarted {
       };
 }
 
+extension $ChatEventSubscriptionStartedCopyWith
+    on ChatEventSubscriptionStarted {
+  ChatEventSubscriptionStarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSubscriptionStarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSubscriptionExpired _$ChatEventSubscriptionExpiredFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSubscriptionExpired.new);
@@ -13643,6 +19171,22 @@ extension $ChatEventSubscriptionExpiredJson on ChatEventSubscriptionExpired {
         'event_type': 'subscription_expired',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSubscriptionExpiredCopyWith
+    on ChatEventSubscriptionExpired {
+  ChatEventSubscriptionExpired copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSubscriptionExpired(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventSubscriptionRenewed _$ChatEventSubscriptionRenewedFromJson(
@@ -13656,6 +19200,22 @@ extension $ChatEventSubscriptionRenewedJson on ChatEventSubscriptionRenewed {
       };
 }
 
+extension $ChatEventSubscriptionRenewedCopyWith
+    on ChatEventSubscriptionRenewed {
+  ChatEventSubscriptionRenewed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSubscriptionRenewed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventSubscriptionCanceled _$ChatEventSubscriptionCanceledFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventSubscriptionCanceled.new);
@@ -13665,6 +19225,22 @@ extension $ChatEventSubscriptionCanceledJson on ChatEventSubscriptionCanceled {
         'event_type': 'subscription_canceled',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventSubscriptionCanceledCopyWith
+    on ChatEventSubscriptionCanceled {
+  ChatEventSubscriptionCanceled copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventSubscriptionCanceled(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAiSummaryGenerated _$ChatEventAiSummaryGeneratedFromJson(
@@ -13678,6 +19254,21 @@ extension $ChatEventAiSummaryGeneratedJson on ChatEventAiSummaryGenerated {
       };
 }
 
+extension $ChatEventAiSummaryGeneratedCopyWith on ChatEventAiSummaryGenerated {
+  ChatEventAiSummaryGenerated copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAiSummaryGenerated(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAiSummaryFailed _$ChatEventAiSummaryFailedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAiSummaryFailed.new);
@@ -13687,6 +19278,21 @@ extension $ChatEventAiSummaryFailedJson on ChatEventAiSummaryFailed {
         'event_type': 'ai_summary_failed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAiSummaryFailedCopyWith on ChatEventAiSummaryFailed {
+  ChatEventAiSummaryFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAiSummaryFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAiReplySuggested _$ChatEventAiReplySuggestedFromJson(
@@ -13700,6 +19306,21 @@ extension $ChatEventAiReplySuggestedJson on ChatEventAiReplySuggested {
       };
 }
 
+extension $ChatEventAiReplySuggestedCopyWith on ChatEventAiReplySuggested {
+  ChatEventAiReplySuggested copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAiReplySuggested(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAiReplySelected _$ChatEventAiReplySelectedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAiReplySelected.new);
@@ -13709,6 +19330,21 @@ extension $ChatEventAiReplySelectedJson on ChatEventAiReplySelected {
         'event_type': 'ai_reply_selected',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAiReplySelectedCopyWith on ChatEventAiReplySelected {
+  ChatEventAiReplySelected copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAiReplySelected(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAiTranslationRequested _$ChatEventAiTranslationRequestedFromJson(
@@ -13723,6 +19359,22 @@ extension $ChatEventAiTranslationRequestedJson
       };
 }
 
+extension $ChatEventAiTranslationRequestedCopyWith
+    on ChatEventAiTranslationRequested {
+  ChatEventAiTranslationRequested copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAiTranslationRequested(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAiTranslationCompleted _$ChatEventAiTranslationCompletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAiTranslationCompleted.new);
@@ -13733,6 +19385,22 @@ extension $ChatEventAiTranslationCompletedJson
         'event_type': 'ai_translation_completed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAiTranslationCompletedCopyWith
+    on ChatEventAiTranslationCompleted {
+  ChatEventAiTranslationCompleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAiTranslationCompleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAiTranslationFailed _$ChatEventAiTranslationFailedFromJson(
@@ -13746,6 +19414,22 @@ extension $ChatEventAiTranslationFailedJson on ChatEventAiTranslationFailed {
       };
 }
 
+extension $ChatEventAiTranslationFailedCopyWith
+    on ChatEventAiTranslationFailed {
+  ChatEventAiTranslationFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAiTranslationFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventCaptchaRequired _$ChatEventCaptchaRequiredFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventCaptchaRequired.new);
@@ -13755,6 +19439,21 @@ extension $ChatEventCaptchaRequiredJson on ChatEventCaptchaRequired {
         'event_type': 'captcha_required',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventCaptchaRequiredCopyWith on ChatEventCaptchaRequired {
+  ChatEventCaptchaRequired copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCaptchaRequired(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventCaptchaPassed _$ChatEventCaptchaPassedFromJson(
@@ -13768,6 +19467,21 @@ extension $ChatEventCaptchaPassedJson on ChatEventCaptchaPassed {
       };
 }
 
+extension $ChatEventCaptchaPassedCopyWith on ChatEventCaptchaPassed {
+  ChatEventCaptchaPassed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCaptchaPassed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventCaptchaFailed _$ChatEventCaptchaFailedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventCaptchaFailed.new);
@@ -13777,6 +19491,21 @@ extension $ChatEventCaptchaFailedJson on ChatEventCaptchaFailed {
         'event_type': 'captcha_failed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventCaptchaFailedCopyWith on ChatEventCaptchaFailed {
+  ChatEventCaptchaFailed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventCaptchaFailed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventRateLimitWarning _$ChatEventRateLimitWarningFromJson(
@@ -13790,6 +19519,21 @@ extension $ChatEventRateLimitWarningJson on ChatEventRateLimitWarning {
       };
 }
 
+extension $ChatEventRateLimitWarningCopyWith on ChatEventRateLimitWarning {
+  ChatEventRateLimitWarning copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventRateLimitWarning(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventRateLimitBlocked _$ChatEventRateLimitBlockedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventRateLimitBlocked.new);
@@ -13799,6 +19543,21 @@ extension $ChatEventRateLimitBlockedJson on ChatEventRateLimitBlocked {
         'event_type': 'rate_limit_blocked',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventRateLimitBlockedCopyWith on ChatEventRateLimitBlocked {
+  ChatEventRateLimitBlocked copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventRateLimitBlocked(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventLogoutRequested _$ChatEventLogoutRequestedFromJson(
@@ -13812,6 +19571,21 @@ extension $ChatEventLogoutRequestedJson on ChatEventLogoutRequested {
       };
 }
 
+extension $ChatEventLogoutRequestedCopyWith on ChatEventLogoutRequested {
+  ChatEventLogoutRequested copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLogoutRequested(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventLogoutCompleted _$ChatEventLogoutCompletedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventLogoutCompleted.new);
@@ -13823,6 +19597,21 @@ extension $ChatEventLogoutCompletedJson on ChatEventLogoutCompleted {
       };
 }
 
+extension $ChatEventLogoutCompletedCopyWith on ChatEventLogoutCompleted {
+  ChatEventLogoutCompleted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventLogoutCompleted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAppOpened _$ChatEventAppOpenedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAppOpened.new);
 
@@ -13831,6 +19620,21 @@ extension $ChatEventAppOpenedJson on ChatEventAppOpened {
         'event_type': 'app_opened',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAppOpenedCopyWith on ChatEventAppOpened {
+  ChatEventAppOpened copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAppOpened(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAppBackgrounded _$ChatEventAppBackgroundedFromJson(
@@ -13844,6 +19648,21 @@ extension $ChatEventAppBackgroundedJson on ChatEventAppBackgrounded {
       };
 }
 
+extension $ChatEventAppBackgroundedCopyWith on ChatEventAppBackgrounded {
+  ChatEventAppBackgrounded copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAppBackgrounded(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAppResumed _$ChatEventAppResumedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAppResumed.new);
 
@@ -13852,6 +19671,21 @@ extension $ChatEventAppResumedJson on ChatEventAppResumed {
         'event_type': 'app_resumed',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAppResumedCopyWith on ChatEventAppResumed {
+  ChatEventAppResumed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAppResumed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 ChatEventAppCrashed _$ChatEventAppCrashedFromJson(Map<String, dynamic> json) =>
@@ -13864,6 +19698,21 @@ extension $ChatEventAppCrashedJson on ChatEventAppCrashed {
       };
 }
 
+extension $ChatEventAppCrashedCopyWith on ChatEventAppCrashed {
+  ChatEventAppCrashed copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAppCrashed(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
+}
+
 ChatEventAppRestarted _$ChatEventAppRestartedFromJson(
         Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventAppRestarted.new);
@@ -13873,6 +19722,21 @@ extension $ChatEventAppRestartedJson on ChatEventAppRestarted {
         'event_type': 'app_restarted',
         ..._$ChatEventSig0ToJson(userId, joinedAt, username, message),
       };
+}
+
+extension $ChatEventAppRestartedCopyWith on ChatEventAppRestarted {
+  ChatEventAppRestarted copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) =>
+      ChatEventAppRestarted(
+        userId: userId ?? this.userId,
+        joinedAt: joinedAt ?? this.joinedAt,
+        username: username ?? this.username,
+        message: message ?? this.message,
+      );
 }
 
 extension $ChatEventJson on ChatEvent {

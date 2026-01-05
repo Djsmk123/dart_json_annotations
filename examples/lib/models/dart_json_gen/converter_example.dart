@@ -1,37 +1,29 @@
 import 'package:dart_json_annotations/dart_json_annotations.dart';
-import 'package:json_annotation/json_annotation.dart' as json_annotation;
 
 part 'converter_example.t.dart';
 
 /// Example: Custom JSON converter for DateTime
-class DateTimeConverter
-    implements json_annotation.JsonConverter<DateTime, String> {
+class DateTimeConverter {
   const DateTimeConverter();
 
-  @override
   DateTime fromJson(String json) => DateTime.parse(json);
 
-  @override
   String toJson(DateTime object) => object.toIso8601String();
 }
 
 /// Example: Custom converter for Duration (stored as seconds in JSON)
-class DurationConverter
-    implements json_annotation.JsonConverter<Duration, int> {
+class DurationConverter {
   const DurationConverter();
 
-  @override
   Duration fromJson(int json) => Duration(seconds: json);
 
-  @override
   int toJson(Duration object) => object.inSeconds;
 }
 
 /// Example: Custom converter for enum-like string
-class StatusConverter implements json_annotation.JsonConverter<Status, String> {
+class StatusConverter {
   const StatusConverter();
 
-  @override
   Status fromJson(String json) {
     switch (json) {
       case 'active':
@@ -43,7 +35,6 @@ class StatusConverter implements json_annotation.JsonConverter<Status, String> {
     }
   }
 
-  @override
   String toJson(Status object) {
     switch (object) {
       case Status.active:
@@ -91,13 +82,11 @@ class Event {
 }
 
 /// Example: Converter for custom type
-class EmailConverter implements json_annotation.JsonConverter<Email, String> {
+class EmailConverter {
   const EmailConverter();
 
-  @override
   Email fromJson(String json) => Email(json);
 
-  @override
   String toJson(Email object) => object.value;
 }
 

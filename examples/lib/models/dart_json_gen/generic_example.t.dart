@@ -8,7 +8,7 @@ extension $GenericResponseJson<T> on GenericResponse<T> {
   Map<String, dynamic> toJson(Object? Function(T) toJsonT) => <String, dynamic>{
     'success': success,
     'message': message,
-    if (data != null) 'data': toJsonT(data!),
+    'data': toJsonT(data!),
   };
 }
 

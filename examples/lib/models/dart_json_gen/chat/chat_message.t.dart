@@ -12,10 +12,10 @@ extension $ChatMessageJson on ChatMessage {
     'content': content,
     'message_type': messageType.toJson(),
     'sent_at': sentAt.toIso8601String(),
-    if (readAt != null) 'read_at': readAt?.toIso8601String(),
-    if (attachments != null) 'attachments': attachments?.map((e) => e.toJson()).toList(),
-    if (reactions != null) 'reactions': reactions,
-    if (sender != null) 'sender': sender?.toJson(),
+    'read_at': readAt?.toIso8601String(),
+    'attachments': attachments?.map((e) => e.toJson()).toList(),
+    'reactions': reactions,
+    'sender': sender?.toJson(),
   };
 }
 
@@ -38,7 +38,7 @@ extension $AttachmentJson on Attachment {
     'url': url,
     'mimeType': mimeType,
     'fileSize': fileSize,
-    if (thumbnail != null) 'thumbnail': thumbnail,
+    'thumbnail': thumbnail,
   };
 }
 

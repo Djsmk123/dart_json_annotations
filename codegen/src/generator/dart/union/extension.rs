@@ -12,6 +12,25 @@ pub fn generate_union_extension(class: &DartClass) -> String {
     
     let mut out = String::new();
     
+    // Calculate common fields for base copyWith
+    let common_fields = if class.features.copy_with && !variants.is_empty() {
+        let first_fields = &variants[0].fields;
+        let mut common = Vec::new();
+        
+        for f in first_fields {
+            let is_in_all = variants.iter().skip(1).all(|v| {
+                v.fields.iter().any(|vf| vf.name == f.name && vf.dart_type.to_dart_type() == f.dart_type.to_dart_type())
+            });
+            
+            if is_in_all {
+                common.push(f.clone());
+            }
+        }
+        common
+    } else {
+        Vec::new()
+    };
+    
     // 1. Signature Analysis for Typedefs
     // Group variants by their field signatures (types and names)
     let mut sig_to_variants: HashMap<String, Vec<usize>> = HashMap::new();
@@ -168,5 +187,29 @@ pub fn generate_union_extension(class: &DartClass) -> String {
     }
     
     out.push_str("}\n\n");
+    
+    // Base class copyWith extension
+    if class.features.copy_with && !common_fields.is_empty() {
+         out.push_str(&format!("extension ${}CopyWith on {} {{\n", name, name));
+         out.push_str(&format!("  {} copyWith({{\n", name));
+         for f in &common_fields {
+             out.push_str(&format!("    {}? {},\n", f.dart_type.to_dart_type(), f.name));
+         }
+         out.push_str("  }) {\n");
+         
+         out.push_str("    return switch (this) {\n");
+         for v in variants {
+             out.push_str(&format!("      {} v => v.copyWith(", v.class_name));
+             for f in &common_fields {
+                 // Check if field exists in variant (it must, but we need to match names strictly just in case order differs, though we checked existence)
+                 out.push_str(&format!("{}: {}, ", f.name, f.name));
+             }
+             out.push_str("),\n");
+         }
+         out.push_str("    };\n");
+         out.push_str("  }\n");
+         out.push_str("}\n\n");
+    }
+
     out
 }

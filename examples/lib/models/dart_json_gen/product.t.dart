@@ -13,7 +13,7 @@ extension $ProductJson on Product {
     'stockCount': stockCount,
     'categories': categories,
     'variants': variants.map((e) => e.toJson()).toList(),
-    if (meta != null) 'meta': meta?.toJson(),
+    'meta': meta?.toJson(),
   };
 }
 

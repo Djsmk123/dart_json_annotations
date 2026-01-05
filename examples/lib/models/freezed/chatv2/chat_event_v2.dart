@@ -7,11 +7,10 @@ part 'chat_event_v2.g.dart';
   fromJson: true,
   toJson: true,
   equal: false,
-  copyWith: false,
+  copyWith: true,
 )
 sealed class ChatEventV2 with _$ChatEventV2 {
   const ChatEventV2._();
-
 
   // event_type: 'user_joined'
   const factory ChatEventV2.userJoined({
@@ -2220,5 +2219,4 @@ sealed class ChatEventV2 with _$ChatEventV2 {
     String? username,
     ChatMessageV2? message,
   }) = ChatEventV2AppRestarted;
-
 }

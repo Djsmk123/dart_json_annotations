@@ -579,12 +579,86 @@ mixin _$ChatEventV2 {
   String? get username;
   ChatMessageV2? get message;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CopyWith<ChatEventV2> get copyWith =>
+      _$ChatEventV2CopyWithImpl<ChatEventV2>(this as ChatEventV2, _$identity);
+
   /// Serializes this ChatEventV2 to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   String toString() {
     return 'ChatEventV2(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CopyWith(
+          ChatEventV2 value, $Res Function(ChatEventV2) _then) =
+      _$ChatEventV2CopyWithImpl;
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CopyWithImpl<$Res> implements $ChatEventV2CopyWith<$Res> {
+  _$ChatEventV2CopyWithImpl(this._self, this._then);
+
+  final ChatEventV2 _self;
+  final $Res Function(ChatEventV2) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(_self.copyWith(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8535,6 +8609,15 @@ class ChatEventV2UserJoined extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserJoinedCopyWith<ChatEventV2UserJoined> get copyWith =>
+      _$ChatEventV2UserJoinedCopyWithImpl<ChatEventV2UserJoined>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserJoinedToJson(
@@ -8545,6 +8628,77 @@ class ChatEventV2UserJoined extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userJoined(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserJoinedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserJoinedCopyWith(ChatEventV2UserJoined value,
+          $Res Function(ChatEventV2UserJoined) _then) =
+      _$ChatEventV2UserJoinedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserJoinedCopyWithImpl<$Res>
+    implements $ChatEventV2UserJoinedCopyWith<$Res> {
+  _$ChatEventV2UserJoinedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserJoined _self;
+  final $Res Function(ChatEventV2UserJoined) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserJoined(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8574,6 +8728,15 @@ class ChatEventV2UserRejoined extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserRejoinedCopyWith<ChatEventV2UserRejoined> get copyWith =>
+      _$ChatEventV2UserRejoinedCopyWithImpl<ChatEventV2UserRejoined>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserRejoinedToJson(
@@ -8584,6 +8747,77 @@ class ChatEventV2UserRejoined extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userRejoined(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserRejoinedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserRejoinedCopyWith(ChatEventV2UserRejoined value,
+          $Res Function(ChatEventV2UserRejoined) _then) =
+      _$ChatEventV2UserRejoinedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserRejoinedCopyWithImpl<$Res>
+    implements $ChatEventV2UserRejoinedCopyWith<$Res> {
+  _$ChatEventV2UserRejoinedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserRejoined _self;
+  final $Res Function(ChatEventV2UserRejoined) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserRejoined(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8613,6 +8847,14 @@ class ChatEventV2UserLeft extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserLeftCopyWith<ChatEventV2UserLeft> get copyWith =>
+      _$ChatEventV2UserLeftCopyWithImpl<ChatEventV2UserLeft>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserLeftToJson(
@@ -8623,6 +8865,77 @@ class ChatEventV2UserLeft extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userLeft(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserLeftCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserLeftCopyWith(
+          ChatEventV2UserLeft value, $Res Function(ChatEventV2UserLeft) _then) =
+      _$ChatEventV2UserLeftCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserLeftCopyWithImpl<$Res>
+    implements $ChatEventV2UserLeftCopyWith<$Res> {
+  _$ChatEventV2UserLeftCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserLeft _self;
+  final $Res Function(ChatEventV2UserLeft) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserLeft(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8652,6 +8965,15 @@ class ChatEventV2UserLeftForced extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserLeftForcedCopyWith<ChatEventV2UserLeftForced> get copyWith =>
+      _$ChatEventV2UserLeftForcedCopyWithImpl<ChatEventV2UserLeftForced>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserLeftForcedToJson(
@@ -8662,6 +8984,77 @@ class ChatEventV2UserLeftForced extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userLeftForced(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserLeftForcedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserLeftForcedCopyWith(ChatEventV2UserLeftForced value,
+          $Res Function(ChatEventV2UserLeftForced) _then) =
+      _$ChatEventV2UserLeftForcedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserLeftForcedCopyWithImpl<$Res>
+    implements $ChatEventV2UserLeftForcedCopyWith<$Res> {
+  _$ChatEventV2UserLeftForcedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserLeftForced _self;
+  final $Res Function(ChatEventV2UserLeftForced) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserLeftForced(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8691,6 +9084,15 @@ class ChatEventV2UserKicked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserKickedCopyWith<ChatEventV2UserKicked> get copyWith =>
+      _$ChatEventV2UserKickedCopyWithImpl<ChatEventV2UserKicked>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserKickedToJson(
@@ -8701,6 +9103,77 @@ class ChatEventV2UserKicked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userKicked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserKickedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserKickedCopyWith(ChatEventV2UserKicked value,
+          $Res Function(ChatEventV2UserKicked) _then) =
+      _$ChatEventV2UserKickedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserKickedCopyWithImpl<$Res>
+    implements $ChatEventV2UserKickedCopyWith<$Res> {
+  _$ChatEventV2UserKickedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserKicked _self;
+  final $Res Function(ChatEventV2UserKicked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserKicked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8730,6 +9203,15 @@ class ChatEventV2UserBanned extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserBannedCopyWith<ChatEventV2UserBanned> get copyWith =>
+      _$ChatEventV2UserBannedCopyWithImpl<ChatEventV2UserBanned>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserBannedToJson(
@@ -8740,6 +9222,77 @@ class ChatEventV2UserBanned extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userBanned(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserBannedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserBannedCopyWith(ChatEventV2UserBanned value,
+          $Res Function(ChatEventV2UserBanned) _then) =
+      _$ChatEventV2UserBannedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserBannedCopyWithImpl<$Res>
+    implements $ChatEventV2UserBannedCopyWith<$Res> {
+  _$ChatEventV2UserBannedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserBanned _self;
+  final $Res Function(ChatEventV2UserBanned) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserBanned(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8769,6 +9322,15 @@ class ChatEventV2UserUnbanned extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserUnbannedCopyWith<ChatEventV2UserUnbanned> get copyWith =>
+      _$ChatEventV2UserUnbannedCopyWithImpl<ChatEventV2UserUnbanned>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserUnbannedToJson(
@@ -8779,6 +9341,77 @@ class ChatEventV2UserUnbanned extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userUnbanned(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserUnbannedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserUnbannedCopyWith(ChatEventV2UserUnbanned value,
+          $Res Function(ChatEventV2UserUnbanned) _then) =
+      _$ChatEventV2UserUnbannedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserUnbannedCopyWithImpl<$Res>
+    implements $ChatEventV2UserUnbannedCopyWith<$Res> {
+  _$ChatEventV2UserUnbannedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserUnbanned _self;
+  final $Res Function(ChatEventV2UserUnbanned) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserUnbanned(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8808,6 +9441,15 @@ class ChatEventV2UserMuted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserMutedCopyWith<ChatEventV2UserMuted> get copyWith =>
+      _$ChatEventV2UserMutedCopyWithImpl<ChatEventV2UserMuted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserMutedToJson(
@@ -8818,6 +9460,77 @@ class ChatEventV2UserMuted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userMuted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserMutedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserMutedCopyWith(ChatEventV2UserMuted value,
+          $Res Function(ChatEventV2UserMuted) _then) =
+      _$ChatEventV2UserMutedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserMutedCopyWithImpl<$Res>
+    implements $ChatEventV2UserMutedCopyWith<$Res> {
+  _$ChatEventV2UserMutedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserMuted _self;
+  final $Res Function(ChatEventV2UserMuted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserMuted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8847,6 +9560,15 @@ class ChatEventV2UserUnmuted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserUnmutedCopyWith<ChatEventV2UserUnmuted> get copyWith =>
+      _$ChatEventV2UserUnmutedCopyWithImpl<ChatEventV2UserUnmuted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserUnmutedToJson(
@@ -8857,6 +9579,77 @@ class ChatEventV2UserUnmuted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userUnmuted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserUnmutedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserUnmutedCopyWith(ChatEventV2UserUnmuted value,
+          $Res Function(ChatEventV2UserUnmuted) _then) =
+      _$ChatEventV2UserUnmutedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserUnmutedCopyWithImpl<$Res>
+    implements $ChatEventV2UserUnmutedCopyWith<$Res> {
+  _$ChatEventV2UserUnmutedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserUnmuted _self;
+  final $Res Function(ChatEventV2UserUnmuted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserUnmuted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8886,6 +9679,15 @@ class ChatEventV2UserBlocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserBlockedCopyWith<ChatEventV2UserBlocked> get copyWith =>
+      _$ChatEventV2UserBlockedCopyWithImpl<ChatEventV2UserBlocked>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserBlockedToJson(
@@ -8896,6 +9698,77 @@ class ChatEventV2UserBlocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userBlocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserBlockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserBlockedCopyWith(ChatEventV2UserBlocked value,
+          $Res Function(ChatEventV2UserBlocked) _then) =
+      _$ChatEventV2UserBlockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserBlockedCopyWithImpl<$Res>
+    implements $ChatEventV2UserBlockedCopyWith<$Res> {
+  _$ChatEventV2UserBlockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserBlocked _self;
+  final $Res Function(ChatEventV2UserBlocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserBlocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8925,6 +9798,15 @@ class ChatEventV2UserUnblocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserUnblockedCopyWith<ChatEventV2UserUnblocked> get copyWith =>
+      _$ChatEventV2UserUnblockedCopyWithImpl<ChatEventV2UserUnblocked>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserUnblockedToJson(
@@ -8935,6 +9817,77 @@ class ChatEventV2UserUnblocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userUnblocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserUnblockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserUnblockedCopyWith(ChatEventV2UserUnblocked value,
+          $Res Function(ChatEventV2UserUnblocked) _then) =
+      _$ChatEventV2UserUnblockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserUnblockedCopyWithImpl<$Res>
+    implements $ChatEventV2UserUnblockedCopyWith<$Res> {
+  _$ChatEventV2UserUnblockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserUnblocked _self;
+  final $Res Function(ChatEventV2UserUnblocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserUnblocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -8964,6 +9917,15 @@ class ChatEventV2UserReported extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserReportedCopyWith<ChatEventV2UserReported> get copyWith =>
+      _$ChatEventV2UserReportedCopyWithImpl<ChatEventV2UserReported>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserReportedToJson(
@@ -8974,6 +9936,77 @@ class ChatEventV2UserReported extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userReported(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserReportedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserReportedCopyWith(ChatEventV2UserReported value,
+          $Res Function(ChatEventV2UserReported) _then) =
+      _$ChatEventV2UserReportedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserReportedCopyWithImpl<$Res>
+    implements $ChatEventV2UserReportedCopyWith<$Res> {
+  _$ChatEventV2UserReportedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserReported _self;
+  final $Res Function(ChatEventV2UserReported) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserReported(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9003,6 +10036,15 @@ class ChatEventV2UserVerified extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserVerifiedCopyWith<ChatEventV2UserVerified> get copyWith =>
+      _$ChatEventV2UserVerifiedCopyWithImpl<ChatEventV2UserVerified>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserVerifiedToJson(
@@ -9013,6 +10055,77 @@ class ChatEventV2UserVerified extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userVerified(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserVerifiedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserVerifiedCopyWith(ChatEventV2UserVerified value,
+          $Res Function(ChatEventV2UserVerified) _then) =
+      _$ChatEventV2UserVerifiedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserVerifiedCopyWithImpl<$Res>
+    implements $ChatEventV2UserVerifiedCopyWith<$Res> {
+  _$ChatEventV2UserVerifiedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserVerified _self;
+  final $Res Function(ChatEventV2UserVerified) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserVerified(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9042,6 +10155,15 @@ class ChatEventV2UserTypingStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserTypingStartedCopyWith<ChatEventV2UserTypingStarted>
+      get copyWith => _$ChatEventV2UserTypingStartedCopyWithImpl<
+          ChatEventV2UserTypingStarted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserTypingStartedToJson(
@@ -9052,6 +10174,78 @@ class ChatEventV2UserTypingStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userTypingStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserTypingStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserTypingStartedCopyWith(
+          ChatEventV2UserTypingStarted value,
+          $Res Function(ChatEventV2UserTypingStarted) _then) =
+      _$ChatEventV2UserTypingStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserTypingStartedCopyWithImpl<$Res>
+    implements $ChatEventV2UserTypingStartedCopyWith<$Res> {
+  _$ChatEventV2UserTypingStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserTypingStarted _self;
+  final $Res Function(ChatEventV2UserTypingStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserTypingStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9081,6 +10275,15 @@ class ChatEventV2UserTypingStopped extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserTypingStoppedCopyWith<ChatEventV2UserTypingStopped>
+      get copyWith => _$ChatEventV2UserTypingStoppedCopyWithImpl<
+          ChatEventV2UserTypingStopped>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserTypingStoppedToJson(
@@ -9091,6 +10294,78 @@ class ChatEventV2UserTypingStopped extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userTypingStopped(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserTypingStoppedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserTypingStoppedCopyWith(
+          ChatEventV2UserTypingStopped value,
+          $Res Function(ChatEventV2UserTypingStopped) _then) =
+      _$ChatEventV2UserTypingStoppedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserTypingStoppedCopyWithImpl<$Res>
+    implements $ChatEventV2UserTypingStoppedCopyWith<$Res> {
+  _$ChatEventV2UserTypingStoppedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserTypingStopped _self;
+  final $Res Function(ChatEventV2UserTypingStopped) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserTypingStopped(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9120,6 +10395,15 @@ class ChatEventV2UserOnline extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserOnlineCopyWith<ChatEventV2UserOnline> get copyWith =>
+      _$ChatEventV2UserOnlineCopyWithImpl<ChatEventV2UserOnline>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserOnlineToJson(
@@ -9130,6 +10414,77 @@ class ChatEventV2UserOnline extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userOnline(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserOnlineCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserOnlineCopyWith(ChatEventV2UserOnline value,
+          $Res Function(ChatEventV2UserOnline) _then) =
+      _$ChatEventV2UserOnlineCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserOnlineCopyWithImpl<$Res>
+    implements $ChatEventV2UserOnlineCopyWith<$Res> {
+  _$ChatEventV2UserOnlineCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserOnline _self;
+  final $Res Function(ChatEventV2UserOnline) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserOnline(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9159,6 +10514,15 @@ class ChatEventV2UserOffline extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserOfflineCopyWith<ChatEventV2UserOffline> get copyWith =>
+      _$ChatEventV2UserOfflineCopyWithImpl<ChatEventV2UserOffline>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserOfflineToJson(
@@ -9169,6 +10533,77 @@ class ChatEventV2UserOffline extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userOffline(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserOfflineCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserOfflineCopyWith(ChatEventV2UserOffline value,
+          $Res Function(ChatEventV2UserOffline) _then) =
+      _$ChatEventV2UserOfflineCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserOfflineCopyWithImpl<$Res>
+    implements $ChatEventV2UserOfflineCopyWith<$Res> {
+  _$ChatEventV2UserOfflineCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserOffline _self;
+  final $Res Function(ChatEventV2UserOffline) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserOffline(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9198,6 +10633,14 @@ class ChatEventV2UserIdle extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserIdleCopyWith<ChatEventV2UserIdle> get copyWith =>
+      _$ChatEventV2UserIdleCopyWithImpl<ChatEventV2UserIdle>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserIdleToJson(
@@ -9208,6 +10651,77 @@ class ChatEventV2UserIdle extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userIdle(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserIdleCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserIdleCopyWith(
+          ChatEventV2UserIdle value, $Res Function(ChatEventV2UserIdle) _then) =
+      _$ChatEventV2UserIdleCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserIdleCopyWithImpl<$Res>
+    implements $ChatEventV2UserIdleCopyWith<$Res> {
+  _$ChatEventV2UserIdleCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserIdle _self;
+  final $Res Function(ChatEventV2UserIdle) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserIdle(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9237,6 +10751,15 @@ class ChatEventV2UserStatusChanged extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserStatusChangedCopyWith<ChatEventV2UserStatusChanged>
+      get copyWith => _$ChatEventV2UserStatusChangedCopyWithImpl<
+          ChatEventV2UserStatusChanged>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserStatusChangedToJson(
@@ -9247,6 +10770,78 @@ class ChatEventV2UserStatusChanged extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userStatusChanged(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserStatusChangedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserStatusChangedCopyWith(
+          ChatEventV2UserStatusChanged value,
+          $Res Function(ChatEventV2UserStatusChanged) _then) =
+      _$ChatEventV2UserStatusChangedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserStatusChangedCopyWithImpl<$Res>
+    implements $ChatEventV2UserStatusChangedCopyWith<$Res> {
+  _$ChatEventV2UserStatusChangedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserStatusChanged _self;
+  final $Res Function(ChatEventV2UserStatusChanged) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserStatusChanged(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9276,6 +10871,15 @@ class ChatEventV2UserProfileUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserProfileUpdatedCopyWith<ChatEventV2UserProfileUpdated>
+      get copyWith => _$ChatEventV2UserProfileUpdatedCopyWithImpl<
+          ChatEventV2UserProfileUpdated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserProfileUpdatedToJson(
@@ -9286,6 +10890,78 @@ class ChatEventV2UserProfileUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userProfileUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserProfileUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserProfileUpdatedCopyWith(
+          ChatEventV2UserProfileUpdated value,
+          $Res Function(ChatEventV2UserProfileUpdated) _then) =
+      _$ChatEventV2UserProfileUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserProfileUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2UserProfileUpdatedCopyWith<$Res> {
+  _$ChatEventV2UserProfileUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserProfileUpdated _self;
+  final $Res Function(ChatEventV2UserProfileUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserProfileUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9315,6 +10991,15 @@ class ChatEventV2UserAvatarUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserAvatarUpdatedCopyWith<ChatEventV2UserAvatarUpdated>
+      get copyWith => _$ChatEventV2UserAvatarUpdatedCopyWithImpl<
+          ChatEventV2UserAvatarUpdated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserAvatarUpdatedToJson(
@@ -9325,6 +11010,78 @@ class ChatEventV2UserAvatarUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userAvatarUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserAvatarUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserAvatarUpdatedCopyWith(
+          ChatEventV2UserAvatarUpdated value,
+          $Res Function(ChatEventV2UserAvatarUpdated) _then) =
+      _$ChatEventV2UserAvatarUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserAvatarUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2UserAvatarUpdatedCopyWith<$Res> {
+  _$ChatEventV2UserAvatarUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserAvatarUpdated _self;
+  final $Res Function(ChatEventV2UserAvatarUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserAvatarUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9354,6 +11111,15 @@ class ChatEventV2UserUsernameChanged extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserUsernameChangedCopyWith<ChatEventV2UserUsernameChanged>
+      get copyWith => _$ChatEventV2UserUsernameChangedCopyWithImpl<
+          ChatEventV2UserUsernameChanged>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserUsernameChangedToJson(
@@ -9364,6 +11130,78 @@ class ChatEventV2UserUsernameChanged extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userUsernameChanged(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserUsernameChangedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserUsernameChangedCopyWith(
+          ChatEventV2UserUsernameChanged value,
+          $Res Function(ChatEventV2UserUsernameChanged) _then) =
+      _$ChatEventV2UserUsernameChangedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserUsernameChangedCopyWithImpl<$Res>
+    implements $ChatEventV2UserUsernameChangedCopyWith<$Res> {
+  _$ChatEventV2UserUsernameChangedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserUsernameChanged _self;
+  final $Res Function(ChatEventV2UserUsernameChanged) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserUsernameChanged(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9393,6 +11231,15 @@ class ChatEventV2UserRolePromoted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserRolePromotedCopyWith<ChatEventV2UserRolePromoted>
+      get copyWith => _$ChatEventV2UserRolePromotedCopyWithImpl<
+          ChatEventV2UserRolePromoted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserRolePromotedToJson(
@@ -9403,6 +11250,78 @@ class ChatEventV2UserRolePromoted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userRolePromoted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserRolePromotedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserRolePromotedCopyWith(
+          ChatEventV2UserRolePromoted value,
+          $Res Function(ChatEventV2UserRolePromoted) _then) =
+      _$ChatEventV2UserRolePromotedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserRolePromotedCopyWithImpl<$Res>
+    implements $ChatEventV2UserRolePromotedCopyWith<$Res> {
+  _$ChatEventV2UserRolePromotedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserRolePromoted _self;
+  final $Res Function(ChatEventV2UserRolePromoted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserRolePromoted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9432,6 +11351,16 @@ class ChatEventV2UserRoleDemoted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserRoleDemotedCopyWith<ChatEventV2UserRoleDemoted>
+      get copyWith =>
+          _$ChatEventV2UserRoleDemotedCopyWithImpl<ChatEventV2UserRoleDemoted>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserRoleDemotedToJson(
@@ -9442,6 +11371,77 @@ class ChatEventV2UserRoleDemoted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userRoleDemoted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserRoleDemotedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserRoleDemotedCopyWith(ChatEventV2UserRoleDemoted value,
+          $Res Function(ChatEventV2UserRoleDemoted) _then) =
+      _$ChatEventV2UserRoleDemotedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserRoleDemotedCopyWithImpl<$Res>
+    implements $ChatEventV2UserRoleDemotedCopyWith<$Res> {
+  _$ChatEventV2UserRoleDemotedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserRoleDemoted _self;
+  final $Res Function(ChatEventV2UserRoleDemoted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserRoleDemoted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9471,6 +11471,15 @@ class ChatEventV2UserInvited extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserInvitedCopyWith<ChatEventV2UserInvited> get copyWith =>
+      _$ChatEventV2UserInvitedCopyWithImpl<ChatEventV2UserInvited>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserInvitedToJson(
@@ -9481,6 +11490,77 @@ class ChatEventV2UserInvited extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userInvited(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserInvitedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserInvitedCopyWith(ChatEventV2UserInvited value,
+          $Res Function(ChatEventV2UserInvited) _then) =
+      _$ChatEventV2UserInvitedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserInvitedCopyWithImpl<$Res>
+    implements $ChatEventV2UserInvitedCopyWith<$Res> {
+  _$ChatEventV2UserInvitedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserInvited _self;
+  final $Res Function(ChatEventV2UserInvited) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserInvited(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9510,6 +11590,15 @@ class ChatEventV2UserInviteRevoked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserInviteRevokedCopyWith<ChatEventV2UserInviteRevoked>
+      get copyWith => _$ChatEventV2UserInviteRevokedCopyWithImpl<
+          ChatEventV2UserInviteRevoked>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserInviteRevokedToJson(
@@ -9520,6 +11609,78 @@ class ChatEventV2UserInviteRevoked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userInviteRevoked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserInviteRevokedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserInviteRevokedCopyWith(
+          ChatEventV2UserInviteRevoked value,
+          $Res Function(ChatEventV2UserInviteRevoked) _then) =
+      _$ChatEventV2UserInviteRevokedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserInviteRevokedCopyWithImpl<$Res>
+    implements $ChatEventV2UserInviteRevokedCopyWith<$Res> {
+  _$ChatEventV2UserInviteRevokedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserInviteRevoked _self;
+  final $Res Function(ChatEventV2UserInviteRevoked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserInviteRevoked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9549,6 +11710,15 @@ class ChatEventV2UserFollowed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserFollowedCopyWith<ChatEventV2UserFollowed> get copyWith =>
+      _$ChatEventV2UserFollowedCopyWithImpl<ChatEventV2UserFollowed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserFollowedToJson(
@@ -9559,6 +11729,77 @@ class ChatEventV2UserFollowed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userFollowed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserFollowedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserFollowedCopyWith(ChatEventV2UserFollowed value,
+          $Res Function(ChatEventV2UserFollowed) _then) =
+      _$ChatEventV2UserFollowedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserFollowedCopyWithImpl<$Res>
+    implements $ChatEventV2UserFollowedCopyWith<$Res> {
+  _$ChatEventV2UserFollowedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserFollowed _self;
+  final $Res Function(ChatEventV2UserFollowed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserFollowed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9588,6 +11829,15 @@ class ChatEventV2UserUnfollowed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserUnfollowedCopyWith<ChatEventV2UserUnfollowed> get copyWith =>
+      _$ChatEventV2UserUnfollowedCopyWithImpl<ChatEventV2UserUnfollowed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserUnfollowedToJson(
@@ -9598,6 +11848,77 @@ class ChatEventV2UserUnfollowed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userUnfollowed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserUnfollowedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserUnfollowedCopyWith(ChatEventV2UserUnfollowed value,
+          $Res Function(ChatEventV2UserUnfollowed) _then) =
+      _$ChatEventV2UserUnfollowedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserUnfollowedCopyWithImpl<$Res>
+    implements $ChatEventV2UserUnfollowedCopyWith<$Res> {
+  _$ChatEventV2UserUnfollowedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserUnfollowed _self;
+  final $Res Function(ChatEventV2UserUnfollowed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserUnfollowed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9627,6 +11948,15 @@ class ChatEventV2UserPinged extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2UserPingedCopyWith<ChatEventV2UserPinged> get copyWith =>
+      _$ChatEventV2UserPingedCopyWithImpl<ChatEventV2UserPinged>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2UserPingedToJson(
@@ -9637,6 +11967,77 @@ class ChatEventV2UserPinged extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.userPinged(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2UserPingedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2UserPingedCopyWith(ChatEventV2UserPinged value,
+          $Res Function(ChatEventV2UserPinged) _then) =
+      _$ChatEventV2UserPingedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2UserPingedCopyWithImpl<$Res>
+    implements $ChatEventV2UserPingedCopyWith<$Res> {
+  _$ChatEventV2UserPingedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2UserPinged _self;
+  final $Res Function(ChatEventV2UserPinged) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2UserPinged(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9666,6 +12067,15 @@ class ChatEventV2MessageSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageSentCopyWith<ChatEventV2MessageSent> get copyWith =>
+      _$ChatEventV2MessageSentCopyWithImpl<ChatEventV2MessageSent>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageSentToJson(
@@ -9676,6 +12086,77 @@ class ChatEventV2MessageSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageSentCopyWith(ChatEventV2MessageSent value,
+          $Res Function(ChatEventV2MessageSent) _then) =
+      _$ChatEventV2MessageSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageSentCopyWithImpl<$Res>
+    implements $ChatEventV2MessageSentCopyWith<$Res> {
+  _$ChatEventV2MessageSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageSent _self;
+  final $Res Function(ChatEventV2MessageSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9705,6 +12186,16 @@ class ChatEventV2MessageReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageReceivedCopyWith<ChatEventV2MessageReceived>
+      get copyWith =>
+          _$ChatEventV2MessageReceivedCopyWithImpl<ChatEventV2MessageReceived>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageReceivedToJson(
@@ -9715,6 +12206,77 @@ class ChatEventV2MessageReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageReceivedCopyWith(ChatEventV2MessageReceived value,
+          $Res Function(ChatEventV2MessageReceived) _then) =
+      _$ChatEventV2MessageReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageReceivedCopyWith<$Res> {
+  _$ChatEventV2MessageReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageReceived _self;
+  final $Res Function(ChatEventV2MessageReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9744,6 +12306,15 @@ class ChatEventV2MessageRead extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageReadCopyWith<ChatEventV2MessageRead> get copyWith =>
+      _$ChatEventV2MessageReadCopyWithImpl<ChatEventV2MessageRead>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageReadToJson(
@@ -9754,6 +12325,77 @@ class ChatEventV2MessageRead extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageRead(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageReadCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageReadCopyWith(ChatEventV2MessageRead value,
+          $Res Function(ChatEventV2MessageRead) _then) =
+      _$ChatEventV2MessageReadCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageReadCopyWithImpl<$Res>
+    implements $ChatEventV2MessageReadCopyWith<$Res> {
+  _$ChatEventV2MessageReadCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageRead _self;
+  final $Res Function(ChatEventV2MessageRead) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageRead(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9783,6 +12425,15 @@ class ChatEventV2MessageUnread extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageUnreadCopyWith<ChatEventV2MessageUnread> get copyWith =>
+      _$ChatEventV2MessageUnreadCopyWithImpl<ChatEventV2MessageUnread>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageUnreadToJson(
@@ -9793,6 +12444,77 @@ class ChatEventV2MessageUnread extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageUnread(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageUnreadCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageUnreadCopyWith(ChatEventV2MessageUnread value,
+          $Res Function(ChatEventV2MessageUnread) _then) =
+      _$ChatEventV2MessageUnreadCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageUnreadCopyWithImpl<$Res>
+    implements $ChatEventV2MessageUnreadCopyWith<$Res> {
+  _$ChatEventV2MessageUnreadCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageUnread _self;
+  final $Res Function(ChatEventV2MessageUnread) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageUnread(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9822,6 +12544,15 @@ class ChatEventV2MessageEdited extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageEditedCopyWith<ChatEventV2MessageEdited> get copyWith =>
+      _$ChatEventV2MessageEditedCopyWithImpl<ChatEventV2MessageEdited>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageEditedToJson(
@@ -9832,6 +12563,77 @@ class ChatEventV2MessageEdited extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageEdited(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageEditedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageEditedCopyWith(ChatEventV2MessageEdited value,
+          $Res Function(ChatEventV2MessageEdited) _then) =
+      _$ChatEventV2MessageEditedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageEditedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageEditedCopyWith<$Res> {
+  _$ChatEventV2MessageEditedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageEdited _self;
+  final $Res Function(ChatEventV2MessageEdited) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageEdited(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9861,6 +12663,15 @@ class ChatEventV2MessageDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageDeletedCopyWith<ChatEventV2MessageDeleted> get copyWith =>
+      _$ChatEventV2MessageDeletedCopyWithImpl<ChatEventV2MessageDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageDeletedToJson(
@@ -9871,6 +12682,77 @@ class ChatEventV2MessageDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageDeletedCopyWith(ChatEventV2MessageDeleted value,
+          $Res Function(ChatEventV2MessageDeleted) _then) =
+      _$ChatEventV2MessageDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageDeletedCopyWith<$Res> {
+  _$ChatEventV2MessageDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageDeleted _self;
+  final $Res Function(ChatEventV2MessageDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9901,6 +12783,15 @@ class ChatEventV2MessageDeletedForSelf extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageDeletedForSelfCopyWith<ChatEventV2MessageDeletedForSelf>
+      get copyWith => _$ChatEventV2MessageDeletedForSelfCopyWithImpl<
+          ChatEventV2MessageDeletedForSelf>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageDeletedForSelfToJson(
@@ -9911,6 +12802,78 @@ class ChatEventV2MessageDeletedForSelf extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageDeletedForSelf(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageDeletedForSelfCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageDeletedForSelfCopyWith(
+          ChatEventV2MessageDeletedForSelf value,
+          $Res Function(ChatEventV2MessageDeletedForSelf) _then) =
+      _$ChatEventV2MessageDeletedForSelfCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageDeletedForSelfCopyWithImpl<$Res>
+    implements $ChatEventV2MessageDeletedForSelfCopyWith<$Res> {
+  _$ChatEventV2MessageDeletedForSelfCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageDeletedForSelf _self;
+  final $Res Function(ChatEventV2MessageDeletedForSelf) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageDeletedForSelf(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9940,6 +12903,15 @@ class ChatEventV2MessageDeletedForAll extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageDeletedForAllCopyWith<ChatEventV2MessageDeletedForAll>
+      get copyWith => _$ChatEventV2MessageDeletedForAllCopyWithImpl<
+          ChatEventV2MessageDeletedForAll>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageDeletedForAllToJson(
@@ -9950,6 +12922,78 @@ class ChatEventV2MessageDeletedForAll extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageDeletedForAll(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageDeletedForAllCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageDeletedForAllCopyWith(
+          ChatEventV2MessageDeletedForAll value,
+          $Res Function(ChatEventV2MessageDeletedForAll) _then) =
+      _$ChatEventV2MessageDeletedForAllCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageDeletedForAllCopyWithImpl<$Res>
+    implements $ChatEventV2MessageDeletedForAllCopyWith<$Res> {
+  _$ChatEventV2MessageDeletedForAllCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageDeletedForAll _self;
+  final $Res Function(ChatEventV2MessageDeletedForAll) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageDeletedForAll(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -9979,6 +13023,15 @@ class ChatEventV2MessagePinned extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessagePinnedCopyWith<ChatEventV2MessagePinned> get copyWith =>
+      _$ChatEventV2MessagePinnedCopyWithImpl<ChatEventV2MessagePinned>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessagePinnedToJson(
@@ -9989,6 +13042,77 @@ class ChatEventV2MessagePinned extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messagePinned(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessagePinnedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessagePinnedCopyWith(ChatEventV2MessagePinned value,
+          $Res Function(ChatEventV2MessagePinned) _then) =
+      _$ChatEventV2MessagePinnedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessagePinnedCopyWithImpl<$Res>
+    implements $ChatEventV2MessagePinnedCopyWith<$Res> {
+  _$ChatEventV2MessagePinnedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessagePinned _self;
+  final $Res Function(ChatEventV2MessagePinned) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessagePinned(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10018,6 +13142,16 @@ class ChatEventV2MessageUnpinned extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageUnpinnedCopyWith<ChatEventV2MessageUnpinned>
+      get copyWith =>
+          _$ChatEventV2MessageUnpinnedCopyWithImpl<ChatEventV2MessageUnpinned>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageUnpinnedToJson(
@@ -10028,6 +13162,77 @@ class ChatEventV2MessageUnpinned extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageUnpinned(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageUnpinnedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageUnpinnedCopyWith(ChatEventV2MessageUnpinned value,
+          $Res Function(ChatEventV2MessageUnpinned) _then) =
+      _$ChatEventV2MessageUnpinnedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageUnpinnedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageUnpinnedCopyWith<$Res> {
+  _$ChatEventV2MessageUnpinnedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageUnpinned _self;
+  final $Res Function(ChatEventV2MessageUnpinned) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageUnpinned(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10057,6 +13262,15 @@ class ChatEventV2MessageStarred extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageStarredCopyWith<ChatEventV2MessageStarred> get copyWith =>
+      _$ChatEventV2MessageStarredCopyWithImpl<ChatEventV2MessageStarred>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageStarredToJson(
@@ -10067,6 +13281,77 @@ class ChatEventV2MessageStarred extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageStarred(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageStarredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageStarredCopyWith(ChatEventV2MessageStarred value,
+          $Res Function(ChatEventV2MessageStarred) _then) =
+      _$ChatEventV2MessageStarredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageStarredCopyWithImpl<$Res>
+    implements $ChatEventV2MessageStarredCopyWith<$Res> {
+  _$ChatEventV2MessageStarredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageStarred _self;
+  final $Res Function(ChatEventV2MessageStarred) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageStarred(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10096,6 +13381,15 @@ class ChatEventV2MessageUnstarred extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageUnstarredCopyWith<ChatEventV2MessageUnstarred>
+      get copyWith => _$ChatEventV2MessageUnstarredCopyWithImpl<
+          ChatEventV2MessageUnstarred>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageUnstarredToJson(
@@ -10106,6 +13400,78 @@ class ChatEventV2MessageUnstarred extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageUnstarred(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageUnstarredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageUnstarredCopyWith(
+          ChatEventV2MessageUnstarred value,
+          $Res Function(ChatEventV2MessageUnstarred) _then) =
+      _$ChatEventV2MessageUnstarredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageUnstarredCopyWithImpl<$Res>
+    implements $ChatEventV2MessageUnstarredCopyWith<$Res> {
+  _$ChatEventV2MessageUnstarredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageUnstarred _self;
+  final $Res Function(ChatEventV2MessageUnstarred) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageUnstarred(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10135,6 +13501,15 @@ class ChatEventV2MessageLiked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageLikedCopyWith<ChatEventV2MessageLiked> get copyWith =>
+      _$ChatEventV2MessageLikedCopyWithImpl<ChatEventV2MessageLiked>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageLikedToJson(
@@ -10145,6 +13520,77 @@ class ChatEventV2MessageLiked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageLiked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageLikedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageLikedCopyWith(ChatEventV2MessageLiked value,
+          $Res Function(ChatEventV2MessageLiked) _then) =
+      _$ChatEventV2MessageLikedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageLikedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageLikedCopyWith<$Res> {
+  _$ChatEventV2MessageLikedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageLiked _self;
+  final $Res Function(ChatEventV2MessageLiked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageLiked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10174,6 +13620,15 @@ class ChatEventV2MessageUnliked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageUnlikedCopyWith<ChatEventV2MessageUnliked> get copyWith =>
+      _$ChatEventV2MessageUnlikedCopyWithImpl<ChatEventV2MessageUnliked>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageUnlikedToJson(
@@ -10184,6 +13639,77 @@ class ChatEventV2MessageUnliked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageUnliked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageUnlikedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageUnlikedCopyWith(ChatEventV2MessageUnliked value,
+          $Res Function(ChatEventV2MessageUnliked) _then) =
+      _$ChatEventV2MessageUnlikedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageUnlikedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageUnlikedCopyWith<$Res> {
+  _$ChatEventV2MessageUnlikedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageUnliked _self;
+  final $Res Function(ChatEventV2MessageUnliked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageUnliked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10213,6 +13739,16 @@ class ChatEventV2MessageDisliked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageDislikedCopyWith<ChatEventV2MessageDisliked>
+      get copyWith =>
+          _$ChatEventV2MessageDislikedCopyWithImpl<ChatEventV2MessageDisliked>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageDislikedToJson(
@@ -10223,6 +13759,77 @@ class ChatEventV2MessageDisliked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageDisliked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageDislikedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageDislikedCopyWith(ChatEventV2MessageDisliked value,
+          $Res Function(ChatEventV2MessageDisliked) _then) =
+      _$ChatEventV2MessageDislikedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageDislikedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageDislikedCopyWith<$Res> {
+  _$ChatEventV2MessageDislikedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageDisliked _self;
+  final $Res Function(ChatEventV2MessageDisliked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageDisliked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10252,6 +13859,15 @@ class ChatEventV2MessageReacted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageReactedCopyWith<ChatEventV2MessageReacted> get copyWith =>
+      _$ChatEventV2MessageReactedCopyWithImpl<ChatEventV2MessageReacted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageReactedToJson(
@@ -10262,6 +13878,77 @@ class ChatEventV2MessageReacted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageReacted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageReactedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageReactedCopyWith(ChatEventV2MessageReacted value,
+          $Res Function(ChatEventV2MessageReacted) _then) =
+      _$ChatEventV2MessageReactedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageReactedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageReactedCopyWith<$Res> {
+  _$ChatEventV2MessageReactedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageReacted _self;
+  final $Res Function(ChatEventV2MessageReacted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageReacted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10291,6 +13978,15 @@ class ChatEventV2MessageUnreacted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageUnreactedCopyWith<ChatEventV2MessageUnreacted>
+      get copyWith => _$ChatEventV2MessageUnreactedCopyWithImpl<
+          ChatEventV2MessageUnreacted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageUnreactedToJson(
@@ -10301,6 +13997,78 @@ class ChatEventV2MessageUnreacted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageUnreacted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageUnreactedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageUnreactedCopyWith(
+          ChatEventV2MessageUnreacted value,
+          $Res Function(ChatEventV2MessageUnreacted) _then) =
+      _$ChatEventV2MessageUnreactedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageUnreactedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageUnreactedCopyWith<$Res> {
+  _$ChatEventV2MessageUnreactedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageUnreacted _self;
+  final $Res Function(ChatEventV2MessageUnreacted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageUnreacted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10330,6 +14098,15 @@ class ChatEventV2MessageForwarded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageForwardedCopyWith<ChatEventV2MessageForwarded>
+      get copyWith => _$ChatEventV2MessageForwardedCopyWithImpl<
+          ChatEventV2MessageForwarded>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageForwardedToJson(
@@ -10340,6 +14117,78 @@ class ChatEventV2MessageForwarded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageForwarded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageForwardedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageForwardedCopyWith(
+          ChatEventV2MessageForwarded value,
+          $Res Function(ChatEventV2MessageForwarded) _then) =
+      _$ChatEventV2MessageForwardedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageForwardedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageForwardedCopyWith<$Res> {
+  _$ChatEventV2MessageForwardedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageForwarded _self;
+  final $Res Function(ChatEventV2MessageForwarded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageForwarded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10369,6 +14218,15 @@ class ChatEventV2MessageQuoted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageQuotedCopyWith<ChatEventV2MessageQuoted> get copyWith =>
+      _$ChatEventV2MessageQuotedCopyWithImpl<ChatEventV2MessageQuoted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageQuotedToJson(
@@ -10379,6 +14237,77 @@ class ChatEventV2MessageQuoted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageQuoted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageQuotedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageQuotedCopyWith(ChatEventV2MessageQuoted value,
+          $Res Function(ChatEventV2MessageQuoted) _then) =
+      _$ChatEventV2MessageQuotedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageQuotedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageQuotedCopyWith<$Res> {
+  _$ChatEventV2MessageQuotedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageQuoted _self;
+  final $Res Function(ChatEventV2MessageQuoted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageQuoted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10408,6 +14337,15 @@ class ChatEventV2MessageFlagged extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageFlaggedCopyWith<ChatEventV2MessageFlagged> get copyWith =>
+      _$ChatEventV2MessageFlaggedCopyWithImpl<ChatEventV2MessageFlagged>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageFlaggedToJson(
@@ -10418,6 +14356,77 @@ class ChatEventV2MessageFlagged extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageFlagged(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageFlaggedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageFlaggedCopyWith(ChatEventV2MessageFlagged value,
+          $Res Function(ChatEventV2MessageFlagged) _then) =
+      _$ChatEventV2MessageFlaggedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageFlaggedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageFlaggedCopyWith<$Res> {
+  _$ChatEventV2MessageFlaggedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageFlagged _self;
+  final $Res Function(ChatEventV2MessageFlagged) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageFlagged(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10447,6 +14456,15 @@ class ChatEventV2MessageUnflagged extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageUnflaggedCopyWith<ChatEventV2MessageUnflagged>
+      get copyWith => _$ChatEventV2MessageUnflaggedCopyWithImpl<
+          ChatEventV2MessageUnflagged>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageUnflaggedToJson(
@@ -10457,6 +14475,78 @@ class ChatEventV2MessageUnflagged extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageUnflagged(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageUnflaggedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageUnflaggedCopyWith(
+          ChatEventV2MessageUnflagged value,
+          $Res Function(ChatEventV2MessageUnflagged) _then) =
+      _$ChatEventV2MessageUnflaggedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageUnflaggedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageUnflaggedCopyWith<$Res> {
+  _$ChatEventV2MessageUnflaggedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageUnflagged _self;
+  final $Res Function(ChatEventV2MessageUnflagged) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageUnflagged(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10486,6 +14576,15 @@ class ChatEventV2MessageSpamDetected extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageSpamDetectedCopyWith<ChatEventV2MessageSpamDetected>
+      get copyWith => _$ChatEventV2MessageSpamDetectedCopyWithImpl<
+          ChatEventV2MessageSpamDetected>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageSpamDetectedToJson(
@@ -10496,6 +14595,78 @@ class ChatEventV2MessageSpamDetected extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageSpamDetected(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageSpamDetectedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageSpamDetectedCopyWith(
+          ChatEventV2MessageSpamDetected value,
+          $Res Function(ChatEventV2MessageSpamDetected) _then) =
+      _$ChatEventV2MessageSpamDetectedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageSpamDetectedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageSpamDetectedCopyWith<$Res> {
+  _$ChatEventV2MessageSpamDetectedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageSpamDetected _self;
+  final $Res Function(ChatEventV2MessageSpamDetected) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageSpamDetected(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10526,6 +14697,15 @@ class ChatEventV2MessageDeliveryFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageDeliveryFailedCopyWith<ChatEventV2MessageDeliveryFailed>
+      get copyWith => _$ChatEventV2MessageDeliveryFailedCopyWithImpl<
+          ChatEventV2MessageDeliveryFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageDeliveryFailedToJson(
@@ -10536,6 +14716,78 @@ class ChatEventV2MessageDeliveryFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageDeliveryFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageDeliveryFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageDeliveryFailedCopyWith(
+          ChatEventV2MessageDeliveryFailed value,
+          $Res Function(ChatEventV2MessageDeliveryFailed) _then) =
+      _$ChatEventV2MessageDeliveryFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageDeliveryFailedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageDeliveryFailedCopyWith<$Res> {
+  _$ChatEventV2MessageDeliveryFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageDeliveryFailed _self;
+  final $Res Function(ChatEventV2MessageDeliveryFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageDeliveryFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10565,6 +14817,15 @@ class ChatEventV2MessageScheduled extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageScheduledCopyWith<ChatEventV2MessageScheduled>
+      get copyWith => _$ChatEventV2MessageScheduledCopyWithImpl<
+          ChatEventV2MessageScheduled>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageScheduledToJson(
@@ -10575,6 +14836,78 @@ class ChatEventV2MessageScheduled extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageScheduled(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageScheduledCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageScheduledCopyWith(
+          ChatEventV2MessageScheduled value,
+          $Res Function(ChatEventV2MessageScheduled) _then) =
+      _$ChatEventV2MessageScheduledCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageScheduledCopyWithImpl<$Res>
+    implements $ChatEventV2MessageScheduledCopyWith<$Res> {
+  _$ChatEventV2MessageScheduledCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageScheduled _self;
+  final $Res Function(ChatEventV2MessageScheduled) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageScheduled(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10604,6 +14937,15 @@ class ChatEventV2MessageScheduledSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageScheduledSentCopyWith<ChatEventV2MessageScheduledSent>
+      get copyWith => _$ChatEventV2MessageScheduledSentCopyWithImpl<
+          ChatEventV2MessageScheduledSent>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageScheduledSentToJson(
@@ -10614,6 +14956,78 @@ class ChatEventV2MessageScheduledSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageScheduledSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageScheduledSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageScheduledSentCopyWith(
+          ChatEventV2MessageScheduledSent value,
+          $Res Function(ChatEventV2MessageScheduledSent) _then) =
+      _$ChatEventV2MessageScheduledSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageScheduledSentCopyWithImpl<$Res>
+    implements $ChatEventV2MessageScheduledSentCopyWith<$Res> {
+  _$ChatEventV2MessageScheduledSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageScheduledSent _self;
+  final $Res Function(ChatEventV2MessageScheduledSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageScheduledSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10644,6 +15058,15 @@ class ChatEventV2MessageScheduledFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageScheduledFailedCopyWith<ChatEventV2MessageScheduledFailed>
+      get copyWith => _$ChatEventV2MessageScheduledFailedCopyWithImpl<
+          ChatEventV2MessageScheduledFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageScheduledFailedToJson(
@@ -10654,6 +15077,78 @@ class ChatEventV2MessageScheduledFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageScheduledFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageScheduledFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageScheduledFailedCopyWith(
+          ChatEventV2MessageScheduledFailed value,
+          $Res Function(ChatEventV2MessageScheduledFailed) _then) =
+      _$ChatEventV2MessageScheduledFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageScheduledFailedCopyWithImpl<$Res>
+    implements $ChatEventV2MessageScheduledFailedCopyWith<$Res> {
+  _$ChatEventV2MessageScheduledFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageScheduledFailed _self;
+  final $Res Function(ChatEventV2MessageScheduledFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageScheduledFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10683,6 +15178,15 @@ class ChatEventV2MessageHidden extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageHiddenCopyWith<ChatEventV2MessageHidden> get copyWith =>
+      _$ChatEventV2MessageHiddenCopyWithImpl<ChatEventV2MessageHidden>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageHiddenToJson(
@@ -10693,6 +15197,77 @@ class ChatEventV2MessageHidden extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageHidden(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageHiddenCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageHiddenCopyWith(ChatEventV2MessageHidden value,
+          $Res Function(ChatEventV2MessageHidden) _then) =
+      _$ChatEventV2MessageHiddenCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageHiddenCopyWithImpl<$Res>
+    implements $ChatEventV2MessageHiddenCopyWith<$Res> {
+  _$ChatEventV2MessageHiddenCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageHidden _self;
+  final $Res Function(ChatEventV2MessageHidden) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageHidden(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10722,6 +15297,16 @@ class ChatEventV2MessageRestored extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2MessageRestoredCopyWith<ChatEventV2MessageRestored>
+      get copyWith =>
+          _$ChatEventV2MessageRestoredCopyWithImpl<ChatEventV2MessageRestored>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2MessageRestoredToJson(
@@ -10732,6 +15317,77 @@ class ChatEventV2MessageRestored extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.messageRestored(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2MessageRestoredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2MessageRestoredCopyWith(ChatEventV2MessageRestored value,
+          $Res Function(ChatEventV2MessageRestored) _then) =
+      _$ChatEventV2MessageRestoredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2MessageRestoredCopyWithImpl<$Res>
+    implements $ChatEventV2MessageRestoredCopyWith<$Res> {
+  _$ChatEventV2MessageRestoredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2MessageRestored _self;
+  final $Res Function(ChatEventV2MessageRestored) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2MessageRestored(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10761,6 +15417,15 @@ class ChatEventV2AttachmentUploaded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AttachmentUploadedCopyWith<ChatEventV2AttachmentUploaded>
+      get copyWith => _$ChatEventV2AttachmentUploadedCopyWithImpl<
+          ChatEventV2AttachmentUploaded>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AttachmentUploadedToJson(
@@ -10771,6 +15436,78 @@ class ChatEventV2AttachmentUploaded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.attachmentUploaded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AttachmentUploadedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AttachmentUploadedCopyWith(
+          ChatEventV2AttachmentUploaded value,
+          $Res Function(ChatEventV2AttachmentUploaded) _then) =
+      _$ChatEventV2AttachmentUploadedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AttachmentUploadedCopyWithImpl<$Res>
+    implements $ChatEventV2AttachmentUploadedCopyWith<$Res> {
+  _$ChatEventV2AttachmentUploadedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AttachmentUploaded _self;
+  final $Res Function(ChatEventV2AttachmentUploaded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AttachmentUploaded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10800,6 +15537,15 @@ class ChatEventV2AttachmentFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AttachmentFailedCopyWith<ChatEventV2AttachmentFailed>
+      get copyWith => _$ChatEventV2AttachmentFailedCopyWithImpl<
+          ChatEventV2AttachmentFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AttachmentFailedToJson(
@@ -10810,6 +15556,78 @@ class ChatEventV2AttachmentFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.attachmentFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AttachmentFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AttachmentFailedCopyWith(
+          ChatEventV2AttachmentFailed value,
+          $Res Function(ChatEventV2AttachmentFailed) _then) =
+      _$ChatEventV2AttachmentFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AttachmentFailedCopyWithImpl<$Res>
+    implements $ChatEventV2AttachmentFailedCopyWith<$Res> {
+  _$ChatEventV2AttachmentFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AttachmentFailed _self;
+  final $Res Function(ChatEventV2AttachmentFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AttachmentFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10839,6 +15657,15 @@ class ChatEventV2AttachmentDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AttachmentDeletedCopyWith<ChatEventV2AttachmentDeleted>
+      get copyWith => _$ChatEventV2AttachmentDeletedCopyWithImpl<
+          ChatEventV2AttachmentDeleted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AttachmentDeletedToJson(
@@ -10849,6 +15676,78 @@ class ChatEventV2AttachmentDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.attachmentDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AttachmentDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AttachmentDeletedCopyWith(
+          ChatEventV2AttachmentDeleted value,
+          $Res Function(ChatEventV2AttachmentDeleted) _then) =
+      _$ChatEventV2AttachmentDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AttachmentDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2AttachmentDeletedCopyWith<$Res> {
+  _$ChatEventV2AttachmentDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AttachmentDeleted _self;
+  final $Res Function(ChatEventV2AttachmentDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AttachmentDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10879,6 +15778,16 @@ class ChatEventV2AttachmentPreviewGenerated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AttachmentPreviewGeneratedCopyWith<
+          ChatEventV2AttachmentPreviewGenerated>
+      get copyWith => _$ChatEventV2AttachmentPreviewGeneratedCopyWithImpl<
+          ChatEventV2AttachmentPreviewGenerated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AttachmentPreviewGeneratedToJson(
@@ -10889,6 +15798,78 @@ class ChatEventV2AttachmentPreviewGenerated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.attachmentPreviewGenerated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AttachmentPreviewGeneratedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AttachmentPreviewGeneratedCopyWith(
+          ChatEventV2AttachmentPreviewGenerated value,
+          $Res Function(ChatEventV2AttachmentPreviewGenerated) _then) =
+      _$ChatEventV2AttachmentPreviewGeneratedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AttachmentPreviewGeneratedCopyWithImpl<$Res>
+    implements $ChatEventV2AttachmentPreviewGeneratedCopyWith<$Res> {
+  _$ChatEventV2AttachmentPreviewGeneratedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AttachmentPreviewGenerated _self;
+  final $Res Function(ChatEventV2AttachmentPreviewGenerated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AttachmentPreviewGenerated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10918,6 +15899,15 @@ class ChatEventV2AttachmentDownloaded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AttachmentDownloadedCopyWith<ChatEventV2AttachmentDownloaded>
+      get copyWith => _$ChatEventV2AttachmentDownloadedCopyWithImpl<
+          ChatEventV2AttachmentDownloaded>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AttachmentDownloadedToJson(
@@ -10928,6 +15918,78 @@ class ChatEventV2AttachmentDownloaded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.attachmentDownloaded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AttachmentDownloadedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AttachmentDownloadedCopyWith(
+          ChatEventV2AttachmentDownloaded value,
+          $Res Function(ChatEventV2AttachmentDownloaded) _then) =
+      _$ChatEventV2AttachmentDownloadedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AttachmentDownloadedCopyWithImpl<$Res>
+    implements $ChatEventV2AttachmentDownloadedCopyWith<$Res> {
+  _$ChatEventV2AttachmentDownloadedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AttachmentDownloaded _self;
+  final $Res Function(ChatEventV2AttachmentDownloaded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AttachmentDownloaded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10958,6 +16020,16 @@ class ChatEventV2AttachmentDownloadStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AttachmentDownloadStartedCopyWith<
+          ChatEventV2AttachmentDownloadStarted>
+      get copyWith => _$ChatEventV2AttachmentDownloadStartedCopyWithImpl<
+          ChatEventV2AttachmentDownloadStarted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AttachmentDownloadStartedToJson(
@@ -10968,6 +16040,78 @@ class ChatEventV2AttachmentDownloadStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.attachmentDownloadStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AttachmentDownloadStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AttachmentDownloadStartedCopyWith(
+          ChatEventV2AttachmentDownloadStarted value,
+          $Res Function(ChatEventV2AttachmentDownloadStarted) _then) =
+      _$ChatEventV2AttachmentDownloadStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AttachmentDownloadStartedCopyWithImpl<$Res>
+    implements $ChatEventV2AttachmentDownloadStartedCopyWith<$Res> {
+  _$ChatEventV2AttachmentDownloadStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AttachmentDownloadStarted _self;
+  final $Res Function(ChatEventV2AttachmentDownloadStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AttachmentDownloadStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -10998,6 +16142,16 @@ class ChatEventV2AttachmentDownloadCancelled extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AttachmentDownloadCancelledCopyWith<
+          ChatEventV2AttachmentDownloadCancelled>
+      get copyWith => _$ChatEventV2AttachmentDownloadCancelledCopyWithImpl<
+          ChatEventV2AttachmentDownloadCancelled>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AttachmentDownloadCancelledToJson(
@@ -11008,6 +16162,78 @@ class ChatEventV2AttachmentDownloadCancelled extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.attachmentDownloadCancelled(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AttachmentDownloadCancelledCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AttachmentDownloadCancelledCopyWith(
+          ChatEventV2AttachmentDownloadCancelled value,
+          $Res Function(ChatEventV2AttachmentDownloadCancelled) _then) =
+      _$ChatEventV2AttachmentDownloadCancelledCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AttachmentDownloadCancelledCopyWithImpl<$Res>
+    implements $ChatEventV2AttachmentDownloadCancelledCopyWith<$Res> {
+  _$ChatEventV2AttachmentDownloadCancelledCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AttachmentDownloadCancelled _self;
+  final $Res Function(ChatEventV2AttachmentDownloadCancelled) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AttachmentDownloadCancelled(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11038,6 +16264,16 @@ class ChatEventV2AttachmentDownloadFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AttachmentDownloadFailedCopyWith<
+          ChatEventV2AttachmentDownloadFailed>
+      get copyWith => _$ChatEventV2AttachmentDownloadFailedCopyWithImpl<
+          ChatEventV2AttachmentDownloadFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AttachmentDownloadFailedToJson(
@@ -11048,6 +16284,78 @@ class ChatEventV2AttachmentDownloadFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.attachmentDownloadFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AttachmentDownloadFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AttachmentDownloadFailedCopyWith(
+          ChatEventV2AttachmentDownloadFailed value,
+          $Res Function(ChatEventV2AttachmentDownloadFailed) _then) =
+      _$ChatEventV2AttachmentDownloadFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AttachmentDownloadFailedCopyWithImpl<$Res>
+    implements $ChatEventV2AttachmentDownloadFailedCopyWith<$Res> {
+  _$ChatEventV2AttachmentDownloadFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AttachmentDownloadFailed _self;
+  final $Res Function(ChatEventV2AttachmentDownloadFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AttachmentDownloadFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11077,6 +16385,15 @@ class ChatEventV2ImageSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ImageSentCopyWith<ChatEventV2ImageSent> get copyWith =>
+      _$ChatEventV2ImageSentCopyWithImpl<ChatEventV2ImageSent>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ImageSentToJson(
@@ -11087,6 +16404,77 @@ class ChatEventV2ImageSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.imageSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ImageSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ImageSentCopyWith(ChatEventV2ImageSent value,
+          $Res Function(ChatEventV2ImageSent) _then) =
+      _$ChatEventV2ImageSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ImageSentCopyWithImpl<$Res>
+    implements $ChatEventV2ImageSentCopyWith<$Res> {
+  _$ChatEventV2ImageSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ImageSent _self;
+  final $Res Function(ChatEventV2ImageSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ImageSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11116,6 +16504,15 @@ class ChatEventV2ImageReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ImageReceivedCopyWith<ChatEventV2ImageReceived> get copyWith =>
+      _$ChatEventV2ImageReceivedCopyWithImpl<ChatEventV2ImageReceived>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ImageReceivedToJson(
@@ -11126,6 +16523,77 @@ class ChatEventV2ImageReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.imageReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ImageReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ImageReceivedCopyWith(ChatEventV2ImageReceived value,
+          $Res Function(ChatEventV2ImageReceived) _then) =
+      _$ChatEventV2ImageReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ImageReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2ImageReceivedCopyWith<$Res> {
+  _$ChatEventV2ImageReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ImageReceived _self;
+  final $Res Function(ChatEventV2ImageReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ImageReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11155,6 +16623,15 @@ class ChatEventV2ImageDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ImageDeletedCopyWith<ChatEventV2ImageDeleted> get copyWith =>
+      _$ChatEventV2ImageDeletedCopyWithImpl<ChatEventV2ImageDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ImageDeletedToJson(
@@ -11165,6 +16642,77 @@ class ChatEventV2ImageDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.imageDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ImageDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ImageDeletedCopyWith(ChatEventV2ImageDeleted value,
+          $Res Function(ChatEventV2ImageDeleted) _then) =
+      _$ChatEventV2ImageDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ImageDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2ImageDeletedCopyWith<$Res> {
+  _$ChatEventV2ImageDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ImageDeleted _self;
+  final $Res Function(ChatEventV2ImageDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ImageDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11194,6 +16742,15 @@ class ChatEventV2ImageBlurred extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ImageBlurredCopyWith<ChatEventV2ImageBlurred> get copyWith =>
+      _$ChatEventV2ImageBlurredCopyWithImpl<ChatEventV2ImageBlurred>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ImageBlurredToJson(
@@ -11204,6 +16761,77 @@ class ChatEventV2ImageBlurred extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.imageBlurred(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ImageBlurredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ImageBlurredCopyWith(ChatEventV2ImageBlurred value,
+          $Res Function(ChatEventV2ImageBlurred) _then) =
+      _$ChatEventV2ImageBlurredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ImageBlurredCopyWithImpl<$Res>
+    implements $ChatEventV2ImageBlurredCopyWith<$Res> {
+  _$ChatEventV2ImageBlurredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ImageBlurred _self;
+  final $Res Function(ChatEventV2ImageBlurred) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ImageBlurred(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11233,6 +16861,15 @@ class ChatEventV2ImageUnblurred extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ImageUnblurredCopyWith<ChatEventV2ImageUnblurred> get copyWith =>
+      _$ChatEventV2ImageUnblurredCopyWithImpl<ChatEventV2ImageUnblurred>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ImageUnblurredToJson(
@@ -11243,6 +16880,77 @@ class ChatEventV2ImageUnblurred extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.imageUnblurred(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ImageUnblurredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ImageUnblurredCopyWith(ChatEventV2ImageUnblurred value,
+          $Res Function(ChatEventV2ImageUnblurred) _then) =
+      _$ChatEventV2ImageUnblurredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ImageUnblurredCopyWithImpl<$Res>
+    implements $ChatEventV2ImageUnblurredCopyWith<$Res> {
+  _$ChatEventV2ImageUnblurredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ImageUnblurred _self;
+  final $Res Function(ChatEventV2ImageUnblurred) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ImageUnblurred(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11272,6 +16980,16 @@ class ChatEventV2ImageCompressed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ImageCompressedCopyWith<ChatEventV2ImageCompressed>
+      get copyWith =>
+          _$ChatEventV2ImageCompressedCopyWithImpl<ChatEventV2ImageCompressed>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ImageCompressedToJson(
@@ -11282,6 +17000,77 @@ class ChatEventV2ImageCompressed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.imageCompressed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ImageCompressedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ImageCompressedCopyWith(ChatEventV2ImageCompressed value,
+          $Res Function(ChatEventV2ImageCompressed) _then) =
+      _$ChatEventV2ImageCompressedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ImageCompressedCopyWithImpl<$Res>
+    implements $ChatEventV2ImageCompressedCopyWith<$Res> {
+  _$ChatEventV2ImageCompressedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ImageCompressed _self;
+  final $Res Function(ChatEventV2ImageCompressed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ImageCompressed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11311,6 +17100,15 @@ class ChatEventV2VideoSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoSentCopyWith<ChatEventV2VideoSent> get copyWith =>
+      _$ChatEventV2VideoSentCopyWithImpl<ChatEventV2VideoSent>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoSentToJson(
@@ -11321,6 +17119,77 @@ class ChatEventV2VideoSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoSentCopyWith(ChatEventV2VideoSent value,
+          $Res Function(ChatEventV2VideoSent) _then) =
+      _$ChatEventV2VideoSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoSentCopyWithImpl<$Res>
+    implements $ChatEventV2VideoSentCopyWith<$Res> {
+  _$ChatEventV2VideoSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoSent _self;
+  final $Res Function(ChatEventV2VideoSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11350,6 +17219,15 @@ class ChatEventV2VideoReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoReceivedCopyWith<ChatEventV2VideoReceived> get copyWith =>
+      _$ChatEventV2VideoReceivedCopyWithImpl<ChatEventV2VideoReceived>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoReceivedToJson(
@@ -11360,6 +17238,77 @@ class ChatEventV2VideoReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoReceivedCopyWith(ChatEventV2VideoReceived value,
+          $Res Function(ChatEventV2VideoReceived) _then) =
+      _$ChatEventV2VideoReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoReceivedCopyWith<$Res> {
+  _$ChatEventV2VideoReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoReceived _self;
+  final $Res Function(ChatEventV2VideoReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11389,6 +17338,15 @@ class ChatEventV2VideoPlayed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoPlayedCopyWith<ChatEventV2VideoPlayed> get copyWith =>
+      _$ChatEventV2VideoPlayedCopyWithImpl<ChatEventV2VideoPlayed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoPlayedToJson(
@@ -11399,6 +17357,77 @@ class ChatEventV2VideoPlayed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoPlayed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoPlayedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoPlayedCopyWith(ChatEventV2VideoPlayed value,
+          $Res Function(ChatEventV2VideoPlayed) _then) =
+      _$ChatEventV2VideoPlayedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoPlayedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoPlayedCopyWith<$Res> {
+  _$ChatEventV2VideoPlayedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoPlayed _self;
+  final $Res Function(ChatEventV2VideoPlayed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoPlayed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11428,6 +17457,15 @@ class ChatEventV2VideoPaused extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoPausedCopyWith<ChatEventV2VideoPaused> get copyWith =>
+      _$ChatEventV2VideoPausedCopyWithImpl<ChatEventV2VideoPaused>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoPausedToJson(
@@ -11438,6 +17476,77 @@ class ChatEventV2VideoPaused extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoPaused(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoPausedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoPausedCopyWith(ChatEventV2VideoPaused value,
+          $Res Function(ChatEventV2VideoPaused) _then) =
+      _$ChatEventV2VideoPausedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoPausedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoPausedCopyWith<$Res> {
+  _$ChatEventV2VideoPausedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoPaused _self;
+  final $Res Function(ChatEventV2VideoPaused) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoPaused(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11467,6 +17576,15 @@ class ChatEventV2VideoStopped extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoStoppedCopyWith<ChatEventV2VideoStopped> get copyWith =>
+      _$ChatEventV2VideoStoppedCopyWithImpl<ChatEventV2VideoStopped>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoStoppedToJson(
@@ -11477,6 +17595,77 @@ class ChatEventV2VideoStopped extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoStopped(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoStoppedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoStoppedCopyWith(ChatEventV2VideoStopped value,
+          $Res Function(ChatEventV2VideoStopped) _then) =
+      _$ChatEventV2VideoStoppedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoStoppedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoStoppedCopyWith<$Res> {
+  _$ChatEventV2VideoStoppedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoStopped _self;
+  final $Res Function(ChatEventV2VideoStopped) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoStopped(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11506,6 +17695,15 @@ class ChatEventV2VideoSeeked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoSeekedCopyWith<ChatEventV2VideoSeeked> get copyWith =>
+      _$ChatEventV2VideoSeekedCopyWithImpl<ChatEventV2VideoSeeked>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoSeekedToJson(
@@ -11516,6 +17714,77 @@ class ChatEventV2VideoSeeked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoSeeked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoSeekedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoSeekedCopyWith(ChatEventV2VideoSeeked value,
+          $Res Function(ChatEventV2VideoSeeked) _then) =
+      _$ChatEventV2VideoSeekedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoSeekedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoSeekedCopyWith<$Res> {
+  _$ChatEventV2VideoSeekedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoSeeked _self;
+  final $Res Function(ChatEventV2VideoSeeked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoSeeked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11545,6 +17814,15 @@ class ChatEventV2VideoDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoDeletedCopyWith<ChatEventV2VideoDeleted> get copyWith =>
+      _$ChatEventV2VideoDeletedCopyWithImpl<ChatEventV2VideoDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoDeletedToJson(
@@ -11555,6 +17833,77 @@ class ChatEventV2VideoDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoDeletedCopyWith(ChatEventV2VideoDeleted value,
+          $Res Function(ChatEventV2VideoDeleted) _then) =
+      _$ChatEventV2VideoDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoDeletedCopyWith<$Res> {
+  _$ChatEventV2VideoDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoDeleted _self;
+  final $Res Function(ChatEventV2VideoDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11584,6 +17933,15 @@ class ChatEventV2VideoMuted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoMutedCopyWith<ChatEventV2VideoMuted> get copyWith =>
+      _$ChatEventV2VideoMutedCopyWithImpl<ChatEventV2VideoMuted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoMutedToJson(
@@ -11594,6 +17952,77 @@ class ChatEventV2VideoMuted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoMuted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoMutedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoMutedCopyWith(ChatEventV2VideoMuted value,
+          $Res Function(ChatEventV2VideoMuted) _then) =
+      _$ChatEventV2VideoMutedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoMutedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoMutedCopyWith<$Res> {
+  _$ChatEventV2VideoMutedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoMuted _self;
+  final $Res Function(ChatEventV2VideoMuted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoMuted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11623,6 +18052,15 @@ class ChatEventV2VideoUnmuted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoUnmutedCopyWith<ChatEventV2VideoUnmuted> get copyWith =>
+      _$ChatEventV2VideoUnmutedCopyWithImpl<ChatEventV2VideoUnmuted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoUnmutedToJson(
@@ -11633,6 +18071,77 @@ class ChatEventV2VideoUnmuted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoUnmuted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoUnmutedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoUnmutedCopyWith(ChatEventV2VideoUnmuted value,
+          $Res Function(ChatEventV2VideoUnmuted) _then) =
+      _$ChatEventV2VideoUnmutedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoUnmutedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoUnmutedCopyWith<$Res> {
+  _$ChatEventV2VideoUnmutedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoUnmuted _self;
+  final $Res Function(ChatEventV2VideoUnmuted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoUnmuted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11662,6 +18171,15 @@ class ChatEventV2AudioSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AudioSentCopyWith<ChatEventV2AudioSent> get copyWith =>
+      _$ChatEventV2AudioSentCopyWithImpl<ChatEventV2AudioSent>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AudioSentToJson(
@@ -11672,6 +18190,77 @@ class ChatEventV2AudioSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.audioSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AudioSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AudioSentCopyWith(ChatEventV2AudioSent value,
+          $Res Function(ChatEventV2AudioSent) _then) =
+      _$ChatEventV2AudioSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AudioSentCopyWithImpl<$Res>
+    implements $ChatEventV2AudioSentCopyWith<$Res> {
+  _$ChatEventV2AudioSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AudioSent _self;
+  final $Res Function(ChatEventV2AudioSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AudioSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11701,6 +18290,15 @@ class ChatEventV2AudioReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AudioReceivedCopyWith<ChatEventV2AudioReceived> get copyWith =>
+      _$ChatEventV2AudioReceivedCopyWithImpl<ChatEventV2AudioReceived>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AudioReceivedToJson(
@@ -11711,6 +18309,77 @@ class ChatEventV2AudioReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.audioReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AudioReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AudioReceivedCopyWith(ChatEventV2AudioReceived value,
+          $Res Function(ChatEventV2AudioReceived) _then) =
+      _$ChatEventV2AudioReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AudioReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2AudioReceivedCopyWith<$Res> {
+  _$ChatEventV2AudioReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AudioReceived _self;
+  final $Res Function(ChatEventV2AudioReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AudioReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11740,6 +18409,15 @@ class ChatEventV2AudioPlayed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AudioPlayedCopyWith<ChatEventV2AudioPlayed> get copyWith =>
+      _$ChatEventV2AudioPlayedCopyWithImpl<ChatEventV2AudioPlayed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AudioPlayedToJson(
@@ -11750,6 +18428,77 @@ class ChatEventV2AudioPlayed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.audioPlayed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AudioPlayedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AudioPlayedCopyWith(ChatEventV2AudioPlayed value,
+          $Res Function(ChatEventV2AudioPlayed) _then) =
+      _$ChatEventV2AudioPlayedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AudioPlayedCopyWithImpl<$Res>
+    implements $ChatEventV2AudioPlayedCopyWith<$Res> {
+  _$ChatEventV2AudioPlayedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AudioPlayed _self;
+  final $Res Function(ChatEventV2AudioPlayed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AudioPlayed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11779,6 +18528,15 @@ class ChatEventV2AudioPaused extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AudioPausedCopyWith<ChatEventV2AudioPaused> get copyWith =>
+      _$ChatEventV2AudioPausedCopyWithImpl<ChatEventV2AudioPaused>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AudioPausedToJson(
@@ -11789,6 +18547,77 @@ class ChatEventV2AudioPaused extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.audioPaused(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AudioPausedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AudioPausedCopyWith(ChatEventV2AudioPaused value,
+          $Res Function(ChatEventV2AudioPaused) _then) =
+      _$ChatEventV2AudioPausedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AudioPausedCopyWithImpl<$Res>
+    implements $ChatEventV2AudioPausedCopyWith<$Res> {
+  _$ChatEventV2AudioPausedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AudioPaused _self;
+  final $Res Function(ChatEventV2AudioPaused) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AudioPaused(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11818,6 +18647,15 @@ class ChatEventV2AudioDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AudioDeletedCopyWith<ChatEventV2AudioDeleted> get copyWith =>
+      _$ChatEventV2AudioDeletedCopyWithImpl<ChatEventV2AudioDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AudioDeletedToJson(
@@ -11828,6 +18666,77 @@ class ChatEventV2AudioDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.audioDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AudioDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AudioDeletedCopyWith(ChatEventV2AudioDeleted value,
+          $Res Function(ChatEventV2AudioDeleted) _then) =
+      _$ChatEventV2AudioDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AudioDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2AudioDeletedCopyWith<$Res> {
+  _$ChatEventV2AudioDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AudioDeleted _self;
+  final $Res Function(ChatEventV2AudioDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AudioDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11857,6 +18766,15 @@ class ChatEventV2AudioTranscribed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AudioTranscribedCopyWith<ChatEventV2AudioTranscribed>
+      get copyWith => _$ChatEventV2AudioTranscribedCopyWithImpl<
+          ChatEventV2AudioTranscribed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AudioTranscribedToJson(
@@ -11867,6 +18785,78 @@ class ChatEventV2AudioTranscribed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.audioTranscribed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AudioTranscribedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AudioTranscribedCopyWith(
+          ChatEventV2AudioTranscribed value,
+          $Res Function(ChatEventV2AudioTranscribed) _then) =
+      _$ChatEventV2AudioTranscribedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AudioTranscribedCopyWithImpl<$Res>
+    implements $ChatEventV2AudioTranscribedCopyWith<$Res> {
+  _$ChatEventV2AudioTranscribedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AudioTranscribed _self;
+  final $Res Function(ChatEventV2AudioTranscribed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AudioTranscribed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11897,6 +18887,16 @@ class ChatEventV2AudioTranscriptionFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AudioTranscriptionFailedCopyWith<
+          ChatEventV2AudioTranscriptionFailed>
+      get copyWith => _$ChatEventV2AudioTranscriptionFailedCopyWithImpl<
+          ChatEventV2AudioTranscriptionFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AudioTranscriptionFailedToJson(
@@ -11907,6 +18907,78 @@ class ChatEventV2AudioTranscriptionFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.audioTranscriptionFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AudioTranscriptionFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AudioTranscriptionFailedCopyWith(
+          ChatEventV2AudioTranscriptionFailed value,
+          $Res Function(ChatEventV2AudioTranscriptionFailed) _then) =
+      _$ChatEventV2AudioTranscriptionFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AudioTranscriptionFailedCopyWithImpl<$Res>
+    implements $ChatEventV2AudioTranscriptionFailedCopyWith<$Res> {
+  _$ChatEventV2AudioTranscriptionFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AudioTranscriptionFailed _self;
+  final $Res Function(ChatEventV2AudioTranscriptionFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AudioTranscriptionFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11936,6 +19008,14 @@ class ChatEventV2FileSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2FileSentCopyWith<ChatEventV2FileSent> get copyWith =>
+      _$ChatEventV2FileSentCopyWithImpl<ChatEventV2FileSent>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2FileSentToJson(
@@ -11946,6 +19026,77 @@ class ChatEventV2FileSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.fileSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2FileSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2FileSentCopyWith(
+          ChatEventV2FileSent value, $Res Function(ChatEventV2FileSent) _then) =
+      _$ChatEventV2FileSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2FileSentCopyWithImpl<$Res>
+    implements $ChatEventV2FileSentCopyWith<$Res> {
+  _$ChatEventV2FileSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2FileSent _self;
+  final $Res Function(ChatEventV2FileSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2FileSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -11975,6 +19126,15 @@ class ChatEventV2FileReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2FileReceivedCopyWith<ChatEventV2FileReceived> get copyWith =>
+      _$ChatEventV2FileReceivedCopyWithImpl<ChatEventV2FileReceived>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2FileReceivedToJson(
@@ -11985,6 +19145,77 @@ class ChatEventV2FileReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.fileReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2FileReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2FileReceivedCopyWith(ChatEventV2FileReceived value,
+          $Res Function(ChatEventV2FileReceived) _then) =
+      _$ChatEventV2FileReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2FileReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2FileReceivedCopyWith<$Res> {
+  _$ChatEventV2FileReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2FileReceived _self;
+  final $Res Function(ChatEventV2FileReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2FileReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12014,6 +19245,15 @@ class ChatEventV2FilePreviewGenerated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2FilePreviewGeneratedCopyWith<ChatEventV2FilePreviewGenerated>
+      get copyWith => _$ChatEventV2FilePreviewGeneratedCopyWithImpl<
+          ChatEventV2FilePreviewGenerated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2FilePreviewGeneratedToJson(
@@ -12024,6 +19264,78 @@ class ChatEventV2FilePreviewGenerated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.filePreviewGenerated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2FilePreviewGeneratedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2FilePreviewGeneratedCopyWith(
+          ChatEventV2FilePreviewGenerated value,
+          $Res Function(ChatEventV2FilePreviewGenerated) _then) =
+      _$ChatEventV2FilePreviewGeneratedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2FilePreviewGeneratedCopyWithImpl<$Res>
+    implements $ChatEventV2FilePreviewGeneratedCopyWith<$Res> {
+  _$ChatEventV2FilePreviewGeneratedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2FilePreviewGenerated _self;
+  final $Res Function(ChatEventV2FilePreviewGenerated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2FilePreviewGenerated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12053,6 +19365,15 @@ class ChatEventV2FileDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2FileDeletedCopyWith<ChatEventV2FileDeleted> get copyWith =>
+      _$ChatEventV2FileDeletedCopyWithImpl<ChatEventV2FileDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2FileDeletedToJson(
@@ -12063,6 +19384,77 @@ class ChatEventV2FileDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.fileDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2FileDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2FileDeletedCopyWith(ChatEventV2FileDeleted value,
+          $Res Function(ChatEventV2FileDeleted) _then) =
+      _$ChatEventV2FileDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2FileDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2FileDeletedCopyWith<$Res> {
+  _$ChatEventV2FileDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2FileDeleted _self;
+  final $Res Function(ChatEventV2FileDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2FileDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12092,6 +19484,15 @@ class ChatEventV2FileDownloaded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2FileDownloadedCopyWith<ChatEventV2FileDownloaded> get copyWith =>
+      _$ChatEventV2FileDownloadedCopyWithImpl<ChatEventV2FileDownloaded>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2FileDownloadedToJson(
@@ -12102,6 +19503,77 @@ class ChatEventV2FileDownloaded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.fileDownloaded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2FileDownloadedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2FileDownloadedCopyWith(ChatEventV2FileDownloaded value,
+          $Res Function(ChatEventV2FileDownloaded) _then) =
+      _$ChatEventV2FileDownloadedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2FileDownloadedCopyWithImpl<$Res>
+    implements $ChatEventV2FileDownloadedCopyWith<$Res> {
+  _$ChatEventV2FileDownloadedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2FileDownloaded _self;
+  final $Res Function(ChatEventV2FileDownloaded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2FileDownloaded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12131,6 +19603,15 @@ class ChatEventV2LinkPreviewGenerated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LinkPreviewGeneratedCopyWith<ChatEventV2LinkPreviewGenerated>
+      get copyWith => _$ChatEventV2LinkPreviewGeneratedCopyWithImpl<
+          ChatEventV2LinkPreviewGenerated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LinkPreviewGeneratedToJson(
@@ -12141,6 +19622,78 @@ class ChatEventV2LinkPreviewGenerated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.linkPreviewGenerated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LinkPreviewGeneratedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LinkPreviewGeneratedCopyWith(
+          ChatEventV2LinkPreviewGenerated value,
+          $Res Function(ChatEventV2LinkPreviewGenerated) _then) =
+      _$ChatEventV2LinkPreviewGeneratedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LinkPreviewGeneratedCopyWithImpl<$Res>
+    implements $ChatEventV2LinkPreviewGeneratedCopyWith<$Res> {
+  _$ChatEventV2LinkPreviewGeneratedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LinkPreviewGenerated _self;
+  final $Res Function(ChatEventV2LinkPreviewGenerated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LinkPreviewGenerated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12170,6 +19723,15 @@ class ChatEventV2LinkPreviewFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LinkPreviewFailedCopyWith<ChatEventV2LinkPreviewFailed>
+      get copyWith => _$ChatEventV2LinkPreviewFailedCopyWithImpl<
+          ChatEventV2LinkPreviewFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LinkPreviewFailedToJson(
@@ -12180,6 +19742,78 @@ class ChatEventV2LinkPreviewFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.linkPreviewFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LinkPreviewFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LinkPreviewFailedCopyWith(
+          ChatEventV2LinkPreviewFailed value,
+          $Res Function(ChatEventV2LinkPreviewFailed) _then) =
+      _$ChatEventV2LinkPreviewFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LinkPreviewFailedCopyWithImpl<$Res>
+    implements $ChatEventV2LinkPreviewFailedCopyWith<$Res> {
+  _$ChatEventV2LinkPreviewFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LinkPreviewFailed _self;
+  final $Res Function(ChatEventV2LinkPreviewFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LinkPreviewFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12209,6 +19843,15 @@ class ChatEventV2ReactionAdded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ReactionAddedCopyWith<ChatEventV2ReactionAdded> get copyWith =>
+      _$ChatEventV2ReactionAddedCopyWithImpl<ChatEventV2ReactionAdded>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ReactionAddedToJson(
@@ -12219,6 +19862,77 @@ class ChatEventV2ReactionAdded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.reactionAdded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ReactionAddedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ReactionAddedCopyWith(ChatEventV2ReactionAdded value,
+          $Res Function(ChatEventV2ReactionAdded) _then) =
+      _$ChatEventV2ReactionAddedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ReactionAddedCopyWithImpl<$Res>
+    implements $ChatEventV2ReactionAddedCopyWith<$Res> {
+  _$ChatEventV2ReactionAddedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ReactionAdded _self;
+  final $Res Function(ChatEventV2ReactionAdded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ReactionAdded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12248,6 +19962,16 @@ class ChatEventV2ReactionRemoved extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ReactionRemovedCopyWith<ChatEventV2ReactionRemoved>
+      get copyWith =>
+          _$ChatEventV2ReactionRemovedCopyWithImpl<ChatEventV2ReactionRemoved>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ReactionRemovedToJson(
@@ -12258,6 +19982,77 @@ class ChatEventV2ReactionRemoved extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.reactionRemoved(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ReactionRemovedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ReactionRemovedCopyWith(ChatEventV2ReactionRemoved value,
+          $Res Function(ChatEventV2ReactionRemoved) _then) =
+      _$ChatEventV2ReactionRemovedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ReactionRemovedCopyWithImpl<$Res>
+    implements $ChatEventV2ReactionRemovedCopyWith<$Res> {
+  _$ChatEventV2ReactionRemovedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ReactionRemoved _self;
+  final $Res Function(ChatEventV2ReactionRemoved) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ReactionRemoved(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12287,6 +20082,16 @@ class ChatEventV2ReactionUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ReactionUpdatedCopyWith<ChatEventV2ReactionUpdated>
+      get copyWith =>
+          _$ChatEventV2ReactionUpdatedCopyWithImpl<ChatEventV2ReactionUpdated>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ReactionUpdatedToJson(
@@ -12297,6 +20102,77 @@ class ChatEventV2ReactionUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.reactionUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ReactionUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ReactionUpdatedCopyWith(ChatEventV2ReactionUpdated value,
+          $Res Function(ChatEventV2ReactionUpdated) _then) =
+      _$ChatEventV2ReactionUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ReactionUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2ReactionUpdatedCopyWith<$Res> {
+  _$ChatEventV2ReactionUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ReactionUpdated _self;
+  final $Res Function(ChatEventV2ReactionUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ReactionUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12326,6 +20202,16 @@ class ChatEventV2ReactionCleared extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ReactionClearedCopyWith<ChatEventV2ReactionCleared>
+      get copyWith =>
+          _$ChatEventV2ReactionClearedCopyWithImpl<ChatEventV2ReactionCleared>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ReactionClearedToJson(
@@ -12336,6 +20222,77 @@ class ChatEventV2ReactionCleared extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.reactionCleared(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ReactionClearedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ReactionClearedCopyWith(ChatEventV2ReactionCleared value,
+          $Res Function(ChatEventV2ReactionCleared) _then) =
+      _$ChatEventV2ReactionClearedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ReactionClearedCopyWithImpl<$Res>
+    implements $ChatEventV2ReactionClearedCopyWith<$Res> {
+  _$ChatEventV2ReactionClearedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ReactionCleared _self;
+  final $Res Function(ChatEventV2ReactionCleared) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ReactionCleared(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12365,6 +20322,15 @@ class ChatEventV2ThreadCreated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ThreadCreatedCopyWith<ChatEventV2ThreadCreated> get copyWith =>
+      _$ChatEventV2ThreadCreatedCopyWithImpl<ChatEventV2ThreadCreated>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ThreadCreatedToJson(
@@ -12375,6 +20341,77 @@ class ChatEventV2ThreadCreated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.threadCreated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ThreadCreatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ThreadCreatedCopyWith(ChatEventV2ThreadCreated value,
+          $Res Function(ChatEventV2ThreadCreated) _then) =
+      _$ChatEventV2ThreadCreatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ThreadCreatedCopyWithImpl<$Res>
+    implements $ChatEventV2ThreadCreatedCopyWith<$Res> {
+  _$ChatEventV2ThreadCreatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ThreadCreated _self;
+  final $Res Function(ChatEventV2ThreadCreated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ThreadCreated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12404,6 +20441,15 @@ class ChatEventV2ThreadUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ThreadUpdatedCopyWith<ChatEventV2ThreadUpdated> get copyWith =>
+      _$ChatEventV2ThreadUpdatedCopyWithImpl<ChatEventV2ThreadUpdated>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ThreadUpdatedToJson(
@@ -12414,6 +20460,77 @@ class ChatEventV2ThreadUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.threadUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ThreadUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ThreadUpdatedCopyWith(ChatEventV2ThreadUpdated value,
+          $Res Function(ChatEventV2ThreadUpdated) _then) =
+      _$ChatEventV2ThreadUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ThreadUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2ThreadUpdatedCopyWith<$Res> {
+  _$ChatEventV2ThreadUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ThreadUpdated _self;
+  final $Res Function(ChatEventV2ThreadUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ThreadUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12443,6 +20560,15 @@ class ChatEventV2ThreadDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ThreadDeletedCopyWith<ChatEventV2ThreadDeleted> get copyWith =>
+      _$ChatEventV2ThreadDeletedCopyWithImpl<ChatEventV2ThreadDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ThreadDeletedToJson(
@@ -12453,6 +20579,77 @@ class ChatEventV2ThreadDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.threadDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ThreadDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ThreadDeletedCopyWith(ChatEventV2ThreadDeleted value,
+          $Res Function(ChatEventV2ThreadDeleted) _then) =
+      _$ChatEventV2ThreadDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ThreadDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2ThreadDeletedCopyWith<$Res> {
+  _$ChatEventV2ThreadDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ThreadDeleted _self;
+  final $Res Function(ChatEventV2ThreadDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ThreadDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12482,6 +20679,15 @@ class ChatEventV2ThreadArchived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ThreadArchivedCopyWith<ChatEventV2ThreadArchived> get copyWith =>
+      _$ChatEventV2ThreadArchivedCopyWithImpl<ChatEventV2ThreadArchived>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ThreadArchivedToJson(
@@ -12492,6 +20698,77 @@ class ChatEventV2ThreadArchived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.threadArchived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ThreadArchivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ThreadArchivedCopyWith(ChatEventV2ThreadArchived value,
+          $Res Function(ChatEventV2ThreadArchived) _then) =
+      _$ChatEventV2ThreadArchivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ThreadArchivedCopyWithImpl<$Res>
+    implements $ChatEventV2ThreadArchivedCopyWith<$Res> {
+  _$ChatEventV2ThreadArchivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ThreadArchived _self;
+  final $Res Function(ChatEventV2ThreadArchived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ThreadArchived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12521,6 +20798,15 @@ class ChatEventV2ThreadUnarchived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ThreadUnarchivedCopyWith<ChatEventV2ThreadUnarchived>
+      get copyWith => _$ChatEventV2ThreadUnarchivedCopyWithImpl<
+          ChatEventV2ThreadUnarchived>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ThreadUnarchivedToJson(
@@ -12531,6 +20817,78 @@ class ChatEventV2ThreadUnarchived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.threadUnarchived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ThreadUnarchivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ThreadUnarchivedCopyWith(
+          ChatEventV2ThreadUnarchived value,
+          $Res Function(ChatEventV2ThreadUnarchived) _then) =
+      _$ChatEventV2ThreadUnarchivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ThreadUnarchivedCopyWithImpl<$Res>
+    implements $ChatEventV2ThreadUnarchivedCopyWith<$Res> {
+  _$ChatEventV2ThreadUnarchivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ThreadUnarchived _self;
+  final $Res Function(ChatEventV2ThreadUnarchived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ThreadUnarchived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12560,6 +20918,15 @@ class ChatEventV2ChannelCreated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelCreatedCopyWith<ChatEventV2ChannelCreated> get copyWith =>
+      _$ChatEventV2ChannelCreatedCopyWithImpl<ChatEventV2ChannelCreated>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelCreatedToJson(
@@ -12570,6 +20937,77 @@ class ChatEventV2ChannelCreated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelCreated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelCreatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelCreatedCopyWith(ChatEventV2ChannelCreated value,
+          $Res Function(ChatEventV2ChannelCreated) _then) =
+      _$ChatEventV2ChannelCreatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelCreatedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelCreatedCopyWith<$Res> {
+  _$ChatEventV2ChannelCreatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelCreated _self;
+  final $Res Function(ChatEventV2ChannelCreated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelCreated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12599,6 +21037,15 @@ class ChatEventV2ChannelRenamed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelRenamedCopyWith<ChatEventV2ChannelRenamed> get copyWith =>
+      _$ChatEventV2ChannelRenamedCopyWithImpl<ChatEventV2ChannelRenamed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelRenamedToJson(
@@ -12609,6 +21056,77 @@ class ChatEventV2ChannelRenamed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelRenamed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelRenamedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelRenamedCopyWith(ChatEventV2ChannelRenamed value,
+          $Res Function(ChatEventV2ChannelRenamed) _then) =
+      _$ChatEventV2ChannelRenamedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelRenamedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelRenamedCopyWith<$Res> {
+  _$ChatEventV2ChannelRenamedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelRenamed _self;
+  final $Res Function(ChatEventV2ChannelRenamed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelRenamed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12639,6 +21157,16 @@ class ChatEventV2ChannelDescriptionUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelDescriptionUpdatedCopyWith<
+          ChatEventV2ChannelDescriptionUpdated>
+      get copyWith => _$ChatEventV2ChannelDescriptionUpdatedCopyWithImpl<
+          ChatEventV2ChannelDescriptionUpdated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelDescriptionUpdatedToJson(
@@ -12649,6 +21177,78 @@ class ChatEventV2ChannelDescriptionUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelDescriptionUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelDescriptionUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelDescriptionUpdatedCopyWith(
+          ChatEventV2ChannelDescriptionUpdated value,
+          $Res Function(ChatEventV2ChannelDescriptionUpdated) _then) =
+      _$ChatEventV2ChannelDescriptionUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelDescriptionUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelDescriptionUpdatedCopyWith<$Res> {
+  _$ChatEventV2ChannelDescriptionUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelDescriptionUpdated _self;
+  final $Res Function(ChatEventV2ChannelDescriptionUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelDescriptionUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12678,6 +21278,15 @@ class ChatEventV2ChannelDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelDeletedCopyWith<ChatEventV2ChannelDeleted> get copyWith =>
+      _$ChatEventV2ChannelDeletedCopyWithImpl<ChatEventV2ChannelDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelDeletedToJson(
@@ -12688,6 +21297,77 @@ class ChatEventV2ChannelDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelDeletedCopyWith(ChatEventV2ChannelDeleted value,
+          $Res Function(ChatEventV2ChannelDeleted) _then) =
+      _$ChatEventV2ChannelDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelDeletedCopyWith<$Res> {
+  _$ChatEventV2ChannelDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelDeleted _self;
+  final $Res Function(ChatEventV2ChannelDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12717,6 +21397,16 @@ class ChatEventV2ChannelArchived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelArchivedCopyWith<ChatEventV2ChannelArchived>
+      get copyWith =>
+          _$ChatEventV2ChannelArchivedCopyWithImpl<ChatEventV2ChannelArchived>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelArchivedToJson(
@@ -12727,6 +21417,77 @@ class ChatEventV2ChannelArchived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelArchived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelArchivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelArchivedCopyWith(ChatEventV2ChannelArchived value,
+          $Res Function(ChatEventV2ChannelArchived) _then) =
+      _$ChatEventV2ChannelArchivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelArchivedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelArchivedCopyWith<$Res> {
+  _$ChatEventV2ChannelArchivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelArchived _self;
+  final $Res Function(ChatEventV2ChannelArchived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelArchived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12756,6 +21517,15 @@ class ChatEventV2ChannelUnarchived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelUnarchivedCopyWith<ChatEventV2ChannelUnarchived>
+      get copyWith => _$ChatEventV2ChannelUnarchivedCopyWithImpl<
+          ChatEventV2ChannelUnarchived>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelUnarchivedToJson(
@@ -12766,6 +21536,78 @@ class ChatEventV2ChannelUnarchived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelUnarchived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelUnarchivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelUnarchivedCopyWith(
+          ChatEventV2ChannelUnarchived value,
+          $Res Function(ChatEventV2ChannelUnarchived) _then) =
+      _$ChatEventV2ChannelUnarchivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelUnarchivedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelUnarchivedCopyWith<$Res> {
+  _$ChatEventV2ChannelUnarchivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelUnarchived _self;
+  final $Res Function(ChatEventV2ChannelUnarchived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelUnarchived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12795,6 +21637,15 @@ class ChatEventV2ChannelLocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelLockedCopyWith<ChatEventV2ChannelLocked> get copyWith =>
+      _$ChatEventV2ChannelLockedCopyWithImpl<ChatEventV2ChannelLocked>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelLockedToJson(
@@ -12805,6 +21656,77 @@ class ChatEventV2ChannelLocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelLocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelLockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelLockedCopyWith(ChatEventV2ChannelLocked value,
+          $Res Function(ChatEventV2ChannelLocked) _then) =
+      _$ChatEventV2ChannelLockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelLockedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelLockedCopyWith<$Res> {
+  _$ChatEventV2ChannelLockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelLocked _self;
+  final $Res Function(ChatEventV2ChannelLocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelLocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12834,6 +21756,16 @@ class ChatEventV2ChannelUnlocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelUnlockedCopyWith<ChatEventV2ChannelUnlocked>
+      get copyWith =>
+          _$ChatEventV2ChannelUnlockedCopyWithImpl<ChatEventV2ChannelUnlocked>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelUnlockedToJson(
@@ -12844,6 +21776,77 @@ class ChatEventV2ChannelUnlocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelUnlocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelUnlockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelUnlockedCopyWith(ChatEventV2ChannelUnlocked value,
+          $Res Function(ChatEventV2ChannelUnlocked) _then) =
+      _$ChatEventV2ChannelUnlockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelUnlockedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelUnlockedCopyWith<$Res> {
+  _$ChatEventV2ChannelUnlockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelUnlocked _self;
+  final $Res Function(ChatEventV2ChannelUnlocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelUnlocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12873,6 +21876,16 @@ class ChatEventV2ChannelMigrated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelMigratedCopyWith<ChatEventV2ChannelMigrated>
+      get copyWith =>
+          _$ChatEventV2ChannelMigratedCopyWithImpl<ChatEventV2ChannelMigrated>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelMigratedToJson(
@@ -12883,6 +21896,77 @@ class ChatEventV2ChannelMigrated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelMigrated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelMigratedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelMigratedCopyWith(ChatEventV2ChannelMigrated value,
+          $Res Function(ChatEventV2ChannelMigrated) _then) =
+      _$ChatEventV2ChannelMigratedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelMigratedCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelMigratedCopyWith<$Res> {
+  _$ChatEventV2ChannelMigratedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelMigrated _self;
+  final $Res Function(ChatEventV2ChannelMigrated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelMigrated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12912,6 +21996,15 @@ class ChatEventV2ChannelHidden extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelHiddenCopyWith<ChatEventV2ChannelHidden> get copyWith =>
+      _$ChatEventV2ChannelHiddenCopyWithImpl<ChatEventV2ChannelHidden>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelHiddenToJson(
@@ -12922,6 +22015,77 @@ class ChatEventV2ChannelHidden extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelHidden(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelHiddenCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelHiddenCopyWith(ChatEventV2ChannelHidden value,
+          $Res Function(ChatEventV2ChannelHidden) _then) =
+      _$ChatEventV2ChannelHiddenCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelHiddenCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelHiddenCopyWith<$Res> {
+  _$ChatEventV2ChannelHiddenCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelHidden _self;
+  final $Res Function(ChatEventV2ChannelHidden) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelHidden(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12951,6 +22115,16 @@ class ChatEventV2ChannelUnhidden extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ChannelUnhiddenCopyWith<ChatEventV2ChannelUnhidden>
+      get copyWith =>
+          _$ChatEventV2ChannelUnhiddenCopyWithImpl<ChatEventV2ChannelUnhidden>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ChannelUnhiddenToJson(
@@ -12961,6 +22135,77 @@ class ChatEventV2ChannelUnhidden extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.channelUnhidden(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ChannelUnhiddenCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ChannelUnhiddenCopyWith(ChatEventV2ChannelUnhidden value,
+          $Res Function(ChatEventV2ChannelUnhidden) _then) =
+      _$ChatEventV2ChannelUnhiddenCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ChannelUnhiddenCopyWithImpl<$Res>
+    implements $ChatEventV2ChannelUnhiddenCopyWith<$Res> {
+  _$ChatEventV2ChannelUnhiddenCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ChannelUnhidden _self;
+  final $Res Function(ChatEventV2ChannelUnhidden) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ChannelUnhidden(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -12990,6 +22235,15 @@ class ChatEventV2GroupCreated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupCreatedCopyWith<ChatEventV2GroupCreated> get copyWith =>
+      _$ChatEventV2GroupCreatedCopyWithImpl<ChatEventV2GroupCreated>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupCreatedToJson(
@@ -13000,6 +22254,77 @@ class ChatEventV2GroupCreated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupCreated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupCreatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupCreatedCopyWith(ChatEventV2GroupCreated value,
+          $Res Function(ChatEventV2GroupCreated) _then) =
+      _$ChatEventV2GroupCreatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupCreatedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupCreatedCopyWith<$Res> {
+  _$ChatEventV2GroupCreatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupCreated _self;
+  final $Res Function(ChatEventV2GroupCreated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupCreated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13029,6 +22354,15 @@ class ChatEventV2GroupUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupUpdatedCopyWith<ChatEventV2GroupUpdated> get copyWith =>
+      _$ChatEventV2GroupUpdatedCopyWithImpl<ChatEventV2GroupUpdated>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupUpdatedToJson(
@@ -13039,6 +22373,77 @@ class ChatEventV2GroupUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupUpdatedCopyWith(ChatEventV2GroupUpdated value,
+          $Res Function(ChatEventV2GroupUpdated) _then) =
+      _$ChatEventV2GroupUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupUpdatedCopyWith<$Res> {
+  _$ChatEventV2GroupUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupUpdated _self;
+  final $Res Function(ChatEventV2GroupUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13068,6 +22473,15 @@ class ChatEventV2GroupDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupDeletedCopyWith<ChatEventV2GroupDeleted> get copyWith =>
+      _$ChatEventV2GroupDeletedCopyWithImpl<ChatEventV2GroupDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupDeletedToJson(
@@ -13078,6 +22492,77 @@ class ChatEventV2GroupDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupDeletedCopyWith(ChatEventV2GroupDeleted value,
+          $Res Function(ChatEventV2GroupDeleted) _then) =
+      _$ChatEventV2GroupDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupDeletedCopyWith<$Res> {
+  _$ChatEventV2GroupDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupDeleted _self;
+  final $Res Function(ChatEventV2GroupDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13107,6 +22592,15 @@ class ChatEventV2GroupIconUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupIconUpdatedCopyWith<ChatEventV2GroupIconUpdated>
+      get copyWith => _$ChatEventV2GroupIconUpdatedCopyWithImpl<
+          ChatEventV2GroupIconUpdated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupIconUpdatedToJson(
@@ -13117,6 +22611,78 @@ class ChatEventV2GroupIconUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupIconUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupIconUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupIconUpdatedCopyWith(
+          ChatEventV2GroupIconUpdated value,
+          $Res Function(ChatEventV2GroupIconUpdated) _then) =
+      _$ChatEventV2GroupIconUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupIconUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupIconUpdatedCopyWith<$Res> {
+  _$ChatEventV2GroupIconUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupIconUpdated _self;
+  final $Res Function(ChatEventV2GroupIconUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupIconUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13146,6 +22712,16 @@ class ChatEventV2GroupAdminAdded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupAdminAddedCopyWith<ChatEventV2GroupAdminAdded>
+      get copyWith =>
+          _$ChatEventV2GroupAdminAddedCopyWithImpl<ChatEventV2GroupAdminAdded>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupAdminAddedToJson(
@@ -13156,6 +22732,77 @@ class ChatEventV2GroupAdminAdded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupAdminAdded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupAdminAddedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupAdminAddedCopyWith(ChatEventV2GroupAdminAdded value,
+          $Res Function(ChatEventV2GroupAdminAdded) _then) =
+      _$ChatEventV2GroupAdminAddedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupAdminAddedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupAdminAddedCopyWith<$Res> {
+  _$ChatEventV2GroupAdminAddedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupAdminAdded _self;
+  final $Res Function(ChatEventV2GroupAdminAdded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupAdminAdded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13185,6 +22832,15 @@ class ChatEventV2GroupAdminRemoved extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupAdminRemovedCopyWith<ChatEventV2GroupAdminRemoved>
+      get copyWith => _$ChatEventV2GroupAdminRemovedCopyWithImpl<
+          ChatEventV2GroupAdminRemoved>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupAdminRemovedToJson(
@@ -13195,6 +22851,78 @@ class ChatEventV2GroupAdminRemoved extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupAdminRemoved(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupAdminRemovedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupAdminRemovedCopyWith(
+          ChatEventV2GroupAdminRemoved value,
+          $Res Function(ChatEventV2GroupAdminRemoved) _then) =
+      _$ChatEventV2GroupAdminRemovedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupAdminRemovedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupAdminRemovedCopyWith<$Res> {
+  _$ChatEventV2GroupAdminRemovedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupAdminRemoved _self;
+  final $Res Function(ChatEventV2GroupAdminRemoved) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupAdminRemoved(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13224,6 +22952,15 @@ class ChatEventV2GroupMemberAdded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupMemberAddedCopyWith<ChatEventV2GroupMemberAdded>
+      get copyWith => _$ChatEventV2GroupMemberAddedCopyWithImpl<
+          ChatEventV2GroupMemberAdded>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupMemberAddedToJson(
@@ -13234,6 +22971,78 @@ class ChatEventV2GroupMemberAdded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupMemberAdded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupMemberAddedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupMemberAddedCopyWith(
+          ChatEventV2GroupMemberAdded value,
+          $Res Function(ChatEventV2GroupMemberAdded) _then) =
+      _$ChatEventV2GroupMemberAddedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupMemberAddedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupMemberAddedCopyWith<$Res> {
+  _$ChatEventV2GroupMemberAddedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupMemberAdded _self;
+  final $Res Function(ChatEventV2GroupMemberAdded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupMemberAdded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13263,6 +23072,15 @@ class ChatEventV2GroupMemberRemoved extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupMemberRemovedCopyWith<ChatEventV2GroupMemberRemoved>
+      get copyWith => _$ChatEventV2GroupMemberRemovedCopyWithImpl<
+          ChatEventV2GroupMemberRemoved>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupMemberRemovedToJson(
@@ -13273,6 +23091,78 @@ class ChatEventV2GroupMemberRemoved extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupMemberRemoved(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupMemberRemovedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupMemberRemovedCopyWith(
+          ChatEventV2GroupMemberRemoved value,
+          $Res Function(ChatEventV2GroupMemberRemoved) _then) =
+      _$ChatEventV2GroupMemberRemovedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupMemberRemovedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupMemberRemovedCopyWith<$Res> {
+  _$ChatEventV2GroupMemberRemovedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupMemberRemoved _self;
+  final $Res Function(ChatEventV2GroupMemberRemoved) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupMemberRemoved(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13302,6 +23192,16 @@ class ChatEventV2GroupMemberLeft extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupMemberLeftCopyWith<ChatEventV2GroupMemberLeft>
+      get copyWith =>
+          _$ChatEventV2GroupMemberLeftCopyWithImpl<ChatEventV2GroupMemberLeft>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupMemberLeftToJson(
@@ -13312,6 +23212,77 @@ class ChatEventV2GroupMemberLeft extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupMemberLeft(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupMemberLeftCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupMemberLeftCopyWith(ChatEventV2GroupMemberLeft value,
+          $Res Function(ChatEventV2GroupMemberLeft) _then) =
+      _$ChatEventV2GroupMemberLeftCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupMemberLeftCopyWithImpl<$Res>
+    implements $ChatEventV2GroupMemberLeftCopyWith<$Res> {
+  _$ChatEventV2GroupMemberLeftCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupMemberLeft _self;
+  final $Res Function(ChatEventV2GroupMemberLeft) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupMemberLeft(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13341,6 +23312,15 @@ class ChatEventV2GroupMemberKicked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupMemberKickedCopyWith<ChatEventV2GroupMemberKicked>
+      get copyWith => _$ChatEventV2GroupMemberKickedCopyWithImpl<
+          ChatEventV2GroupMemberKicked>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupMemberKickedToJson(
@@ -13351,6 +23331,78 @@ class ChatEventV2GroupMemberKicked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupMemberKicked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupMemberKickedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupMemberKickedCopyWith(
+          ChatEventV2GroupMemberKicked value,
+          $Res Function(ChatEventV2GroupMemberKicked) _then) =
+      _$ChatEventV2GroupMemberKickedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupMemberKickedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupMemberKickedCopyWith<$Res> {
+  _$ChatEventV2GroupMemberKickedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupMemberKicked _self;
+  final $Res Function(ChatEventV2GroupMemberKicked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupMemberKicked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13380,6 +23432,16 @@ class ChatEventV2GroupInfoViewed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GroupInfoViewedCopyWith<ChatEventV2GroupInfoViewed>
+      get copyWith =>
+          _$ChatEventV2GroupInfoViewedCopyWithImpl<ChatEventV2GroupInfoViewed>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GroupInfoViewedToJson(
@@ -13390,6 +23452,77 @@ class ChatEventV2GroupInfoViewed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.groupInfoViewed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GroupInfoViewedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GroupInfoViewedCopyWith(ChatEventV2GroupInfoViewed value,
+          $Res Function(ChatEventV2GroupInfoViewed) _then) =
+      _$ChatEventV2GroupInfoViewedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GroupInfoViewedCopyWithImpl<$Res>
+    implements $ChatEventV2GroupInfoViewedCopyWith<$Res> {
+  _$ChatEventV2GroupInfoViewedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GroupInfoViewed _self;
+  final $Res Function(ChatEventV2GroupInfoViewed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GroupInfoViewed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13419,6 +23552,15 @@ class ChatEventV2CallStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallStartedCopyWith<ChatEventV2CallStarted> get copyWith =>
+      _$ChatEventV2CallStartedCopyWithImpl<ChatEventV2CallStarted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallStartedToJson(
@@ -13429,6 +23571,77 @@ class ChatEventV2CallStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallStartedCopyWith(ChatEventV2CallStarted value,
+          $Res Function(ChatEventV2CallStarted) _then) =
+      _$ChatEventV2CallStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallStartedCopyWithImpl<$Res>
+    implements $ChatEventV2CallStartedCopyWith<$Res> {
+  _$ChatEventV2CallStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallStarted _self;
+  final $Res Function(ChatEventV2CallStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13458,6 +23671,15 @@ class ChatEventV2CallEnded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallEndedCopyWith<ChatEventV2CallEnded> get copyWith =>
+      _$ChatEventV2CallEndedCopyWithImpl<ChatEventV2CallEnded>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallEndedToJson(
@@ -13468,6 +23690,77 @@ class ChatEventV2CallEnded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callEnded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallEndedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallEndedCopyWith(ChatEventV2CallEnded value,
+          $Res Function(ChatEventV2CallEnded) _then) =
+      _$ChatEventV2CallEndedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallEndedCopyWithImpl<$Res>
+    implements $ChatEventV2CallEndedCopyWith<$Res> {
+  _$ChatEventV2CallEndedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallEnded _self;
+  final $Res Function(ChatEventV2CallEnded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallEnded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13497,6 +23790,15 @@ class ChatEventV2CallMissed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallMissedCopyWith<ChatEventV2CallMissed> get copyWith =>
+      _$ChatEventV2CallMissedCopyWithImpl<ChatEventV2CallMissed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallMissedToJson(
@@ -13507,6 +23809,77 @@ class ChatEventV2CallMissed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callMissed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallMissedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallMissedCopyWith(ChatEventV2CallMissed value,
+          $Res Function(ChatEventV2CallMissed) _then) =
+      _$ChatEventV2CallMissedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallMissedCopyWithImpl<$Res>
+    implements $ChatEventV2CallMissedCopyWith<$Res> {
+  _$ChatEventV2CallMissedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallMissed _self;
+  final $Res Function(ChatEventV2CallMissed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallMissed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13536,6 +23909,15 @@ class ChatEventV2CallRejected extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallRejectedCopyWith<ChatEventV2CallRejected> get copyWith =>
+      _$ChatEventV2CallRejectedCopyWithImpl<ChatEventV2CallRejected>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallRejectedToJson(
@@ -13546,6 +23928,77 @@ class ChatEventV2CallRejected extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callRejected(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallRejectedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallRejectedCopyWith(ChatEventV2CallRejected value,
+          $Res Function(ChatEventV2CallRejected) _then) =
+      _$ChatEventV2CallRejectedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallRejectedCopyWithImpl<$Res>
+    implements $ChatEventV2CallRejectedCopyWith<$Res> {
+  _$ChatEventV2CallRejectedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallRejected _self;
+  final $Res Function(ChatEventV2CallRejected) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallRejected(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13575,6 +24028,15 @@ class ChatEventV2CallAccepted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallAcceptedCopyWith<ChatEventV2CallAccepted> get copyWith =>
+      _$ChatEventV2CallAcceptedCopyWithImpl<ChatEventV2CallAccepted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallAcceptedToJson(
@@ -13585,6 +24047,77 @@ class ChatEventV2CallAccepted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callAccepted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallAcceptedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallAcceptedCopyWith(ChatEventV2CallAccepted value,
+          $Res Function(ChatEventV2CallAccepted) _then) =
+      _$ChatEventV2CallAcceptedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallAcceptedCopyWithImpl<$Res>
+    implements $ChatEventV2CallAcceptedCopyWith<$Res> {
+  _$ChatEventV2CallAcceptedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallAccepted _self;
+  final $Res Function(ChatEventV2CallAccepted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallAccepted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13614,6 +24147,15 @@ class ChatEventV2CallReconnecting extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallReconnectingCopyWith<ChatEventV2CallReconnecting>
+      get copyWith => _$ChatEventV2CallReconnectingCopyWithImpl<
+          ChatEventV2CallReconnecting>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallReconnectingToJson(
@@ -13624,6 +24166,78 @@ class ChatEventV2CallReconnecting extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callReconnecting(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallReconnectingCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallReconnectingCopyWith(
+          ChatEventV2CallReconnecting value,
+          $Res Function(ChatEventV2CallReconnecting) _then) =
+      _$ChatEventV2CallReconnectingCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallReconnectingCopyWithImpl<$Res>
+    implements $ChatEventV2CallReconnectingCopyWith<$Res> {
+  _$ChatEventV2CallReconnectingCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallReconnecting _self;
+  final $Res Function(ChatEventV2CallReconnecting) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallReconnecting(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13653,6 +24267,16 @@ class ChatEventV2CallReconnected extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallReconnectedCopyWith<ChatEventV2CallReconnected>
+      get copyWith =>
+          _$ChatEventV2CallReconnectedCopyWithImpl<ChatEventV2CallReconnected>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallReconnectedToJson(
@@ -13663,6 +24287,77 @@ class ChatEventV2CallReconnected extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callReconnected(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallReconnectedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallReconnectedCopyWith(ChatEventV2CallReconnected value,
+          $Res Function(ChatEventV2CallReconnected) _then) =
+      _$ChatEventV2CallReconnectedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallReconnectedCopyWithImpl<$Res>
+    implements $ChatEventV2CallReconnectedCopyWith<$Res> {
+  _$ChatEventV2CallReconnectedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallReconnected _self;
+  final $Res Function(ChatEventV2CallReconnected) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallReconnected(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13692,6 +24387,15 @@ class ChatEventV2CallNetworkLow extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallNetworkLowCopyWith<ChatEventV2CallNetworkLow> get copyWith =>
+      _$ChatEventV2CallNetworkLowCopyWithImpl<ChatEventV2CallNetworkLow>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallNetworkLowToJson(
@@ -13702,6 +24406,77 @@ class ChatEventV2CallNetworkLow extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callNetworkLow(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallNetworkLowCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallNetworkLowCopyWith(ChatEventV2CallNetworkLow value,
+          $Res Function(ChatEventV2CallNetworkLow) _then) =
+      _$ChatEventV2CallNetworkLowCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallNetworkLowCopyWithImpl<$Res>
+    implements $ChatEventV2CallNetworkLowCopyWith<$Res> {
+  _$ChatEventV2CallNetworkLowCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallNetworkLow _self;
+  final $Res Function(ChatEventV2CallNetworkLow) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallNetworkLow(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13732,6 +24507,16 @@ class ChatEventV2CallMediaPermissionDenied extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallMediaPermissionDeniedCopyWith<
+          ChatEventV2CallMediaPermissionDenied>
+      get copyWith => _$ChatEventV2CallMediaPermissionDeniedCopyWithImpl<
+          ChatEventV2CallMediaPermissionDenied>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallMediaPermissionDeniedToJson(
@@ -13742,6 +24527,78 @@ class ChatEventV2CallMediaPermissionDenied extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callMediaPermissionDenied(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallMediaPermissionDeniedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallMediaPermissionDeniedCopyWith(
+          ChatEventV2CallMediaPermissionDenied value,
+          $Res Function(ChatEventV2CallMediaPermissionDenied) _then) =
+      _$ChatEventV2CallMediaPermissionDeniedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallMediaPermissionDeniedCopyWithImpl<$Res>
+    implements $ChatEventV2CallMediaPermissionDeniedCopyWith<$Res> {
+  _$ChatEventV2CallMediaPermissionDeniedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallMediaPermissionDenied _self;
+  final $Res Function(ChatEventV2CallMediaPermissionDenied) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallMediaPermissionDenied(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13771,6 +24628,15 @@ class ChatEventV2CallRecordingStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallRecordingStartedCopyWith<ChatEventV2CallRecordingStarted>
+      get copyWith => _$ChatEventV2CallRecordingStartedCopyWithImpl<
+          ChatEventV2CallRecordingStarted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallRecordingStartedToJson(
@@ -13781,6 +24647,78 @@ class ChatEventV2CallRecordingStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callRecordingStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallRecordingStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallRecordingStartedCopyWith(
+          ChatEventV2CallRecordingStarted value,
+          $Res Function(ChatEventV2CallRecordingStarted) _then) =
+      _$ChatEventV2CallRecordingStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallRecordingStartedCopyWithImpl<$Res>
+    implements $ChatEventV2CallRecordingStartedCopyWith<$Res> {
+  _$ChatEventV2CallRecordingStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallRecordingStarted _self;
+  final $Res Function(ChatEventV2CallRecordingStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallRecordingStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13810,6 +24748,15 @@ class ChatEventV2CallRecordingStopped extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CallRecordingStoppedCopyWith<ChatEventV2CallRecordingStopped>
+      get copyWith => _$ChatEventV2CallRecordingStoppedCopyWithImpl<
+          ChatEventV2CallRecordingStopped>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CallRecordingStoppedToJson(
@@ -13820,6 +24767,78 @@ class ChatEventV2CallRecordingStopped extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.callRecordingStopped(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CallRecordingStoppedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CallRecordingStoppedCopyWith(
+          ChatEventV2CallRecordingStopped value,
+          $Res Function(ChatEventV2CallRecordingStopped) _then) =
+      _$ChatEventV2CallRecordingStoppedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CallRecordingStoppedCopyWithImpl<$Res>
+    implements $ChatEventV2CallRecordingStoppedCopyWith<$Res> {
+  _$ChatEventV2CallRecordingStoppedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CallRecordingStopped _self;
+  final $Res Function(ChatEventV2CallRecordingStopped) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CallRecordingStopped(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13849,6 +24868,15 @@ class ChatEventV2VideoCallStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoCallStartedCopyWith<ChatEventV2VideoCallStarted>
+      get copyWith => _$ChatEventV2VideoCallStartedCopyWithImpl<
+          ChatEventV2VideoCallStarted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoCallStartedToJson(
@@ -13859,6 +24887,78 @@ class ChatEventV2VideoCallStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoCallStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoCallStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoCallStartedCopyWith(
+          ChatEventV2VideoCallStarted value,
+          $Res Function(ChatEventV2VideoCallStarted) _then) =
+      _$ChatEventV2VideoCallStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoCallStartedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoCallStartedCopyWith<$Res> {
+  _$ChatEventV2VideoCallStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoCallStarted _self;
+  final $Res Function(ChatEventV2VideoCallStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoCallStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13888,6 +24988,15 @@ class ChatEventV2VideoCallEnded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoCallEndedCopyWith<ChatEventV2VideoCallEnded> get copyWith =>
+      _$ChatEventV2VideoCallEndedCopyWithImpl<ChatEventV2VideoCallEnded>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoCallEndedToJson(
@@ -13898,6 +25007,77 @@ class ChatEventV2VideoCallEnded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoCallEnded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoCallEndedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoCallEndedCopyWith(ChatEventV2VideoCallEnded value,
+          $Res Function(ChatEventV2VideoCallEnded) _then) =
+      _$ChatEventV2VideoCallEndedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoCallEndedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoCallEndedCopyWith<$Res> {
+  _$ChatEventV2VideoCallEndedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoCallEnded _self;
+  final $Res Function(ChatEventV2VideoCallEnded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoCallEnded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13927,6 +25107,16 @@ class ChatEventV2VideoCallMissed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoCallMissedCopyWith<ChatEventV2VideoCallMissed>
+      get copyWith =>
+          _$ChatEventV2VideoCallMissedCopyWithImpl<ChatEventV2VideoCallMissed>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoCallMissedToJson(
@@ -13937,6 +25127,77 @@ class ChatEventV2VideoCallMissed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoCallMissed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoCallMissedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoCallMissedCopyWith(ChatEventV2VideoCallMissed value,
+          $Res Function(ChatEventV2VideoCallMissed) _then) =
+      _$ChatEventV2VideoCallMissedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoCallMissedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoCallMissedCopyWith<$Res> {
+  _$ChatEventV2VideoCallMissedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoCallMissed _self;
+  final $Res Function(ChatEventV2VideoCallMissed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoCallMissed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -13966,6 +25227,15 @@ class ChatEventV2VideoCallRejected extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoCallRejectedCopyWith<ChatEventV2VideoCallRejected>
+      get copyWith => _$ChatEventV2VideoCallRejectedCopyWithImpl<
+          ChatEventV2VideoCallRejected>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoCallRejectedToJson(
@@ -13976,6 +25246,78 @@ class ChatEventV2VideoCallRejected extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoCallRejected(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoCallRejectedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoCallRejectedCopyWith(
+          ChatEventV2VideoCallRejected value,
+          $Res Function(ChatEventV2VideoCallRejected) _then) =
+      _$ChatEventV2VideoCallRejectedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoCallRejectedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoCallRejectedCopyWith<$Res> {
+  _$ChatEventV2VideoCallRejectedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoCallRejected _self;
+  final $Res Function(ChatEventV2VideoCallRejected) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoCallRejected(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14005,6 +25347,15 @@ class ChatEventV2VideoCallAccepted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VideoCallAcceptedCopyWith<ChatEventV2VideoCallAccepted>
+      get copyWith => _$ChatEventV2VideoCallAcceptedCopyWithImpl<
+          ChatEventV2VideoCallAccepted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VideoCallAcceptedToJson(
@@ -14015,6 +25366,78 @@ class ChatEventV2VideoCallAccepted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.videoCallAccepted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VideoCallAcceptedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VideoCallAcceptedCopyWith(
+          ChatEventV2VideoCallAccepted value,
+          $Res Function(ChatEventV2VideoCallAccepted) _then) =
+      _$ChatEventV2VideoCallAcceptedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VideoCallAcceptedCopyWithImpl<$Res>
+    implements $ChatEventV2VideoCallAcceptedCopyWith<$Res> {
+  _$ChatEventV2VideoCallAcceptedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VideoCallAccepted _self;
+  final $Res Function(ChatEventV2VideoCallAccepted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VideoCallAccepted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14044,6 +25467,15 @@ class ChatEventV2VoiceNoteSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VoiceNoteSentCopyWith<ChatEventV2VoiceNoteSent> get copyWith =>
+      _$ChatEventV2VoiceNoteSentCopyWithImpl<ChatEventV2VoiceNoteSent>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VoiceNoteSentToJson(
@@ -14054,6 +25486,77 @@ class ChatEventV2VoiceNoteSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.voiceNoteSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VoiceNoteSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VoiceNoteSentCopyWith(ChatEventV2VoiceNoteSent value,
+          $Res Function(ChatEventV2VoiceNoteSent) _then) =
+      _$ChatEventV2VoiceNoteSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VoiceNoteSentCopyWithImpl<$Res>
+    implements $ChatEventV2VoiceNoteSentCopyWith<$Res> {
+  _$ChatEventV2VoiceNoteSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VoiceNoteSent _self;
+  final $Res Function(ChatEventV2VoiceNoteSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VoiceNoteSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14083,6 +25586,15 @@ class ChatEventV2VoiceNoteDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VoiceNoteDeletedCopyWith<ChatEventV2VoiceNoteDeleted>
+      get copyWith => _$ChatEventV2VoiceNoteDeletedCopyWithImpl<
+          ChatEventV2VoiceNoteDeleted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VoiceNoteDeletedToJson(
@@ -14093,6 +25605,78 @@ class ChatEventV2VoiceNoteDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.voiceNoteDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VoiceNoteDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VoiceNoteDeletedCopyWith(
+          ChatEventV2VoiceNoteDeleted value,
+          $Res Function(ChatEventV2VoiceNoteDeleted) _then) =
+      _$ChatEventV2VoiceNoteDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VoiceNoteDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2VoiceNoteDeletedCopyWith<$Res> {
+  _$ChatEventV2VoiceNoteDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VoiceNoteDeleted _self;
+  final $Res Function(ChatEventV2VoiceNoteDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VoiceNoteDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14122,6 +25706,16 @@ class ChatEventV2VoiceNotePlayed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2VoiceNotePlayedCopyWith<ChatEventV2VoiceNotePlayed>
+      get copyWith =>
+          _$ChatEventV2VoiceNotePlayedCopyWithImpl<ChatEventV2VoiceNotePlayed>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2VoiceNotePlayedToJson(
@@ -14132,6 +25726,77 @@ class ChatEventV2VoiceNotePlayed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.voiceNotePlayed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2VoiceNotePlayedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2VoiceNotePlayedCopyWith(ChatEventV2VoiceNotePlayed value,
+          $Res Function(ChatEventV2VoiceNotePlayed) _then) =
+      _$ChatEventV2VoiceNotePlayedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2VoiceNotePlayedCopyWithImpl<$Res>
+    implements $ChatEventV2VoiceNotePlayedCopyWith<$Res> {
+  _$ChatEventV2VoiceNotePlayedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2VoiceNotePlayed _self;
+  final $Res Function(ChatEventV2VoiceNotePlayed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2VoiceNotePlayed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14161,6 +25826,15 @@ class ChatEventV2PollCreated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PollCreatedCopyWith<ChatEventV2PollCreated> get copyWith =>
+      _$ChatEventV2PollCreatedCopyWithImpl<ChatEventV2PollCreated>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PollCreatedToJson(
@@ -14171,6 +25845,77 @@ class ChatEventV2PollCreated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.pollCreated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PollCreatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PollCreatedCopyWith(ChatEventV2PollCreated value,
+          $Res Function(ChatEventV2PollCreated) _then) =
+      _$ChatEventV2PollCreatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PollCreatedCopyWithImpl<$Res>
+    implements $ChatEventV2PollCreatedCopyWith<$Res> {
+  _$ChatEventV2PollCreatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PollCreated _self;
+  final $Res Function(ChatEventV2PollCreated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PollCreated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14200,6 +25945,15 @@ class ChatEventV2PollVoteCast extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PollVoteCastCopyWith<ChatEventV2PollVoteCast> get copyWith =>
+      _$ChatEventV2PollVoteCastCopyWithImpl<ChatEventV2PollVoteCast>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PollVoteCastToJson(
@@ -14210,6 +25964,77 @@ class ChatEventV2PollVoteCast extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.pollVoteCast(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PollVoteCastCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PollVoteCastCopyWith(ChatEventV2PollVoteCast value,
+          $Res Function(ChatEventV2PollVoteCast) _then) =
+      _$ChatEventV2PollVoteCastCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PollVoteCastCopyWithImpl<$Res>
+    implements $ChatEventV2PollVoteCastCopyWith<$Res> {
+  _$ChatEventV2PollVoteCastCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PollVoteCast _self;
+  final $Res Function(ChatEventV2PollVoteCast) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PollVoteCast(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14239,6 +26064,16 @@ class ChatEventV2PollVoteRemoved extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PollVoteRemovedCopyWith<ChatEventV2PollVoteRemoved>
+      get copyWith =>
+          _$ChatEventV2PollVoteRemovedCopyWithImpl<ChatEventV2PollVoteRemoved>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PollVoteRemovedToJson(
@@ -14249,6 +26084,77 @@ class ChatEventV2PollVoteRemoved extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.pollVoteRemoved(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PollVoteRemovedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PollVoteRemovedCopyWith(ChatEventV2PollVoteRemoved value,
+          $Res Function(ChatEventV2PollVoteRemoved) _then) =
+      _$ChatEventV2PollVoteRemovedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PollVoteRemovedCopyWithImpl<$Res>
+    implements $ChatEventV2PollVoteRemovedCopyWith<$Res> {
+  _$ChatEventV2PollVoteRemovedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PollVoteRemoved _self;
+  final $Res Function(ChatEventV2PollVoteRemoved) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PollVoteRemoved(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14278,6 +26184,15 @@ class ChatEventV2PollClosed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PollClosedCopyWith<ChatEventV2PollClosed> get copyWith =>
+      _$ChatEventV2PollClosedCopyWithImpl<ChatEventV2PollClosed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PollClosedToJson(
@@ -14288,6 +26203,77 @@ class ChatEventV2PollClosed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.pollClosed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PollClosedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PollClosedCopyWith(ChatEventV2PollClosed value,
+          $Res Function(ChatEventV2PollClosed) _then) =
+      _$ChatEventV2PollClosedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PollClosedCopyWithImpl<$Res>
+    implements $ChatEventV2PollClosedCopyWith<$Res> {
+  _$ChatEventV2PollClosedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PollClosed _self;
+  final $Res Function(ChatEventV2PollClosed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PollClosed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14317,6 +26303,15 @@ class ChatEventV2StoryPosted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2StoryPostedCopyWith<ChatEventV2StoryPosted> get copyWith =>
+      _$ChatEventV2StoryPostedCopyWithImpl<ChatEventV2StoryPosted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2StoryPostedToJson(
@@ -14327,6 +26322,77 @@ class ChatEventV2StoryPosted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.storyPosted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2StoryPostedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2StoryPostedCopyWith(ChatEventV2StoryPosted value,
+          $Res Function(ChatEventV2StoryPosted) _then) =
+      _$ChatEventV2StoryPostedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2StoryPostedCopyWithImpl<$Res>
+    implements $ChatEventV2StoryPostedCopyWith<$Res> {
+  _$ChatEventV2StoryPostedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2StoryPosted _self;
+  final $Res Function(ChatEventV2StoryPosted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2StoryPosted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14356,6 +26422,15 @@ class ChatEventV2StoryDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2StoryDeletedCopyWith<ChatEventV2StoryDeleted> get copyWith =>
+      _$ChatEventV2StoryDeletedCopyWithImpl<ChatEventV2StoryDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2StoryDeletedToJson(
@@ -14366,6 +26441,77 @@ class ChatEventV2StoryDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.storyDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2StoryDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2StoryDeletedCopyWith(ChatEventV2StoryDeleted value,
+          $Res Function(ChatEventV2StoryDeleted) _then) =
+      _$ChatEventV2StoryDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2StoryDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2StoryDeletedCopyWith<$Res> {
+  _$ChatEventV2StoryDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2StoryDeleted _self;
+  final $Res Function(ChatEventV2StoryDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2StoryDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14395,6 +26541,15 @@ class ChatEventV2StoryViewed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2StoryViewedCopyWith<ChatEventV2StoryViewed> get copyWith =>
+      _$ChatEventV2StoryViewedCopyWithImpl<ChatEventV2StoryViewed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2StoryViewedToJson(
@@ -14405,6 +26560,77 @@ class ChatEventV2StoryViewed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.storyViewed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2StoryViewedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2StoryViewedCopyWith(ChatEventV2StoryViewed value,
+          $Res Function(ChatEventV2StoryViewed) _then) =
+      _$ChatEventV2StoryViewedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2StoryViewedCopyWithImpl<$Res>
+    implements $ChatEventV2StoryViewedCopyWith<$Res> {
+  _$ChatEventV2StoryViewedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2StoryViewed _self;
+  final $Res Function(ChatEventV2StoryViewed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2StoryViewed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14434,6 +26660,15 @@ class ChatEventV2StoryReacted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2StoryReactedCopyWith<ChatEventV2StoryReacted> get copyWith =>
+      _$ChatEventV2StoryReactedCopyWithImpl<ChatEventV2StoryReacted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2StoryReactedToJson(
@@ -14444,6 +26679,77 @@ class ChatEventV2StoryReacted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.storyReacted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2StoryReactedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2StoryReactedCopyWith(ChatEventV2StoryReacted value,
+          $Res Function(ChatEventV2StoryReacted) _then) =
+      _$ChatEventV2StoryReactedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2StoryReactedCopyWithImpl<$Res>
+    implements $ChatEventV2StoryReactedCopyWith<$Res> {
+  _$ChatEventV2StoryReactedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2StoryReacted _self;
+  final $Res Function(ChatEventV2StoryReacted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2StoryReacted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14473,6 +26779,15 @@ class ChatEventV2BotMessageSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2BotMessageSentCopyWith<ChatEventV2BotMessageSent> get copyWith =>
+      _$ChatEventV2BotMessageSentCopyWithImpl<ChatEventV2BotMessageSent>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2BotMessageSentToJson(
@@ -14483,6 +26798,77 @@ class ChatEventV2BotMessageSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.botMessageSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2BotMessageSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2BotMessageSentCopyWith(ChatEventV2BotMessageSent value,
+          $Res Function(ChatEventV2BotMessageSent) _then) =
+      _$ChatEventV2BotMessageSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2BotMessageSentCopyWithImpl<$Res>
+    implements $ChatEventV2BotMessageSentCopyWith<$Res> {
+  _$ChatEventV2BotMessageSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2BotMessageSent _self;
+  final $Res Function(ChatEventV2BotMessageSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2BotMessageSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14512,6 +26898,15 @@ class ChatEventV2BotMessageDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2BotMessageDeletedCopyWith<ChatEventV2BotMessageDeleted>
+      get copyWith => _$ChatEventV2BotMessageDeletedCopyWithImpl<
+          ChatEventV2BotMessageDeleted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2BotMessageDeletedToJson(
@@ -14522,6 +26917,78 @@ class ChatEventV2BotMessageDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.botMessageDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2BotMessageDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2BotMessageDeletedCopyWith(
+          ChatEventV2BotMessageDeleted value,
+          $Res Function(ChatEventV2BotMessageDeleted) _then) =
+      _$ChatEventV2BotMessageDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2BotMessageDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2BotMessageDeletedCopyWith<$Res> {
+  _$ChatEventV2BotMessageDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2BotMessageDeleted _self;
+  final $Res Function(ChatEventV2BotMessageDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2BotMessageDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14551,6 +27018,15 @@ class ChatEventV2BotTriggered extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2BotTriggeredCopyWith<ChatEventV2BotTriggered> get copyWith =>
+      _$ChatEventV2BotTriggeredCopyWithImpl<ChatEventV2BotTriggered>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2BotTriggeredToJson(
@@ -14561,6 +27037,77 @@ class ChatEventV2BotTriggered extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.botTriggered(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2BotTriggeredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2BotTriggeredCopyWith(ChatEventV2BotTriggered value,
+          $Res Function(ChatEventV2BotTriggered) _then) =
+      _$ChatEventV2BotTriggeredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2BotTriggeredCopyWithImpl<$Res>
+    implements $ChatEventV2BotTriggeredCopyWith<$Res> {
+  _$ChatEventV2BotTriggeredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2BotTriggered _self;
+  final $Res Function(ChatEventV2BotTriggered) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2BotTriggered(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14590,6 +27137,15 @@ class ChatEventV2BotDisabled extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2BotDisabledCopyWith<ChatEventV2BotDisabled> get copyWith =>
+      _$ChatEventV2BotDisabledCopyWithImpl<ChatEventV2BotDisabled>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2BotDisabledToJson(
@@ -14600,6 +27156,77 @@ class ChatEventV2BotDisabled extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.botDisabled(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2BotDisabledCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2BotDisabledCopyWith(ChatEventV2BotDisabled value,
+          $Res Function(ChatEventV2BotDisabled) _then) =
+      _$ChatEventV2BotDisabledCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2BotDisabledCopyWithImpl<$Res>
+    implements $ChatEventV2BotDisabledCopyWith<$Res> {
+  _$ChatEventV2BotDisabledCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2BotDisabled _self;
+  final $Res Function(ChatEventV2BotDisabled) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2BotDisabled(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14629,6 +27256,15 @@ class ChatEventV2BotEnabled extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2BotEnabledCopyWith<ChatEventV2BotEnabled> get copyWith =>
+      _$ChatEventV2BotEnabledCopyWithImpl<ChatEventV2BotEnabled>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2BotEnabledToJson(
@@ -14639,6 +27275,77 @@ class ChatEventV2BotEnabled extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.botEnabled(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2BotEnabledCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2BotEnabledCopyWith(ChatEventV2BotEnabled value,
+          $Res Function(ChatEventV2BotEnabled) _then) =
+      _$ChatEventV2BotEnabledCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2BotEnabledCopyWithImpl<$Res>
+    implements $ChatEventV2BotEnabledCopyWith<$Res> {
+  _$ChatEventV2BotEnabledCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2BotEnabled _self;
+  final $Res Function(ChatEventV2BotEnabled) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2BotEnabled(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14668,6 +27375,16 @@ class ChatEventV2SystemBroadcast extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SystemBroadcastCopyWith<ChatEventV2SystemBroadcast>
+      get copyWith =>
+          _$ChatEventV2SystemBroadcastCopyWithImpl<ChatEventV2SystemBroadcast>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SystemBroadcastToJson(
@@ -14678,6 +27395,77 @@ class ChatEventV2SystemBroadcast extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.systemBroadcast(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SystemBroadcastCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SystemBroadcastCopyWith(ChatEventV2SystemBroadcast value,
+          $Res Function(ChatEventV2SystemBroadcast) _then) =
+      _$ChatEventV2SystemBroadcastCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SystemBroadcastCopyWithImpl<$Res>
+    implements $ChatEventV2SystemBroadcastCopyWith<$Res> {
+  _$ChatEventV2SystemBroadcastCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SystemBroadcast _self;
+  final $Res Function(ChatEventV2SystemBroadcast) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SystemBroadcast(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14708,6 +27496,16 @@ class ChatEventV2SystemMaintenanceScheduled extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SystemMaintenanceScheduledCopyWith<
+          ChatEventV2SystemMaintenanceScheduled>
+      get copyWith => _$ChatEventV2SystemMaintenanceScheduledCopyWithImpl<
+          ChatEventV2SystemMaintenanceScheduled>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SystemMaintenanceScheduledToJson(
@@ -14718,6 +27516,78 @@ class ChatEventV2SystemMaintenanceScheduled extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.systemMaintenanceScheduled(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SystemMaintenanceScheduledCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SystemMaintenanceScheduledCopyWith(
+          ChatEventV2SystemMaintenanceScheduled value,
+          $Res Function(ChatEventV2SystemMaintenanceScheduled) _then) =
+      _$ChatEventV2SystemMaintenanceScheduledCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SystemMaintenanceScheduledCopyWithImpl<$Res>
+    implements $ChatEventV2SystemMaintenanceScheduledCopyWith<$Res> {
+  _$ChatEventV2SystemMaintenanceScheduledCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SystemMaintenanceScheduled _self;
+  final $Res Function(ChatEventV2SystemMaintenanceScheduled) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SystemMaintenanceScheduled(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14748,6 +27618,16 @@ class ChatEventV2SystemMaintenanceStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SystemMaintenanceStartedCopyWith<
+          ChatEventV2SystemMaintenanceStarted>
+      get copyWith => _$ChatEventV2SystemMaintenanceStartedCopyWithImpl<
+          ChatEventV2SystemMaintenanceStarted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SystemMaintenanceStartedToJson(
@@ -14758,6 +27638,78 @@ class ChatEventV2SystemMaintenanceStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.systemMaintenanceStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SystemMaintenanceStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SystemMaintenanceStartedCopyWith(
+          ChatEventV2SystemMaintenanceStarted value,
+          $Res Function(ChatEventV2SystemMaintenanceStarted) _then) =
+      _$ChatEventV2SystemMaintenanceStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SystemMaintenanceStartedCopyWithImpl<$Res>
+    implements $ChatEventV2SystemMaintenanceStartedCopyWith<$Res> {
+  _$ChatEventV2SystemMaintenanceStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SystemMaintenanceStarted _self;
+  final $Res Function(ChatEventV2SystemMaintenanceStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SystemMaintenanceStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14788,6 +27740,15 @@ class ChatEventV2SystemMaintenanceEnded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SystemMaintenanceEndedCopyWith<ChatEventV2SystemMaintenanceEnded>
+      get copyWith => _$ChatEventV2SystemMaintenanceEndedCopyWithImpl<
+          ChatEventV2SystemMaintenanceEnded>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SystemMaintenanceEndedToJson(
@@ -14798,6 +27759,78 @@ class ChatEventV2SystemMaintenanceEnded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.systemMaintenanceEnded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SystemMaintenanceEndedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SystemMaintenanceEndedCopyWith(
+          ChatEventV2SystemMaintenanceEnded value,
+          $Res Function(ChatEventV2SystemMaintenanceEnded) _then) =
+      _$ChatEventV2SystemMaintenanceEndedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SystemMaintenanceEndedCopyWithImpl<$Res>
+    implements $ChatEventV2SystemMaintenanceEndedCopyWith<$Res> {
+  _$ChatEventV2SystemMaintenanceEndedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SystemMaintenanceEnded _self;
+  final $Res Function(ChatEventV2SystemMaintenanceEnded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SystemMaintenanceEnded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14827,6 +27860,15 @@ class ChatEventV2SystemWarning extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SystemWarningCopyWith<ChatEventV2SystemWarning> get copyWith =>
+      _$ChatEventV2SystemWarningCopyWithImpl<ChatEventV2SystemWarning>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SystemWarningToJson(
@@ -14837,6 +27879,77 @@ class ChatEventV2SystemWarning extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.systemWarning(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SystemWarningCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SystemWarningCopyWith(ChatEventV2SystemWarning value,
+          $Res Function(ChatEventV2SystemWarning) _then) =
+      _$ChatEventV2SystemWarningCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SystemWarningCopyWithImpl<$Res>
+    implements $ChatEventV2SystemWarningCopyWith<$Res> {
+  _$ChatEventV2SystemWarningCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SystemWarning _self;
+  final $Res Function(ChatEventV2SystemWarning) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SystemWarning(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14866,6 +27979,15 @@ class ChatEventV2SystemError extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SystemErrorCopyWith<ChatEventV2SystemError> get copyWith =>
+      _$ChatEventV2SystemErrorCopyWithImpl<ChatEventV2SystemError>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SystemErrorToJson(
@@ -14876,6 +27998,77 @@ class ChatEventV2SystemError extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.systemError(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SystemErrorCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SystemErrorCopyWith(ChatEventV2SystemError value,
+          $Res Function(ChatEventV2SystemError) _then) =
+      _$ChatEventV2SystemErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SystemErrorCopyWithImpl<$Res>
+    implements $ChatEventV2SystemErrorCopyWith<$Res> {
+  _$ChatEventV2SystemErrorCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SystemError _self;
+  final $Res Function(ChatEventV2SystemError) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SystemError(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14905,6 +28098,15 @@ class ChatEventV2SystemRecovery extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SystemRecoveryCopyWith<ChatEventV2SystemRecovery> get copyWith =>
+      _$ChatEventV2SystemRecoveryCopyWithImpl<ChatEventV2SystemRecovery>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SystemRecoveryToJson(
@@ -14915,6 +28117,77 @@ class ChatEventV2SystemRecovery extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.systemRecovery(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SystemRecoveryCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SystemRecoveryCopyWith(ChatEventV2SystemRecovery value,
+          $Res Function(ChatEventV2SystemRecovery) _then) =
+      _$ChatEventV2SystemRecoveryCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SystemRecoveryCopyWithImpl<$Res>
+    implements $ChatEventV2SystemRecoveryCopyWith<$Res> {
+  _$ChatEventV2SystemRecoveryCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SystemRecovery _self;
+  final $Res Function(ChatEventV2SystemRecovery) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SystemRecovery(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14944,6 +28217,15 @@ class ChatEventV2SystemPatchApplied extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SystemPatchAppliedCopyWith<ChatEventV2SystemPatchApplied>
+      get copyWith => _$ChatEventV2SystemPatchAppliedCopyWithImpl<
+          ChatEventV2SystemPatchApplied>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SystemPatchAppliedToJson(
@@ -14954,6 +28236,78 @@ class ChatEventV2SystemPatchApplied extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.systemPatchApplied(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SystemPatchAppliedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SystemPatchAppliedCopyWith(
+          ChatEventV2SystemPatchApplied value,
+          $Res Function(ChatEventV2SystemPatchApplied) _then) =
+      _$ChatEventV2SystemPatchAppliedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SystemPatchAppliedCopyWithImpl<$Res>
+    implements $ChatEventV2SystemPatchAppliedCopyWith<$Res> {
+  _$ChatEventV2SystemPatchAppliedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SystemPatchApplied _self;
+  final $Res Function(ChatEventV2SystemPatchApplied) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SystemPatchApplied(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -14983,6 +28337,15 @@ class ChatEventV2EncryptionEnabled extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2EncryptionEnabledCopyWith<ChatEventV2EncryptionEnabled>
+      get copyWith => _$ChatEventV2EncryptionEnabledCopyWithImpl<
+          ChatEventV2EncryptionEnabled>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2EncryptionEnabledToJson(
@@ -14993,6 +28356,78 @@ class ChatEventV2EncryptionEnabled extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.encryptionEnabled(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2EncryptionEnabledCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2EncryptionEnabledCopyWith(
+          ChatEventV2EncryptionEnabled value,
+          $Res Function(ChatEventV2EncryptionEnabled) _then) =
+      _$ChatEventV2EncryptionEnabledCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2EncryptionEnabledCopyWithImpl<$Res>
+    implements $ChatEventV2EncryptionEnabledCopyWith<$Res> {
+  _$ChatEventV2EncryptionEnabledCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2EncryptionEnabled _self;
+  final $Res Function(ChatEventV2EncryptionEnabled) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2EncryptionEnabled(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15022,6 +28457,15 @@ class ChatEventV2EncryptionDisabled extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2EncryptionDisabledCopyWith<ChatEventV2EncryptionDisabled>
+      get copyWith => _$ChatEventV2EncryptionDisabledCopyWithImpl<
+          ChatEventV2EncryptionDisabled>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2EncryptionDisabledToJson(
@@ -15032,6 +28476,78 @@ class ChatEventV2EncryptionDisabled extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.encryptionDisabled(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2EncryptionDisabledCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2EncryptionDisabledCopyWith(
+          ChatEventV2EncryptionDisabled value,
+          $Res Function(ChatEventV2EncryptionDisabled) _then) =
+      _$ChatEventV2EncryptionDisabledCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2EncryptionDisabledCopyWithImpl<$Res>
+    implements $ChatEventV2EncryptionDisabledCopyWith<$Res> {
+  _$ChatEventV2EncryptionDisabledCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2EncryptionDisabled _self;
+  final $Res Function(ChatEventV2EncryptionDisabled) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2EncryptionDisabled(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15061,6 +28577,15 @@ class ChatEventV2EncryptionKeyRotated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2EncryptionKeyRotatedCopyWith<ChatEventV2EncryptionKeyRotated>
+      get copyWith => _$ChatEventV2EncryptionKeyRotatedCopyWithImpl<
+          ChatEventV2EncryptionKeyRotated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2EncryptionKeyRotatedToJson(
@@ -15071,6 +28596,78 @@ class ChatEventV2EncryptionKeyRotated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.encryptionKeyRotated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2EncryptionKeyRotatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2EncryptionKeyRotatedCopyWith(
+          ChatEventV2EncryptionKeyRotated value,
+          $Res Function(ChatEventV2EncryptionKeyRotated) _then) =
+      _$ChatEventV2EncryptionKeyRotatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2EncryptionKeyRotatedCopyWithImpl<$Res>
+    implements $ChatEventV2EncryptionKeyRotatedCopyWith<$Res> {
+  _$ChatEventV2EncryptionKeyRotatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2EncryptionKeyRotated _self;
+  final $Res Function(ChatEventV2EncryptionKeyRotated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2EncryptionKeyRotated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15100,6 +28697,15 @@ class ChatEventV2EncryptionKeyFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2EncryptionKeyFailedCopyWith<ChatEventV2EncryptionKeyFailed>
+      get copyWith => _$ChatEventV2EncryptionKeyFailedCopyWithImpl<
+          ChatEventV2EncryptionKeyFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2EncryptionKeyFailedToJson(
@@ -15110,6 +28716,78 @@ class ChatEventV2EncryptionKeyFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.encryptionKeyFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2EncryptionKeyFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2EncryptionKeyFailedCopyWith(
+          ChatEventV2EncryptionKeyFailed value,
+          $Res Function(ChatEventV2EncryptionKeyFailed) _then) =
+      _$ChatEventV2EncryptionKeyFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2EncryptionKeyFailedCopyWithImpl<$Res>
+    implements $ChatEventV2EncryptionKeyFailedCopyWith<$Res> {
+  _$ChatEventV2EncryptionKeyFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2EncryptionKeyFailed _self;
+  final $Res Function(ChatEventV2EncryptionKeyFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2EncryptionKeyFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15139,6 +28817,15 @@ class ChatEventV2SessionStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SessionStartedCopyWith<ChatEventV2SessionStarted> get copyWith =>
+      _$ChatEventV2SessionStartedCopyWithImpl<ChatEventV2SessionStarted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SessionStartedToJson(
@@ -15149,6 +28836,77 @@ class ChatEventV2SessionStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.sessionStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SessionStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SessionStartedCopyWith(ChatEventV2SessionStarted value,
+          $Res Function(ChatEventV2SessionStarted) _then) =
+      _$ChatEventV2SessionStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SessionStartedCopyWithImpl<$Res>
+    implements $ChatEventV2SessionStartedCopyWith<$Res> {
+  _$ChatEventV2SessionStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SessionStarted _self;
+  final $Res Function(ChatEventV2SessionStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SessionStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15178,6 +28936,15 @@ class ChatEventV2SessionExpired extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SessionExpiredCopyWith<ChatEventV2SessionExpired> get copyWith =>
+      _$ChatEventV2SessionExpiredCopyWithImpl<ChatEventV2SessionExpired>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SessionExpiredToJson(
@@ -15188,6 +28955,77 @@ class ChatEventV2SessionExpired extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.sessionExpired(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SessionExpiredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SessionExpiredCopyWith(ChatEventV2SessionExpired value,
+          $Res Function(ChatEventV2SessionExpired) _then) =
+      _$ChatEventV2SessionExpiredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SessionExpiredCopyWithImpl<$Res>
+    implements $ChatEventV2SessionExpiredCopyWith<$Res> {
+  _$ChatEventV2SessionExpiredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SessionExpired _self;
+  final $Res Function(ChatEventV2SessionExpired) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SessionExpired(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15217,6 +29055,15 @@ class ChatEventV2SessionRefreshed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SessionRefreshedCopyWith<ChatEventV2SessionRefreshed>
+      get copyWith => _$ChatEventV2SessionRefreshedCopyWithImpl<
+          ChatEventV2SessionRefreshed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SessionRefreshedToJson(
@@ -15227,6 +29074,78 @@ class ChatEventV2SessionRefreshed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.sessionRefreshed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SessionRefreshedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SessionRefreshedCopyWith(
+          ChatEventV2SessionRefreshed value,
+          $Res Function(ChatEventV2SessionRefreshed) _then) =
+      _$ChatEventV2SessionRefreshedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SessionRefreshedCopyWithImpl<$Res>
+    implements $ChatEventV2SessionRefreshedCopyWith<$Res> {
+  _$ChatEventV2SessionRefreshedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SessionRefreshed _self;
+  final $Res Function(ChatEventV2SessionRefreshed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SessionRefreshed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15256,6 +29175,15 @@ class ChatEventV2SessionTerminated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SessionTerminatedCopyWith<ChatEventV2SessionTerminated>
+      get copyWith => _$ChatEventV2SessionTerminatedCopyWithImpl<
+          ChatEventV2SessionTerminated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SessionTerminatedToJson(
@@ -15266,6 +29194,78 @@ class ChatEventV2SessionTerminated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.sessionTerminated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SessionTerminatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SessionTerminatedCopyWith(
+          ChatEventV2SessionTerminated value,
+          $Res Function(ChatEventV2SessionTerminated) _then) =
+      _$ChatEventV2SessionTerminatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SessionTerminatedCopyWithImpl<$Res>
+    implements $ChatEventV2SessionTerminatedCopyWith<$Res> {
+  _$ChatEventV2SessionTerminatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SessionTerminated _self;
+  final $Res Function(ChatEventV2SessionTerminated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SessionTerminated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15295,6 +29295,15 @@ class ChatEventV2TypingIndicatorSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2TypingIndicatorSentCopyWith<ChatEventV2TypingIndicatorSent>
+      get copyWith => _$ChatEventV2TypingIndicatorSentCopyWithImpl<
+          ChatEventV2TypingIndicatorSent>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2TypingIndicatorSentToJson(
@@ -15305,6 +29314,78 @@ class ChatEventV2TypingIndicatorSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.typingIndicatorSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2TypingIndicatorSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2TypingIndicatorSentCopyWith(
+          ChatEventV2TypingIndicatorSent value,
+          $Res Function(ChatEventV2TypingIndicatorSent) _then) =
+      _$ChatEventV2TypingIndicatorSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2TypingIndicatorSentCopyWithImpl<$Res>
+    implements $ChatEventV2TypingIndicatorSentCopyWith<$Res> {
+  _$ChatEventV2TypingIndicatorSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2TypingIndicatorSent _self;
+  final $Res Function(ChatEventV2TypingIndicatorSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2TypingIndicatorSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15335,6 +29416,16 @@ class ChatEventV2TypingIndicatorReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2TypingIndicatorReceivedCopyWith<
+          ChatEventV2TypingIndicatorReceived>
+      get copyWith => _$ChatEventV2TypingIndicatorReceivedCopyWithImpl<
+          ChatEventV2TypingIndicatorReceived>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2TypingIndicatorReceivedToJson(
@@ -15345,6 +29436,78 @@ class ChatEventV2TypingIndicatorReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.typingIndicatorReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2TypingIndicatorReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2TypingIndicatorReceivedCopyWith(
+          ChatEventV2TypingIndicatorReceived value,
+          $Res Function(ChatEventV2TypingIndicatorReceived) _then) =
+      _$ChatEventV2TypingIndicatorReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2TypingIndicatorReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2TypingIndicatorReceivedCopyWith<$Res> {
+  _$ChatEventV2TypingIndicatorReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2TypingIndicatorReceived _self;
+  final $Res Function(ChatEventV2TypingIndicatorReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2TypingIndicatorReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15374,6 +29537,15 @@ class ChatEventV2PresenceSubscribed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PresenceSubscribedCopyWith<ChatEventV2PresenceSubscribed>
+      get copyWith => _$ChatEventV2PresenceSubscribedCopyWithImpl<
+          ChatEventV2PresenceSubscribed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PresenceSubscribedToJson(
@@ -15384,6 +29556,78 @@ class ChatEventV2PresenceSubscribed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.presenceSubscribed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PresenceSubscribedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PresenceSubscribedCopyWith(
+          ChatEventV2PresenceSubscribed value,
+          $Res Function(ChatEventV2PresenceSubscribed) _then) =
+      _$ChatEventV2PresenceSubscribedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PresenceSubscribedCopyWithImpl<$Res>
+    implements $ChatEventV2PresenceSubscribedCopyWith<$Res> {
+  _$ChatEventV2PresenceSubscribedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PresenceSubscribed _self;
+  final $Res Function(ChatEventV2PresenceSubscribed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PresenceSubscribed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15413,6 +29657,15 @@ class ChatEventV2PresenceUnsubscribed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PresenceUnsubscribedCopyWith<ChatEventV2PresenceUnsubscribed>
+      get copyWith => _$ChatEventV2PresenceUnsubscribedCopyWithImpl<
+          ChatEventV2PresenceUnsubscribed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PresenceUnsubscribedToJson(
@@ -15423,6 +29676,78 @@ class ChatEventV2PresenceUnsubscribed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.presenceUnsubscribed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PresenceUnsubscribedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PresenceUnsubscribedCopyWith(
+          ChatEventV2PresenceUnsubscribed value,
+          $Res Function(ChatEventV2PresenceUnsubscribed) _then) =
+      _$ChatEventV2PresenceUnsubscribedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PresenceUnsubscribedCopyWithImpl<$Res>
+    implements $ChatEventV2PresenceUnsubscribedCopyWith<$Res> {
+  _$ChatEventV2PresenceUnsubscribedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PresenceUnsubscribed _self;
+  final $Res Function(ChatEventV2PresenceUnsubscribed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PresenceUnsubscribed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15452,6 +29777,15 @@ class ChatEventV2PresenceSync extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PresenceSyncCopyWith<ChatEventV2PresenceSync> get copyWith =>
+      _$ChatEventV2PresenceSyncCopyWithImpl<ChatEventV2PresenceSync>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PresenceSyncToJson(
@@ -15462,6 +29796,77 @@ class ChatEventV2PresenceSync extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.presenceSync(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PresenceSyncCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PresenceSyncCopyWith(ChatEventV2PresenceSync value,
+          $Res Function(ChatEventV2PresenceSync) _then) =
+      _$ChatEventV2PresenceSyncCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PresenceSyncCopyWithImpl<$Res>
+    implements $ChatEventV2PresenceSyncCopyWith<$Res> {
+  _$ChatEventV2PresenceSyncCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PresenceSync _self;
+  final $Res Function(ChatEventV2PresenceSync) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PresenceSync(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15491,6 +29896,15 @@ class ChatEventV2PresenceUpdateFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PresenceUpdateFailedCopyWith<ChatEventV2PresenceUpdateFailed>
+      get copyWith => _$ChatEventV2PresenceUpdateFailedCopyWithImpl<
+          ChatEventV2PresenceUpdateFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PresenceUpdateFailedToJson(
@@ -15501,6 +29915,78 @@ class ChatEventV2PresenceUpdateFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.presenceUpdateFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PresenceUpdateFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PresenceUpdateFailedCopyWith(
+          ChatEventV2PresenceUpdateFailed value,
+          $Res Function(ChatEventV2PresenceUpdateFailed) _then) =
+      _$ChatEventV2PresenceUpdateFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PresenceUpdateFailedCopyWithImpl<$Res>
+    implements $ChatEventV2PresenceUpdateFailedCopyWith<$Res> {
+  _$ChatEventV2PresenceUpdateFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PresenceUpdateFailed _self;
+  final $Res Function(ChatEventV2PresenceUpdateFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PresenceUpdateFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15530,6 +30016,15 @@ class ChatEventV2PushNotificationSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PushNotificationSentCopyWith<ChatEventV2PushNotificationSent>
+      get copyWith => _$ChatEventV2PushNotificationSentCopyWithImpl<
+          ChatEventV2PushNotificationSent>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PushNotificationSentToJson(
@@ -15540,6 +30035,78 @@ class ChatEventV2PushNotificationSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.pushNotificationSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PushNotificationSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PushNotificationSentCopyWith(
+          ChatEventV2PushNotificationSent value,
+          $Res Function(ChatEventV2PushNotificationSent) _then) =
+      _$ChatEventV2PushNotificationSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PushNotificationSentCopyWithImpl<$Res>
+    implements $ChatEventV2PushNotificationSentCopyWith<$Res> {
+  _$ChatEventV2PushNotificationSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PushNotificationSent _self;
+  final $Res Function(ChatEventV2PushNotificationSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PushNotificationSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15570,6 +30137,16 @@ class ChatEventV2PushNotificationReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PushNotificationReceivedCopyWith<
+          ChatEventV2PushNotificationReceived>
+      get copyWith => _$ChatEventV2PushNotificationReceivedCopyWithImpl<
+          ChatEventV2PushNotificationReceived>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PushNotificationReceivedToJson(
@@ -15580,6 +30157,78 @@ class ChatEventV2PushNotificationReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.pushNotificationReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PushNotificationReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PushNotificationReceivedCopyWith(
+          ChatEventV2PushNotificationReceived value,
+          $Res Function(ChatEventV2PushNotificationReceived) _then) =
+      _$ChatEventV2PushNotificationReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PushNotificationReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2PushNotificationReceivedCopyWith<$Res> {
+  _$ChatEventV2PushNotificationReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PushNotificationReceived _self;
+  final $Res Function(ChatEventV2PushNotificationReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PushNotificationReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15610,6 +30259,15 @@ class ChatEventV2PushNotificationOpened extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PushNotificationOpenedCopyWith<ChatEventV2PushNotificationOpened>
+      get copyWith => _$ChatEventV2PushNotificationOpenedCopyWithImpl<
+          ChatEventV2PushNotificationOpened>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PushNotificationOpenedToJson(
@@ -15620,6 +30278,78 @@ class ChatEventV2PushNotificationOpened extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.pushNotificationOpened(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PushNotificationOpenedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PushNotificationOpenedCopyWith(
+          ChatEventV2PushNotificationOpened value,
+          $Res Function(ChatEventV2PushNotificationOpened) _then) =
+      _$ChatEventV2PushNotificationOpenedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PushNotificationOpenedCopyWithImpl<$Res>
+    implements $ChatEventV2PushNotificationOpenedCopyWith<$Res> {
+  _$ChatEventV2PushNotificationOpenedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PushNotificationOpened _self;
+  final $Res Function(ChatEventV2PushNotificationOpened) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PushNotificationOpened(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15650,6 +30380,15 @@ class ChatEventV2PushNotificationFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PushNotificationFailedCopyWith<ChatEventV2PushNotificationFailed>
+      get copyWith => _$ChatEventV2PushNotificationFailedCopyWithImpl<
+          ChatEventV2PushNotificationFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PushNotificationFailedToJson(
@@ -15660,6 +30399,78 @@ class ChatEventV2PushNotificationFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.pushNotificationFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PushNotificationFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PushNotificationFailedCopyWith(
+          ChatEventV2PushNotificationFailed value,
+          $Res Function(ChatEventV2PushNotificationFailed) _then) =
+      _$ChatEventV2PushNotificationFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PushNotificationFailedCopyWithImpl<$Res>
+    implements $ChatEventV2PushNotificationFailedCopyWith<$Res> {
+  _$ChatEventV2PushNotificationFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PushNotificationFailed _self;
+  final $Res Function(ChatEventV2PushNotificationFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PushNotificationFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15689,6 +30500,16 @@ class ChatEventV2ReadReceiptSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ReadReceiptSentCopyWith<ChatEventV2ReadReceiptSent>
+      get copyWith =>
+          _$ChatEventV2ReadReceiptSentCopyWithImpl<ChatEventV2ReadReceiptSent>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ReadReceiptSentToJson(
@@ -15699,6 +30520,77 @@ class ChatEventV2ReadReceiptSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.readReceiptSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ReadReceiptSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ReadReceiptSentCopyWith(ChatEventV2ReadReceiptSent value,
+          $Res Function(ChatEventV2ReadReceiptSent) _then) =
+      _$ChatEventV2ReadReceiptSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ReadReceiptSentCopyWithImpl<$Res>
+    implements $ChatEventV2ReadReceiptSentCopyWith<$Res> {
+  _$ChatEventV2ReadReceiptSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ReadReceiptSent _self;
+  final $Res Function(ChatEventV2ReadReceiptSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ReadReceiptSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15728,6 +30620,15 @@ class ChatEventV2ReadReceiptFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ReadReceiptFailedCopyWith<ChatEventV2ReadReceiptFailed>
+      get copyWith => _$ChatEventV2ReadReceiptFailedCopyWithImpl<
+          ChatEventV2ReadReceiptFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ReadReceiptFailedToJson(
@@ -15738,6 +30639,78 @@ class ChatEventV2ReadReceiptFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.readReceiptFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ReadReceiptFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ReadReceiptFailedCopyWith(
+          ChatEventV2ReadReceiptFailed value,
+          $Res Function(ChatEventV2ReadReceiptFailed) _then) =
+      _$ChatEventV2ReadReceiptFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ReadReceiptFailedCopyWithImpl<$Res>
+    implements $ChatEventV2ReadReceiptFailedCopyWith<$Res> {
+  _$ChatEventV2ReadReceiptFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ReadReceiptFailed _self;
+  final $Res Function(ChatEventV2ReadReceiptFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ReadReceiptFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15767,6 +30740,15 @@ class ChatEventV2ReadReceiptBlocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ReadReceiptBlockedCopyWith<ChatEventV2ReadReceiptBlocked>
+      get copyWith => _$ChatEventV2ReadReceiptBlockedCopyWithImpl<
+          ChatEventV2ReadReceiptBlocked>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ReadReceiptBlockedToJson(
@@ -15777,6 +30759,78 @@ class ChatEventV2ReadReceiptBlocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.readReceiptBlocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ReadReceiptBlockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ReadReceiptBlockedCopyWith(
+          ChatEventV2ReadReceiptBlocked value,
+          $Res Function(ChatEventV2ReadReceiptBlocked) _then) =
+      _$ChatEventV2ReadReceiptBlockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ReadReceiptBlockedCopyWithImpl<$Res>
+    implements $ChatEventV2ReadReceiptBlockedCopyWith<$Res> {
+  _$ChatEventV2ReadReceiptBlockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ReadReceiptBlocked _self;
+  final $Res Function(ChatEventV2ReadReceiptBlocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ReadReceiptBlocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15806,6 +30860,15 @@ class ChatEventV2BackupStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2BackupStartedCopyWith<ChatEventV2BackupStarted> get copyWith =>
+      _$ChatEventV2BackupStartedCopyWithImpl<ChatEventV2BackupStarted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2BackupStartedToJson(
@@ -15816,6 +30879,77 @@ class ChatEventV2BackupStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.backupStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2BackupStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2BackupStartedCopyWith(ChatEventV2BackupStarted value,
+          $Res Function(ChatEventV2BackupStarted) _then) =
+      _$ChatEventV2BackupStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2BackupStartedCopyWithImpl<$Res>
+    implements $ChatEventV2BackupStartedCopyWith<$Res> {
+  _$ChatEventV2BackupStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2BackupStarted _self;
+  final $Res Function(ChatEventV2BackupStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2BackupStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15845,6 +30979,16 @@ class ChatEventV2BackupCompleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2BackupCompletedCopyWith<ChatEventV2BackupCompleted>
+      get copyWith =>
+          _$ChatEventV2BackupCompletedCopyWithImpl<ChatEventV2BackupCompleted>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2BackupCompletedToJson(
@@ -15855,6 +30999,77 @@ class ChatEventV2BackupCompleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.backupCompleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2BackupCompletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2BackupCompletedCopyWith(ChatEventV2BackupCompleted value,
+          $Res Function(ChatEventV2BackupCompleted) _then) =
+      _$ChatEventV2BackupCompletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2BackupCompletedCopyWithImpl<$Res>
+    implements $ChatEventV2BackupCompletedCopyWith<$Res> {
+  _$ChatEventV2BackupCompletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2BackupCompleted _self;
+  final $Res Function(ChatEventV2BackupCompleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2BackupCompleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15884,6 +31099,15 @@ class ChatEventV2BackupFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2BackupFailedCopyWith<ChatEventV2BackupFailed> get copyWith =>
+      _$ChatEventV2BackupFailedCopyWithImpl<ChatEventV2BackupFailed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2BackupFailedToJson(
@@ -15894,6 +31118,77 @@ class ChatEventV2BackupFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.backupFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2BackupFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2BackupFailedCopyWith(ChatEventV2BackupFailed value,
+          $Res Function(ChatEventV2BackupFailed) _then) =
+      _$ChatEventV2BackupFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2BackupFailedCopyWithImpl<$Res>
+    implements $ChatEventV2BackupFailedCopyWith<$Res> {
+  _$ChatEventV2BackupFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2BackupFailed _self;
+  final $Res Function(ChatEventV2BackupFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2BackupFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15923,6 +31218,15 @@ class ChatEventV2RestoreStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2RestoreStartedCopyWith<ChatEventV2RestoreStarted> get copyWith =>
+      _$ChatEventV2RestoreStartedCopyWithImpl<ChatEventV2RestoreStarted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2RestoreStartedToJson(
@@ -15933,6 +31237,77 @@ class ChatEventV2RestoreStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.restoreStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2RestoreStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2RestoreStartedCopyWith(ChatEventV2RestoreStarted value,
+          $Res Function(ChatEventV2RestoreStarted) _then) =
+      _$ChatEventV2RestoreStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2RestoreStartedCopyWithImpl<$Res>
+    implements $ChatEventV2RestoreStartedCopyWith<$Res> {
+  _$ChatEventV2RestoreStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2RestoreStarted _self;
+  final $Res Function(ChatEventV2RestoreStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2RestoreStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -15962,6 +31337,15 @@ class ChatEventV2RestoreCompleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2RestoreCompletedCopyWith<ChatEventV2RestoreCompleted>
+      get copyWith => _$ChatEventV2RestoreCompletedCopyWithImpl<
+          ChatEventV2RestoreCompleted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2RestoreCompletedToJson(
@@ -15972,6 +31356,78 @@ class ChatEventV2RestoreCompleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.restoreCompleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2RestoreCompletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2RestoreCompletedCopyWith(
+          ChatEventV2RestoreCompleted value,
+          $Res Function(ChatEventV2RestoreCompleted) _then) =
+      _$ChatEventV2RestoreCompletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2RestoreCompletedCopyWithImpl<$Res>
+    implements $ChatEventV2RestoreCompletedCopyWith<$Res> {
+  _$ChatEventV2RestoreCompletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2RestoreCompleted _self;
+  final $Res Function(ChatEventV2RestoreCompleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2RestoreCompleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16001,6 +31457,15 @@ class ChatEventV2RestoreFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2RestoreFailedCopyWith<ChatEventV2RestoreFailed> get copyWith =>
+      _$ChatEventV2RestoreFailedCopyWithImpl<ChatEventV2RestoreFailed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2RestoreFailedToJson(
@@ -16011,6 +31476,77 @@ class ChatEventV2RestoreFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.restoreFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2RestoreFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2RestoreFailedCopyWith(ChatEventV2RestoreFailed value,
+          $Res Function(ChatEventV2RestoreFailed) _then) =
+      _$ChatEventV2RestoreFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2RestoreFailedCopyWithImpl<$Res>
+    implements $ChatEventV2RestoreFailedCopyWith<$Res> {
+  _$ChatEventV2RestoreFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2RestoreFailed _self;
+  final $Res Function(ChatEventV2RestoreFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2RestoreFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16040,6 +31576,15 @@ class ChatEventV2ContactSynced extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ContactSyncedCopyWith<ChatEventV2ContactSynced> get copyWith =>
+      _$ChatEventV2ContactSyncedCopyWithImpl<ChatEventV2ContactSynced>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ContactSyncedToJson(
@@ -16050,6 +31595,77 @@ class ChatEventV2ContactSynced extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.contactSynced(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ContactSyncedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ContactSyncedCopyWith(ChatEventV2ContactSynced value,
+          $Res Function(ChatEventV2ContactSynced) _then) =
+      _$ChatEventV2ContactSyncedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ContactSyncedCopyWithImpl<$Res>
+    implements $ChatEventV2ContactSyncedCopyWith<$Res> {
+  _$ChatEventV2ContactSyncedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ContactSynced _self;
+  final $Res Function(ChatEventV2ContactSynced) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ContactSynced(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16079,6 +31695,15 @@ class ChatEventV2ContactSyncFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ContactSyncFailedCopyWith<ChatEventV2ContactSyncFailed>
+      get copyWith => _$ChatEventV2ContactSyncFailedCopyWithImpl<
+          ChatEventV2ContactSyncFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ContactSyncFailedToJson(
@@ -16089,6 +31714,78 @@ class ChatEventV2ContactSyncFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.contactSyncFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ContactSyncFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ContactSyncFailedCopyWith(
+          ChatEventV2ContactSyncFailed value,
+          $Res Function(ChatEventV2ContactSyncFailed) _then) =
+      _$ChatEventV2ContactSyncFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ContactSyncFailedCopyWithImpl<$Res>
+    implements $ChatEventV2ContactSyncFailedCopyWith<$Res> {
+  _$ChatEventV2ContactSyncFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ContactSyncFailed _self;
+  final $Res Function(ChatEventV2ContactSyncFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ContactSyncFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16118,6 +31815,15 @@ class ChatEventV2ContactAdded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ContactAddedCopyWith<ChatEventV2ContactAdded> get copyWith =>
+      _$ChatEventV2ContactAddedCopyWithImpl<ChatEventV2ContactAdded>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ContactAddedToJson(
@@ -16128,6 +31834,77 @@ class ChatEventV2ContactAdded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.contactAdded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ContactAddedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ContactAddedCopyWith(ChatEventV2ContactAdded value,
+          $Res Function(ChatEventV2ContactAdded) _then) =
+      _$ChatEventV2ContactAddedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ContactAddedCopyWithImpl<$Res>
+    implements $ChatEventV2ContactAddedCopyWith<$Res> {
+  _$ChatEventV2ContactAddedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ContactAdded _self;
+  final $Res Function(ChatEventV2ContactAdded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ContactAdded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16157,6 +31934,15 @@ class ChatEventV2ContactRemoved extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ContactRemovedCopyWith<ChatEventV2ContactRemoved> get copyWith =>
+      _$ChatEventV2ContactRemovedCopyWithImpl<ChatEventV2ContactRemoved>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ContactRemovedToJson(
@@ -16167,6 +31953,77 @@ class ChatEventV2ContactRemoved extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.contactRemoved(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ContactRemovedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ContactRemovedCopyWith(ChatEventV2ContactRemoved value,
+          $Res Function(ChatEventV2ContactRemoved) _then) =
+      _$ChatEventV2ContactRemovedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ContactRemovedCopyWithImpl<$Res>
+    implements $ChatEventV2ContactRemovedCopyWith<$Res> {
+  _$ChatEventV2ContactRemovedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ContactRemoved _self;
+  final $Res Function(ChatEventV2ContactRemoved) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ContactRemoved(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16196,6 +32053,15 @@ class ChatEventV2ContactBlocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ContactBlockedCopyWith<ChatEventV2ContactBlocked> get copyWith =>
+      _$ChatEventV2ContactBlockedCopyWithImpl<ChatEventV2ContactBlocked>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ContactBlockedToJson(
@@ -16206,6 +32072,77 @@ class ChatEventV2ContactBlocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.contactBlocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ContactBlockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ContactBlockedCopyWith(ChatEventV2ContactBlocked value,
+          $Res Function(ChatEventV2ContactBlocked) _then) =
+      _$ChatEventV2ContactBlockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ContactBlockedCopyWithImpl<$Res>
+    implements $ChatEventV2ContactBlockedCopyWith<$Res> {
+  _$ChatEventV2ContactBlockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ContactBlocked _self;
+  final $Res Function(ChatEventV2ContactBlocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ContactBlocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16235,6 +32172,15 @@ class ChatEventV2ContactUnblocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ContactUnblockedCopyWith<ChatEventV2ContactUnblocked>
+      get copyWith => _$ChatEventV2ContactUnblockedCopyWithImpl<
+          ChatEventV2ContactUnblocked>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ContactUnblockedToJson(
@@ -16245,6 +32191,78 @@ class ChatEventV2ContactUnblocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.contactUnblocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ContactUnblockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ContactUnblockedCopyWith(
+          ChatEventV2ContactUnblocked value,
+          $Res Function(ChatEventV2ContactUnblocked) _then) =
+      _$ChatEventV2ContactUnblockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ContactUnblockedCopyWithImpl<$Res>
+    implements $ChatEventV2ContactUnblockedCopyWith<$Res> {
+  _$ChatEventV2ContactUnblockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ContactUnblocked _self;
+  final $Res Function(ChatEventV2ContactUnblocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ContactUnblocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16274,6 +32292,16 @@ class ChatEventV2CommandExecuted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CommandExecutedCopyWith<ChatEventV2CommandExecuted>
+      get copyWith =>
+          _$ChatEventV2CommandExecutedCopyWithImpl<ChatEventV2CommandExecuted>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CommandExecutedToJson(
@@ -16284,6 +32312,77 @@ class ChatEventV2CommandExecuted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.commandExecuted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CommandExecutedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CommandExecutedCopyWith(ChatEventV2CommandExecuted value,
+          $Res Function(ChatEventV2CommandExecuted) _then) =
+      _$ChatEventV2CommandExecutedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CommandExecutedCopyWithImpl<$Res>
+    implements $ChatEventV2CommandExecutedCopyWith<$Res> {
+  _$ChatEventV2CommandExecutedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CommandExecuted _self;
+  final $Res Function(ChatEventV2CommandExecuted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CommandExecuted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16313,6 +32412,15 @@ class ChatEventV2ShortcutUsed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ShortcutUsedCopyWith<ChatEventV2ShortcutUsed> get copyWith =>
+      _$ChatEventV2ShortcutUsedCopyWithImpl<ChatEventV2ShortcutUsed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ShortcutUsedToJson(
@@ -16323,6 +32431,77 @@ class ChatEventV2ShortcutUsed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.shortcutUsed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ShortcutUsedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ShortcutUsedCopyWith(ChatEventV2ShortcutUsed value,
+          $Res Function(ChatEventV2ShortcutUsed) _then) =
+      _$ChatEventV2ShortcutUsedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ShortcutUsedCopyWithImpl<$Res>
+    implements $ChatEventV2ShortcutUsedCopyWith<$Res> {
+  _$ChatEventV2ShortcutUsedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ShortcutUsed _self;
+  final $Res Function(ChatEventV2ShortcutUsed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ShortcutUsed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16352,6 +32531,15 @@ class ChatEventV2ActionButtonClicked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ActionButtonClickedCopyWith<ChatEventV2ActionButtonClicked>
+      get copyWith => _$ChatEventV2ActionButtonClickedCopyWithImpl<
+          ChatEventV2ActionButtonClicked>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ActionButtonClickedToJson(
@@ -16362,6 +32550,78 @@ class ChatEventV2ActionButtonClicked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.actionButtonClicked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ActionButtonClickedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ActionButtonClickedCopyWith(
+          ChatEventV2ActionButtonClicked value,
+          $Res Function(ChatEventV2ActionButtonClicked) _then) =
+      _$ChatEventV2ActionButtonClickedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ActionButtonClickedCopyWithImpl<$Res>
+    implements $ChatEventV2ActionButtonClickedCopyWith<$Res> {
+  _$ChatEventV2ActionButtonClickedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ActionButtonClicked _self;
+  final $Res Function(ChatEventV2ActionButtonClicked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ActionButtonClicked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16391,6 +32651,15 @@ class ChatEventV2AdminMessageSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AdminMessageSentCopyWith<ChatEventV2AdminMessageSent>
+      get copyWith => _$ChatEventV2AdminMessageSentCopyWithImpl<
+          ChatEventV2AdminMessageSent>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AdminMessageSentToJson(
@@ -16401,6 +32670,78 @@ class ChatEventV2AdminMessageSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.adminMessageSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AdminMessageSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AdminMessageSentCopyWith(
+          ChatEventV2AdminMessageSent value,
+          $Res Function(ChatEventV2AdminMessageSent) _then) =
+      _$ChatEventV2AdminMessageSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AdminMessageSentCopyWithImpl<$Res>
+    implements $ChatEventV2AdminMessageSentCopyWith<$Res> {
+  _$ChatEventV2AdminMessageSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AdminMessageSent _self;
+  final $Res Function(ChatEventV2AdminMessageSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AdminMessageSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16430,6 +32771,15 @@ class ChatEventV2AdminMessageDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AdminMessageDeletedCopyWith<ChatEventV2AdminMessageDeleted>
+      get copyWith => _$ChatEventV2AdminMessageDeletedCopyWithImpl<
+          ChatEventV2AdminMessageDeleted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AdminMessageDeletedToJson(
@@ -16440,6 +32790,78 @@ class ChatEventV2AdminMessageDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.adminMessageDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AdminMessageDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AdminMessageDeletedCopyWith(
+          ChatEventV2AdminMessageDeleted value,
+          $Res Function(ChatEventV2AdminMessageDeleted) _then) =
+      _$ChatEventV2AdminMessageDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AdminMessageDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2AdminMessageDeletedCopyWith<$Res> {
+  _$ChatEventV2AdminMessageDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AdminMessageDeleted _self;
+  final $Res Function(ChatEventV2AdminMessageDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AdminMessageDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16469,6 +32891,15 @@ class ChatEventV2AdminAnnouncement extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AdminAnnouncementCopyWith<ChatEventV2AdminAnnouncement>
+      get copyWith => _$ChatEventV2AdminAnnouncementCopyWithImpl<
+          ChatEventV2AdminAnnouncement>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AdminAnnouncementToJson(
@@ -16479,6 +32910,78 @@ class ChatEventV2AdminAnnouncement extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.adminAnnouncement(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AdminAnnouncementCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AdminAnnouncementCopyWith(
+          ChatEventV2AdminAnnouncement value,
+          $Res Function(ChatEventV2AdminAnnouncement) _then) =
+      _$ChatEventV2AdminAnnouncementCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AdminAnnouncementCopyWithImpl<$Res>
+    implements $ChatEventV2AdminAnnouncementCopyWith<$Res> {
+  _$ChatEventV2AdminAnnouncementCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AdminAnnouncement _self;
+  final $Res Function(ChatEventV2AdminAnnouncement) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AdminAnnouncement(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16508,6 +33011,15 @@ class ChatEventV2AdminWarning extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AdminWarningCopyWith<ChatEventV2AdminWarning> get copyWith =>
+      _$ChatEventV2AdminWarningCopyWithImpl<ChatEventV2AdminWarning>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AdminWarningToJson(
@@ -16518,6 +33030,77 @@ class ChatEventV2AdminWarning extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.adminWarning(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AdminWarningCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AdminWarningCopyWith(ChatEventV2AdminWarning value,
+          $Res Function(ChatEventV2AdminWarning) _then) =
+      _$ChatEventV2AdminWarningCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AdminWarningCopyWithImpl<$Res>
+    implements $ChatEventV2AdminWarningCopyWith<$Res> {
+  _$ChatEventV2AdminWarningCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AdminWarning _self;
+  final $Res Function(ChatEventV2AdminWarning) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AdminWarning(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16547,6 +33130,15 @@ class ChatEventV2AdminSilencedUser extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AdminSilencedUserCopyWith<ChatEventV2AdminSilencedUser>
+      get copyWith => _$ChatEventV2AdminSilencedUserCopyWithImpl<
+          ChatEventV2AdminSilencedUser>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AdminSilencedUserToJson(
@@ -16557,6 +33149,78 @@ class ChatEventV2AdminSilencedUser extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.adminSilencedUser(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AdminSilencedUserCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AdminSilencedUserCopyWith(
+          ChatEventV2AdminSilencedUser value,
+          $Res Function(ChatEventV2AdminSilencedUser) _then) =
+      _$ChatEventV2AdminSilencedUserCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AdminSilencedUserCopyWithImpl<$Res>
+    implements $ChatEventV2AdminSilencedUserCopyWith<$Res> {
+  _$ChatEventV2AdminSilencedUserCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AdminSilencedUser _self;
+  final $Res Function(ChatEventV2AdminSilencedUser) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AdminSilencedUser(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16586,6 +33250,15 @@ class ChatEventV2SpamUserDetected extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SpamUserDetectedCopyWith<ChatEventV2SpamUserDetected>
+      get copyWith => _$ChatEventV2SpamUserDetectedCopyWithImpl<
+          ChatEventV2SpamUserDetected>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SpamUserDetectedToJson(
@@ -16596,6 +33269,78 @@ class ChatEventV2SpamUserDetected extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.spamUserDetected(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SpamUserDetectedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SpamUserDetectedCopyWith(
+          ChatEventV2SpamUserDetected value,
+          $Res Function(ChatEventV2SpamUserDetected) _then) =
+      _$ChatEventV2SpamUserDetectedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SpamUserDetectedCopyWithImpl<$Res>
+    implements $ChatEventV2SpamUserDetectedCopyWith<$Res> {
+  _$ChatEventV2SpamUserDetectedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SpamUserDetected _self;
+  final $Res Function(ChatEventV2SpamUserDetected) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SpamUserDetected(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16625,6 +33370,16 @@ class ChatEventV2SpamUserBlocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SpamUserBlockedCopyWith<ChatEventV2SpamUserBlocked>
+      get copyWith =>
+          _$ChatEventV2SpamUserBlockedCopyWithImpl<ChatEventV2SpamUserBlocked>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SpamUserBlockedToJson(
@@ -16635,6 +33390,77 @@ class ChatEventV2SpamUserBlocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.spamUserBlocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SpamUserBlockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SpamUserBlockedCopyWith(ChatEventV2SpamUserBlocked value,
+          $Res Function(ChatEventV2SpamUserBlocked) _then) =
+      _$ChatEventV2SpamUserBlockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SpamUserBlockedCopyWithImpl<$Res>
+    implements $ChatEventV2SpamUserBlockedCopyWith<$Res> {
+  _$ChatEventV2SpamUserBlockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SpamUserBlocked _self;
+  final $Res Function(ChatEventV2SpamUserBlocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SpamUserBlocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16664,6 +33490,15 @@ class ChatEventV2SpamUserReported extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SpamUserReportedCopyWith<ChatEventV2SpamUserReported>
+      get copyWith => _$ChatEventV2SpamUserReportedCopyWithImpl<
+          ChatEventV2SpamUserReported>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SpamUserReportedToJson(
@@ -16674,6 +33509,78 @@ class ChatEventV2SpamUserReported extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.spamUserReported(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SpamUserReportedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SpamUserReportedCopyWith(
+          ChatEventV2SpamUserReported value,
+          $Res Function(ChatEventV2SpamUserReported) _then) =
+      _$ChatEventV2SpamUserReportedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SpamUserReportedCopyWithImpl<$Res>
+    implements $ChatEventV2SpamUserReportedCopyWith<$Res> {
+  _$ChatEventV2SpamUserReportedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SpamUserReported _self;
+  final $Res Function(ChatEventV2SpamUserReported) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SpamUserReported(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16704,6 +33611,15 @@ class ChatEventV2ModerationActionTaken extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ModerationActionTakenCopyWith<ChatEventV2ModerationActionTaken>
+      get copyWith => _$ChatEventV2ModerationActionTakenCopyWithImpl<
+          ChatEventV2ModerationActionTaken>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ModerationActionTakenToJson(
@@ -16714,6 +33630,78 @@ class ChatEventV2ModerationActionTaken extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.moderationActionTaken(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ModerationActionTakenCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ModerationActionTakenCopyWith(
+          ChatEventV2ModerationActionTaken value,
+          $Res Function(ChatEventV2ModerationActionTaken) _then) =
+      _$ChatEventV2ModerationActionTakenCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ModerationActionTakenCopyWithImpl<$Res>
+    implements $ChatEventV2ModerationActionTakenCopyWith<$Res> {
+  _$ChatEventV2ModerationActionTakenCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ModerationActionTaken _self;
+  final $Res Function(ChatEventV2ModerationActionTaken) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ModerationActionTaken(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16744,6 +33732,15 @@ class ChatEventV2ModerationFlagReviewed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ModerationFlagReviewedCopyWith<ChatEventV2ModerationFlagReviewed>
+      get copyWith => _$ChatEventV2ModerationFlagReviewedCopyWithImpl<
+          ChatEventV2ModerationFlagReviewed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ModerationFlagReviewedToJson(
@@ -16754,6 +33751,78 @@ class ChatEventV2ModerationFlagReviewed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.moderationFlagReviewed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ModerationFlagReviewedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ModerationFlagReviewedCopyWith(
+          ChatEventV2ModerationFlagReviewed value,
+          $Res Function(ChatEventV2ModerationFlagReviewed) _then) =
+      _$ChatEventV2ModerationFlagReviewedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ModerationFlagReviewedCopyWithImpl<$Res>
+    implements $ChatEventV2ModerationFlagReviewedCopyWith<$Res> {
+  _$ChatEventV2ModerationFlagReviewedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ModerationFlagReviewed _self;
+  final $Res Function(ChatEventV2ModerationFlagReviewed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ModerationFlagReviewed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16784,6 +33853,16 @@ class ChatEventV2ModerationMessageHidden extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ModerationMessageHiddenCopyWith<
+          ChatEventV2ModerationMessageHidden>
+      get copyWith => _$ChatEventV2ModerationMessageHiddenCopyWithImpl<
+          ChatEventV2ModerationMessageHidden>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ModerationMessageHiddenToJson(
@@ -16794,6 +33873,78 @@ class ChatEventV2ModerationMessageHidden extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.moderationMessageHidden(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ModerationMessageHiddenCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ModerationMessageHiddenCopyWith(
+          ChatEventV2ModerationMessageHidden value,
+          $Res Function(ChatEventV2ModerationMessageHidden) _then) =
+      _$ChatEventV2ModerationMessageHiddenCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ModerationMessageHiddenCopyWithImpl<$Res>
+    implements $ChatEventV2ModerationMessageHiddenCopyWith<$Res> {
+  _$ChatEventV2ModerationMessageHiddenCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ModerationMessageHidden _self;
+  final $Res Function(ChatEventV2ModerationMessageHidden) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ModerationMessageHidden(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16824,6 +33975,16 @@ class ChatEventV2ModerationMessageRemoved extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ModerationMessageRemovedCopyWith<
+          ChatEventV2ModerationMessageRemoved>
+      get copyWith => _$ChatEventV2ModerationMessageRemovedCopyWithImpl<
+          ChatEventV2ModerationMessageRemoved>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ModerationMessageRemovedToJson(
@@ -16834,6 +33995,78 @@ class ChatEventV2ModerationMessageRemoved extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.moderationMessageRemoved(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ModerationMessageRemovedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ModerationMessageRemovedCopyWith(
+          ChatEventV2ModerationMessageRemoved value,
+          $Res Function(ChatEventV2ModerationMessageRemoved) _then) =
+      _$ChatEventV2ModerationMessageRemovedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ModerationMessageRemovedCopyWithImpl<$Res>
+    implements $ChatEventV2ModerationMessageRemovedCopyWith<$Res> {
+  _$ChatEventV2ModerationMessageRemovedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ModerationMessageRemoved _self;
+  final $Res Function(ChatEventV2ModerationMessageRemoved) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ModerationMessageRemoved(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16863,6 +34096,15 @@ class ChatEventV2ExperimentStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ExperimentStartedCopyWith<ChatEventV2ExperimentStarted>
+      get copyWith => _$ChatEventV2ExperimentStartedCopyWithImpl<
+          ChatEventV2ExperimentStarted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ExperimentStartedToJson(
@@ -16873,6 +34115,78 @@ class ChatEventV2ExperimentStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.experimentStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ExperimentStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ExperimentStartedCopyWith(
+          ChatEventV2ExperimentStarted value,
+          $Res Function(ChatEventV2ExperimentStarted) _then) =
+      _$ChatEventV2ExperimentStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ExperimentStartedCopyWithImpl<$Res>
+    implements $ChatEventV2ExperimentStartedCopyWith<$Res> {
+  _$ChatEventV2ExperimentStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ExperimentStarted _self;
+  final $Res Function(ChatEventV2ExperimentStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ExperimentStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16902,6 +34216,15 @@ class ChatEventV2ExperimentUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ExperimentUpdatedCopyWith<ChatEventV2ExperimentUpdated>
+      get copyWith => _$ChatEventV2ExperimentUpdatedCopyWithImpl<
+          ChatEventV2ExperimentUpdated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ExperimentUpdatedToJson(
@@ -16912,6 +34235,78 @@ class ChatEventV2ExperimentUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.experimentUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ExperimentUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ExperimentUpdatedCopyWith(
+          ChatEventV2ExperimentUpdated value,
+          $Res Function(ChatEventV2ExperimentUpdated) _then) =
+      _$ChatEventV2ExperimentUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ExperimentUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2ExperimentUpdatedCopyWith<$Res> {
+  _$ChatEventV2ExperimentUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ExperimentUpdated _self;
+  final $Res Function(ChatEventV2ExperimentUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ExperimentUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16941,6 +34336,15 @@ class ChatEventV2ExperimentCompleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ExperimentCompletedCopyWith<ChatEventV2ExperimentCompleted>
+      get copyWith => _$ChatEventV2ExperimentCompletedCopyWithImpl<
+          ChatEventV2ExperimentCompleted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ExperimentCompletedToJson(
@@ -16951,6 +34355,78 @@ class ChatEventV2ExperimentCompleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.experimentCompleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ExperimentCompletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ExperimentCompletedCopyWith(
+          ChatEventV2ExperimentCompleted value,
+          $Res Function(ChatEventV2ExperimentCompleted) _then) =
+      _$ChatEventV2ExperimentCompletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ExperimentCompletedCopyWithImpl<$Res>
+    implements $ChatEventV2ExperimentCompletedCopyWith<$Res> {
+  _$ChatEventV2ExperimentCompletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ExperimentCompleted _self;
+  final $Res Function(ChatEventV2ExperimentCompleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ExperimentCompleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -16980,6 +34456,15 @@ class ChatEventV2ExperimentAborted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ExperimentAbortedCopyWith<ChatEventV2ExperimentAborted>
+      get copyWith => _$ChatEventV2ExperimentAbortedCopyWithImpl<
+          ChatEventV2ExperimentAborted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ExperimentAbortedToJson(
@@ -16990,6 +34475,78 @@ class ChatEventV2ExperimentAborted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.experimentAborted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ExperimentAbortedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ExperimentAbortedCopyWith(
+          ChatEventV2ExperimentAborted value,
+          $Res Function(ChatEventV2ExperimentAborted) _then) =
+      _$ChatEventV2ExperimentAbortedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ExperimentAbortedCopyWithImpl<$Res>
+    implements $ChatEventV2ExperimentAbortedCopyWith<$Res> {
+  _$ChatEventV2ExperimentAbortedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ExperimentAborted _self;
+  final $Res Function(ChatEventV2ExperimentAborted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ExperimentAborted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17019,6 +34576,14 @@ class ChatEventV2GiftSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GiftSentCopyWith<ChatEventV2GiftSent> get copyWith =>
+      _$ChatEventV2GiftSentCopyWithImpl<ChatEventV2GiftSent>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GiftSentToJson(
@@ -17029,6 +34594,77 @@ class ChatEventV2GiftSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.giftSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GiftSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GiftSentCopyWith(
+          ChatEventV2GiftSent value, $Res Function(ChatEventV2GiftSent) _then) =
+      _$ChatEventV2GiftSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GiftSentCopyWithImpl<$Res>
+    implements $ChatEventV2GiftSentCopyWith<$Res> {
+  _$ChatEventV2GiftSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GiftSent _self;
+  final $Res Function(ChatEventV2GiftSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GiftSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17058,6 +34694,15 @@ class ChatEventV2GiftReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GiftReceivedCopyWith<ChatEventV2GiftReceived> get copyWith =>
+      _$ChatEventV2GiftReceivedCopyWithImpl<ChatEventV2GiftReceived>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GiftReceivedToJson(
@@ -17068,6 +34713,77 @@ class ChatEventV2GiftReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.giftReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GiftReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GiftReceivedCopyWith(ChatEventV2GiftReceived value,
+          $Res Function(ChatEventV2GiftReceived) _then) =
+      _$ChatEventV2GiftReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GiftReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2GiftReceivedCopyWith<$Res> {
+  _$ChatEventV2GiftReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GiftReceived _self;
+  final $Res Function(ChatEventV2GiftReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GiftReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17097,6 +34813,15 @@ class ChatEventV2GiftRedeemed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GiftRedeemedCopyWith<ChatEventV2GiftRedeemed> get copyWith =>
+      _$ChatEventV2GiftRedeemedCopyWithImpl<ChatEventV2GiftRedeemed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GiftRedeemedToJson(
@@ -17107,6 +34832,77 @@ class ChatEventV2GiftRedeemed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.giftRedeemed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GiftRedeemedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GiftRedeemedCopyWith(ChatEventV2GiftRedeemed value,
+          $Res Function(ChatEventV2GiftRedeemed) _then) =
+      _$ChatEventV2GiftRedeemedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GiftRedeemedCopyWithImpl<$Res>
+    implements $ChatEventV2GiftRedeemedCopyWith<$Res> {
+  _$ChatEventV2GiftRedeemedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GiftRedeemed _self;
+  final $Res Function(ChatEventV2GiftRedeemed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GiftRedeemed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17136,6 +34932,15 @@ class ChatEventV2GiftFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2GiftFailedCopyWith<ChatEventV2GiftFailed> get copyWith =>
+      _$ChatEventV2GiftFailedCopyWithImpl<ChatEventV2GiftFailed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2GiftFailedToJson(
@@ -17146,6 +34951,77 @@ class ChatEventV2GiftFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.giftFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2GiftFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2GiftFailedCopyWith(ChatEventV2GiftFailed value,
+          $Res Function(ChatEventV2GiftFailed) _then) =
+      _$ChatEventV2GiftFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2GiftFailedCopyWithImpl<$Res>
+    implements $ChatEventV2GiftFailedCopyWith<$Res> {
+  _$ChatEventV2GiftFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2GiftFailed _self;
+  final $Res Function(ChatEventV2GiftFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2GiftFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17175,6 +35051,15 @@ class ChatEventV2StickerSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2StickerSentCopyWith<ChatEventV2StickerSent> get copyWith =>
+      _$ChatEventV2StickerSentCopyWithImpl<ChatEventV2StickerSent>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2StickerSentToJson(
@@ -17185,6 +35070,77 @@ class ChatEventV2StickerSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.stickerSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2StickerSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2StickerSentCopyWith(ChatEventV2StickerSent value,
+          $Res Function(ChatEventV2StickerSent) _then) =
+      _$ChatEventV2StickerSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2StickerSentCopyWithImpl<$Res>
+    implements $ChatEventV2StickerSentCopyWith<$Res> {
+  _$ChatEventV2StickerSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2StickerSent _self;
+  final $Res Function(ChatEventV2StickerSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2StickerSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17214,6 +35170,15 @@ class ChatEventV2StickerDeleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2StickerDeletedCopyWith<ChatEventV2StickerDeleted> get copyWith =>
+      _$ChatEventV2StickerDeletedCopyWithImpl<ChatEventV2StickerDeleted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2StickerDeletedToJson(
@@ -17224,6 +35189,77 @@ class ChatEventV2StickerDeleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.stickerDeleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2StickerDeletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2StickerDeletedCopyWith(ChatEventV2StickerDeleted value,
+          $Res Function(ChatEventV2StickerDeleted) _then) =
+      _$ChatEventV2StickerDeletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2StickerDeletedCopyWithImpl<$Res>
+    implements $ChatEventV2StickerDeletedCopyWith<$Res> {
+  _$ChatEventV2StickerDeletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2StickerDeleted _self;
+  final $Res Function(ChatEventV2StickerDeleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2StickerDeleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17253,6 +35289,15 @@ class ChatEventV2EmojiPackAdded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2EmojiPackAddedCopyWith<ChatEventV2EmojiPackAdded> get copyWith =>
+      _$ChatEventV2EmojiPackAddedCopyWithImpl<ChatEventV2EmojiPackAdded>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2EmojiPackAddedToJson(
@@ -17263,6 +35308,77 @@ class ChatEventV2EmojiPackAdded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.emojiPackAdded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2EmojiPackAddedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2EmojiPackAddedCopyWith(ChatEventV2EmojiPackAdded value,
+          $Res Function(ChatEventV2EmojiPackAdded) _then) =
+      _$ChatEventV2EmojiPackAddedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2EmojiPackAddedCopyWithImpl<$Res>
+    implements $ChatEventV2EmojiPackAddedCopyWith<$Res> {
+  _$ChatEventV2EmojiPackAddedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2EmojiPackAdded _self;
+  final $Res Function(ChatEventV2EmojiPackAdded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2EmojiPackAdded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17292,6 +35408,15 @@ class ChatEventV2EmojiPackRemoved extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2EmojiPackRemovedCopyWith<ChatEventV2EmojiPackRemoved>
+      get copyWith => _$ChatEventV2EmojiPackRemovedCopyWithImpl<
+          ChatEventV2EmojiPackRemoved>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2EmojiPackRemovedToJson(
@@ -17302,6 +35427,78 @@ class ChatEventV2EmojiPackRemoved extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.emojiPackRemoved(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2EmojiPackRemovedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2EmojiPackRemovedCopyWith(
+          ChatEventV2EmojiPackRemoved value,
+          $Res Function(ChatEventV2EmojiPackRemoved) _then) =
+      _$ChatEventV2EmojiPackRemovedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2EmojiPackRemovedCopyWithImpl<$Res>
+    implements $ChatEventV2EmojiPackRemovedCopyWith<$Res> {
+  _$ChatEventV2EmojiPackRemovedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2EmojiPackRemoved _self;
+  final $Res Function(ChatEventV2EmojiPackRemoved) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2EmojiPackRemoved(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17331,6 +35528,15 @@ class ChatEventV2ThemeChanged extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2ThemeChangedCopyWith<ChatEventV2ThemeChanged> get copyWith =>
+      _$ChatEventV2ThemeChangedCopyWithImpl<ChatEventV2ThemeChanged>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2ThemeChangedToJson(
@@ -17341,6 +35547,77 @@ class ChatEventV2ThemeChanged extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.themeChanged(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2ThemeChangedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2ThemeChangedCopyWith(ChatEventV2ThemeChanged value,
+          $Res Function(ChatEventV2ThemeChanged) _then) =
+      _$ChatEventV2ThemeChangedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2ThemeChangedCopyWithImpl<$Res>
+    implements $ChatEventV2ThemeChangedCopyWith<$Res> {
+  _$ChatEventV2ThemeChangedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2ThemeChanged _self;
+  final $Res Function(ChatEventV2ThemeChanged) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2ThemeChanged(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17370,6 +35647,15 @@ class ChatEventV2WallpaperChanged extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2WallpaperChangedCopyWith<ChatEventV2WallpaperChanged>
+      get copyWith => _$ChatEventV2WallpaperChangedCopyWithImpl<
+          ChatEventV2WallpaperChanged>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2WallpaperChangedToJson(
@@ -17380,6 +35666,78 @@ class ChatEventV2WallpaperChanged extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.wallpaperChanged(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2WallpaperChangedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2WallpaperChangedCopyWith(
+          ChatEventV2WallpaperChanged value,
+          $Res Function(ChatEventV2WallpaperChanged) _then) =
+      _$ChatEventV2WallpaperChangedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2WallpaperChangedCopyWithImpl<$Res>
+    implements $ChatEventV2WallpaperChangedCopyWith<$Res> {
+  _$ChatEventV2WallpaperChangedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2WallpaperChanged _self;
+  final $Res Function(ChatEventV2WallpaperChanged) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2WallpaperChanged(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17409,6 +35767,16 @@ class ChatEventV2FontSizeChanged extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2FontSizeChangedCopyWith<ChatEventV2FontSizeChanged>
+      get copyWith =>
+          _$ChatEventV2FontSizeChangedCopyWithImpl<ChatEventV2FontSizeChanged>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2FontSizeChangedToJson(
@@ -17419,6 +35787,77 @@ class ChatEventV2FontSizeChanged extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.fontSizeChanged(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2FontSizeChangedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2FontSizeChangedCopyWith(ChatEventV2FontSizeChanged value,
+          $Res Function(ChatEventV2FontSizeChanged) _then) =
+      _$ChatEventV2FontSizeChangedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2FontSizeChangedCopyWithImpl<$Res>
+    implements $ChatEventV2FontSizeChangedCopyWith<$Res> {
+  _$ChatEventV2FontSizeChangedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2FontSizeChanged _self;
+  final $Res Function(ChatEventV2FontSizeChanged) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2FontSizeChanged(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17448,6 +35887,16 @@ class ChatEventV2SettingsUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SettingsUpdatedCopyWith<ChatEventV2SettingsUpdated>
+      get copyWith =>
+          _$ChatEventV2SettingsUpdatedCopyWithImpl<ChatEventV2SettingsUpdated>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SettingsUpdatedToJson(
@@ -17458,6 +35907,77 @@ class ChatEventV2SettingsUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.settingsUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SettingsUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SettingsUpdatedCopyWith(ChatEventV2SettingsUpdated value,
+          $Res Function(ChatEventV2SettingsUpdated) _then) =
+      _$ChatEventV2SettingsUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SettingsUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2SettingsUpdatedCopyWith<$Res> {
+  _$ChatEventV2SettingsUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SettingsUpdated _self;
+  final $Res Function(ChatEventV2SettingsUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SettingsUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17487,6 +36007,15 @@ class ChatEventV2DeviceRegistered extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2DeviceRegisteredCopyWith<ChatEventV2DeviceRegistered>
+      get copyWith => _$ChatEventV2DeviceRegisteredCopyWithImpl<
+          ChatEventV2DeviceRegistered>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2DeviceRegisteredToJson(
@@ -17497,6 +36026,78 @@ class ChatEventV2DeviceRegistered extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.deviceRegistered(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2DeviceRegisteredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2DeviceRegisteredCopyWith(
+          ChatEventV2DeviceRegistered value,
+          $Res Function(ChatEventV2DeviceRegistered) _then) =
+      _$ChatEventV2DeviceRegisteredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2DeviceRegisteredCopyWithImpl<$Res>
+    implements $ChatEventV2DeviceRegisteredCopyWith<$Res> {
+  _$ChatEventV2DeviceRegisteredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2DeviceRegistered _self;
+  final $Res Function(ChatEventV2DeviceRegistered) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2DeviceRegistered(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17526,6 +36127,15 @@ class ChatEventV2DeviceUnregistered extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2DeviceUnregisteredCopyWith<ChatEventV2DeviceUnregistered>
+      get copyWith => _$ChatEventV2DeviceUnregisteredCopyWithImpl<
+          ChatEventV2DeviceUnregistered>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2DeviceUnregisteredToJson(
@@ -17536,6 +36146,78 @@ class ChatEventV2DeviceUnregistered extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.deviceUnregistered(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2DeviceUnregisteredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2DeviceUnregisteredCopyWith(
+          ChatEventV2DeviceUnregistered value,
+          $Res Function(ChatEventV2DeviceUnregistered) _then) =
+      _$ChatEventV2DeviceUnregisteredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2DeviceUnregisteredCopyWithImpl<$Res>
+    implements $ChatEventV2DeviceUnregisteredCopyWith<$Res> {
+  _$ChatEventV2DeviceUnregisteredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2DeviceUnregistered _self;
+  final $Res Function(ChatEventV2DeviceUnregistered) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2DeviceUnregistered(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17565,6 +36247,15 @@ class ChatEventV2DeviceSwitched extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2DeviceSwitchedCopyWith<ChatEventV2DeviceSwitched> get copyWith =>
+      _$ChatEventV2DeviceSwitchedCopyWithImpl<ChatEventV2DeviceSwitched>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2DeviceSwitchedToJson(
@@ -17575,6 +36266,77 @@ class ChatEventV2DeviceSwitched extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.deviceSwitched(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2DeviceSwitchedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2DeviceSwitchedCopyWith(ChatEventV2DeviceSwitched value,
+          $Res Function(ChatEventV2DeviceSwitched) _then) =
+      _$ChatEventV2DeviceSwitchedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2DeviceSwitchedCopyWithImpl<$Res>
+    implements $ChatEventV2DeviceSwitchedCopyWith<$Res> {
+  _$ChatEventV2DeviceSwitchedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2DeviceSwitched _self;
+  final $Res Function(ChatEventV2DeviceSwitched) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2DeviceSwitched(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17604,6 +36366,15 @@ class ChatEventV2DeviceSyncCompleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2DeviceSyncCompletedCopyWith<ChatEventV2DeviceSyncCompleted>
+      get copyWith => _$ChatEventV2DeviceSyncCompletedCopyWithImpl<
+          ChatEventV2DeviceSyncCompleted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2DeviceSyncCompletedToJson(
@@ -17614,6 +36385,78 @@ class ChatEventV2DeviceSyncCompleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.deviceSyncCompleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2DeviceSyncCompletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2DeviceSyncCompletedCopyWith(
+          ChatEventV2DeviceSyncCompleted value,
+          $Res Function(ChatEventV2DeviceSyncCompleted) _then) =
+      _$ChatEventV2DeviceSyncCompletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2DeviceSyncCompletedCopyWithImpl<$Res>
+    implements $ChatEventV2DeviceSyncCompletedCopyWith<$Res> {
+  _$ChatEventV2DeviceSyncCompletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2DeviceSyncCompleted _self;
+  final $Res Function(ChatEventV2DeviceSyncCompleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2DeviceSyncCompleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17643,6 +36486,15 @@ class ChatEventV2DeviceSyncFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2DeviceSyncFailedCopyWith<ChatEventV2DeviceSyncFailed>
+      get copyWith => _$ChatEventV2DeviceSyncFailedCopyWithImpl<
+          ChatEventV2DeviceSyncFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2DeviceSyncFailedToJson(
@@ -17653,6 +36505,78 @@ class ChatEventV2DeviceSyncFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.deviceSyncFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2DeviceSyncFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2DeviceSyncFailedCopyWith(
+          ChatEventV2DeviceSyncFailed value,
+          $Res Function(ChatEventV2DeviceSyncFailed) _then) =
+      _$ChatEventV2DeviceSyncFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2DeviceSyncFailedCopyWithImpl<$Res>
+    implements $ChatEventV2DeviceSyncFailedCopyWith<$Res> {
+  _$ChatEventV2DeviceSyncFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2DeviceSyncFailed _self;
+  final $Res Function(ChatEventV2DeviceSyncFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2DeviceSyncFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17682,6 +36606,15 @@ class ChatEventV2LocationShared extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LocationSharedCopyWith<ChatEventV2LocationShared> get copyWith =>
+      _$ChatEventV2LocationSharedCopyWithImpl<ChatEventV2LocationShared>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LocationSharedToJson(
@@ -17692,6 +36625,77 @@ class ChatEventV2LocationShared extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.locationShared(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LocationSharedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LocationSharedCopyWith(ChatEventV2LocationShared value,
+          $Res Function(ChatEventV2LocationShared) _then) =
+      _$ChatEventV2LocationSharedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LocationSharedCopyWithImpl<$Res>
+    implements $ChatEventV2LocationSharedCopyWith<$Res> {
+  _$ChatEventV2LocationSharedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LocationShared _self;
+  final $Res Function(ChatEventV2LocationShared) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LocationShared(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17721,6 +36725,16 @@ class ChatEventV2LocationUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LocationUpdatedCopyWith<ChatEventV2LocationUpdated>
+      get copyWith =>
+          _$ChatEventV2LocationUpdatedCopyWithImpl<ChatEventV2LocationUpdated>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LocationUpdatedToJson(
@@ -17731,6 +36745,77 @@ class ChatEventV2LocationUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.locationUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LocationUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LocationUpdatedCopyWith(ChatEventV2LocationUpdated value,
+          $Res Function(ChatEventV2LocationUpdated) _then) =
+      _$ChatEventV2LocationUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LocationUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2LocationUpdatedCopyWith<$Res> {
+  _$ChatEventV2LocationUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LocationUpdated _self;
+  final $Res Function(ChatEventV2LocationUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LocationUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17760,6 +36845,16 @@ class ChatEventV2LocationStopped extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LocationStoppedCopyWith<ChatEventV2LocationStopped>
+      get copyWith =>
+          _$ChatEventV2LocationStoppedCopyWithImpl<ChatEventV2LocationStopped>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LocationStoppedToJson(
@@ -17770,6 +36865,77 @@ class ChatEventV2LocationStopped extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.locationStopped(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LocationStoppedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LocationStoppedCopyWith(ChatEventV2LocationStopped value,
+          $Res Function(ChatEventV2LocationStopped) _then) =
+      _$ChatEventV2LocationStoppedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LocationStoppedCopyWithImpl<$Res>
+    implements $ChatEventV2LocationStoppedCopyWith<$Res> {
+  _$ChatEventV2LocationStoppedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LocationStopped _self;
+  final $Res Function(ChatEventV2LocationStopped) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LocationStopped(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17799,6 +36965,15 @@ class ChatEventV2LocationRequestSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LocationRequestSentCopyWith<ChatEventV2LocationRequestSent>
+      get copyWith => _$ChatEventV2LocationRequestSentCopyWithImpl<
+          ChatEventV2LocationRequestSent>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LocationRequestSentToJson(
@@ -17809,6 +36984,78 @@ class ChatEventV2LocationRequestSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.locationRequestSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LocationRequestSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LocationRequestSentCopyWith(
+          ChatEventV2LocationRequestSent value,
+          $Res Function(ChatEventV2LocationRequestSent) _then) =
+      _$ChatEventV2LocationRequestSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LocationRequestSentCopyWithImpl<$Res>
+    implements $ChatEventV2LocationRequestSentCopyWith<$Res> {
+  _$ChatEventV2LocationRequestSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LocationRequestSent _self;
+  final $Res Function(ChatEventV2LocationRequestSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LocationRequestSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17839,6 +37086,16 @@ class ChatEventV2LocationRequestAccepted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LocationRequestAcceptedCopyWith<
+          ChatEventV2LocationRequestAccepted>
+      get copyWith => _$ChatEventV2LocationRequestAcceptedCopyWithImpl<
+          ChatEventV2LocationRequestAccepted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LocationRequestAcceptedToJson(
@@ -17849,6 +37106,78 @@ class ChatEventV2LocationRequestAccepted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.locationRequestAccepted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LocationRequestAcceptedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LocationRequestAcceptedCopyWith(
+          ChatEventV2LocationRequestAccepted value,
+          $Res Function(ChatEventV2LocationRequestAccepted) _then) =
+      _$ChatEventV2LocationRequestAcceptedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LocationRequestAcceptedCopyWithImpl<$Res>
+    implements $ChatEventV2LocationRequestAcceptedCopyWith<$Res> {
+  _$ChatEventV2LocationRequestAcceptedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LocationRequestAccepted _self;
+  final $Res Function(ChatEventV2LocationRequestAccepted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LocationRequestAccepted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17879,6 +37208,16 @@ class ChatEventV2LocationRequestDeclined extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LocationRequestDeclinedCopyWith<
+          ChatEventV2LocationRequestDeclined>
+      get copyWith => _$ChatEventV2LocationRequestDeclinedCopyWithImpl<
+          ChatEventV2LocationRequestDeclined>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LocationRequestDeclinedToJson(
@@ -17889,6 +37228,78 @@ class ChatEventV2LocationRequestDeclined extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.locationRequestDeclined(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LocationRequestDeclinedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LocationRequestDeclinedCopyWith(
+          ChatEventV2LocationRequestDeclined value,
+          $Res Function(ChatEventV2LocationRequestDeclined) _then) =
+      _$ChatEventV2LocationRequestDeclinedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LocationRequestDeclinedCopyWithImpl<$Res>
+    implements $ChatEventV2LocationRequestDeclinedCopyWith<$Res> {
+  _$ChatEventV2LocationRequestDeclinedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LocationRequestDeclined _self;
+  final $Res Function(ChatEventV2LocationRequestDeclined) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LocationRequestDeclined(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17918,6 +37329,15 @@ class ChatEventV2QrScanSuccess extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2QrScanSuccessCopyWith<ChatEventV2QrScanSuccess> get copyWith =>
+      _$ChatEventV2QrScanSuccessCopyWithImpl<ChatEventV2QrScanSuccess>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2QrScanSuccessToJson(
@@ -17928,6 +37348,77 @@ class ChatEventV2QrScanSuccess extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.qrScanSuccess(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2QrScanSuccessCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2QrScanSuccessCopyWith(ChatEventV2QrScanSuccess value,
+          $Res Function(ChatEventV2QrScanSuccess) _then) =
+      _$ChatEventV2QrScanSuccessCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2QrScanSuccessCopyWithImpl<$Res>
+    implements $ChatEventV2QrScanSuccessCopyWith<$Res> {
+  _$ChatEventV2QrScanSuccessCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2QrScanSuccess _self;
+  final $Res Function(ChatEventV2QrScanSuccess) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2QrScanSuccess(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17957,6 +37448,15 @@ class ChatEventV2QrScanFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2QrScanFailedCopyWith<ChatEventV2QrScanFailed> get copyWith =>
+      _$ChatEventV2QrScanFailedCopyWithImpl<ChatEventV2QrScanFailed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2QrScanFailedToJson(
@@ -17967,6 +37467,77 @@ class ChatEventV2QrScanFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.qrScanFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2QrScanFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2QrScanFailedCopyWith(ChatEventV2QrScanFailed value,
+          $Res Function(ChatEventV2QrScanFailed) _then) =
+      _$ChatEventV2QrScanFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2QrScanFailedCopyWithImpl<$Res>
+    implements $ChatEventV2QrScanFailedCopyWith<$Res> {
+  _$ChatEventV2QrScanFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2QrScanFailed _self;
+  final $Res Function(ChatEventV2QrScanFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2QrScanFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -17997,6 +37568,16 @@ class ChatEventV2QrConnectionEstablished extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2QrConnectionEstablishedCopyWith<
+          ChatEventV2QrConnectionEstablished>
+      get copyWith => _$ChatEventV2QrConnectionEstablishedCopyWithImpl<
+          ChatEventV2QrConnectionEstablished>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2QrConnectionEstablishedToJson(
@@ -18007,6 +37588,78 @@ class ChatEventV2QrConnectionEstablished extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.qrConnectionEstablished(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2QrConnectionEstablishedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2QrConnectionEstablishedCopyWith(
+          ChatEventV2QrConnectionEstablished value,
+          $Res Function(ChatEventV2QrConnectionEstablished) _then) =
+      _$ChatEventV2QrConnectionEstablishedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2QrConnectionEstablishedCopyWithImpl<$Res>
+    implements $ChatEventV2QrConnectionEstablishedCopyWith<$Res> {
+  _$ChatEventV2QrConnectionEstablishedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2QrConnectionEstablished _self;
+  final $Res Function(ChatEventV2QrConnectionEstablished) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2QrConnectionEstablished(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18037,6 +37690,15 @@ class ChatEventV2QrConnectionTerminated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2QrConnectionTerminatedCopyWith<ChatEventV2QrConnectionTerminated>
+      get copyWith => _$ChatEventV2QrConnectionTerminatedCopyWithImpl<
+          ChatEventV2QrConnectionTerminated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2QrConnectionTerminatedToJson(
@@ -18047,6 +37709,78 @@ class ChatEventV2QrConnectionTerminated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.qrConnectionTerminated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2QrConnectionTerminatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2QrConnectionTerminatedCopyWith(
+          ChatEventV2QrConnectionTerminated value,
+          $Res Function(ChatEventV2QrConnectionTerminated) _then) =
+      _$ChatEventV2QrConnectionTerminatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2QrConnectionTerminatedCopyWithImpl<$Res>
+    implements $ChatEventV2QrConnectionTerminatedCopyWith<$Res> {
+  _$ChatEventV2QrConnectionTerminatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2QrConnectionTerminated _self;
+  final $Res Function(ChatEventV2QrConnectionTerminated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2QrConnectionTerminated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18076,6 +37810,15 @@ class ChatEventV2PaymentRequestSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentRequestSentCopyWith<ChatEventV2PaymentRequestSent>
+      get copyWith => _$ChatEventV2PaymentRequestSentCopyWithImpl<
+          ChatEventV2PaymentRequestSent>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentRequestSentToJson(
@@ -18086,6 +37829,78 @@ class ChatEventV2PaymentRequestSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentRequestSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentRequestSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentRequestSentCopyWith(
+          ChatEventV2PaymentRequestSent value,
+          $Res Function(ChatEventV2PaymentRequestSent) _then) =
+      _$ChatEventV2PaymentRequestSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentRequestSentCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentRequestSentCopyWith<$Res> {
+  _$ChatEventV2PaymentRequestSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentRequestSent _self;
+  final $Res Function(ChatEventV2PaymentRequestSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentRequestSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18116,6 +37931,15 @@ class ChatEventV2PaymentRequestReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentRequestReceivedCopyWith<ChatEventV2PaymentRequestReceived>
+      get copyWith => _$ChatEventV2PaymentRequestReceivedCopyWithImpl<
+          ChatEventV2PaymentRequestReceived>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentRequestReceivedToJson(
@@ -18126,6 +37950,78 @@ class ChatEventV2PaymentRequestReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentRequestReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentRequestReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentRequestReceivedCopyWith(
+          ChatEventV2PaymentRequestReceived value,
+          $Res Function(ChatEventV2PaymentRequestReceived) _then) =
+      _$ChatEventV2PaymentRequestReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentRequestReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentRequestReceivedCopyWith<$Res> {
+  _$ChatEventV2PaymentRequestReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentRequestReceived _self;
+  final $Res Function(ChatEventV2PaymentRequestReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentRequestReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18156,6 +38052,15 @@ class ChatEventV2PaymentRequestAccepted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentRequestAcceptedCopyWith<ChatEventV2PaymentRequestAccepted>
+      get copyWith => _$ChatEventV2PaymentRequestAcceptedCopyWithImpl<
+          ChatEventV2PaymentRequestAccepted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentRequestAcceptedToJson(
@@ -18166,6 +38071,78 @@ class ChatEventV2PaymentRequestAccepted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentRequestAccepted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentRequestAcceptedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentRequestAcceptedCopyWith(
+          ChatEventV2PaymentRequestAccepted value,
+          $Res Function(ChatEventV2PaymentRequestAccepted) _then) =
+      _$ChatEventV2PaymentRequestAcceptedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentRequestAcceptedCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentRequestAcceptedCopyWith<$Res> {
+  _$ChatEventV2PaymentRequestAcceptedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentRequestAccepted _self;
+  final $Res Function(ChatEventV2PaymentRequestAccepted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentRequestAccepted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18196,6 +38173,15 @@ class ChatEventV2PaymentRequestDeclined extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentRequestDeclinedCopyWith<ChatEventV2PaymentRequestDeclined>
+      get copyWith => _$ChatEventV2PaymentRequestDeclinedCopyWithImpl<
+          ChatEventV2PaymentRequestDeclined>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentRequestDeclinedToJson(
@@ -18206,6 +38192,78 @@ class ChatEventV2PaymentRequestDeclined extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentRequestDeclined(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentRequestDeclinedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentRequestDeclinedCopyWith(
+          ChatEventV2PaymentRequestDeclined value,
+          $Res Function(ChatEventV2PaymentRequestDeclined) _then) =
+      _$ChatEventV2PaymentRequestDeclinedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentRequestDeclinedCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentRequestDeclinedCopyWith<$Res> {
+  _$ChatEventV2PaymentRequestDeclinedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentRequestDeclined _self;
+  final $Res Function(ChatEventV2PaymentRequestDeclined) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentRequestDeclined(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18235,6 +38293,15 @@ class ChatEventV2PaymentSent extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentSentCopyWith<ChatEventV2PaymentSent> get copyWith =>
+      _$ChatEventV2PaymentSentCopyWithImpl<ChatEventV2PaymentSent>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentSentToJson(
@@ -18245,6 +38312,77 @@ class ChatEventV2PaymentSent extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentSent(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentSentCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentSentCopyWith(ChatEventV2PaymentSent value,
+          $Res Function(ChatEventV2PaymentSent) _then) =
+      _$ChatEventV2PaymentSentCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentSentCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentSentCopyWith<$Res> {
+  _$ChatEventV2PaymentSentCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentSent _self;
+  final $Res Function(ChatEventV2PaymentSent) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentSent(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18274,6 +38412,16 @@ class ChatEventV2PaymentReceived extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentReceivedCopyWith<ChatEventV2PaymentReceived>
+      get copyWith =>
+          _$ChatEventV2PaymentReceivedCopyWithImpl<ChatEventV2PaymentReceived>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentReceivedToJson(
@@ -18284,6 +38432,77 @@ class ChatEventV2PaymentReceived extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentReceived(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentReceivedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentReceivedCopyWith(ChatEventV2PaymentReceived value,
+          $Res Function(ChatEventV2PaymentReceived) _then) =
+      _$ChatEventV2PaymentReceivedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentReceivedCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentReceivedCopyWith<$Res> {
+  _$ChatEventV2PaymentReceivedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentReceived _self;
+  final $Res Function(ChatEventV2PaymentReceived) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentReceived(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18313,6 +38532,15 @@ class ChatEventV2PaymentFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentFailedCopyWith<ChatEventV2PaymentFailed> get copyWith =>
+      _$ChatEventV2PaymentFailedCopyWithImpl<ChatEventV2PaymentFailed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentFailedToJson(
@@ -18323,6 +38551,77 @@ class ChatEventV2PaymentFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentFailedCopyWith(ChatEventV2PaymentFailed value,
+          $Res Function(ChatEventV2PaymentFailed) _then) =
+      _$ChatEventV2PaymentFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentFailedCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentFailedCopyWith<$Res> {
+  _$ChatEventV2PaymentFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentFailed _self;
+  final $Res Function(ChatEventV2PaymentFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18352,6 +38651,16 @@ class ChatEventV2PaymentRefunded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentRefundedCopyWith<ChatEventV2PaymentRefunded>
+      get copyWith =>
+          _$ChatEventV2PaymentRefundedCopyWithImpl<ChatEventV2PaymentRefunded>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentRefundedToJson(
@@ -18362,6 +38671,77 @@ class ChatEventV2PaymentRefunded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentRefunded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentRefundedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentRefundedCopyWith(ChatEventV2PaymentRefunded value,
+          $Res Function(ChatEventV2PaymentRefunded) _then) =
+      _$ChatEventV2PaymentRefundedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentRefundedCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentRefundedCopyWith<$Res> {
+  _$ChatEventV2PaymentRefundedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentRefunded _self;
+  final $Res Function(ChatEventV2PaymentRefunded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentRefunded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18391,6 +38771,15 @@ class ChatEventV2PaymentWalletUpdated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2PaymentWalletUpdatedCopyWith<ChatEventV2PaymentWalletUpdated>
+      get copyWith => _$ChatEventV2PaymentWalletUpdatedCopyWithImpl<
+          ChatEventV2PaymentWalletUpdated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2PaymentWalletUpdatedToJson(
@@ -18401,6 +38790,78 @@ class ChatEventV2PaymentWalletUpdated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.paymentWalletUpdated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2PaymentWalletUpdatedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2PaymentWalletUpdatedCopyWith(
+          ChatEventV2PaymentWalletUpdated value,
+          $Res Function(ChatEventV2PaymentWalletUpdated) _then) =
+      _$ChatEventV2PaymentWalletUpdatedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2PaymentWalletUpdatedCopyWithImpl<$Res>
+    implements $ChatEventV2PaymentWalletUpdatedCopyWith<$Res> {
+  _$ChatEventV2PaymentWalletUpdatedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2PaymentWalletUpdated _self;
+  final $Res Function(ChatEventV2PaymentWalletUpdated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2PaymentWalletUpdated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18430,6 +38891,15 @@ class ChatEventV2SubscriptionStarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SubscriptionStartedCopyWith<ChatEventV2SubscriptionStarted>
+      get copyWith => _$ChatEventV2SubscriptionStartedCopyWithImpl<
+          ChatEventV2SubscriptionStarted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SubscriptionStartedToJson(
@@ -18440,6 +38910,78 @@ class ChatEventV2SubscriptionStarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.subscriptionStarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SubscriptionStartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SubscriptionStartedCopyWith(
+          ChatEventV2SubscriptionStarted value,
+          $Res Function(ChatEventV2SubscriptionStarted) _then) =
+      _$ChatEventV2SubscriptionStartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SubscriptionStartedCopyWithImpl<$Res>
+    implements $ChatEventV2SubscriptionStartedCopyWith<$Res> {
+  _$ChatEventV2SubscriptionStartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SubscriptionStarted _self;
+  final $Res Function(ChatEventV2SubscriptionStarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SubscriptionStarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18469,6 +39011,15 @@ class ChatEventV2SubscriptionExpired extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SubscriptionExpiredCopyWith<ChatEventV2SubscriptionExpired>
+      get copyWith => _$ChatEventV2SubscriptionExpiredCopyWithImpl<
+          ChatEventV2SubscriptionExpired>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SubscriptionExpiredToJson(
@@ -18479,6 +39030,78 @@ class ChatEventV2SubscriptionExpired extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.subscriptionExpired(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SubscriptionExpiredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SubscriptionExpiredCopyWith(
+          ChatEventV2SubscriptionExpired value,
+          $Res Function(ChatEventV2SubscriptionExpired) _then) =
+      _$ChatEventV2SubscriptionExpiredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SubscriptionExpiredCopyWithImpl<$Res>
+    implements $ChatEventV2SubscriptionExpiredCopyWith<$Res> {
+  _$ChatEventV2SubscriptionExpiredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SubscriptionExpired _self;
+  final $Res Function(ChatEventV2SubscriptionExpired) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SubscriptionExpired(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18508,6 +39131,15 @@ class ChatEventV2SubscriptionRenewed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SubscriptionRenewedCopyWith<ChatEventV2SubscriptionRenewed>
+      get copyWith => _$ChatEventV2SubscriptionRenewedCopyWithImpl<
+          ChatEventV2SubscriptionRenewed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SubscriptionRenewedToJson(
@@ -18518,6 +39150,78 @@ class ChatEventV2SubscriptionRenewed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.subscriptionRenewed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SubscriptionRenewedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SubscriptionRenewedCopyWith(
+          ChatEventV2SubscriptionRenewed value,
+          $Res Function(ChatEventV2SubscriptionRenewed) _then) =
+      _$ChatEventV2SubscriptionRenewedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SubscriptionRenewedCopyWithImpl<$Res>
+    implements $ChatEventV2SubscriptionRenewedCopyWith<$Res> {
+  _$ChatEventV2SubscriptionRenewedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SubscriptionRenewed _self;
+  final $Res Function(ChatEventV2SubscriptionRenewed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SubscriptionRenewed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18547,6 +39251,15 @@ class ChatEventV2SubscriptionCanceled extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2SubscriptionCanceledCopyWith<ChatEventV2SubscriptionCanceled>
+      get copyWith => _$ChatEventV2SubscriptionCanceledCopyWithImpl<
+          ChatEventV2SubscriptionCanceled>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2SubscriptionCanceledToJson(
@@ -18557,6 +39270,78 @@ class ChatEventV2SubscriptionCanceled extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.subscriptionCanceled(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2SubscriptionCanceledCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2SubscriptionCanceledCopyWith(
+          ChatEventV2SubscriptionCanceled value,
+          $Res Function(ChatEventV2SubscriptionCanceled) _then) =
+      _$ChatEventV2SubscriptionCanceledCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2SubscriptionCanceledCopyWithImpl<$Res>
+    implements $ChatEventV2SubscriptionCanceledCopyWith<$Res> {
+  _$ChatEventV2SubscriptionCanceledCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2SubscriptionCanceled _self;
+  final $Res Function(ChatEventV2SubscriptionCanceled) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2SubscriptionCanceled(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18586,6 +39371,15 @@ class ChatEventV2AiSummaryGenerated extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AiSummaryGeneratedCopyWith<ChatEventV2AiSummaryGenerated>
+      get copyWith => _$ChatEventV2AiSummaryGeneratedCopyWithImpl<
+          ChatEventV2AiSummaryGenerated>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AiSummaryGeneratedToJson(
@@ -18596,6 +39390,78 @@ class ChatEventV2AiSummaryGenerated extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.aiSummaryGenerated(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AiSummaryGeneratedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AiSummaryGeneratedCopyWith(
+          ChatEventV2AiSummaryGenerated value,
+          $Res Function(ChatEventV2AiSummaryGenerated) _then) =
+      _$ChatEventV2AiSummaryGeneratedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AiSummaryGeneratedCopyWithImpl<$Res>
+    implements $ChatEventV2AiSummaryGeneratedCopyWith<$Res> {
+  _$ChatEventV2AiSummaryGeneratedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AiSummaryGenerated _self;
+  final $Res Function(ChatEventV2AiSummaryGenerated) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AiSummaryGenerated(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18625,6 +39491,16 @@ class ChatEventV2AiSummaryFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AiSummaryFailedCopyWith<ChatEventV2AiSummaryFailed>
+      get copyWith =>
+          _$ChatEventV2AiSummaryFailedCopyWithImpl<ChatEventV2AiSummaryFailed>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AiSummaryFailedToJson(
@@ -18635,6 +39511,77 @@ class ChatEventV2AiSummaryFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.aiSummaryFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AiSummaryFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AiSummaryFailedCopyWith(ChatEventV2AiSummaryFailed value,
+          $Res Function(ChatEventV2AiSummaryFailed) _then) =
+      _$ChatEventV2AiSummaryFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AiSummaryFailedCopyWithImpl<$Res>
+    implements $ChatEventV2AiSummaryFailedCopyWith<$Res> {
+  _$ChatEventV2AiSummaryFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AiSummaryFailed _self;
+  final $Res Function(ChatEventV2AiSummaryFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AiSummaryFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18664,6 +39611,15 @@ class ChatEventV2AiReplySuggested extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AiReplySuggestedCopyWith<ChatEventV2AiReplySuggested>
+      get copyWith => _$ChatEventV2AiReplySuggestedCopyWithImpl<
+          ChatEventV2AiReplySuggested>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AiReplySuggestedToJson(
@@ -18674,6 +39630,78 @@ class ChatEventV2AiReplySuggested extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.aiReplySuggested(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AiReplySuggestedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AiReplySuggestedCopyWith(
+          ChatEventV2AiReplySuggested value,
+          $Res Function(ChatEventV2AiReplySuggested) _then) =
+      _$ChatEventV2AiReplySuggestedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AiReplySuggestedCopyWithImpl<$Res>
+    implements $ChatEventV2AiReplySuggestedCopyWith<$Res> {
+  _$ChatEventV2AiReplySuggestedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AiReplySuggested _self;
+  final $Res Function(ChatEventV2AiReplySuggested) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AiReplySuggested(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18703,6 +39731,16 @@ class ChatEventV2AiReplySelected extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AiReplySelectedCopyWith<ChatEventV2AiReplySelected>
+      get copyWith =>
+          _$ChatEventV2AiReplySelectedCopyWithImpl<ChatEventV2AiReplySelected>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AiReplySelectedToJson(
@@ -18713,6 +39751,77 @@ class ChatEventV2AiReplySelected extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.aiReplySelected(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AiReplySelectedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AiReplySelectedCopyWith(ChatEventV2AiReplySelected value,
+          $Res Function(ChatEventV2AiReplySelected) _then) =
+      _$ChatEventV2AiReplySelectedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AiReplySelectedCopyWithImpl<$Res>
+    implements $ChatEventV2AiReplySelectedCopyWith<$Res> {
+  _$ChatEventV2AiReplySelectedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AiReplySelected _self;
+  final $Res Function(ChatEventV2AiReplySelected) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AiReplySelected(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18743,6 +39852,15 @@ class ChatEventV2AiTranslationRequested extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AiTranslationRequestedCopyWith<ChatEventV2AiTranslationRequested>
+      get copyWith => _$ChatEventV2AiTranslationRequestedCopyWithImpl<
+          ChatEventV2AiTranslationRequested>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AiTranslationRequestedToJson(
@@ -18753,6 +39871,78 @@ class ChatEventV2AiTranslationRequested extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.aiTranslationRequested(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AiTranslationRequestedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AiTranslationRequestedCopyWith(
+          ChatEventV2AiTranslationRequested value,
+          $Res Function(ChatEventV2AiTranslationRequested) _then) =
+      _$ChatEventV2AiTranslationRequestedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AiTranslationRequestedCopyWithImpl<$Res>
+    implements $ChatEventV2AiTranslationRequestedCopyWith<$Res> {
+  _$ChatEventV2AiTranslationRequestedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AiTranslationRequested _self;
+  final $Res Function(ChatEventV2AiTranslationRequested) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AiTranslationRequested(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18783,6 +39973,15 @@ class ChatEventV2AiTranslationCompleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AiTranslationCompletedCopyWith<ChatEventV2AiTranslationCompleted>
+      get copyWith => _$ChatEventV2AiTranslationCompletedCopyWithImpl<
+          ChatEventV2AiTranslationCompleted>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AiTranslationCompletedToJson(
@@ -18793,6 +39992,78 @@ class ChatEventV2AiTranslationCompleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.aiTranslationCompleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AiTranslationCompletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AiTranslationCompletedCopyWith(
+          ChatEventV2AiTranslationCompleted value,
+          $Res Function(ChatEventV2AiTranslationCompleted) _then) =
+      _$ChatEventV2AiTranslationCompletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AiTranslationCompletedCopyWithImpl<$Res>
+    implements $ChatEventV2AiTranslationCompletedCopyWith<$Res> {
+  _$ChatEventV2AiTranslationCompletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AiTranslationCompleted _self;
+  final $Res Function(ChatEventV2AiTranslationCompleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AiTranslationCompleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18822,6 +40093,15 @@ class ChatEventV2AiTranslationFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AiTranslationFailedCopyWith<ChatEventV2AiTranslationFailed>
+      get copyWith => _$ChatEventV2AiTranslationFailedCopyWithImpl<
+          ChatEventV2AiTranslationFailed>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AiTranslationFailedToJson(
@@ -18832,6 +40112,78 @@ class ChatEventV2AiTranslationFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.aiTranslationFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AiTranslationFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AiTranslationFailedCopyWith(
+          ChatEventV2AiTranslationFailed value,
+          $Res Function(ChatEventV2AiTranslationFailed) _then) =
+      _$ChatEventV2AiTranslationFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AiTranslationFailedCopyWithImpl<$Res>
+    implements $ChatEventV2AiTranslationFailedCopyWith<$Res> {
+  _$ChatEventV2AiTranslationFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AiTranslationFailed _self;
+  final $Res Function(ChatEventV2AiTranslationFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AiTranslationFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18861,6 +40213,16 @@ class ChatEventV2CaptchaRequired extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CaptchaRequiredCopyWith<ChatEventV2CaptchaRequired>
+      get copyWith =>
+          _$ChatEventV2CaptchaRequiredCopyWithImpl<ChatEventV2CaptchaRequired>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CaptchaRequiredToJson(
@@ -18871,6 +40233,77 @@ class ChatEventV2CaptchaRequired extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.captchaRequired(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CaptchaRequiredCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CaptchaRequiredCopyWith(ChatEventV2CaptchaRequired value,
+          $Res Function(ChatEventV2CaptchaRequired) _then) =
+      _$ChatEventV2CaptchaRequiredCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CaptchaRequiredCopyWithImpl<$Res>
+    implements $ChatEventV2CaptchaRequiredCopyWith<$Res> {
+  _$ChatEventV2CaptchaRequiredCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CaptchaRequired _self;
+  final $Res Function(ChatEventV2CaptchaRequired) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CaptchaRequired(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18900,6 +40333,15 @@ class ChatEventV2CaptchaPassed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CaptchaPassedCopyWith<ChatEventV2CaptchaPassed> get copyWith =>
+      _$ChatEventV2CaptchaPassedCopyWithImpl<ChatEventV2CaptchaPassed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CaptchaPassedToJson(
@@ -18910,6 +40352,77 @@ class ChatEventV2CaptchaPassed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.captchaPassed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CaptchaPassedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CaptchaPassedCopyWith(ChatEventV2CaptchaPassed value,
+          $Res Function(ChatEventV2CaptchaPassed) _then) =
+      _$ChatEventV2CaptchaPassedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CaptchaPassedCopyWithImpl<$Res>
+    implements $ChatEventV2CaptchaPassedCopyWith<$Res> {
+  _$ChatEventV2CaptchaPassedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CaptchaPassed _self;
+  final $Res Function(ChatEventV2CaptchaPassed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CaptchaPassed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18939,6 +40452,15 @@ class ChatEventV2CaptchaFailed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2CaptchaFailedCopyWith<ChatEventV2CaptchaFailed> get copyWith =>
+      _$ChatEventV2CaptchaFailedCopyWithImpl<ChatEventV2CaptchaFailed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2CaptchaFailedToJson(
@@ -18949,6 +40471,77 @@ class ChatEventV2CaptchaFailed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.captchaFailed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2CaptchaFailedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2CaptchaFailedCopyWith(ChatEventV2CaptchaFailed value,
+          $Res Function(ChatEventV2CaptchaFailed) _then) =
+      _$ChatEventV2CaptchaFailedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2CaptchaFailedCopyWithImpl<$Res>
+    implements $ChatEventV2CaptchaFailedCopyWith<$Res> {
+  _$ChatEventV2CaptchaFailedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2CaptchaFailed _self;
+  final $Res Function(ChatEventV2CaptchaFailed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2CaptchaFailed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -18978,6 +40571,15 @@ class ChatEventV2RateLimitWarning extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2RateLimitWarningCopyWith<ChatEventV2RateLimitWarning>
+      get copyWith => _$ChatEventV2RateLimitWarningCopyWithImpl<
+          ChatEventV2RateLimitWarning>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2RateLimitWarningToJson(
@@ -18988,6 +40590,78 @@ class ChatEventV2RateLimitWarning extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.rateLimitWarning(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2RateLimitWarningCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2RateLimitWarningCopyWith(
+          ChatEventV2RateLimitWarning value,
+          $Res Function(ChatEventV2RateLimitWarning) _then) =
+      _$ChatEventV2RateLimitWarningCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2RateLimitWarningCopyWithImpl<$Res>
+    implements $ChatEventV2RateLimitWarningCopyWith<$Res> {
+  _$ChatEventV2RateLimitWarningCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2RateLimitWarning _self;
+  final $Res Function(ChatEventV2RateLimitWarning) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2RateLimitWarning(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -19017,6 +40691,15 @@ class ChatEventV2RateLimitBlocked extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2RateLimitBlockedCopyWith<ChatEventV2RateLimitBlocked>
+      get copyWith => _$ChatEventV2RateLimitBlockedCopyWithImpl<
+          ChatEventV2RateLimitBlocked>(this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2RateLimitBlockedToJson(
@@ -19027,6 +40710,78 @@ class ChatEventV2RateLimitBlocked extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.rateLimitBlocked(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2RateLimitBlockedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2RateLimitBlockedCopyWith(
+          ChatEventV2RateLimitBlocked value,
+          $Res Function(ChatEventV2RateLimitBlocked) _then) =
+      _$ChatEventV2RateLimitBlockedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2RateLimitBlockedCopyWithImpl<$Res>
+    implements $ChatEventV2RateLimitBlockedCopyWith<$Res> {
+  _$ChatEventV2RateLimitBlockedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2RateLimitBlocked _self;
+  final $Res Function(ChatEventV2RateLimitBlocked) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2RateLimitBlocked(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -19056,6 +40811,16 @@ class ChatEventV2LogoutRequested extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LogoutRequestedCopyWith<ChatEventV2LogoutRequested>
+      get copyWith =>
+          _$ChatEventV2LogoutRequestedCopyWithImpl<ChatEventV2LogoutRequested>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LogoutRequestedToJson(
@@ -19066,6 +40831,77 @@ class ChatEventV2LogoutRequested extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.logoutRequested(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LogoutRequestedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LogoutRequestedCopyWith(ChatEventV2LogoutRequested value,
+          $Res Function(ChatEventV2LogoutRequested) _then) =
+      _$ChatEventV2LogoutRequestedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LogoutRequestedCopyWithImpl<$Res>
+    implements $ChatEventV2LogoutRequestedCopyWith<$Res> {
+  _$ChatEventV2LogoutRequestedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LogoutRequested _self;
+  final $Res Function(ChatEventV2LogoutRequested) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LogoutRequested(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -19095,6 +40931,16 @@ class ChatEventV2LogoutCompleted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2LogoutCompletedCopyWith<ChatEventV2LogoutCompleted>
+      get copyWith =>
+          _$ChatEventV2LogoutCompletedCopyWithImpl<ChatEventV2LogoutCompleted>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2LogoutCompletedToJson(
@@ -19105,6 +40951,77 @@ class ChatEventV2LogoutCompleted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.logoutCompleted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2LogoutCompletedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2LogoutCompletedCopyWith(ChatEventV2LogoutCompleted value,
+          $Res Function(ChatEventV2LogoutCompleted) _then) =
+      _$ChatEventV2LogoutCompletedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2LogoutCompletedCopyWithImpl<$Res>
+    implements $ChatEventV2LogoutCompletedCopyWith<$Res> {
+  _$ChatEventV2LogoutCompletedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2LogoutCompleted _self;
+  final $Res Function(ChatEventV2LogoutCompleted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2LogoutCompleted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -19134,6 +41051,15 @@ class ChatEventV2AppOpened extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AppOpenedCopyWith<ChatEventV2AppOpened> get copyWith =>
+      _$ChatEventV2AppOpenedCopyWithImpl<ChatEventV2AppOpened>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AppOpenedToJson(
@@ -19144,6 +41070,77 @@ class ChatEventV2AppOpened extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.appOpened(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AppOpenedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AppOpenedCopyWith(ChatEventV2AppOpened value,
+          $Res Function(ChatEventV2AppOpened) _then) =
+      _$ChatEventV2AppOpenedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AppOpenedCopyWithImpl<$Res>
+    implements $ChatEventV2AppOpenedCopyWith<$Res> {
+  _$ChatEventV2AppOpenedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AppOpened _self;
+  final $Res Function(ChatEventV2AppOpened) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AppOpened(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -19173,6 +41170,16 @@ class ChatEventV2AppBackgrounded extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AppBackgroundedCopyWith<ChatEventV2AppBackgrounded>
+      get copyWith =>
+          _$ChatEventV2AppBackgroundedCopyWithImpl<ChatEventV2AppBackgrounded>(
+              this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AppBackgroundedToJson(
@@ -19183,6 +41190,77 @@ class ChatEventV2AppBackgrounded extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.appBackgrounded(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AppBackgroundedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AppBackgroundedCopyWith(ChatEventV2AppBackgrounded value,
+          $Res Function(ChatEventV2AppBackgrounded) _then) =
+      _$ChatEventV2AppBackgroundedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AppBackgroundedCopyWithImpl<$Res>
+    implements $ChatEventV2AppBackgroundedCopyWith<$Res> {
+  _$ChatEventV2AppBackgroundedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AppBackgrounded _self;
+  final $Res Function(ChatEventV2AppBackgrounded) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AppBackgrounded(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -19212,6 +41290,15 @@ class ChatEventV2AppResumed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AppResumedCopyWith<ChatEventV2AppResumed> get copyWith =>
+      _$ChatEventV2AppResumedCopyWithImpl<ChatEventV2AppResumed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AppResumedToJson(
@@ -19222,6 +41309,77 @@ class ChatEventV2AppResumed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.appResumed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AppResumedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AppResumedCopyWith(ChatEventV2AppResumed value,
+          $Res Function(ChatEventV2AppResumed) _then) =
+      _$ChatEventV2AppResumedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AppResumedCopyWithImpl<$Res>
+    implements $ChatEventV2AppResumedCopyWith<$Res> {
+  _$ChatEventV2AppResumedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AppResumed _self;
+  final $Res Function(ChatEventV2AppResumed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AppResumed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -19251,6 +41409,15 @@ class ChatEventV2AppCrashed extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AppCrashedCopyWith<ChatEventV2AppCrashed> get copyWith =>
+      _$ChatEventV2AppCrashedCopyWithImpl<ChatEventV2AppCrashed>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AppCrashedToJson(
@@ -19261,6 +41428,77 @@ class ChatEventV2AppCrashed extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.appCrashed(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AppCrashedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AppCrashedCopyWith(ChatEventV2AppCrashed value,
+          $Res Function(ChatEventV2AppCrashed) _then) =
+      _$ChatEventV2AppCrashedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AppCrashedCopyWithImpl<$Res>
+    implements $ChatEventV2AppCrashedCopyWith<$Res> {
+  _$ChatEventV2AppCrashedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AppCrashed _self;
+  final $Res Function(ChatEventV2AppCrashed) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AppCrashed(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 
@@ -19290,6 +41528,15 @@ class ChatEventV2AppRestarted extends ChatEventV2 {
   @JsonKey(name: 'runtimeType')
   final String $type;
 
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChatEventV2AppRestartedCopyWith<ChatEventV2AppRestarted> get copyWith =>
+      _$ChatEventV2AppRestartedCopyWithImpl<ChatEventV2AppRestarted>(
+          this, _$identity);
+
   @override
   Map<String, dynamic> toJson() {
     return _$ChatEventV2AppRestartedToJson(
@@ -19300,6 +41547,77 @@ class ChatEventV2AppRestarted extends ChatEventV2 {
   @override
   String toString() {
     return 'ChatEventV2.appRestarted(userId: $userId, joinedAt: $joinedAt, username: $username, message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChatEventV2AppRestartedCopyWith<$Res>
+    implements $ChatEventV2CopyWith<$Res> {
+  factory $ChatEventV2AppRestartedCopyWith(ChatEventV2AppRestarted value,
+          $Res Function(ChatEventV2AppRestarted) _then) =
+      _$ChatEventV2AppRestartedCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String userId,
+      DateTime joinedAt,
+      String? username,
+      ChatMessageV2? message});
+
+  @override
+  $ChatMessageV2CopyWith<$Res>? get message;
+}
+
+/// @nodoc
+class _$ChatEventV2AppRestartedCopyWithImpl<$Res>
+    implements $ChatEventV2AppRestartedCopyWith<$Res> {
+  _$ChatEventV2AppRestartedCopyWithImpl(this._self, this._then);
+
+  final ChatEventV2AppRestarted _self;
+  final $Res Function(ChatEventV2AppRestarted) _then;
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? userId = null,
+    Object? joinedAt = null,
+    Object? username = freezed,
+    Object? message = freezed,
+  }) {
+    return _then(ChatEventV2AppRestarted(
+      userId: null == userId
+          ? _self.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joinedAt: null == joinedAt
+          ? _self.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      username: freezed == username
+          ? _self.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as ChatMessageV2?,
+    ));
+  }
+
+  /// Create a copy of ChatEventV2
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChatMessageV2CopyWith<$Res>? get message {
+    if (_self.message == null) {
+      return null;
+    }
+
+    return $ChatMessageV2CopyWith<$Res>(_self.message!, (value) {
+      return _then(_self.copyWith(message: value));
+    });
   }
 }
 

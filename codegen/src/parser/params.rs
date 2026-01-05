@@ -13,6 +13,7 @@ pub fn parse_factory_constructors(class_body: &str, naming: &Option<NamingConven
         let positional_params = cap.get(3).map_or("", |m| m.as_str());
         let impl_class = cap.get(4).map_or("", |m| m.as_str());
         
+        // Determine if we have mixed parameters (positional + named)
         let params_str = if !named_params.is_empty() {
             named_params
         } else {
@@ -21,11 +22,29 @@ pub fn parse_factory_constructors(class_body: &str, naming: &Option<NamingConven
         
         let custom_value = extract_union_value_before_factory(class_body, variant_name);
         
-        let uses_named = !named_params.is_empty();
-        let fields = if uses_named {
-            parse_factory_params(params_str)?
+        // Check if params_str contains both positional and named (has both commas and braces)
+        let has_mixed_params = params_str.contains('{') && !params_str.trim().starts_with('{');
+        
+        let (fields, uses_named) = if has_mixed_params {
+            // Mixed: "int value, {String? reason}"
+            // Split on the opening brace
+            if let Some(brace_pos) = params_str.find('{') {
+                let positional_part = &params_str[..brace_pos].trim();
+                let named_part = &params_str[brace_pos+1..].trim_end_matches('}').trim();
+                
+                let mut all_fields = parse_positional_params(positional_part)?;
+                let named_fields = parse_factory_params(named_part)?;
+                all_fields.extend(named_fields);
+                (all_fields, false) // Constructor uses positional style
+            } else {
+                (Vec::new(), false)
+            }
+        } else if !named_params.is_empty() || params_str.trim().starts_with('{') {
+            // Pure named parameters
+            (parse_factory_params(params_str.trim_start_matches('{').trim_end_matches('}'))?, true)
         } else {
-            parse_positional_params(params_str)?
+            // Pure positional parameters
+            (parse_positional_params(params_str)?, false)
         };
         
         let discriminator_value = custom_value.unwrap_or_else(|| {

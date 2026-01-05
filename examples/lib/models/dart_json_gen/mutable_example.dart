@@ -5,9 +5,10 @@ part 'mutable_example.t.dart';
 /// Example: Mutable class with @Model.mutable()
 /// Generates: copyWith only (no JSON, no equatable, no stringify)
 /// Fields are mutable (not final), similar to Freezed's @unfreezed
-@Model.mutable(
+@Model(
   fromJson: true,
   toJson: true,
+  mutable: true,
 )
 class MutablePerson {
   String name; // Mutable, not final
@@ -24,7 +25,11 @@ class MutablePerson {
 }
 
 /// Example: Mutable class with copyWith for state management
-@Model.mutable()
+@Model(
+  fromJson: true,
+  toJson: true,
+  mutable: true,
+)
 class MutableCounterState {
   int count;
   bool isActive;
@@ -35,4 +40,6 @@ class MutableCounterState {
     required this.isActive,
     this.lastAction,
   });
+  factory MutableCounterState.fromJson(Map<String, dynamic> json) =>
+      _$MutableCounterStateFromJson(json);
 }

@@ -5,7 +5,8 @@ import 'package:example_models/models/dart_json_gen/user.dart';
 part 'chat_message.t.dart';
 
 /// JSON-only with snake_case (optimized for high volume)
-@Model.json(namingConvention: NamingConvention.snakeCase)
+@Model(
+    namingConvention: NamingConvention.snakeCase, fromJson: true, toJson: true)
 class ChatMessage {
   final String id;
   final String senderId;

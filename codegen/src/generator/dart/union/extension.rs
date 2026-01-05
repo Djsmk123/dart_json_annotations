@@ -38,13 +38,45 @@ pub fn generate_union_extension(class: &DartClass) -> String {
     let mut signatures: Vec<String> = Vec::new();
 
     for (i, v) in variants.iter().enumerate() {
-        let sig = v.fields.iter()
-            .map(|f| {
+        // Generate signature - need to handle mixed positional/named
+        let sig = if v.uses_named_params {
+            // Pure named - all in braces with required keyword where needed
+            let params = v.fields.iter()
+                .map(|f| {
+                    let type_str = f.dart_type.to_dart_type();
+                    let required_prefix = if f.is_required && !f.is_nullable { "required " } else { "" };
+                    format!("{}{}{} {}", required_prefix, type_str, if f.is_nullable { "?" } else { "" }, f.name)
+                })
+                .collect::<Vec<_>>()
+                .join(", ");
+            format!("{{{}}}", params)
+        } else {
+            // Positional or mixed
+            let positional_fields: Vec<_> = v.fields.iter().filter(|f| f.is_required).collect();
+            let named_fields: Vec<_> = v.fields.iter().filter(|f| !f.is_required).collect();
+            
+            let mut parts = Vec::new();
+            
+            // Positional parameters
+            for f in &positional_fields {
                 let type_str = f.dart_type.to_dart_type();
-                format!("{}{} {}", type_str, if f.is_nullable { "?" } else { "" }, f.name)
-            })
-            .collect::<Vec<_>>()
-            .join(", ");
+                parts.push(format!("{}{} {}", type_str, if f.is_nullable { "?" } else { "" }, f.name));
+            }
+            
+            // Named parameters in braces
+            if !named_fields.is_empty() {
+                let named_params = named_fields.iter()
+                    .map(|f| {
+                        let type_str = f.dart_type.to_dart_type();
+                        format!("{}{} {}", type_str, if f.is_nullable { "?" } else { "" }, f.name)
+                    })
+                    .collect::<Vec<_>>()
+                    .join(", ");
+                parts.push(format!("{{{}}}", named_params));
+            }
+            
+            parts.join(", ")
+        };
         
         if let Some(existing_idx) = signatures.iter().position(|s| s == &sig) {
             sig_to_variants.get_mut(&sig).unwrap().push(i);
@@ -111,8 +143,30 @@ pub fn generate_union_extension(class: &DartClass) -> String {
     }
     out.push_str("  }) => switch (this) {\n");
     for v in variants {
-        let args = v.fields.iter().map(|f| format!("v.{}", f.name)).collect::<Vec<_>>().join(", ");
-        out.push_str(&format!("    {} v => {}({}),\n", v.class_name, v.name, args));
+        // Use _ for variants with no fields to avoid unused variable warning
+        let var_name = if v.fields.is_empty() { "_" } else { "v" };
+        
+        // Generate arguments - need to handle mixed positional/named parameters
+        let args = if v.uses_named_params {
+            // Pure named parameters
+            v.fields.iter().map(|f| format!("{}: v.{}", f.name, f.name)).collect::<Vec<_>>().join(", ")
+        } else {
+            // Positional or mixed - check if any field is not required (indicates named param)
+            let positional_fields: Vec<_> = v.fields.iter().filter(|f| f.is_required).collect();
+            let named_fields: Vec<_> = v.fields.iter().filter(|f| !f.is_required).collect();
+            
+            let mut parts = Vec::new();
+            // Positional args first
+            for f in &positional_fields {
+                parts.push(format!("v.{}", f.name));
+            }
+            // Named args
+            for f in &named_fields {
+                parts.push(format!("{}: v.{}", f.name, f.name));
+            }
+            parts.join(", ")
+        };
+        out.push_str(&format!("    {} {} => {}({}),\n", v.class_name, var_name, v.name, args));
     }
     out.push_str("  };\n\n");
     
@@ -123,8 +177,24 @@ pub fn generate_union_extension(class: &DartClass) -> String {
     }
     out.push_str("    required T Function() orElse,\n  }) => switch (this) {\n");
     for v in variants {
-        let args = v.fields.iter().map(|f| format!("v.{}", f.name)).collect::<Vec<_>>().join(", ");
-        out.push_str(&format!("    {} v when {} != null => {}({}),\n", v.class_name, v.name, v.name, args));
+        let var_name = if v.fields.is_empty() { "_" } else { "v" };
+        
+        let args = if v.uses_named_params {
+            v.fields.iter().map(|f| format!("{}: v.{}", f.name, f.name)).collect::<Vec<_>>().join(", ")
+        } else {
+            let positional_fields: Vec<_> = v.fields.iter().filter(|f| f.is_required).collect();
+            let named_fields: Vec<_> = v.fields.iter().filter(|f| !f.is_required).collect();
+            
+            let mut parts = Vec::new();
+            for f in &positional_fields {
+                parts.push(format!("v.{}", f.name));
+            }
+            for f in &named_fields {
+                parts.push(format!("{}: v.{}", f.name, f.name));
+            }
+            parts.join(", ")
+        };
+        out.push_str(&format!("    {} {} when {} != null => {}({}),\n", v.class_name, var_name, v.name, v.name, args));
     }
     out.push_str("    _ => orElse(),\n  };\n\n");
     
@@ -135,8 +205,24 @@ pub fn generate_union_extension(class: &DartClass) -> String {
     }
     out.push_str("  }) => switch (this) {\n");
     for v in variants {
-        let args = v.fields.iter().map(|f| format!("v.{}", f.name)).collect::<Vec<_>>().join(", ");
-        out.push_str(&format!("    {} v when {} != null => {}({}),\n", v.class_name, v.name, v.name, args));
+        let var_name = if v.fields.is_empty() { "_" } else { "v" };
+        
+        let args = if v.uses_named_params {
+            v.fields.iter().map(|f| format!("{}: v.{}", f.name, f.name)).collect::<Vec<_>>().join(", ")
+        } else {
+            let positional_fields: Vec<_> = v.fields.iter().filter(|f| f.is_required).collect();
+            let named_fields: Vec<_> = v.fields.iter().filter(|f| !f.is_required).collect();
+            
+            let mut parts = Vec::new();
+            for f in &positional_fields {
+                parts.push(format!("v.{}", f.name));
+            }
+            for f in &named_fields {
+                parts.push(format!("{}: v.{}", f.name, f.name));
+            }
+            parts.join(", ")
+        };
+        out.push_str(&format!("    {} {} when {} != null => {}({}),\n", v.class_name, var_name, v.name, v.name, args));
     }
     out.push_str("    _ => null,\n  };\n\n");
     

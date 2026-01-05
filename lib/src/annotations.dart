@@ -57,6 +57,8 @@ class Model {
   /// Discriminator field name for union JSON serialization (default: 'type')
   final String discriminator;
 
+  final bool mutable;
+
   const Model({
     this.fromJson = false,
     this.toJson = false,
@@ -66,61 +68,9 @@ class Model {
     this.stringify = false,
     this.namingConvention,
     this.discriminator = 'type',
+    this.mutable = false,
   });
-
-  /// JSON serialization only (~25 lines per model)
-  const Model.json({this.namingConvention})
-      : fromJson = true,
-        toJson = true,
-        copyWith = false,
-        copyWithNull = false,
-        equatable = false,
-        stringify = false,
-        discriminator = 'type';
-
-  /// Data class: JSON + copyWith + equatable (~50 lines)
-  const Model.data({this.namingConvention})
-      : fromJson = true,
-        toJson = true,
-        copyWith = true,
-        copyWithNull = false,
-        equatable = true,
-        stringify = false,
-        discriminator = 'type';
-
-  /// Bloc state: copyWith + equatable, no JSON (~35 lines)
-  const Model.bloc()
-      : fromJson = false,
-        toJson = false,
-        copyWith = true,
-        copyWithNull = false,
-        equatable = true,
-        stringify = false,
-        namingConvention = null,
-        discriminator = 'type';
-
-  /// Full features (~70 lines)
-  const Model.full({this.namingConvention})
-      : fromJson = true,
-        toJson = true,
-        copyWith = true,
-        copyWithNull = true,
-        equatable = true,
-        stringify = true,
-        discriminator = 'type';
-
-  /// Mutable class preset (no final fields, no ==/hashCode)
-  const Model.mutable({
-    this.fromJson = false,
-    this.toJson = false,
-    this.equatable = false,
-    this.stringify = false,
-    this.namingConvention = null,
-    this.discriminator = 'type',
-  })  : copyWith = true,
-        copyWithNull = false;
 }
-
 // ============================================================
 // Union/Sealed Class Annotations
 // ============================================================
@@ -248,24 +198,24 @@ class Ignore {
 
   /// Ignore from equality comparison only
   const Ignore.equality()
-      : json = false,
-        equality = true,
+      : equality = true,
+        json = false,
         copyWith = false,
         stringify = false;
 
   /// Ignore from copyWith only
   const Ignore.copyWith()
-      : json = false,
+      : copyWith = true,
+        json = false,
         equality = false,
-        copyWith = true,
         stringify = false;
 
   /// Ignore from toString only
   const Ignore.stringify()
-      : json = false,
+      : stringify = true,
+        json = false,
         equality = false,
-        copyWith = false,
-        stringify = true;
+        copyWith = false;
 }
 
 // ============================================================

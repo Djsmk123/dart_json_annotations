@@ -19,7 +19,7 @@ lazy_static! {
     
     // Factory constructor pattern for union variants
     pub static ref FACTORY_PATTERN: Regex = Regex::new(
-        r#"(?s)(?:@(?:ModelUnionValue|With|Implements)[^)]*\)\s*)*const\s+factory\s+\w+\.(\w+)\s*\(\s*(?:\{([^}]*)\}|([^)]+))\s*\)\s*=\s*(\w+)(?:<[^>]+>)?\s*;"#
+        r#"(?s)(?:@(?:ModelUnionValue|With|Implements)[^)]*\)\s*)*const\s+factory\s+\w+\.(\w+)\s*\(\s*(?:\{([^}]*)\}|([^)]*))?\s*\)\s*=\s*(\w+)(?:<[^>]+>)?\s*;"#
     ).unwrap();
     
     // Field pattern

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0.1 (Rust)
-// Checksum: 6995645889707531134
+// Checksum: 16047844947747339320
 
 part of 'chat_message.dart';
 

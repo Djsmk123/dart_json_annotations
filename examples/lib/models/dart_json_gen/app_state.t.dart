@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0.1 (Rust)
-// Checksum: 16690821594121520755
+// Checksum: 15569022653169631860
 
 part of 'app_state.dart';
 
@@ -17,6 +17,41 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) => AppState(
   isLoading: json['isLoading'] as bool,
   lastUpdated: DateTime.parse(json['lastUpdated'] as String)
 );
+
+extension $AppStateCopyWith on AppState {
+  AppState copyWith({
+    int? counter,
+    bool? isLoading,
+    String? errorMessage,
+    DateTime? lastUpdated,
+  }) => AppState(
+    counter: counter ?? this.counter,
+    isLoading: isLoading ?? this.isLoading,
+    errorMessage: errorMessage ?? this.errorMessage,
+    lastUpdated: lastUpdated ?? this.lastUpdated,
+  );
+
+  AppState copyWithNull({
+    bool errorMessage = false,
+  }) => AppState(
+    counter: this.counter,
+    isLoading: this.isLoading,
+    errorMessage: errorMessage ? null : this.errorMessage,
+    lastUpdated: this.lastUpdated,
+  );
+}
+
+extension $AppStateEquatable on AppState {
+  List<Object?> get props => [counter, isLoading, errorMessage];
+
+  bool equals(AppState other) => counter == other.counter && isLoading == other.isLoading && errorMessage == other.errorMessage;
+
+  int get propsHashCode => Object.hashAll(props);
+}
+
+extension $AppStateString on AppState {
+  String toStringRepresentation() => 'AppState(counter: ${counter}, isLoading: ${isLoading}, errorMessage: ${errorMessage}, lastUpdated: ${lastUpdated})';
+}
 
 extension $UserProfileJson on UserProfile {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -53,6 +88,17 @@ extension $UserProfileCopyWith on UserProfile {
     createdAt: this.createdAt,
     internalToken: internalToken ?? this.internalToken,
   );
+
+  UserProfile copyWithNull({
+    bool bio = false,
+  }) => UserProfile(
+    id: this.id,
+    displayName: this.displayName,
+    bio: bio ? null : this.bio,
+    tags: this.tags,
+    createdAt: this.createdAt,
+    internalToken: this.internalToken,
+  );
 }
 
 extension $UserProfileEquatable on UserProfile {
@@ -61,6 +107,10 @@ extension $UserProfileEquatable on UserProfile {
   bool equals(UserProfile other) => id == other.id && displayName == other.displayName && bio == other.bio && _deepEquals(tags, other.tags) && createdAt == other.createdAt && internalToken == other.internalToken;
 
   int get propsHashCode => Object.hashAll(props);
+}
+
+extension $UserProfileString on UserProfile {
+  String toStringRepresentation() => 'UserProfile(id: ${id}, displayName: ${displayName}, bio: ${bio}, tags: ${tags}, createdAt: ${createdAt})';
 }
 
 extension $SettingsJson on Settings {
@@ -87,6 +137,14 @@ extension $SettingsCopyWith on Settings {
     locale: locale ?? this.locale,
     fontSize: fontSize ?? this.fontSize,
   );
+
+  Settings copyWithNull({
+    bool fontSize = false,
+  }) => Settings(
+    darkMode: this.darkMode,
+    locale: this.locale,
+    fontSize: fontSize ? null : this.fontSize,
+  );
 }
 
 extension $SettingsEquatable on Settings {
@@ -95,6 +153,10 @@ extension $SettingsEquatable on Settings {
   bool equals(Settings other) => darkMode == other.darkMode && locale == other.locale && fontSize == other.fontSize;
 
   int get propsHashCode => Object.hashAll(props);
+}
+
+extension $SettingsString on Settings {
+  String toStringRepresentation() => 'Settings(darkMode: ${darkMode}, locale: ${locale}, fontSize: ${fontSize})';
 }
 
 bool _deepEquals(dynamic a, dynamic b) {

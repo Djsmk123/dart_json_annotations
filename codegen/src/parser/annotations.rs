@@ -3,7 +3,7 @@ use crate::models::{GenerationFeatures, NamingConvention, EnumValueType};
 use crate::parser::patterns::*;
 
 pub fn parse_is_mutable(annotation: &str) -> bool {
-    annotation.contains("@Model.mutable")
+    parse_bool_param(annotation, "mutable")
 }
 
 pub fn parse_bool_param(annotation: &str, param_name: &str) -> bool {
@@ -15,41 +15,12 @@ pub fn parse_bool_param(annotation: &str, param_name: &str) -> bool {
 pub fn parse_model_annotation(annotation: &str) -> GenerationFeatures {
     let mut features = GenerationFeatures::default();
     
-    if annotation.contains("@Model.mutable") {
-        features.from_json = false;
-        features.to_json = false;
-        features.copy_with = true;
-        features.copy_with_null = false;
-    } else if annotation.contains("@Model.bloc") {
-        features.from_json = false;
-        features.to_json = false;
-        features.copy_with = true;
-        features.equatable = true;
-    } else if annotation.contains("@Model.full") {
-        features.from_json = true;
-        features.to_json = true;
-        features.copy_with = true;
-        features.copy_with_null = true;
-        features.equatable = true;
-        features.stringify = true;
-        return features; // No need to check params for .full
-    } else if annotation.contains("@Model.data") {
-        features.from_json = true;
-        features.to_json = true;
-        features.copy_with = true;
-        features.equatable = true;
+    // Check if @Model annotation exists
+    if !annotation.contains("@Model") {
         return features;
-    } else if annotation.contains("@Model.json") {
-        features.from_json = true;
-        features.to_json = true;
-        return features;
-    } else if annotation.contains("@Model") {
-        // Default for plain @Model is json: true
-        features.from_json = true;
-        features.to_json = true;
     }
     
-    // Override with explicit parameters if present
+    // Parse explicit parameters if present
     if let Some(cap) = MODEL_PATTERN.captures(annotation) {
         let params = cap.get(2).map_or("", |m| m.as_str());
         
@@ -85,6 +56,14 @@ pub fn parse_model_annotation(annotation: &str) -> GenerationFeatures {
 
         if params.contains("copyWithNull: true") || params.contains("copyWithNull:true") {
             features.copy_with_null = true;
+        } else if params.contains("copyWithNull: false") || params.contains("copyWithNull:false") {
+            features.copy_with_null = false;
+        }
+
+        if params.contains("mutable: true") || params.contains("mutable:true") {
+            features.is_mutable = true;
+        } else if params.contains("mutable: false") || params.contains("mutable:false") {
+            features.is_mutable = false;
         }
     }
     

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0.1 (Rust)
-// Checksum: 12478444192871817261
+// Checksum: 12096031935226031629
 
 part of 'product.dart';
 
@@ -108,28 +108,6 @@ ProductMeta _$ProductMetaFromJson(Map<String, dynamic> json) => ProductMeta(
   tags: (json['tags'] as List).map((e) => e as String).toList(),
   customAttributes: (json['custom_attributes'] as Map<String, dynamic>).map((k, v) => MapEntry(k, v as String))
 );
-
-extension $ProductMetaCopyWith on ProductMeta {
-  ProductMeta copyWith({
-    String? seoTitle,
-    String? seoDescription,
-    List<String>? tags,
-    Map<String, String>? customAttributes,
-  }) => ProductMeta(
-    seoTitle: seoTitle ?? this.seoTitle,
-    seoDescription: seoDescription ?? this.seoDescription,
-    tags: tags ?? this.tags,
-    customAttributes: customAttributes ?? this.customAttributes,
-  );
-}
-
-extension $ProductMetaEquatable on ProductMeta {
-  List<Object?> get props => [seoTitle, seoDescription, tags, customAttributes];
-
-  bool equals(ProductMeta other) => seoTitle == other.seoTitle && seoDescription == other.seoDescription && _deepEquals(tags, other.tags) && _deepEquals(customAttributes, other.customAttributes);
-
-  int get propsHashCode => Object.hashAll(props);
-}
 
 bool _deepEquals(dynamic a, dynamic b) {
   if (identical(a, b)) return true;

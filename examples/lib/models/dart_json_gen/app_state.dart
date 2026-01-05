@@ -4,7 +4,14 @@ part 'app_state.t.dart';
 
 /// Example: Using @Model for non-JSON classes (e.g., Bloc state)
 /// Generates: copyWith, copyWithNull, equatable, toString
-@Model.json()
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  copyWithNull: true,
+  equatable: true,
+  stringify: true,
+)
 class AppState {
   final int counter;
   final bool isLoading;
@@ -26,7 +33,14 @@ class AppState {
 
 /// Example: Using @DataClass for full feature set
 /// Generates: JSON serialization + copyWith + equatable + toString
-@Model.data()
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  copyWithNull: true,
+  equatable: true,
+  stringify: true,
+)
 class UserProfile {
   final String id;
   final String displayName;
@@ -52,7 +66,14 @@ class UserProfile {
 }
 
 /// Example: Using individual annotations
-@Model.data()
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  copyWithNull: true,
+  equatable: true,
+  stringify: true,
+)
 class Settings {
   final bool darkMode;
   final String locale;

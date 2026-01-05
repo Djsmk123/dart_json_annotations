@@ -31,6 +31,7 @@ pub struct GenerationFeatures {
     pub copy_with_null: bool,
     pub equatable: bool,
     pub stringify: bool,
+    pub is_mutable: bool,
 }
 
 impl GenerationFeatures {

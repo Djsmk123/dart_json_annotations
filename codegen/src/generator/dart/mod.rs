@@ -55,14 +55,14 @@ pub fn generate_class_code(class: &DartClass, current_file_classes: &HashSet<Str
     
     if class.is_union {
         output.push_str(&union::generate_union_extension(class));
+        // Always generate variant classes for unions, even without JSON
+        output.push_str(&union::generate_union_serializer(class, current_file_classes));
     }
     
     if class.features.has_json() {
-        if class.is_union {
-            output.push_str(&union::generate_union_serializer(class, current_file_classes));
-        } else if class.is_enum {
+        if class.is_enum {
             output.push_str(&json::generate_enum_code(class));
-        } else {
+        } else if !class.is_union {
             output.push_str(&json::generate_json_code(class, current_file_classes, all_classes));
         }
     }

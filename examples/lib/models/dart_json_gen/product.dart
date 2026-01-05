@@ -5,7 +5,14 @@ import 'package:dart_json_annotations/dart_json_annotations.dart';
 part 'product.t.dart';
 
 /// Full-featured product model
-@Model.full()
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  copyWithNull: true,
+  equatable: true,
+  stringify: true,
+)
 class Product {
   final String id;
   final String name;
@@ -60,7 +67,11 @@ class ProductVariant {
 }
 
 /// Data model with snake_case
-@Model.data(namingConvention: NamingConvention.snakeCase)
+@Model(
+  fromJson: true,
+  toJson: true,
+  namingConvention: NamingConvention.snakeCase,
+)
 class ProductMeta {
   @JsonKey(name: 'seo_title')
   final String seoTitle;

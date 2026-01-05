@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0.1 (Rust)
-// Checksum: 11489647391635460750
+// Checksum: 14493741405061812206
 
 part of 'mutable_example.dart';
 
@@ -18,27 +18,17 @@ MutablePerson _$MutablePersonFromJson(Map<String, dynamic> json) => MutablePerso
   email: json['email'] as String?
 );
 
-extension $MutablePersonCopyWith on MutablePerson {
-  MutablePerson copyWith({
-    String? name,
-    int? age,
-    String? email,
-  }) => MutablePerson(
-    name: name ?? this.name,
-    age: age ?? this.age,
-    email: email ?? this.email,
-  );
+extension $MutableCounterStateJson on MutableCounterState {
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'count': count,
+    'isActive': isActive,
+    'lastAction': lastAction,
+  };
 }
 
-extension $MutableCounterStateCopyWith on MutableCounterState {
-  MutableCounterState copyWith({
-    int? count,
-    bool? isActive,
-    String? lastAction,
-  }) => MutableCounterState(
-    count: count ?? this.count,
-    isActive: isActive ?? this.isActive,
-    lastAction: lastAction ?? this.lastAction,
-  );
-}
+MutableCounterState _$MutableCounterStateFromJson(Map<String, dynamic> json) => MutableCounterState(
+  count: (json['count'] as num).toInt(),
+  isActive: json['isActive'] as bool,
+  lastAction: json['lastAction'] as String?
+);
 

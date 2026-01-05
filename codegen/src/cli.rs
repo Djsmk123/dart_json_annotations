@@ -3,7 +3,7 @@ use clap::Parser;
 
 #[derive(Parser, Debug)]
 #[command(name = "dart_json_gen")]
-#[command(version = "2.0.1")]
+#[command(version = "2.1.0")]
 #[command(about = "Generate Dart serializers, copyWith, equatable, unions from @Model annotations")]
 pub struct Args {
     #[arg(short, long, num_args = 1..)]

@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.1.0
+
+### New Features
+- **Nullable Serialization Control**:
+  - Nullable fields are now **included** by default in `toJson` (as `null`).
+  - Added `@JsonKey(ignoreIfNull: true)` (or `ignoreJsonIfNull: true`) to opt-out and skip fields if they are null.
+  - Added `includeIfNull` parameter to `JsonKey` (defaults to `true`).
+- **Global Activation Fix**: Improved package root resolution so the CLI works correctly when activated globally or run from any directory.
+
+### Bug Fixes
+- Fixed "Target not found" error when running `dart_json_gen` in a new project.
+
 ## 2.0.1
 
 ### New Features

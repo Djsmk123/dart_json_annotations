@@ -45,7 +45,7 @@ Complete guide to using `dart_json_annotations` for code generation.
 
 Generate `toJson()` and `fromJson()` methods with customizable naming conventions.
 
-**Preset:** `@Model.json()` or `@Model(fromJson: true, toJson: true)`
+**Usage:** `@Model(fromJson: true, toJson: true)`
 
 See [Examples](examples.md#basic-json-model) for code samples.
 
@@ -53,7 +53,7 @@ See [Examples](examples.md#basic-json-model) for code samples.
 
 Generate immutable copy methods for state updates.
 
-**Preset:** `@Model.data()` or `@Model(copyWith: true)`
+**Usage:** `@Model(copyWith: true)`
 
 See [Examples](examples.md#data-class-with-copywith) for code samples.
 
@@ -61,13 +61,17 @@ See [Examples](examples.md#data-class-with-copywith) for code samples.
 
 Generate value equality (`==` and `hashCode`).
 
-**Preset:** `@Model.data()` or `@Model(equatable: true)`
+**Usage:** `@Model(equatable: true)`
 
 ### 4. Sealed/Union Classes
 
-Generate `when`, `map`, `maybeWhen`, `maybeMap` methods for sealed classes.
+Generate `when`, `map`, `maybeWhen`, `maybeMap` methods for sealed classes. Supports all parameter styles:
+- No parameters: `factory Event.reset() = EventReset;`
+- Positional: `factory Event.setValue(int value) = EventSetValue;`
+- Named: `factory Event.load({required String id}) = EventLoad;`
+- Mixed: `factory Event.update(int id, {String? reason}) = EventUpdate;`
 
-**Preset:** `@Model(fromJson: true, toJson: true, equatable: true)`
+**Usage:** `@Model(fromJson: true, toJson: true, equatable: true)`
 
 See [Examples](examples.md#sealedunion-class) for code samples.
 
@@ -75,7 +79,7 @@ See [Examples](examples.md#sealedunion-class) for code samples.
 
 Support for mutable classes (non-final fields) with `copyWith`.
 
-**Preset:** `@Model.mutable()`
+**Usage:** `@Model(mutable: true, copyWith: true)`
 
 See [Examples](examples.md#mutable-classes) for code samples.
 
@@ -91,10 +95,10 @@ See [Examples](examples.md#enums) for code samples.
 
 ### Pattern 1: API Models
 
-Use `@Model.json()` for API response models that only need serialization.
+Use JSON-only features for API response models that only need serialization.
 
 ```dart
-@Model.json()
+@Model(fromJson: true, toJson: true)
 class ApiResponse {
   final int statusCode;
   final String message;
@@ -105,10 +109,15 @@ class ApiResponse {
 
 ### Pattern 2: Data Classes
 
-Use `@Model.data()` for domain models that need serialization, copying, and equality.
+Use full data class features for domain models that need serialization, copying, and equality.
 
 ```dart
-@Model.data()
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+)
 class Product {
   final String id;
   final String name;
@@ -120,10 +129,10 @@ class Product {
 
 ### Pattern 3: BLoC States
 
-Use `@Model.bloc()` for BLoC state classes that don't need JSON serialization.
+Use copyWith and equatable for BLoC state classes that don't need JSON serialization.
 
 ```dart
-@Model.bloc()
+@Model(copyWith: true, equatable: true)
 class CounterState {
   final int count;
   final bool isLoading;
@@ -131,6 +140,53 @@ class CounterState {
 }
 ```
 
+### Pattern 4: Sealed/Union Classes
+
+Use sealed classes for type-safe state machines and result types.
+
+```dart
+@Model(copyWith: true, equatable: true, stringify: true)
+sealed class TestEvent {
+  const TestEvent._();
+  
+  // No parameters
+  const factory TestEvent.increment() = TestEventIncrement;
+  const factory TestEvent.reset() = TestEventReset;
+  
+  // Pure positional - single parameter
+  const factory TestEvent.setValue(int value) = TestEventSetValue;
+  
+  // Pure positional - multiple parameters
+  const factory TestEvent.updateCounter(int delta, String source) = TestEventUpdateCounter;
+  
+  // Pure named - required only
+  const factory TestEvent.loadData({
+    required String id,
+    required bool forceRefresh,
+  }) = TestEventLoadData;
+  
+  // Pure named - mixed required/optional
+  const factory TestEvent.saveData({
+    required String id,
+    String? metadata,
+    bool? validate,
+  }) = TestEventSaveData;
+  
+  // Mixed positional + named
+  const factory TestEvent.decrement(int value, {String? reason}) = TestEventDecrement;
+}
+
+// Generated usage:
+final message = event.when(
+  increment: () => 'Incrementing',
+  reset: () => 'Resetting',
+  setValue: (value) => 'Setting to $value',
+  updateCounter: (delta, source) => 'Update by $delta from $source',
+  loadData: (id, forceRefresh) => 'Loading $id (force: $forceRefresh)',
+  saveData: (id, metadata, validate) => 'Saving $id',
+  decrement: (value, reason) => 'Decrement by $value: ${reason ?? "no reason"}',
+);
+```
 
 ---
 
@@ -207,7 +263,7 @@ class Response<T> {
 }
 ```
 
-**Note:** Generic union classes (sealed classes with type parameters) cannot have `fromJson`/`toJson` automatically generated. You must manually implement them with converter functions, similar to regular generic classes. See [Pattern 4: Sealed/Union Classes](#pattern-4-sealedunion-classes) for an example.
+**Note:** Generic union classes (sealed classes with type parameters) cannot have `fromJson`/`toJson` automatically generated. You must manually implement them with converter functions, similar to regular generic classes.
 
 See [Examples](examples.md#generic-classes) for complete example.
 
@@ -238,6 +294,25 @@ See [Examples](examples.md#custom-converters) for more examples.
 
 ## Migration Guide
 
+### From v1.x
+
+```dart
+// v1.x (deprecated - used separate annotations)
+@Json()
+@CopyWith()
+@Equatable()
+class User { ... }
+
+// v2.0+ (current - use explicit parameters)
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+)
+class User { ... }
+```
+
 ### From Freezed
 
 ```dart
@@ -251,7 +326,12 @@ class User with _$User {
 }
 
 // dart_json_annotations
-@Model.data()
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+)
 class User {
   final String name;
   final int age;
@@ -272,8 +352,8 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 
-// dart_json_annotations (same syntax!)
-@Model.json()
+// dart_json_annotations (similar syntax!)
+@Model(fromJson: true, toJson: true)
 class User {
   final String name;
   final int age;
@@ -333,7 +413,7 @@ You can customize the code generator behavior by creating a `dart_json_gen.yaml`
 
 Customize the file extension for generated files.
 
-**Default:** `.gen.dart`
+**Default:** `.t.dart`
 
 **Examples:**
 
@@ -343,7 +423,7 @@ generated_extension: ".g.dart"
 ```
 
 ```yaml
-# Use .t.dart extension
+# Use .t.dart extension (default)
 generated_extension: ".t.dart"
 ```
 
@@ -368,8 +448,8 @@ When you change the `generated_extension`:
 
 3. **Update part directives** in your Dart files:
    ```dart
-   // Before (with .gen.dart)
-   part 'user.gen.dart';
+   // Before (with .t.dart)
+   part 'user.t.dart';
    
    // After (with .g.dart)
    part 'user.g.dart';
@@ -410,7 +490,7 @@ dart_json_gen --threads 4 -i lib/models
 | `-i, --input <PATH>` | Input directory or file |
 | `--build` | Build Rust binary only |
 | `--rebuild` | Force rebuild before generation |
-| `--clean` | Delete all .gen.dart files |
+| `--clean` | Delete all generated files |
 | `--threads <N>` | Parallel threads (0 = auto) |
 | `-v, --verbose` | Detailed output (shows parsing, generation, and file operations) |
 | `-h, --help` | Show help |
@@ -443,8 +523,8 @@ dart_json_gen -i lib/models --verbose
   ✓ class User (5 fields) [json]
 [VERBOSE]   Source: lib/models/user.dart
 [VERBOSE] Processing: lib/models/user.dart
-[VERBOSE] Generating code for 3 class(es) in user.gen.dart
-[VERBOSE] Written: lib/models/user.gen.dart
+[VERBOSE] Generating code for 3 class(es) in user.t.dart
+[VERBOSE] Written: lib/models/user.t.dart
 ```
 
 **When to use verbose mode:**
@@ -458,16 +538,16 @@ dart_json_gen -i lib/models --verbose
 
 ## Best Practices
 
-### 1. Use Presets
+### 1. Use Explicit Parameters
 
-Prefer presets over manual flags:
+Be explicit about which features you need:
 
 ```dart
-// ✅ Good
-@Model.data()
+// ✅ Good - clear and explicit
+@Model(fromJson: true, toJson: true, copyWith: true)
 
-// ❌ Avoid
-@Model(fromJson: true, toJson: true, copyWith: true, equatable: true)
+// ✅ Also good - minimal features
+@Model(fromJson: true, toJson: true)
 ```
 
 ### 2. Minimal Features
@@ -476,10 +556,16 @@ Only enable features you need:
 
 ```dart
 // ✅ Good - JSON only
-@Model.json()
+@Model(fromJson: true, toJson: true)
 
 // ❌ Avoid - Unnecessary features
-@Model.full()  // Only if you need everything
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+  stringify: true,
+)  // Only if you need everything
 ```
 
 ### 3. Naming Conventions
@@ -488,10 +574,14 @@ Set naming convention at class level:
 
 ```dart
 // ✅ Good
-@Model.json(namingConvention: NamingConvention.snakeCase)
+@Model(
+  fromJson: true,
+  toJson: true,
+  namingConvention: NamingConvention.snakeCase,
+)
 
 // ❌ Avoid - Field-level overrides everywhere
-@Model.json()
+@Model(fromJson: true, toJson: true)
 class User {
   @JsonKey(name: 'first_name')
   final String firstName;
@@ -503,9 +593,9 @@ class User {
 Always use `part` directives:
 
 ```dart
-part 'user.gen.dart';  // ✅ Required
+part 'user.t.dart';  // ✅ Required
 
-@Model.json()
+@Model(fromJson: true, toJson: true)
 class User { ... }
 ```
 
@@ -515,13 +605,13 @@ Prefer immutable classes:
 
 ```dart
 // ✅ Good
-@Model.data()
+@Model(fromJson: true, toJson: true, copyWith: true)
 class User {
   final String name;  // Immutable
 }
 
 // Only use mutable when needed
-@Model.mutable()
+@Model(mutable: true, copyWith: true)
 class State {
   String value;  // Mutable
 }

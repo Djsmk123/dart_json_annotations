@@ -13,9 +13,9 @@
 ```dart
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-part 'user.gen.dart';
+part 'user.t.dart';
 
-@Model.json()
+@Model(fromJson: true, toJson: true)
 class User {
   final String name;
   final int age;
@@ -36,15 +36,18 @@ dart_json_gen -i lib/models
 - 🔄 **Zero runtime** - Pure generated Dart code
 - ✅ **Smart caching** - Skip unchanged files automatically
 
-## Presets
+## Basic Configuration
 
-| Preset | Features | Use Case |
-|--------|----------|----------|
-| `@Model.json()` | `fromJson`, `toJson` | API models |
-| `@Model.data()` | JSON + copyWith + equatable | Data classes |
-| `@Model.bloc()` | copyWith + equatable | BLoC states |
-| `@Model.full()` | All features | Maximum features |
-| `@Model.mutable()` | copyWith (always) | Mutable classes |
+All features are explicitly enabled via parameters on the `@Model` annotation:
+
+| Parameter | Feature |
+|-----------|---------|
+| `fromJson: true` | Generate `fromJson` deserializer |
+| `toJson: true` | Generate `toJson` serializer |
+| `copyWith: true` | Generate immutable `copyWith` |
+| `equatable: true` | Generate value equality (`==`, `hashCode`) |
+| `stringify: true` | Generate `toString` |
+| `mutable: true` | Support mutable classes |
 
 ## Documentation
 
@@ -58,7 +61,7 @@ dart_json_gen -i lib/models
 
 ```yaml
 dependencies:
-  dart_json_annotations: ^2.0.0
+  dart_json_annotations: ^2.0.1
 ```
 
 ```bash
@@ -74,7 +77,7 @@ dart_json_gen -i lib/models
 
 ## Custom Configuration
 
-If you need to customize the generated code, you can use the `dart_json_gen.yaml` file. for e.g. you need to change `.gen.dart`(default) to `.t.dart` you can do it by adding the following to the `dart_json_gen.yaml` file:
+If you need to customize the generated code, you can use the `dart_json_gen.yaml` file. For example, to change the default extension to `.t.dart`:
 
 ```yaml
 generated_extension: .t.dart

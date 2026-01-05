@@ -15,7 +15,7 @@ pub struct Config {
 }
 
 fn default_extension() -> String {
-    ".gen.dart".to_string()
+    ".t.dart".to_string()
 }
 
 impl Default for Config {

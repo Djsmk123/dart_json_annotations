@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.2.0
+
+### Breaking Changes
+- **API Simplified**: Removed preset constructors (`@Model.json()`, `@Model.data()`, etc.) in favor of explicit parameters for better clarity and flexibility.
+- **Improved @Ignore**: Changed `@Ignore` syntax to use named parameters (e.g., `@Ignore(json: true)`) instead of deprecated factory constructors.
+- **Default Extension**: Changed default generated file extension from `.gen.dart` to `.t.dart`.
+
+### New Features
+- **Comprehensive Union Support**: Improved support for all parameter combinations in union variants (no params, positional, named, mixed).
+- **Unused Variable Fix**: Parameterless union variants now use `_` in generated pattern matching to avoid `unused_local_variable` warnings.
+- **Mutable Support**: Added `mutable` parameter to `@Model` for classes with non-final fields.
+
 ## 2.1.0
 
 ### New Features

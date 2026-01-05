@@ -55,23 +55,28 @@ dart_json_gen -i lib/models
 
 ## Quick Start
 
-### @Model Presets
-| Preset | Features |
-|--------|----------|
-| `@Model.json()` | JSON only |
-| `@Model.data()` | JSON + copyWith + equatable |
-| `@Model.bloc()` | copyWith + equatable (no JSON) |
-| `@Model.full()` | Everything |
-| `@Model.mutable()` | copyWith (always) |
+### Basic Usage
+
+All features are now specified using explicit parameters on the `@Model` annotation:
+
+```dart
+@Model(
+  fromJson: true,    // Generate fromJson
+  toJson: true,      // Generate toJson
+  copyWith: true,    // Generate copyWith
+  equatable: true,   // Generate == and hashCode
+  stringify: true,   // Generate toString
+)
+```
 
 ### Example: JSON-only (minimal)
 
 ```dart
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-part 'user.gen.dart';
+part 'user.t.dart';
 
-@Model.json()  // JSON only - smallest output
+@Model(fromJson: true, toJson: true)  // JSON only - smallest output
 class User {
   final int id;
   final String name;
@@ -86,9 +91,15 @@ class User {
 ### Example: Data class (common pattern)
 
 ```dart
-part 'user_profile.gen.dart';
+part 'user_profile.t.dart';
 
-@Model.data(namingConvention: NamingConvention.snakeCase)
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+  namingConvention: NamingConvention.snakeCase,
+)
 class UserProfile {
   @JsonKey(name: 'user_id')
   final int userId;
@@ -96,10 +107,15 @@ class UserProfile {
   final String firstName;
   final String lastName;
   
-  @Ignore.equality()  // Exclude from == comparison
+  @Ignore(equality: true)  // Exclude from == comparison
   final DateTime updatedAt;
   
-  UserProfile({required this.userId, required this.firstName, required this.lastName, required this.updatedAt});
+  UserProfile({
+    required this.userId,
+    required this.firstName,
+    required this.lastName,
+    required this.updatedAt,
+  });
   
   factory UserProfile.fromJson(Map<String, dynamic> json) => _$UserProfileFromJson(json);
 }
@@ -108,9 +124,9 @@ class UserProfile {
 ### Example: Bloc state (no JSON)
 
 ```dart
-part 'counter_state.gen.dart';
+part 'counter_state.t.dart';
 
-@Model.bloc()  // copyWith + equatable, NO json
+@Model(copyWith: true, equatable: true)  // copyWith + equatable, NO json
 class CounterState {
   final int count;
   final bool isLoading;
@@ -126,8 +142,14 @@ if (state1 == state2) { ... }  // Uses generated == operator
 
 ### Example: Sealed/Union class
 
+Union classes support all parameter styles:
+- **No parameters**: `factory Event.reset() = EventReset;`
+- **Positional**: `factory Event.setValue(int value) = EventSetValue;`
+- **Named**: `factory Event.load({required String id}) = EventLoad;`
+- **Mixed**: `factory Event.update(int id, {String? reason}) = EventUpdate;`
+
 ```dart
-part 'result.gen.dart';
+part 'result.t.dart';
 
 @Model(fromJson: true, toJson: true, equatable: true)
 sealed class Result {
@@ -135,9 +157,11 @@ sealed class Result {
   
   factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
   
+  // Different parameter styles all supported
   const factory Result.success(String data) = ResultSuccess;
   const factory Result.failure(String error, int code) = ResultFailure;
   const factory Result.loading() = ResultLoading;
+  const factory Result.retry({required int attempt}) = ResultRetry;
 }
 
 // Generated usage:
@@ -145,6 +169,7 @@ final message = result.when(
   success: (data) => 'Got: $data',
   failure: (error, code) => 'Error $code: $error',
   loading: () => 'Loading...',
+  retry: (attempt) => 'Retry #$attempt',
 );
 
 // Optional handling
@@ -171,6 +196,7 @@ if (result.isSuccess) {
   copyWithNull: false, // Generate copyWithNull (default: false)
   equatable: false,    // Generate == and hashCode (default: false)
   stringify: false,    // Generate toString (default: false)
+  mutable: false,      // Generate mutable class (default: false)
   namingConvention: NamingConvention.camelCase,  // Naming convention
   discriminator: 'type',  // Discriminator field for union classes
 )
@@ -184,10 +210,10 @@ if (result.isSuccess) {
 | `@JsonKey(ignore: true)` | Skip in JSON |
 | `@JsonKey(defaultValue: '0')` | Default value |
 | `@Ignore()` | Ignore from ALL features |
-| `@Ignore.json()` | Ignore from JSON only |
-| `@Ignore.equality()` | Ignore from == comparison |
-| `@Ignore.copyWith()` | Ignore from copyWith |
-| `@Ignore.stringify()` | Ignore from toString |
+| `@Ignore(json: true)` | Ignore from JSON only |
+| `@Ignore(equality: true)` | Ignore from == comparison |
+| `@Ignore(copyWith: true)` | Ignore from copyWith |
+| `@Ignore(stringify: true)` | Ignore from toString |
 
 ## CLI Usage
 
@@ -218,9 +244,9 @@ Create a `dart_json_gen.yaml` (or `dart_json_gen.yml`) file in your project root
 
 ```yaml
 # Custom extension for generated files
-# Default: .gen.dart
-# Examples: .g.dart, .t.dart, .generated.dart
-generated_extension: ".gen.dart"
+# Default: .t.dart
+# Examples: .gen.dart, .g.dart, .generated.dart
+generated_extension: ".t.dart"
 ```
 
 **Example configurations:**
@@ -273,28 +299,35 @@ Example verbose output:
 
 For 200 models:
 
-| Preset | Lines/Model | Total |
-|--------|-------------|-------|
-| `@Model.json()` | 25 | **5,000** ✅ |
-| `@Model.data()` | 50 | **10,000** |
-| `@Model.bloc()` | 35 | **7,000** ✅ |
-| `@Model.full()` | 70 | **14,000** |
+| Configuration | Lines/Model | Total |
+|---------------|-------------|-------|
+| JSON only (`fromJson`, `toJson`) | 25 | **5,000** ✅ |
+| Data class (`fromJson`, `toJson`, `copyWith`, `equatable`) | 50 | **10,000** |
+| Bloc state (`copyWith`, `equatable`) | 35 | **7,000** ✅ |
+| Full features (all enabled) | 70 | **14,000** |
 
-**Tip:** Use `@Model.json()` (JSON only) as default, add features only when needed.
+**Tip:** Start with JSON-only features, add `copyWith` and `equatable` only when needed.
 
 ## Migration from v1.x
 
 ```dart
-// v1.x (deprecated)
+// v1.x (deprecated - used separate annotations)
 @Json()
 @CopyWith()
 @Equatable()
 class User { ... }
 
-// v2.0 (recommended)
-@Model.data()  // Same features, less code
+// v2.0+ (current - use explicit parameters)
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+)
 class User { ... }
 ```
+
+**Note:** Preset constructors like `@Model.json()`, `@Model.data()`, etc. have been removed in favor of explicit parameters for better clarity and flexibility.
 
 ## Project Structure
 

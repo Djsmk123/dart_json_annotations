@@ -10,7 +10,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  dart_json_annotations: ^2.0.0
+  dart_json_annotations: ^2.0.1
 ```
 
 ### 2. Install Dependencies
@@ -61,9 +61,9 @@ Create `lib/models/user.dart`:
 ```dart
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-part 'user.gen.dart';
+part 'user.t.dart';
 
-@Model.json()
+@Model(fromJson: true, toJson: true)
 class User {
   final int id;
   final String name;
@@ -85,7 +85,7 @@ class User {
 dart_json_gen -i lib/models
 ```
 
-This will generate `lib/models/user.gen.dart` with:
+This will generate `lib/models/user.t.dart` with:
 - `toJson()` extension method
 - `_$UserFromJson()` factory helper
 
@@ -104,7 +104,7 @@ void main() {
   // {id: 1, name: John, email: john@example.com}
   
   // Deserialize from JSON
-  final user2 = User.fromJson({'id': 2, name: 'Jane'});
+  final user2 = User.fromJson({'id': 2, 'name': 'Jane'});
   print(user2.name);  // Jane
 }
 ```
@@ -115,10 +115,10 @@ void main() {
 
 ### Pattern 1: API Model (JSON only)
 
-Use `@Model.json()` for API response models.
+Use JSON-only features for API response models.
 
 ```dart
-@Model.json()
+@Model(fromJson: true, toJson: true)
 class ApiResponse {
   final int statusCode;
   final String message;
@@ -136,10 +136,15 @@ class ApiResponse {
 
 ### Pattern 2: Data Class (JSON + copyWith + equatable)
 
-Use `@Model.data()` for domain models.
+Use full data class features for domain models.
 
 ```dart
-@Model.data()
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+)
 class Product {
   final String id;
   final String name;
@@ -162,10 +167,10 @@ if (product1 == product2) { /* equal */ }
 
 ### Pattern 3: BLoC State (copyWith + equatable, no JSON)
 
-Use `@Model.bloc()` for BLoC state classes.
+Use copyWith and equatable for BLoC state classes.
 
 ```dart
-@Model.bloc()
+@Model(copyWith: true, equatable: true)
 class CounterState {
   final int count;
   final bool isLoading;
@@ -179,6 +184,41 @@ class CounterState {
 // Usage
 final newState = state.copyWith(count: state.count + 1);
 ```
+
+### Pattern 4: Sealed/Union Class
+
+Use sealed classes for type-safe state machines.
+
+```dart
+@Model(copyWith: true, equatable: true, stringify: true)
+sealed class LoadingState {
+  const LoadingState._();
+  
+  // No parameters
+  const factory LoadingState.idle() = LoadingStateIdle;
+  const factory LoadingState.loading() = LoadingStateLoading;
+  
+  // Positional parameters
+  const factory LoadingState.success(String data) = LoadingStateSuccess;
+  const factory LoadingState.error(String message, int code) = LoadingStateError;
+  
+  // Named parameters
+  const factory LoadingState.retry({
+    required int attempt,
+    required Duration delay,
+  }) = LoadingStateRetry;
+}
+
+// Usage with pattern matching
+final message = state.when(
+  idle: () => 'Ready',
+  loading: () => 'Loading...',
+  success: (data) => 'Success: $data',
+  error: (msg, code) => 'Error $code: $msg',
+  retry: (attempt, delay) => 'Retry #$attempt in ${delay.inSeconds}s',
+);
+```
+
 ---
 
 ## Project Setup
@@ -189,9 +229,9 @@ final newState = state.copyWith(count: state.count + 1);
 lib/
 ├── models/
 │   ├── user.dart
-│   ├── user.gen.dart      # Generated
+│   ├── user.t.dart      # Generated
 │   ├── product.dart
-│   ├── product.gen.dart   # Generated
+│   ├── product.t.dart   # Generated
 │   └── ...
 └── main.dart
 ```
@@ -200,7 +240,9 @@ lib/
 
 ```gitignore
 # Generated files (optional - you may want to commit them)
+*.t.dart
 *.gen.dart
+*.g.dart
 ```
 
 ### Add Build Script
@@ -236,6 +278,30 @@ Add to `.vscode/tasks.json`:
   ]
 }
 ```
+
+---
+
+## Configuration
+
+### Custom File Extension
+
+Create `dart_json_gen.yaml` in your project root:
+
+```yaml
+# Use .t.dart extension (default)
+generated_extension: ".t.dart"
+
+# Or use .g.dart (compatible with json_serializable)
+# generated_extension: ".g.dart"
+
+# Or use .generated.dart
+# generated_extension: ".generated.dart"
+```
+
+After changing the extension:
+1. Clean old files: `dart_json_gen --clean -i lib/models`
+2. Regenerate: `dart_json_gen -i lib/models`
+3. Update part directives in your Dart files
 
 ---
 
@@ -293,17 +359,14 @@ dart_json_gen -i lib/models --rebuild
 
 ## Quick Reference
 
-### Presets
+### Common Configurations
 
-See [Main Guide](main-guide.md#feature-overview) for detailed preset information.
-
-| Preset | Features | Use Case |
-|--------|----------|----------|
-| `@Model.json()` | `fromJson`, `toJson` | API models |
-| `@Model.data()` | JSON + copyWith + equatable | Data classes |
-| `@Model.bloc()` | copyWith + equatable | BLoC states |
-| `@Model.full()` | All features | Maximum features |
-| `@Model.mutable()` | copyWith (always) | Mutable classes |
+| Use Case | Configuration | Features |
+|----------|--------------|----------|
+| API models | `@Model(fromJson: true, toJson: true)` | JSON only |
+| Data classes | `@Model(fromJson: true, toJson: true, copyWith: true, equatable: true)` | Full data class |
+| BLoC states | `@Model(copyWith: true, equatable: true)` | State management |
+| Union types | `@Model(copyWith: true, equatable: true, stringify: true)` | Pattern matching |
 
 ### CLI Commands
 
@@ -334,4 +397,3 @@ dart_json_gen --rebuild -i lib/models
 - **Examples:** See [Examples Gallery](examples.md)
 - **API Reference:** See [API Reference](api-reference.md)
 - **Issues:** [GitHub Issues](https://github.com/djsmk123/dart_json_annotations/issues)
-

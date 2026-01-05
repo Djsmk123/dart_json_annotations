@@ -25,9 +25,9 @@ Minimal JSON serialization only.
 ```dart
 import 'package:dart_json_annotations/dart_json_annotations.dart';
 
-part 'user.gen.dart';
+part 'user.t.dart';
 
-@Model.json()
+@Model(fromJson: true, toJson: true)
 class User {
   final int id;
   final String name;
@@ -61,9 +61,14 @@ final user2 = User.fromJson(json);
 JSON + copyWith + equatable.
 
 ```dart
-part 'product.gen.dart';
+part 'product.t.dart';
 
-@Model.data()
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+)
 class Product {
   final String id;
   final String name;
@@ -101,9 +106,9 @@ if (product1 == product2) { /* equal */ }
 copyWith + equatable, no JSON.
 
 ```dart
-part 'counter_state.gen.dart';
+part 'counter_state.t.dart';
 
-@Model.bloc()
+@Model(copyWith: true, equatable: true)
 class CounterState {
   final int count;
   final bool isLoading;
@@ -134,7 +139,7 @@ if (state1 == state2) { /* states are equal */ }
 Pattern matching with `when`/`map` methods.
 
 ```dart
-part 'chat_event.gen.dart';
+part 'chat_event.t.dart';
 
 @Model(fromJson: true, toJson: true, equatable: true, discriminator: 'event_type')
 sealed class ChatEvent {
@@ -190,11 +195,13 @@ if (event.isUserJoined) {
 Mutable fields with `copyWith` support.
 
 ```dart
-part 'mutable_person.gen.dart';
+part 'mutable_person.t.dart';
 
-@Model.mutable(
+@Model(
   fromJson: true,
   toJson: true,
+  mutable: true,
+  copyWith: true,
 )
 class MutablePerson {
   String name;  // Mutable, not final
@@ -210,11 +217,6 @@ class MutablePerson {
   factory MutablePerson.fromJson(Map<String, dynamic> json) => _$MutablePersonFromJson(json);
 }
 ```
-
-**Generated Code:**
-- `toJson()` extension
-- `fromJson()` factory
-- `copyWith()` extension (always enabled)
 
 **Usage:**
 ```dart
@@ -232,7 +234,7 @@ Enum serialization with custom values or ordinal indices.
 ### String Values
 
 ```dart
-part 'order.gen.dart';
+part 'order.t.dart';
 
 @Model(fromJson: true, toJson: true)
 enum OrderStatus {
@@ -259,13 +261,6 @@ class Order {
 }
 ```
 
-**Usage:**
-```dart
-final status = OrderStatus.pending;
-final json = status.toJson();  // 'pending'
-final status2 = OrderStatus.fromJson('pending');  // OrderStatus.pending
-```
-
 ### Ordinal Values
 
 ```dart
@@ -276,13 +271,6 @@ enum Priority {
   high,   // Serialized as 2
   urgent, // Serialized as 3
 }
-```
-
-**Usage:**
-```dart
-final priority = Priority.high;
-final json = priority.toJson();  // 2
-final priority2 = Priority.fromJson(2);  // Priority.high
 ```
 
 ### Custom Values
@@ -301,13 +289,6 @@ enum Color {
 }
 ```
 
-**Usage:**
-```dart
-final color = Color.red;
-final json = color.toJson();  // '#FF0000'
-final color2 = Color.fromJson('#FF0000');  // Color.red
-```
-
 ---
 
 ## Inheritance
@@ -315,7 +296,7 @@ final color2 = Color.fromJson('#FF0000');  // Color.red
 Child classes inherit naming conventions from parents.
 
 ```dart
-part 'base_model.gen.dart';
+part 'base_model.t.dart';
 
 @Model(
   fromJson: true,
@@ -330,7 +311,7 @@ class BaseModel {
   factory BaseModel.fromJson(Map<String, dynamic> json) => _$BaseModelFromJson(json);
 }
 
-part 'user_model.gen.dart';
+part 'user_model.t.dart';
 
 @Model(fromJson: true, toJson: true)  // Inherits snakeCase from parent
 class UserModel extends BaseModel {
@@ -347,16 +328,6 @@ class UserModel extends BaseModel {
 }
 ```
 
-**Generated JSON:**
-```json
-{
-  "id": "123",
-  "created_at": "2024-01-01T00:00:00Z",
-  "first_name": "John",
-  "email": "john@example.com"
-}
-```
-
 ---
 
 ## Generic Classes
@@ -364,7 +335,7 @@ class UserModel extends BaseModel {
 Generic classes with type parameters.
 
 ```dart
-part 'response.gen.dart';
+part 'response.t.dart';
 
 @Model(fromJson: true, toJson: true)
 @GenericConfig(genericArgumentFactories: true)
@@ -381,13 +352,7 @@ class Response<T> {
 }
 ```
 
-**Usage:**
-```dart
-final response = Response<User>.fromJson(
-  json,
-  (json) => User.fromJson(json as Map<String, dynamic>),
-);
-```
+---
 
 ## Custom Converters
 
@@ -402,15 +367,7 @@ class DateTimeConverter implements JsonConverter<DateTime, String> {
   String toJson(DateTime object) => object.toIso8601String();
 }
 
-class DurationConverter implements JsonConverter<Duration, int> {
-  const DurationConverter();
-  @override
-  Duration fromJson(int json) => Duration(seconds: json);
-  @override
-  int toJson(Duration object) => object.inSeconds;
-}
-
-part 'event.gen.dart';
+part 'event.t.dart';
 
 @Model(fromJson: true, toJson: true)
 class Event {
@@ -419,32 +376,13 @@ class Event {
   @JsonConverter(DateTimeConverter())
   final DateTime timestamp;
   
-  @JsonConverter(DurationConverter())
-  final Duration duration;
-  
   Event({
     required this.id,
     required this.timestamp,
-    required this.duration,
   });
   
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 }
-```
-
-**Usage:**
-```dart
-final event = Event(
-  id: '1',
-  timestamp: DateTime.now(),
-  duration: Duration(seconds: 30),
-);
-final json = event.toJson();
-// {
-//   "id": "1",
-//   "timestamp": "2024-01-01T00:00:00Z",
-//   "duration": 30
-// }
 ```
 
 ---
@@ -454,16 +392,22 @@ final json = event.toJson();
 Complete example with all field annotations.
 
 ```dart
-part 'user_profile.gen.dart';
+part 'user_profile.t.dart';
 
-@Model.data(namingConvention: NamingConvention.snakeCase)
+@Model(
+  fromJson: true,
+  toJson: true,
+  copyWith: true,
+  equatable: true,
+  namingConvention: NamingConvention.snakeCase,
+)
 class UserProfile {
   @JsonKey(name: 'user_id')  // Custom JSON key
   final int userId;
   
   final String firstName;  // Uses snakeCase: "first_name"
   
-  @JsonKey(ignore: true)  // Skip in JSON
+  @Ignore(json: true)  // Skip in JSON
   final String cache;
   
   @JsonKey(defaultValue: '0')  // Default value
@@ -472,10 +416,10 @@ class UserProfile {
   @JsonKey(includeIfNull: true)  // Include null in JSON
   final String? optional;
   
-  @Ignore.equality()  // Ignore from == comparison
+  @Ignore(equality: true)  // Ignore from == comparison
   final DateTime updatedAt;
   
-  @Ignore.copyWith()  // Ignore from copyWith
+  @Ignore(copyWith: true)  // Ignore from copyWith
   final String computed;
   
   @Default(42)  // Default value
@@ -516,7 +460,7 @@ mixin Timestamped {
   DateTime get createdAt => DateTime.now();
 }
 
-part 'location.gen.dart';
+part 'location.t.dart';
 
 @Model()
 sealed class Location {
@@ -529,87 +473,6 @@ sealed class Location {
   
   @With<Timestamped>()
   const factory Location.event(String name) = LocationEvent;
-}
-```
-
-**Generated:**
-- `LocationPerson` - Basic variant
-- `LocationCity` - Implements `GeographicArea`
-- `LocationEvent` - Mixes in `Timestamped`
-
----
-
-## Complete Example: E-Commerce Model
-
-Real-world example with multiple features.
-
-```dart
-part 'order.gen.dart';
-
-@Model.data(namingConvention: NamingConvention.snakeCase)
-class Order {
-  @JsonKey(name: 'order_id')
-  final String id;
-  
-  final String customerName;  // JSON: "customer_name"
-  
-  @JsonConverter(DateTimeConverter())
-  final DateTime createdAt;
-  
-  final OrderStatus status;
-  final Priority priority;
-  
-  final List<OrderItem> items;
-  final Map<String, dynamic> metadata;
-  
-  @Ignore.equality()
-  final DateTime updatedAt;
-  
-  Order({
-    required this.id,
-    required this.customerName,
-    required this.createdAt,
-    required this.status,
-    required this.priority,
-    required this.items,
-    required this.metadata,
-    required this.updatedAt,
-  });
-  
-  factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
-}
-
-@Model.json()
-class OrderItem {
-  final String productId;
-  final int quantity;
-  final double price;
-  
-  OrderItem({
-    required this.productId,
-    required this.quantity,
-    required this.price,
-  });
-  
-  factory OrderItem.fromJson(Map<String, dynamic> json) => _$OrderItemFromJson(json);
-}
-
-@Model(fromJson: true, toJson: true)
-enum OrderStatus {
-  @JsonValue('pending')
-  pending,
-  @JsonValue('processing')
-  processing,
-  @JsonValue('shipped')
-  shipped,
-}
-
-@JsonEnum(valueType: JsonEnumValue.ordinal)
-enum Priority {
-  low,
-  medium,
-  high,
-  urgent,
 }
 ```
 
@@ -626,4 +489,3 @@ dart_json_gen -i examples/lib/models
 # Generate for specific example
 dart_json_gen -i examples/lib/models/user.dart
 ```
-

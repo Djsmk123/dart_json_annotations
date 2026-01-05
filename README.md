@@ -1,4 +1,4 @@
-# dart_json_annotations v2.0.1
+# dart_json_annotations v2.2.0
 
 > ⚠️ **EXPERIMENTAL** - This package is under active development. APIs may change without notice.
 

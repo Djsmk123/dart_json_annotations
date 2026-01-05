@@ -56,7 +56,7 @@ fn main() -> Result<()> {
         return Ok(());
     }
     
-    println!("{}", "🦀 Dart Code Generator v2.0.1".green().bold());
+    println!("{}", "🦀 Dart Code Generator v2.2.0".green().bold());
     println!("Input: {}", input_paths.iter().map(|p| p.display().to_string()).collect::<Vec<_>>().join(", ").cyan());
     
     let mut dart_files = Vec::new();

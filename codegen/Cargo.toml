@@ -1,6 +1,6 @@
 [package]
 name = "dart_json_gen"
-version = "2.1.0"
+version = "2.2.0"
 edition = "2021"
 description = "Rust-powered code generator for Dart models - JSON, copyWith, equatable, unions"
 authors = ["Your Name"]

@@ -65,6 +65,7 @@ nav:
   - API Reference: api-reference.md
   - Examples: examples.md
   - Performance: performance.md
+  - VS Code Extension: vscode-extension.md
 
 plugins:
   - search:

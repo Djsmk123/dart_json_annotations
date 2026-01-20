@@ -3,10 +3,6 @@
 > High-performance code generation for Dart/Flutter models powered by Rust
 
 
-## Before Starting
-
-> ⚠️ **EXPERIMENTAL** - This package is under active development. APIs may change without notice.
-
 
 ## Quick Start
 

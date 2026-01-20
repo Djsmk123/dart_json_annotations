@@ -13,6 +13,15 @@ For 200 models with JSON only features:
 | **dart_json_gen** | **~0.5s** | 1x |
 | build_runner (Freezed) | ~15s | **30x slower** |
 
+#### Visual Comparison
+
+```text
+Generation Time (200 models)
+
+dart_json_gen     ████ 0.5s   (1x)
+Freezed           ████████████████████████████████████████████████████ 15s  (30x slower)
+```
+
 ### Output Size
 
 For 200 models with JSON only features:
@@ -21,6 +30,20 @@ For 200 models with JSON only features:
 |------|-------|------|-----------|
 | **dart_json_gen** | **~5,000** | **~200 KB** | Baseline |
 | Freezed | ~15,000 | ~600 KB | **70% larger** |
+
+#### Visual Comparison
+
+```text
+Output Size (200 models, JSON only)
+
+Lines
+dart_json_gen     ████████████████████  ~5,000
+Freezed           ████████████████████████████████████████████████████  ~15,000  (≈70% larger)
+
+File Size
+dart_json_gen     ████████████████████  ~200 KB
+Freezed           ████████████████████████████████████████████████████  ~600 KB  (≈70% larger)
+```
 
 ### Real-World Test: 276 Variants
 
@@ -32,6 +55,24 @@ Tested on a sealed union class with 276 factory constructors:
 | **File Size** | 887 KB | 717 KB | **-19.2%** |
 | **Generation Time** | ~8-12s | **0.097s** | **82-124x faster** |
 | **Lines per Variant** | ~92 | ~49 | **-46.7%** |
+
+#### Visual Comparison
+
+```text
+Real-World Benchmark (276 variants)
+
+Generation Time
+Freezed           ████████████████████████████████████████████████████  8–12s
+dart_json_gen     █ 0.097s  (≈82–124x faster)
+
+Total Lines
+Freezed           ████████████████████████████████████████████████████  25,384
+dart_json_gen     ████████████████████████                              13,584  (≈46.5% fewer)
+
+File Size
+Freezed           ████████████████████████████████████████████████████  887 KB
+dart_json_gen     ████████████████████████████████                      717 KB  (≈19.2% smaller)
+```
 
 ---
 

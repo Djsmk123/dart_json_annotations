@@ -4,7 +4,6 @@ part 'generic_example.t.dart';
 
 /// Example: Generic class with @GenericConfig
 ///
-/// **Note:** Generic support with `@GenericConfig` is currently experimental.
 /// The code generator needs to properly handle the `fromJsonT` parameter in the generated code.
 ///
 /// When fully supported, the generated `_$GenericResponseFromJson` function should accept

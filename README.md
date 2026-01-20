@@ -1,7 +1,4 @@
 # dart_json_annotations v2.2.0
-
-> ⚠️ **EXPERIMENTAL** - This package is under active development. APIs may change without notice.
-
 A high-performance Dart code generator powered by Rust. Generates JSON serializers, `copyWith`, `Equatable`, and `toString` methods with **optimized output size** for large codebases.
 
 ## Why v2.0?
@@ -21,6 +18,33 @@ A high-performance Dart code generator powered by Rust. Generates JSON serialize
 - ⚖️ **Equatable** - Value equality
 - 🎯 **Sealed/Union classes** - `when`, `map`, `maybeWhen`, `maybeMap`
 - ✅ **Checksum caching** - Skip unchanged files
+
+## VS Code Extension
+
+There is an official VS Code extension for generating Dart JSON code with `dart_json_annotations`:
+
+- **Marketplace**: [`Dart JSON Generator`](https://marketplace.visualstudio.com/items?itemName=Smkwinner.dart-json-gen)
+
+### ✨ Features
+
+- **🎯 Context Menu Integration**: Right-click on any Dart file or folder in the explorer to generate code.
+- **📁 Separate Commands**:
+  - `Dart JSON: Generate for File` – Generate code for a single `.dart` file.
+  - `Dart JSON: Generate for Folder` – Generate code for all files in a folder.
+- **🎨 Custom Icons**: Visual icons in context menus for easy identification.
+- **📊 Progress Tracking**: Real-time progress indicator during generation.
+- **⚙️ Configurable**: Customize notifications, auto-refresh, and verbose output.
+- **🔍 Detailed Output**: Optional verbose logging in the output channel.
+- **🚀 Auto-Install Prompt**: Helpful prompts if `dart_json_gen` is not installed.
+- **♻️ Auto-Refresh**: Automatically refreshes the file explorer after generation.
+
+### Usage
+
+1. Install the extension from the VS Code Marketplace: `Dart JSON Generator` (`Smkwinner.dart-json-gen`).
+2. Open your Dart project in VS Code.
+3. Right-click on a Dart file or folder in the Explorer.
+4. Choose **“Dart JSON: Generate for File”** or **“Dart JSON: Generate for Folder”**.
+5. The extension runs `dart_json_gen` for the selected scope and refreshes the explorer when done.
 
 ## Installation
 

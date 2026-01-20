@@ -6,27 +6,23 @@ part of 'existing_fromjson_example.dart';
 
 extension $CustomUserJson on CustomUser {
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'id': id,
-    'name': name,
-    'email': email,
-  };
+        'id': id,
+        'name': name,
+        'email': email,
+      };
 }
 
 CustomUser _$CustomUserFromJson(Map<String, dynamic> json) => CustomUser(
-  id: (json['id'] as num).toInt(),
-  name: json['name'] as String,
-  email: json['email'] as String
-);
+    id: (json['id'] as num).toInt(),
+    name: json['name'] as String,
+    email: json['email'] as String);
 
 extension $SimpleUserJson on SimpleUser {
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'id': id,
-    'name': name,
-  };
+        'id': id,
+        'name': name,
+      };
 }
 
-SimpleUser _$SimpleUserFromJson(Map<String, dynamic> json) => SimpleUser(
-  id: (json['id'] as num).toInt(),
-  name: json['name'] as String
-);
-
+SimpleUser _$SimpleUserFromJson(Map<String, dynamic> json) =>
+    SimpleUser(id: (json['id'] as num).toInt(), name: json['name'] as String);

@@ -6,29 +6,26 @@ part of 'converter_example.dart';
 
 extension $EventJson on Event {
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'id': id,
-    'timestamp': const DateTimeConverter().toJson(timestamp),
-    'duration': const DurationConverter().toJson(duration),
-    'status': const StatusConverter().toJson(status),
-  };
+        'id': id,
+        'timestamp': const DateTimeConverter().toJson(timestamp),
+        'duration': const DurationConverter().toJson(duration),
+        'status': const StatusConverter().toJson(status),
+      };
 }
 
 Event _$EventFromJson(Map<String, dynamic> json) => Event(
-  id: json['id'] as String,
-  timestamp: const DateTimeConverter().fromJson(json['timestamp']),
-  duration: const DurationConverter().fromJson(json['duration']),
-  status: const StatusConverter().fromJson(json['status'])
-);
+    id: json['id'] as String,
+    timestamp: const DateTimeConverter().fromJson(json['timestamp']),
+    duration: const DurationConverter().fromJson(json['duration']),
+    status: const StatusConverter().fromJson(json['status']));
 
 extension $UserJson on User {
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'id': id,
-    'email': const EmailConverter().toJson(email),
-  };
+        'id': id,
+        'email': const EmailConverter().toJson(email),
+      };
 }
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
-  id: json['id'] as String,
-  email: const EmailConverter().fromJson(json['email'])
-);
-
+    id: json['id'] as String,
+    email: const EmailConverter().fromJson(json['email']));

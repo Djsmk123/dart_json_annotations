@@ -30,6 +30,6 @@ sealed class UserProfileV2 with _$UserProfileV2 {
     required Map<String, dynamic> metadata,
   }) = _UserProfileV2;
 
-  factory UserProfileV2.fromJson(Map<String, dynamic> json) => _$UserProfileV2FromJson(json);
+  factory UserProfileV2.fromJson(Map<String, dynamic> json) =>
+      _$UserProfileV2FromJson(json);
 }
-

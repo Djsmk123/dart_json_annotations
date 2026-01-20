@@ -6,15 +6,15 @@ part of 'enum_example.dart';
 
 extension $TestingEnumModelJson on TestingEnumModel {
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'orderStatus': orderStatus.toJson(),
-    'priority': priority.toJson(),
-  };
+        'orderStatus': orderStatus.toJson(),
+        'priority': priority.toJson(),
+      };
 }
 
-TestingEnumModel _$TestingEnumModelFromJson(Map<String, dynamic> json) => TestingEnumModel(
-  orderStatus: _$OrderStatusFromJson(json['orderStatus']),
-  priority: _$PriorityFromJson(json['priority'])
-);
+TestingEnumModel _$TestingEnumModelFromJson(Map<String, dynamic> json) =>
+    TestingEnumModel(
+        orderStatus: _$OrderStatusFromJson(json['orderStatus']),
+        priority: _$PriorityFromJson(json['priority']));
 
 OrderStatus _$OrderStatusFromJson(dynamic json) {
   return switch (json) {
@@ -29,12 +29,12 @@ OrderStatus _$OrderStatusFromJson(dynamic json) {
 
 extension $OrderStatusJson on OrderStatus {
   dynamic toJson() => switch (this) {
-    OrderStatus.pending => 'pending',
-    OrderStatus.processing => 'processing',
-    OrderStatus.shipped => 'shipped',
-    OrderStatus.delivered => 'delivered',
-    OrderStatus.cancelled => 'cancelled',
-  };
+        OrderStatus.pending => 'pending',
+        OrderStatus.processing => 'processing',
+        OrderStatus.shipped => 'shipped',
+        OrderStatus.delivered => 'delivered',
+        OrderStatus.cancelled => 'cancelled',
+      };
 }
 
 Priority _$PriorityFromJson(dynamic json) {
@@ -49,10 +49,9 @@ Priority _$PriorityFromJson(dynamic json) {
 
 extension $PriorityJson on Priority {
   dynamic toJson() => switch (this) {
-    Priority.low => 'low',
-    Priority.medium => 'medium',
-    Priority.high => 'high',
-    Priority.urgent => 'urgent',
-  };
+        Priority.low => 'low',
+        Priority.medium => 'medium',
+        Priority.high => 'high',
+        Priority.urgent => 'urgent',
+      };
 }
-

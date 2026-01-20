@@ -22,4 +22,3 @@ enum NamingConvention {
   /// Example: `first-name`, `last-name`
   kebabCase,
 }
-

@@ -9,5 +9,6 @@ abstract class Unfreezed with _$Unfreezed {
     required String name,
     int? age,
   }) = _Unfreezed;
-  factory Unfreezed.fromJson(Map<String, dynamic> json) => _$UnfreezedFromJson(json);
+  factory Unfreezed.fromJson(Map<String, dynamic> json) =>
+      _$UnfreezedFromJson(json);
 }

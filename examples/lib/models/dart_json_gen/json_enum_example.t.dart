@@ -6,21 +6,20 @@ part of 'json_enum_example.dart';
 
 extension $TaskJson on Task {
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'id': id,
-    'title': title,
-    'status': status.toJson(),
-    'priority': priority.toJson(),
-    'color': color?.toJson(),
-  };
+        'id': id,
+        'title': title,
+        'status': status.toJson(),
+        'priority': priority.toJson(),
+        'color': color?.toJson(),
+      };
 }
 
 Task _$TaskFromJson(Map<String, dynamic> json) => Task(
-  id: json['id'] as String,
-  title: json['title'] as String,
-  status: _$StatusFromJson(json['status']),
-  priority: _$PriorityFromJson(json['priority']),
-  color: json['color'] != null ? _$ColorFromJson(json['color']) : null
-);
+    id: json['id'] as String,
+    title: json['title'] as String,
+    status: _$StatusFromJson(json['status']),
+    priority: _$PriorityFromJson(json['priority']),
+    color: json['color'] != null ? _$ColorFromJson(json['color']) : null);
 
 Status _$StatusFromJson(dynamic json) {
   return switch (json) {
@@ -33,10 +32,10 @@ Status _$StatusFromJson(dynamic json) {
 
 extension $StatusJson on Status {
   dynamic toJson() => switch (this) {
-    Status.active => 'active',
-    Status.inactive => 'inactive',
-    Status.pending => 'pending',
-  };
+        Status.active => 'active',
+        Status.inactive => 'inactive',
+        Status.pending => 'pending',
+      };
 }
 
 Priority _$PriorityFromJson(dynamic json) {
@@ -51,11 +50,11 @@ Priority _$PriorityFromJson(dynamic json) {
 
 extension $PriorityJson on Priority {
   dynamic toJson() => switch (this) {
-    Priority.low => 0,
-    Priority.medium => 1,
-    Priority.high => 2,
-    Priority.urgent => 3,
-  };
+        Priority.low => 0,
+        Priority.medium => 1,
+        Priority.high => 2,
+        Priority.urgent => 3,
+      };
 }
 
 Color _$ColorFromJson(dynamic json) {
@@ -69,9 +68,8 @@ Color _$ColorFromJson(dynamic json) {
 
 extension $ColorJson on Color {
   dynamic toJson() => switch (this) {
-    Color.red => '#FF0000',
-    Color.green => '#00FF00',
-    Color.blue => '#0000FF',
-  };
+        Color.red => '#FF0000',
+        Color.green => '#00FF00',
+        Color.blue => '#0000FF',
+      };
 }
-

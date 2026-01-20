@@ -27,7 +27,8 @@ sealed class UserProfileV2State with _$UserProfileV2State {
     required String internalToken,
   }) = _UserProfileV2State;
 
-  factory UserProfileV2State.fromJson(Map<String, dynamic> json) => _$UserProfileV2StateFromJson(json);
+  factory UserProfileV2State.fromJson(Map<String, dynamic> json) =>
+      _$UserProfileV2StateFromJson(json);
 }
 
 /// Example: Settings model
@@ -39,6 +40,6 @@ sealed class SettingsV2 with _$SettingsV2 {
     double? fontSize,
   }) = _SettingsV2;
 
-  factory SettingsV2.fromJson(Map<String, dynamic> json) => _$SettingsV2FromJson(json);
+  factory SettingsV2.fromJson(Map<String, dynamic> json) =>
+      _$SettingsV2FromJson(json);
 }
-

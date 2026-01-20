@@ -17,7 +17,8 @@ sealed class ProductV2 with _$ProductV2 {
     ProductMetaV2? meta,
   }) = _ProductV2;
 
-  factory ProductV2.fromJson(Map<String, dynamic> json) => _$ProductV2FromJson(json);
+  factory ProductV2.fromJson(Map<String, dynamic> json) =>
+      _$ProductV2FromJson(json);
 }
 
 /// JSON-only variant model
@@ -31,7 +32,8 @@ sealed class ProductVariantV2 with _$ProductVariantV2 {
     required bool inStock,
   }) = _ProductVariantV2;
 
-  factory ProductVariantV2.fromJson(Map<String, dynamic> json) => _$ProductVariantV2FromJson(json);
+  factory ProductVariantV2.fromJson(Map<String, dynamic> json) =>
+      _$ProductVariantV2FromJson(json);
 }
 
 /// Data model with snake_case
@@ -43,5 +45,6 @@ sealed class ProductMetaV2 with _$ProductMetaV2 {
     required List<String> tags,
     required Map<String, String> customAttributes,
   }) = _ProductMetaV2;
-  factory ProductMetaV2.fromJson(Map<String, dynamic> json) => _$ProductMetaV2FromJson(json);
+  factory ProductMetaV2.fromJson(Map<String, dynamic> json) =>
+      _$ProductMetaV2FromJson(json);
 }

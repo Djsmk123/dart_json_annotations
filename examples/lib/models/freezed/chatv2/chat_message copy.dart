@@ -18,16 +18,17 @@ sealed class ChatMessageV2 with _$ChatMessageV2 {
     Map<String, dynamic>? reactions,
   }) = _ChatMessageV2;
 
-  factory ChatMessageV2.fromJson(Map<String, dynamic> json) => _$ChatMessageV2FromJson(json);
+  factory ChatMessageV2.fromJson(Map<String, dynamic> json) =>
+      _$ChatMessageV2FromJson(json);
   Map<String, dynamic> toJson() => _$ChatMessageV2ToJson(_ChatMessageV2(
-    id: id,
-    senderId: senderId,
-    recipientId: recipientId,
-    content: content,
-    messageType: messageType,
-    sentAt: sentAt,
-    readAt: readAt,
-  ));
+        id: id,
+        senderId: senderId,
+        recipientId: recipientId,
+        content: content,
+        messageType: messageType,
+        sentAt: sentAt,
+        readAt: readAt,
+      ));
 }
 
 @freezed
@@ -40,7 +41,8 @@ sealed class AttachmentV2 with _$AttachmentV2 {
     String? thumbnail,
   }) = _AttachmentV2;
 
-  factory AttachmentV2.fromJson(Map<String, dynamic> json) => _$AttachmentV2FromJson(json);
+  factory AttachmentV2.fromJson(Map<String, dynamic> json) =>
+      _$AttachmentV2FromJson(json);
 }
 
 @freezed
@@ -49,5 +51,6 @@ sealed class MessageTypeV2 with _$MessageTypeV2 {
     required String value,
   }) = _MessageTypeV2;
 
-  factory MessageTypeV2.fromJson(Map<String, dynamic> json) => _$MessageTypeV2FromJson(json);
+  factory MessageTypeV2.fromJson(Map<String, dynamic> json) =>
+      _$MessageTypeV2FromJson(json);
 }

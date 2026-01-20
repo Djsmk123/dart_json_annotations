@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0.1
+  - Update documentation to reflect the new API
+
 ## 3.0.0
  - Marked for production ready
  - Update documentation to reflect the new API

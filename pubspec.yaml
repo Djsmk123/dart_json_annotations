@@ -2,7 +2,7 @@ name: dart_json_annotations
 description: >-
   High-performance code generation for Dart/Flutter: JSON, copyWith, equatable, 
   and union/sealed class support. Rust-powered CLI with parallel processing.
-version: 3.0.0
+version: 3.0.1
 homepage: https://github.com/djsmk123/dart_json_annotations
 repository: https://github.com/djsmk123/dart_json_annotations
 issue_tracker: https://github.com/djsmk123/dart_json_annotations/issues

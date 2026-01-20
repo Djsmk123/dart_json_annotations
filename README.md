@@ -71,6 +71,9 @@ dart pub global activate -s path .
 # Build the Rust binary (first time only)
 dart_json_gen --build
 
+# Activate global from pub.dev
+dart pub global activate dart_json_annotations
+
 # Generate code
 dart_json_gen -i lib/models
 ```

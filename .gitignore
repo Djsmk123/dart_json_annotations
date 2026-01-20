@@ -11,3 +11,4 @@ __pycache__/
 # Old manual HTML site
 docs/site/*.html
 docs/site/convert_md_to_html.*
+.dart_tool/

@@ -4,6 +4,8 @@ part 'analytics_event.t.dart';
 
 @Model(
   namingConvention: NamingConvention.snakeCase,
+  fromJson: true,
+  toJson: true,
 )
 class AnalyticsEvent {
   @JsonKey(name: 'event_name')
@@ -39,6 +41,8 @@ class AnalyticsEvent {
 @JsonType(NamingConvention.snakeCase)
 @Model(
   namingConvention: NamingConvention.snakeCase,
+  fromJson: true,
+  toJson: true,
 )
 class DeviceInfo {
   final String deviceId;
@@ -67,6 +71,8 @@ class DeviceInfo {
 
 @Model(
   namingConvention: NamingConvention.snakeCase,
+  fromJson: true,
+  toJson: true,
 )
 class AnalyticsBatch {
   final String batchId;

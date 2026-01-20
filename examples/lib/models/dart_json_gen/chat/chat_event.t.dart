@@ -5,7 +5,10 @@
 part of 'chat_event.dart';
 
 typedef _$ChatEventSig0<T> = T Function(
-    String userId, DateTime joinedAt, String? username, ChatMessage? message);
+    {required String userId,
+    required DateTime joinedAt,
+    String? username,
+    ChatMessage? message});
 
 extension $ChatEventUnion on ChatEvent {
   T when<T>({
@@ -287,558 +290,1386 @@ extension $ChatEventUnion on ChatEvent {
     required _$ChatEventSig0<T> AppRestarted,
   }) =>
       switch (this) {
-        ChatEventUserJoined v =>
-          UserJoined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserRejoined v =>
-          UserRejoined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserLeft v =>
-          UserLeft(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserLeftForced v =>
-          UserLeftForced(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserKicked v =>
-          UserKicked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserBanned v =>
-          UserBanned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnbanned v =>
-          UserUnbanned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserMuted v =>
-          UserMuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnmuted v =>
-          UserUnmuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserBlocked v =>
-          UserBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnblocked v =>
-          UserUnblocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserReported v =>
-          UserReported(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserVerified v =>
-          UserVerified(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserTypingStarted v =>
-          UserTypingStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserTypingStopped v =>
-          UserTypingStopped(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserOnline v =>
-          UserOnline(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserOffline v =>
-          UserOffline(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserIdle v =>
-          UserIdle(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserStatusChanged v =>
-          UserStatusChanged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserProfileUpdated v =>
-          UserProfileUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserAvatarUpdated v =>
-          UserAvatarUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUsernameChanged v =>
-          UserUsernameChanged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserRolePromoted v =>
-          UserRolePromoted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserRoleDemoted v =>
-          UserRoleDemoted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserInvited v =>
-          UserInvited(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserInviteRevoked v =>
-          UserInviteRevoked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserFollowed v =>
-          UserFollowed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnfollowed v =>
-          UserUnfollowed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserPinged v =>
-          UserPinged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageSent v =>
-          MessageSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageReceived v =>
-          MessageReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageRead v =>
-          MessageRead(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnread v =>
-          MessageUnread(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageEdited v =>
-          MessageEdited(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageDeleted v =>
-          MessageDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageDeletedForSelf v =>
-          MessageDeletedForSelf(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageDeletedForAll v =>
-          MessageDeletedForAll(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessagePinned v =>
-          MessagePinned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnpinned v =>
-          MessageUnpinned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageStarred v =>
-          MessageStarred(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnstarred v =>
-          MessageUnstarred(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageLiked v =>
-          MessageLiked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnliked v =>
-          MessageUnliked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageDisliked v =>
-          MessageDisliked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageReacted v =>
-          MessageReacted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnreacted v =>
-          MessageUnreacted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageForwarded v =>
-          MessageForwarded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageQuoted v =>
-          MessageQuoted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageFlagged v =>
-          MessageFlagged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnflagged v =>
-          MessageUnflagged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageSpamDetected v =>
-          MessageSpamDetected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageDeliveryFailed v =>
-          MessageDeliveryFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageScheduled v =>
-          MessageScheduled(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageScheduledSent v =>
-          MessageScheduledSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageScheduledFailed v =>
-          MessageScheduledFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageHidden v =>
-          MessageHidden(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageRestored v =>
-          MessageRestored(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAttachmentUploaded v =>
-          AttachmentUploaded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAttachmentFailed v =>
-          AttachmentFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAttachmentDeleted v =>
-          AttachmentDeleted(v.userId, v.joinedAt, v.username, v.message),
+        ChatEventUserJoined v => UserJoined(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserRejoined v => UserRejoined(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserLeft v => UserLeft(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserLeftForced v => UserLeftForced(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserKicked v => UserKicked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserBanned v => UserBanned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnbanned v => UserUnbanned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserMuted v => UserMuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnmuted v => UserUnmuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserBlocked v => UserBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnblocked v => UserUnblocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserReported v => UserReported(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserVerified v => UserVerified(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserTypingStarted v => UserTypingStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserTypingStopped v => UserTypingStopped(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserOnline v => UserOnline(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserOffline v => UserOffline(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserIdle v => UserIdle(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserStatusChanged v => UserStatusChanged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserProfileUpdated v => UserProfileUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserAvatarUpdated v => UserAvatarUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUsernameChanged v => UserUsernameChanged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserRolePromoted v => UserRolePromoted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserRoleDemoted v => UserRoleDemoted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserInvited v => UserInvited(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserInviteRevoked v => UserInviteRevoked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserFollowed v => UserFollowed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnfollowed v => UserUnfollowed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserPinged v => UserPinged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageSent v => MessageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageReceived v => MessageReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageRead v => MessageRead(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnread v => MessageUnread(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageEdited v => MessageEdited(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageDeleted v => MessageDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageDeletedForSelf v => MessageDeletedForSelf(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageDeletedForAll v => MessageDeletedForAll(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessagePinned v => MessagePinned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnpinned v => MessageUnpinned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageStarred v => MessageStarred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnstarred v => MessageUnstarred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageLiked v => MessageLiked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnliked v => MessageUnliked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageDisliked v => MessageDisliked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageReacted v => MessageReacted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnreacted v => MessageUnreacted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageForwarded v => MessageForwarded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageQuoted v => MessageQuoted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageFlagged v => MessageFlagged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnflagged v => MessageUnflagged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageSpamDetected v => MessageSpamDetected(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageDeliveryFailed v => MessageDeliveryFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageScheduled v => MessageScheduled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageScheduledSent v => MessageScheduledSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageScheduledFailed v => MessageScheduledFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageHidden v => MessageHidden(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageRestored v => MessageRestored(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAttachmentUploaded v => AttachmentUploaded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAttachmentFailed v => AttachmentFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAttachmentDeleted v => AttachmentDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAttachmentPreviewGenerated v => AttachmentPreviewGenerated(
-            v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAttachmentDownloaded v =>
-          AttachmentDownloaded(v.userId, v.joinedAt, v.username, v.message),
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAttachmentDownloaded v => AttachmentDownloaded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAttachmentDownloadStarted v => AttachmentDownloadStarted(
-            v.userId, v.joinedAt, v.username, v.message),
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAttachmentDownloadCancelled v => AttachmentDownloadCancelled(
-            v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAttachmentDownloadFailed v =>
-          AttachmentDownloadFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageSent v =>
-          ImageSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageReceived v =>
-          ImageReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageDeleted v =>
-          ImageDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageBlurred v =>
-          ImageBlurred(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageUnblurred v =>
-          ImageUnblurred(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageCompressed v =>
-          ImageCompressed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoSent v =>
-          VideoSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoReceived v =>
-          VideoReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoPlayed v =>
-          VideoPlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoPaused v =>
-          VideoPaused(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoStopped v =>
-          VideoStopped(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoSeeked v =>
-          VideoSeeked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoDeleted v =>
-          VideoDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoMuted v =>
-          VideoMuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoUnmuted v =>
-          VideoUnmuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioSent v =>
-          AudioSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioReceived v =>
-          AudioReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioPlayed v =>
-          AudioPlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioPaused v =>
-          AudioPaused(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioDeleted v =>
-          AudioDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioTranscribed v =>
-          AudioTranscribed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioTranscriptionFailed v =>
-          AudioTranscriptionFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileSent v =>
-          FileSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileReceived v =>
-          FileReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFilePreviewGenerated v =>
-          FilePreviewGenerated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileDeleted v =>
-          FileDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileDownloaded v =>
-          FileDownloaded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLinkPreviewGenerated v =>
-          LinkPreviewGenerated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLinkPreviewFailed v =>
-          LinkPreviewFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReactionAdded v =>
-          ReactionAdded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReactionRemoved v =>
-          ReactionRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReactionUpdated v =>
-          ReactionUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReactionCleared v =>
-          ReactionCleared(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadCreated v =>
-          ThreadCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadUpdated v =>
-          ThreadUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadDeleted v =>
-          ThreadDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadArchived v =>
-          ThreadArchived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadUnarchived v =>
-          ThreadUnarchived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelCreated v =>
-          ChannelCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelRenamed v =>
-          ChannelRenamed(v.userId, v.joinedAt, v.username, v.message),
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAttachmentDownloadFailed v => AttachmentDownloadFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageSent v => ImageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageReceived v => ImageReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageDeleted v => ImageDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageBlurred v => ImageBlurred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageUnblurred v => ImageUnblurred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageCompressed v => ImageCompressed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoSent v => VideoSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoReceived v => VideoReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoPlayed v => VideoPlayed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoPaused v => VideoPaused(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoStopped v => VideoStopped(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoSeeked v => VideoSeeked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoDeleted v => VideoDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoMuted v => VideoMuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoUnmuted v => VideoUnmuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioSent v => AudioSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioReceived v => AudioReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioPlayed v => AudioPlayed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioPaused v => AudioPaused(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioDeleted v => AudioDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioTranscribed v => AudioTranscribed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioTranscriptionFailed v => AudioTranscriptionFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFileSent v => FileSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFileReceived v => FileReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFilePreviewGenerated v => FilePreviewGenerated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFileDeleted v => FileDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFileDownloaded v => FileDownloaded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLinkPreviewGenerated v => LinkPreviewGenerated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLinkPreviewFailed v => LinkPreviewFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventReactionAdded v => ReactionAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventReactionRemoved v => ReactionRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventReactionUpdated v => ReactionUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventReactionCleared v => ReactionCleared(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadCreated v => ThreadCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadUpdated v => ThreadUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadDeleted v => ThreadDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadArchived v => ThreadArchived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadUnarchived v => ThreadUnarchived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelCreated v => ChannelCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelRenamed v => ChannelRenamed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelDescriptionUpdated v => ChannelDescriptionUpdated(
-            v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelDeleted v =>
-          ChannelDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelArchived v =>
-          ChannelArchived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelUnarchived v =>
-          ChannelUnarchived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelLocked v =>
-          ChannelLocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelUnlocked v =>
-          ChannelUnlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelMigrated v =>
-          ChannelMigrated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelHidden v =>
-          ChannelHidden(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelUnhidden v =>
-          ChannelUnhidden(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupCreated v =>
-          GroupCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupUpdated v =>
-          GroupUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupDeleted v =>
-          GroupDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupIconUpdated v =>
-          GroupIconUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupAdminAdded v =>
-          GroupAdminAdded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupAdminRemoved v =>
-          GroupAdminRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupMemberAdded v =>
-          GroupMemberAdded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupMemberRemoved v =>
-          GroupMemberRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupMemberLeft v =>
-          GroupMemberLeft(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupMemberKicked v =>
-          GroupMemberKicked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupInfoViewed v =>
-          GroupInfoViewed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallStarted v =>
-          CallStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallEnded v =>
-          CallEnded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallMissed v =>
-          CallMissed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallRejected v =>
-          CallRejected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallAccepted v =>
-          CallAccepted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallReconnecting v =>
-          CallReconnecting(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallReconnected v =>
-          CallReconnected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallNetworkLow v =>
-          CallNetworkLow(v.userId, v.joinedAt, v.username, v.message),
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelDeleted v => ChannelDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelArchived v => ChannelArchived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelUnarchived v => ChannelUnarchived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelLocked v => ChannelLocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelUnlocked v => ChannelUnlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelMigrated v => ChannelMigrated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelHidden v => ChannelHidden(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelUnhidden v => ChannelUnhidden(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupCreated v => GroupCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupUpdated v => GroupUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupDeleted v => GroupDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupIconUpdated v => GroupIconUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupAdminAdded v => GroupAdminAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupAdminRemoved v => GroupAdminRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupMemberAdded v => GroupMemberAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupMemberRemoved v => GroupMemberRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupMemberLeft v => GroupMemberLeft(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupMemberKicked v => GroupMemberKicked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupInfoViewed v => GroupInfoViewed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallStarted v => CallStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallEnded v => CallEnded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallMissed v => CallMissed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallRejected v => CallRejected(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallAccepted v => CallAccepted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallReconnecting v => CallReconnecting(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallReconnected v => CallReconnected(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallNetworkLow v => CallNetworkLow(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventCallMediaPermissionDenied v => CallMediaPermissionDenied(
-            v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallRecordingStarted v =>
-          CallRecordingStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallRecordingStopped v =>
-          CallRecordingStopped(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoCallStarted v =>
-          VideoCallStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoCallEnded v =>
-          VideoCallEnded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoCallMissed v =>
-          VideoCallMissed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoCallRejected v =>
-          VideoCallRejected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoCallAccepted v =>
-          VideoCallAccepted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVoiceNoteSent v =>
-          VoiceNoteSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVoiceNoteDeleted v =>
-          VoiceNoteDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVoiceNotePlayed v =>
-          VoiceNotePlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollCreated v =>
-          PollCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollVoteCast v =>
-          PollVoteCast(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollVoteRemoved v =>
-          PollVoteRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollClosed v =>
-          PollClosed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryPosted v =>
-          StoryPosted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryDeleted v =>
-          StoryDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryViewed v =>
-          StoryViewed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryReacted v =>
-          StoryReacted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotMessageSent v =>
-          BotMessageSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotMessageDeleted v =>
-          BotMessageDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotTriggered v =>
-          BotTriggered(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotDisabled v =>
-          BotDisabled(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotEnabled v =>
-          BotEnabled(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemBroadcast v =>
-          SystemBroadcast(v.userId, v.joinedAt, v.username, v.message),
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallRecordingStarted v => CallRecordingStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallRecordingStopped v => CallRecordingStopped(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoCallStarted v => VideoCallStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoCallEnded v => VideoCallEnded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoCallMissed v => VideoCallMissed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoCallRejected v => VideoCallRejected(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoCallAccepted v => VideoCallAccepted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVoiceNoteSent v => VoiceNoteSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVoiceNoteDeleted v => VoiceNoteDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVoiceNotePlayed v => VoiceNotePlayed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPollCreated v => PollCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPollVoteCast v => PollVoteCast(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPollVoteRemoved v => PollVoteRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPollClosed v => PollClosed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryPosted v => StoryPosted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryDeleted v => StoryDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryViewed v => StoryViewed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryReacted v => StoryReacted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotMessageSent v => BotMessageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotMessageDeleted v => BotMessageDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotTriggered v => BotTriggered(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotDisabled v => BotDisabled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotEnabled v => BotEnabled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemBroadcast v => SystemBroadcast(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventSystemMaintenanceScheduled v => SystemMaintenanceScheduled(
-            v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemMaintenanceStarted v =>
-          SystemMaintenanceStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemMaintenanceEnded v =>
-          SystemMaintenanceEnded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemWarning v =>
-          SystemWarning(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemError v =>
-          SystemError(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemRecovery v =>
-          SystemRecovery(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemPatchApplied v =>
-          SystemPatchApplied(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventEncryptionEnabled v =>
-          EncryptionEnabled(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventEncryptionDisabled v =>
-          EncryptionDisabled(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventEncryptionKeyRotated v =>
-          EncryptionKeyRotated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventEncryptionKeyFailed v =>
-          EncryptionKeyFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSessionStarted v =>
-          SessionStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSessionExpired v =>
-          SessionExpired(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSessionRefreshed v =>
-          SessionRefreshed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSessionTerminated v =>
-          SessionTerminated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventTypingIndicatorSent v =>
-          TypingIndicatorSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventTypingIndicatorReceived v =>
-          TypingIndicatorReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPresenceSubscribed v =>
-          PresenceSubscribed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPresenceUnsubscribed v =>
-          PresenceUnsubscribed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPresenceSync v =>
-          PresenceSync(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPresenceUpdateFailed v =>
-          PresenceUpdateFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPushNotificationSent v =>
-          PushNotificationSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPushNotificationReceived v =>
-          PushNotificationReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPushNotificationOpened v =>
-          PushNotificationOpened(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPushNotificationFailed v =>
-          PushNotificationFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReadReceiptSent v =>
-          ReadReceiptSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReadReceiptFailed v =>
-          ReadReceiptFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReadReceiptBlocked v =>
-          ReadReceiptBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBackupStarted v =>
-          BackupStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBackupCompleted v =>
-          BackupCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBackupFailed v =>
-          BackupFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRestoreStarted v =>
-          RestoreStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRestoreCompleted v =>
-          RestoreCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRestoreFailed v =>
-          RestoreFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactSynced v =>
-          ContactSynced(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactSyncFailed v =>
-          ContactSyncFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactAdded v =>
-          ContactAdded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactRemoved v =>
-          ContactRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactBlocked v =>
-          ContactBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactUnblocked v =>
-          ContactUnblocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCommandExecuted v =>
-          CommandExecuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventShortcutUsed v =>
-          ShortcutUsed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventActionButtonClicked v =>
-          ActionButtonClicked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAdminMessageSent v =>
-          AdminMessageSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAdminMessageDeleted v =>
-          AdminMessageDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAdminAnnouncement v =>
-          AdminAnnouncement(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAdminWarning v =>
-          AdminWarning(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAdminSilencedUser v =>
-          AdminSilencedUser(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSpamUserDetected v =>
-          SpamUserDetected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSpamUserBlocked v =>
-          SpamUserBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSpamUserReported v =>
-          SpamUserReported(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventModerationActionTaken v =>
-          ModerationActionTaken(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventModerationFlagReviewed v =>
-          ModerationFlagReviewed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventModerationMessageHidden v =>
-          ModerationMessageHidden(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventModerationMessageRemoved v =>
-          ModerationMessageRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventExperimentStarted v =>
-          ExperimentStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventExperimentUpdated v =>
-          ExperimentUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventExperimentCompleted v =>
-          ExperimentCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventExperimentAborted v =>
-          ExperimentAborted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftSent v =>
-          GiftSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftReceived v =>
-          GiftReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftRedeemed v =>
-          GiftRedeemed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftFailed v =>
-          GiftFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStickerSent v =>
-          StickerSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStickerDeleted v =>
-          StickerDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventEmojiPackAdded v =>
-          EmojiPackAdded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventEmojiPackRemoved v =>
-          EmojiPackRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThemeChanged v =>
-          ThemeChanged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventWallpaperChanged v =>
-          WallpaperChanged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFontSizeChanged v =>
-          FontSizeChanged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSettingsUpdated v =>
-          SettingsUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventDeviceRegistered v =>
-          DeviceRegistered(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventDeviceUnregistered v =>
-          DeviceUnregistered(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventDeviceSwitched v =>
-          DeviceSwitched(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventDeviceSyncCompleted v =>
-          DeviceSyncCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventDeviceSyncFailed v =>
-          DeviceSyncFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLocationShared v =>
-          LocationShared(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLocationUpdated v =>
-          LocationUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLocationStopped v =>
-          LocationStopped(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLocationRequestSent v =>
-          LocationRequestSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLocationRequestAccepted v =>
-          LocationRequestAccepted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLocationRequestDeclined v =>
-          LocationRequestDeclined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventQrScanSuccess v =>
-          QrScanSuccess(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventQrScanFailed v =>
-          QrScanFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventQrConnectionEstablished v =>
-          QrConnectionEstablished(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventQrConnectionTerminated v =>
-          QrConnectionTerminated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentRequestSent v =>
-          PaymentRequestSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentRequestReceived v =>
-          PaymentRequestReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentRequestAccepted v =>
-          PaymentRequestAccepted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentRequestDeclined v =>
-          PaymentRequestDeclined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentSent v =>
-          PaymentSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentReceived v =>
-          PaymentReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentFailed v =>
-          PaymentFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentRefunded v =>
-          PaymentRefunded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentWalletUpdated v =>
-          PaymentWalletUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSubscriptionStarted v =>
-          SubscriptionStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSubscriptionExpired v =>
-          SubscriptionExpired(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSubscriptionRenewed v =>
-          SubscriptionRenewed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSubscriptionCanceled v =>
-          SubscriptionCanceled(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAiSummaryGenerated v =>
-          AiSummaryGenerated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAiSummaryFailed v =>
-          AiSummaryFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAiReplySuggested v =>
-          AiReplySuggested(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAiReplySelected v =>
-          AiReplySelected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAiTranslationRequested v =>
-          AiTranslationRequested(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAiTranslationCompleted v =>
-          AiTranslationCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAiTranslationFailed v =>
-          AiTranslationFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCaptchaRequired v =>
-          CaptchaRequired(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCaptchaPassed v =>
-          CaptchaPassed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCaptchaFailed v =>
-          CaptchaFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRateLimitWarning v =>
-          RateLimitWarning(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRateLimitBlocked v =>
-          RateLimitBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLogoutRequested v =>
-          LogoutRequested(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLogoutCompleted v =>
-          LogoutCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppOpened v =>
-          AppOpened(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppBackgrounded v =>
-          AppBackgrounded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppResumed v =>
-          AppResumed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppCrashed v =>
-          AppCrashed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppRestarted v =>
-          AppRestarted(v.userId, v.joinedAt, v.username, v.message),
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemMaintenanceStarted v => SystemMaintenanceStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemMaintenanceEnded v => SystemMaintenanceEnded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemWarning v => SystemWarning(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemError v => SystemError(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemRecovery v => SystemRecovery(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemPatchApplied v => SystemPatchApplied(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventEncryptionEnabled v => EncryptionEnabled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventEncryptionDisabled v => EncryptionDisabled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventEncryptionKeyRotated v => EncryptionKeyRotated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventEncryptionKeyFailed v => EncryptionKeyFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSessionStarted v => SessionStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSessionExpired v => SessionExpired(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSessionRefreshed v => SessionRefreshed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSessionTerminated v => SessionTerminated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventTypingIndicatorSent v => TypingIndicatorSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventTypingIndicatorReceived v => TypingIndicatorReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPresenceSubscribed v => PresenceSubscribed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPresenceUnsubscribed v => PresenceUnsubscribed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPresenceSync v => PresenceSync(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPresenceUpdateFailed v => PresenceUpdateFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPushNotificationSent v => PushNotificationSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPushNotificationReceived v => PushNotificationReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPushNotificationOpened v => PushNotificationOpened(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPushNotificationFailed v => PushNotificationFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventReadReceiptSent v => ReadReceiptSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventReadReceiptFailed v => ReadReceiptFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventReadReceiptBlocked v => ReadReceiptBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBackupStarted v => BackupStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBackupCompleted v => BackupCompleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBackupFailed v => BackupFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventRestoreStarted v => RestoreStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventRestoreCompleted v => RestoreCompleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventRestoreFailed v => RestoreFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactSynced v => ContactSynced(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactSyncFailed v => ContactSyncFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactAdded v => ContactAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactRemoved v => ContactRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactBlocked v => ContactBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactUnblocked v => ContactUnblocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCommandExecuted v => CommandExecuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventShortcutUsed v => ShortcutUsed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventActionButtonClicked v => ActionButtonClicked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAdminMessageSent v => AdminMessageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAdminMessageDeleted v => AdminMessageDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAdminAnnouncement v => AdminAnnouncement(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAdminWarning v => AdminWarning(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAdminSilencedUser v => AdminSilencedUser(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSpamUserDetected v => SpamUserDetected(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSpamUserBlocked v => SpamUserBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSpamUserReported v => SpamUserReported(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventModerationActionTaken v => ModerationActionTaken(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventModerationFlagReviewed v => ModerationFlagReviewed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventModerationMessageHidden v => ModerationMessageHidden(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventModerationMessageRemoved v => ModerationMessageRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventExperimentStarted v => ExperimentStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventExperimentUpdated v => ExperimentUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventExperimentCompleted v => ExperimentCompleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventExperimentAborted v => ExperimentAborted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftSent v => GiftSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftReceived v => GiftReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftRedeemed v => GiftRedeemed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftFailed v => GiftFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStickerSent v => StickerSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStickerDeleted v => StickerDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventEmojiPackAdded v => EmojiPackAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventEmojiPackRemoved v => EmojiPackRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThemeChanged v => ThemeChanged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventWallpaperChanged v => WallpaperChanged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFontSizeChanged v => FontSizeChanged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSettingsUpdated v => SettingsUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventDeviceRegistered v => DeviceRegistered(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventDeviceUnregistered v => DeviceUnregistered(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventDeviceSwitched v => DeviceSwitched(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventDeviceSyncCompleted v => DeviceSyncCompleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventDeviceSyncFailed v => DeviceSyncFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLocationShared v => LocationShared(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLocationUpdated v => LocationUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLocationStopped v => LocationStopped(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLocationRequestSent v => LocationRequestSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLocationRequestAccepted v => LocationRequestAccepted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLocationRequestDeclined v => LocationRequestDeclined(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventQrScanSuccess v => QrScanSuccess(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventQrScanFailed v => QrScanFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventQrConnectionEstablished v => QrConnectionEstablished(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventQrConnectionTerminated v => QrConnectionTerminated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentRequestSent v => PaymentRequestSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentRequestReceived v => PaymentRequestReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentRequestAccepted v => PaymentRequestAccepted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentRequestDeclined v => PaymentRequestDeclined(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentSent v => PaymentSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentReceived v => PaymentReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentFailed v => PaymentFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentRefunded v => PaymentRefunded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPaymentWalletUpdated v => PaymentWalletUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSubscriptionStarted v => SubscriptionStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSubscriptionExpired v => SubscriptionExpired(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSubscriptionRenewed v => SubscriptionRenewed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSubscriptionCanceled v => SubscriptionCanceled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAiSummaryGenerated v => AiSummaryGenerated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAiSummaryFailed v => AiSummaryFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAiReplySuggested v => AiReplySuggested(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAiReplySelected v => AiReplySelected(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAiTranslationRequested v => AiTranslationRequested(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAiTranslationCompleted v => AiTranslationCompleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAiTranslationFailed v => AiTranslationFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCaptchaRequired v => CaptchaRequired(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCaptchaPassed v => CaptchaPassed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCaptchaFailed v => CaptchaFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventRateLimitWarning v => RateLimitWarning(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventRateLimitBlocked v => RateLimitBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLogoutRequested v => LogoutRequested(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventLogoutCompleted v => LogoutCompleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppOpened v => AppOpened(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppBackgrounded v => AppBackgrounded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppResumed v => AppResumed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppCrashed v => AppCrashed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppRestarted v => AppRestarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
       };
 
   T maybeWhen<T>({
@@ -1121,580 +1952,1554 @@ extension $ChatEventUnion on ChatEvent {
     required T Function() orElse,
   }) =>
       switch (this) {
-        ChatEventUserJoined v when UserJoined != null =>
-          UserJoined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserRejoined v when UserRejoined != null =>
-          UserRejoined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserLeft v when UserLeft != null =>
-          UserLeft(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserLeftForced v when UserLeftForced != null =>
-          UserLeftForced(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserKicked v when UserKicked != null =>
-          UserKicked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserBanned v when UserBanned != null =>
-          UserBanned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnbanned v when UserUnbanned != null =>
-          UserUnbanned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserMuted v when UserMuted != null =>
-          UserMuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnmuted v when UserUnmuted != null =>
-          UserUnmuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserBlocked v when UserBlocked != null =>
-          UserBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnblocked v when UserUnblocked != null =>
-          UserUnblocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserReported v when UserReported != null =>
-          UserReported(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserVerified v when UserVerified != null =>
-          UserVerified(v.userId, v.joinedAt, v.username, v.message),
+        ChatEventUserJoined v when UserJoined != null => UserJoined(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserRejoined v when UserRejoined != null => UserRejoined(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserLeft v when UserLeft != null => UserLeft(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserLeftForced v when UserLeftForced != null => UserLeftForced(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserKicked v when UserKicked != null => UserKicked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserBanned v when UserBanned != null => UserBanned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnbanned v when UserUnbanned != null => UserUnbanned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserMuted v when UserMuted != null => UserMuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnmuted v when UserUnmuted != null => UserUnmuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserBlocked v when UserBlocked != null => UserBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnblocked v when UserUnblocked != null => UserUnblocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserReported v when UserReported != null => UserReported(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserVerified v when UserVerified != null => UserVerified(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventUserTypingStarted v when UserTypingStarted != null =>
-          UserTypingStarted(v.userId, v.joinedAt, v.username, v.message),
+          UserTypingStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserTypingStopped v when UserTypingStopped != null =>
-          UserTypingStopped(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserOnline v when UserOnline != null =>
-          UserOnline(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserOffline v when UserOffline != null =>
-          UserOffline(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserIdle v when UserIdle != null =>
-          UserIdle(v.userId, v.joinedAt, v.username, v.message),
+          UserTypingStopped(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventUserOnline v when UserOnline != null => UserOnline(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserOffline v when UserOffline != null => UserOffline(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserIdle v when UserIdle != null => UserIdle(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventUserStatusChanged v when UserStatusChanged != null =>
-          UserStatusChanged(v.userId, v.joinedAt, v.username, v.message),
+          UserStatusChanged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserProfileUpdated v when UserProfileUpdated != null =>
-          UserProfileUpdated(v.userId, v.joinedAt, v.username, v.message),
+          UserProfileUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserAvatarUpdated v when UserAvatarUpdated != null =>
-          UserAvatarUpdated(v.userId, v.joinedAt, v.username, v.message),
+          UserAvatarUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserUsernameChanged v when UserUsernameChanged != null =>
-          UserUsernameChanged(v.userId, v.joinedAt, v.username, v.message),
+          UserUsernameChanged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserRolePromoted v when UserRolePromoted != null =>
-          UserRolePromoted(v.userId, v.joinedAt, v.username, v.message),
+          UserRolePromoted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserRoleDemoted v when UserRoleDemoted != null =>
-          UserRoleDemoted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserInvited v when UserInvited != null =>
-          UserInvited(v.userId, v.joinedAt, v.username, v.message),
+          UserRoleDemoted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventUserInvited v when UserInvited != null => UserInvited(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventUserInviteRevoked v when UserInviteRevoked != null =>
-          UserInviteRevoked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserFollowed v when UserFollowed != null =>
-          UserFollowed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnfollowed v when UserUnfollowed != null =>
-          UserUnfollowed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserPinged v when UserPinged != null =>
-          UserPinged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageSent v when MessageSent != null =>
-          MessageSent(v.userId, v.joinedAt, v.username, v.message),
+          UserInviteRevoked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventUserFollowed v when UserFollowed != null => UserFollowed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnfollowed v when UserUnfollowed != null => UserUnfollowed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserPinged v when UserPinged != null => UserPinged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageSent v when MessageSent != null => MessageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageReceived v when MessageReceived != null =>
-          MessageReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageRead v when MessageRead != null =>
-          MessageRead(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnread v when MessageUnread != null =>
-          MessageUnread(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageEdited v when MessageEdited != null =>
-          MessageEdited(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageDeleted v when MessageDeleted != null =>
-          MessageDeleted(v.userId, v.joinedAt, v.username, v.message),
+          MessageReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageRead v when MessageRead != null => MessageRead(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnread v when MessageUnread != null => MessageUnread(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageEdited v when MessageEdited != null => MessageEdited(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageDeleted v when MessageDeleted != null => MessageDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageDeletedForSelf v when MessageDeletedForSelf != null =>
-          MessageDeletedForSelf(v.userId, v.joinedAt, v.username, v.message),
+          MessageDeletedForSelf(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageDeletedForAll v when MessageDeletedForAll != null =>
-          MessageDeletedForAll(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessagePinned v when MessagePinned != null =>
-          MessagePinned(v.userId, v.joinedAt, v.username, v.message),
+          MessageDeletedForAll(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessagePinned v when MessagePinned != null => MessagePinned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageUnpinned v when MessageUnpinned != null =>
-          MessageUnpinned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageStarred v when MessageStarred != null =>
-          MessageStarred(v.userId, v.joinedAt, v.username, v.message),
+          MessageUnpinned(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageStarred v when MessageStarred != null => MessageStarred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageUnstarred v when MessageUnstarred != null =>
-          MessageUnstarred(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageLiked v when MessageLiked != null =>
-          MessageLiked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnliked v when MessageUnliked != null =>
-          MessageUnliked(v.userId, v.joinedAt, v.username, v.message),
+          MessageUnstarred(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageLiked v when MessageLiked != null => MessageLiked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnliked v when MessageUnliked != null => MessageUnliked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageDisliked v when MessageDisliked != null =>
-          MessageDisliked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageReacted v when MessageReacted != null =>
-          MessageReacted(v.userId, v.joinedAt, v.username, v.message),
+          MessageDisliked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageReacted v when MessageReacted != null => MessageReacted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageUnreacted v when MessageUnreacted != null =>
-          MessageUnreacted(v.userId, v.joinedAt, v.username, v.message),
+          MessageUnreacted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageForwarded v when MessageForwarded != null =>
-          MessageForwarded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageQuoted v when MessageQuoted != null =>
-          MessageQuoted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageFlagged v when MessageFlagged != null =>
-          MessageFlagged(v.userId, v.joinedAt, v.username, v.message),
+          MessageForwarded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageQuoted v when MessageQuoted != null => MessageQuoted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageFlagged v when MessageFlagged != null => MessageFlagged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageUnflagged v when MessageUnflagged != null =>
-          MessageUnflagged(v.userId, v.joinedAt, v.username, v.message),
+          MessageUnflagged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageSpamDetected v when MessageSpamDetected != null =>
-          MessageSpamDetected(v.userId, v.joinedAt, v.username, v.message),
+          MessageSpamDetected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageDeliveryFailed v when MessageDeliveryFailed != null =>
-          MessageDeliveryFailed(v.userId, v.joinedAt, v.username, v.message),
+          MessageDeliveryFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageScheduled v when MessageScheduled != null =>
-          MessageScheduled(v.userId, v.joinedAt, v.username, v.message),
+          MessageScheduled(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageScheduledSent v when MessageScheduledSent != null =>
-          MessageScheduledSent(v.userId, v.joinedAt, v.username, v.message),
+          MessageScheduledSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageScheduledFailed v when MessageScheduledFailed != null =>
-          MessageScheduledFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageHidden v when MessageHidden != null =>
-          MessageHidden(v.userId, v.joinedAt, v.username, v.message),
+          MessageScheduledFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageHidden v when MessageHidden != null => MessageHidden(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageRestored v when MessageRestored != null =>
-          MessageRestored(v.userId, v.joinedAt, v.username, v.message),
+          MessageRestored(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentUploaded v when AttachmentUploaded != null =>
-          AttachmentUploaded(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentUploaded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentFailed v when AttachmentFailed != null =>
-          AttachmentFailed(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDeleted v when AttachmentDeleted != null =>
-          AttachmentDeleted(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentDeleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentPreviewGenerated v
             when AttachmentPreviewGenerated != null =>
           AttachmentPreviewGenerated(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDownloaded v when AttachmentDownloaded != null =>
-          AttachmentDownloaded(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentDownloaded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDownloadStarted v
             when AttachmentDownloadStarted != null =>
           AttachmentDownloadStarted(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDownloadCancelled v
             when AttachmentDownloadCancelled != null =>
           AttachmentDownloadCancelled(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDownloadFailed v
             when AttachmentDownloadFailed != null =>
-          AttachmentDownloadFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageSent v when ImageSent != null =>
-          ImageSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageReceived v when ImageReceived != null =>
-          ImageReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageDeleted v when ImageDeleted != null =>
-          ImageDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageBlurred v when ImageBlurred != null =>
-          ImageBlurred(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageUnblurred v when ImageUnblurred != null =>
-          ImageUnblurred(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentDownloadFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventImageSent v when ImageSent != null => ImageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageReceived v when ImageReceived != null => ImageReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageDeleted v when ImageDeleted != null => ImageDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageBlurred v when ImageBlurred != null => ImageBlurred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageUnblurred v when ImageUnblurred != null => ImageUnblurred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventImageCompressed v when ImageCompressed != null =>
-          ImageCompressed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoSent v when VideoSent != null =>
-          VideoSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoReceived v when VideoReceived != null =>
-          VideoReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoPlayed v when VideoPlayed != null =>
-          VideoPlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoPaused v when VideoPaused != null =>
-          VideoPaused(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoStopped v when VideoStopped != null =>
-          VideoStopped(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoSeeked v when VideoSeeked != null =>
-          VideoSeeked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoDeleted v when VideoDeleted != null =>
-          VideoDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoMuted v when VideoMuted != null =>
-          VideoMuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoUnmuted v when VideoUnmuted != null =>
-          VideoUnmuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioSent v when AudioSent != null =>
-          AudioSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioReceived v when AudioReceived != null =>
-          AudioReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioPlayed v when AudioPlayed != null =>
-          AudioPlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioPaused v when AudioPaused != null =>
-          AudioPaused(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioDeleted v when AudioDeleted != null =>
-          AudioDeleted(v.userId, v.joinedAt, v.username, v.message),
+          ImageCompressed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventVideoSent v when VideoSent != null => VideoSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoReceived v when VideoReceived != null => VideoReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoPlayed v when VideoPlayed != null => VideoPlayed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoPaused v when VideoPaused != null => VideoPaused(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoStopped v when VideoStopped != null => VideoStopped(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoSeeked v when VideoSeeked != null => VideoSeeked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoDeleted v when VideoDeleted != null => VideoDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoMuted v when VideoMuted != null => VideoMuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoUnmuted v when VideoUnmuted != null => VideoUnmuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioSent v when AudioSent != null => AudioSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioReceived v when AudioReceived != null => AudioReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioPlayed v when AudioPlayed != null => AudioPlayed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioPaused v when AudioPaused != null => AudioPaused(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioDeleted v when AudioDeleted != null => AudioDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAudioTranscribed v when AudioTranscribed != null =>
-          AudioTranscribed(v.userId, v.joinedAt, v.username, v.message),
+          AudioTranscribed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAudioTranscriptionFailed v
             when AudioTranscriptionFailed != null =>
-          AudioTranscriptionFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileSent v when FileSent != null =>
-          FileSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileReceived v when FileReceived != null =>
-          FileReceived(v.userId, v.joinedAt, v.username, v.message),
+          AudioTranscriptionFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventFileSent v when FileSent != null => FileSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFileReceived v when FileReceived != null => FileReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventFilePreviewGenerated v when FilePreviewGenerated != null =>
-          FilePreviewGenerated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileDeleted v when FileDeleted != null =>
-          FileDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileDownloaded v when FileDownloaded != null =>
-          FileDownloaded(v.userId, v.joinedAt, v.username, v.message),
+          FilePreviewGenerated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventFileDeleted v when FileDeleted != null => FileDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFileDownloaded v when FileDownloaded != null => FileDownloaded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventLinkPreviewGenerated v when LinkPreviewGenerated != null =>
-          LinkPreviewGenerated(v.userId, v.joinedAt, v.username, v.message),
+          LinkPreviewGenerated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLinkPreviewFailed v when LinkPreviewFailed != null =>
-          LinkPreviewFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReactionAdded v when ReactionAdded != null =>
-          ReactionAdded(v.userId, v.joinedAt, v.username, v.message),
+          LinkPreviewFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventReactionAdded v when ReactionAdded != null => ReactionAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventReactionRemoved v when ReactionRemoved != null =>
-          ReactionRemoved(v.userId, v.joinedAt, v.username, v.message),
+          ReactionRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReactionUpdated v when ReactionUpdated != null =>
-          ReactionUpdated(v.userId, v.joinedAt, v.username, v.message),
+          ReactionUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReactionCleared v when ReactionCleared != null =>
-          ReactionCleared(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadCreated v when ThreadCreated != null =>
-          ThreadCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadUpdated v when ThreadUpdated != null =>
-          ThreadUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadDeleted v when ThreadDeleted != null =>
-          ThreadDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadArchived v when ThreadArchived != null =>
-          ThreadArchived(v.userId, v.joinedAt, v.username, v.message),
+          ReactionCleared(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventThreadCreated v when ThreadCreated != null => ThreadCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadUpdated v when ThreadUpdated != null => ThreadUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadDeleted v when ThreadDeleted != null => ThreadDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadArchived v when ThreadArchived != null => ThreadArchived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventThreadUnarchived v when ThreadUnarchived != null =>
-          ThreadUnarchived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelCreated v when ChannelCreated != null =>
-          ChannelCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelRenamed v when ChannelRenamed != null =>
-          ChannelRenamed(v.userId, v.joinedAt, v.username, v.message),
+          ThreadUnarchived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventChannelCreated v when ChannelCreated != null => ChannelCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelRenamed v when ChannelRenamed != null => ChannelRenamed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelDescriptionUpdated v
             when ChannelDescriptionUpdated != null =>
           ChannelDescriptionUpdated(
-              v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelDeleted v when ChannelDeleted != null =>
-          ChannelDeleted(v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventChannelDeleted v when ChannelDeleted != null => ChannelDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelArchived v when ChannelArchived != null =>
-          ChannelArchived(v.userId, v.joinedAt, v.username, v.message),
+          ChannelArchived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventChannelUnarchived v when ChannelUnarchived != null =>
-          ChannelUnarchived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelLocked v when ChannelLocked != null =>
-          ChannelLocked(v.userId, v.joinedAt, v.username, v.message),
+          ChannelUnarchived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventChannelLocked v when ChannelLocked != null => ChannelLocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelUnlocked v when ChannelUnlocked != null =>
-          ChannelUnlocked(v.userId, v.joinedAt, v.username, v.message),
+          ChannelUnlocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventChannelMigrated v when ChannelMigrated != null =>
-          ChannelMigrated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelHidden v when ChannelHidden != null =>
-          ChannelHidden(v.userId, v.joinedAt, v.username, v.message),
+          ChannelMigrated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventChannelHidden v when ChannelHidden != null => ChannelHidden(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelUnhidden v when ChannelUnhidden != null =>
-          ChannelUnhidden(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupCreated v when GroupCreated != null =>
-          GroupCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupUpdated v when GroupUpdated != null =>
-          GroupUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupDeleted v when GroupDeleted != null =>
-          GroupDeleted(v.userId, v.joinedAt, v.username, v.message),
+          ChannelUnhidden(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventGroupCreated v when GroupCreated != null => GroupCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupUpdated v when GroupUpdated != null => GroupUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupDeleted v when GroupDeleted != null => GroupDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventGroupIconUpdated v when GroupIconUpdated != null =>
-          GroupIconUpdated(v.userId, v.joinedAt, v.username, v.message),
+          GroupIconUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupAdminAdded v when GroupAdminAdded != null =>
-          GroupAdminAdded(v.userId, v.joinedAt, v.username, v.message),
+          GroupAdminAdded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupAdminRemoved v when GroupAdminRemoved != null =>
-          GroupAdminRemoved(v.userId, v.joinedAt, v.username, v.message),
+          GroupAdminRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupMemberAdded v when GroupMemberAdded != null =>
-          GroupMemberAdded(v.userId, v.joinedAt, v.username, v.message),
+          GroupMemberAdded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupMemberRemoved v when GroupMemberRemoved != null =>
-          GroupMemberRemoved(v.userId, v.joinedAt, v.username, v.message),
+          GroupMemberRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupMemberLeft v when GroupMemberLeft != null =>
-          GroupMemberLeft(v.userId, v.joinedAt, v.username, v.message),
+          GroupMemberLeft(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupMemberKicked v when GroupMemberKicked != null =>
-          GroupMemberKicked(v.userId, v.joinedAt, v.username, v.message),
+          GroupMemberKicked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupInfoViewed v when GroupInfoViewed != null =>
-          GroupInfoViewed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallStarted v when CallStarted != null =>
-          CallStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallEnded v when CallEnded != null =>
-          CallEnded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallMissed v when CallMissed != null =>
-          CallMissed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallRejected v when CallRejected != null =>
-          CallRejected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallAccepted v when CallAccepted != null =>
-          CallAccepted(v.userId, v.joinedAt, v.username, v.message),
+          GroupInfoViewed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventCallStarted v when CallStarted != null => CallStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallEnded v when CallEnded != null => CallEnded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallMissed v when CallMissed != null => CallMissed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallRejected v when CallRejected != null => CallRejected(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallAccepted v when CallAccepted != null => CallAccepted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventCallReconnecting v when CallReconnecting != null =>
-          CallReconnecting(v.userId, v.joinedAt, v.username, v.message),
+          CallReconnecting(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCallReconnected v when CallReconnected != null =>
-          CallReconnected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallNetworkLow v when CallNetworkLow != null =>
-          CallNetworkLow(v.userId, v.joinedAt, v.username, v.message),
+          CallReconnected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventCallNetworkLow v when CallNetworkLow != null => CallNetworkLow(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventCallMediaPermissionDenied v
             when CallMediaPermissionDenied != null =>
           CallMediaPermissionDenied(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCallRecordingStarted v when CallRecordingStarted != null =>
-          CallRecordingStarted(v.userId, v.joinedAt, v.username, v.message),
+          CallRecordingStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCallRecordingStopped v when CallRecordingStopped != null =>
-          CallRecordingStopped(v.userId, v.joinedAt, v.username, v.message),
+          CallRecordingStopped(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventVideoCallStarted v when VideoCallStarted != null =>
-          VideoCallStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoCallEnded v when VideoCallEnded != null =>
-          VideoCallEnded(v.userId, v.joinedAt, v.username, v.message),
+          VideoCallStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventVideoCallEnded v when VideoCallEnded != null => VideoCallEnded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventVideoCallMissed v when VideoCallMissed != null =>
-          VideoCallMissed(v.userId, v.joinedAt, v.username, v.message),
+          VideoCallMissed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventVideoCallRejected v when VideoCallRejected != null =>
-          VideoCallRejected(v.userId, v.joinedAt, v.username, v.message),
+          VideoCallRejected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventVideoCallAccepted v when VideoCallAccepted != null =>
-          VideoCallAccepted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVoiceNoteSent v when VoiceNoteSent != null =>
-          VoiceNoteSent(v.userId, v.joinedAt, v.username, v.message),
+          VideoCallAccepted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventVoiceNoteSent v when VoiceNoteSent != null => VoiceNoteSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventVoiceNoteDeleted v when VoiceNoteDeleted != null =>
-          VoiceNoteDeleted(v.userId, v.joinedAt, v.username, v.message),
+          VoiceNoteDeleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventVoiceNotePlayed v when VoiceNotePlayed != null =>
-          VoiceNotePlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollCreated v when PollCreated != null =>
-          PollCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollVoteCast v when PollVoteCast != null =>
-          PollVoteCast(v.userId, v.joinedAt, v.username, v.message),
+          VoiceNotePlayed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPollCreated v when PollCreated != null => PollCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPollVoteCast v when PollVoteCast != null => PollVoteCast(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventPollVoteRemoved v when PollVoteRemoved != null =>
-          PollVoteRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollClosed v when PollClosed != null =>
-          PollClosed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryPosted v when StoryPosted != null =>
-          StoryPosted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryDeleted v when StoryDeleted != null =>
-          StoryDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryViewed v when StoryViewed != null =>
-          StoryViewed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryReacted v when StoryReacted != null =>
-          StoryReacted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotMessageSent v when BotMessageSent != null =>
-          BotMessageSent(v.userId, v.joinedAt, v.username, v.message),
+          PollVoteRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPollClosed v when PollClosed != null => PollClosed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryPosted v when StoryPosted != null => StoryPosted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryDeleted v when StoryDeleted != null => StoryDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryViewed v when StoryViewed != null => StoryViewed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryReacted v when StoryReacted != null => StoryReacted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotMessageSent v when BotMessageSent != null => BotMessageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventBotMessageDeleted v when BotMessageDeleted != null =>
-          BotMessageDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotTriggered v when BotTriggered != null =>
-          BotTriggered(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotDisabled v when BotDisabled != null =>
-          BotDisabled(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotEnabled v when BotEnabled != null =>
-          BotEnabled(v.userId, v.joinedAt, v.username, v.message),
+          BotMessageDeleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventBotTriggered v when BotTriggered != null => BotTriggered(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotDisabled v when BotDisabled != null => BotDisabled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotEnabled v when BotEnabled != null => BotEnabled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventSystemBroadcast v when SystemBroadcast != null =>
-          SystemBroadcast(v.userId, v.joinedAt, v.username, v.message),
+          SystemBroadcast(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSystemMaintenanceScheduled v
             when SystemMaintenanceScheduled != null =>
           SystemMaintenanceScheduled(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSystemMaintenanceStarted v
             when SystemMaintenanceStarted != null =>
-          SystemMaintenanceStarted(v.userId, v.joinedAt, v.username, v.message),
+          SystemMaintenanceStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSystemMaintenanceEnded v when SystemMaintenanceEnded != null =>
-          SystemMaintenanceEnded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemWarning v when SystemWarning != null =>
-          SystemWarning(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemError v when SystemError != null =>
-          SystemError(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemRecovery v when SystemRecovery != null =>
-          SystemRecovery(v.userId, v.joinedAt, v.username, v.message),
+          SystemMaintenanceEnded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventSystemWarning v when SystemWarning != null => SystemWarning(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemError v when SystemError != null => SystemError(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemRecovery v when SystemRecovery != null => SystemRecovery(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventSystemPatchApplied v when SystemPatchApplied != null =>
-          SystemPatchApplied(v.userId, v.joinedAt, v.username, v.message),
+          SystemPatchApplied(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventEncryptionEnabled v when EncryptionEnabled != null =>
-          EncryptionEnabled(v.userId, v.joinedAt, v.username, v.message),
+          EncryptionEnabled(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventEncryptionDisabled v when EncryptionDisabled != null =>
-          EncryptionDisabled(v.userId, v.joinedAt, v.username, v.message),
+          EncryptionDisabled(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventEncryptionKeyRotated v when EncryptionKeyRotated != null =>
-          EncryptionKeyRotated(v.userId, v.joinedAt, v.username, v.message),
+          EncryptionKeyRotated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventEncryptionKeyFailed v when EncryptionKeyFailed != null =>
-          EncryptionKeyFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSessionStarted v when SessionStarted != null =>
-          SessionStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSessionExpired v when SessionExpired != null =>
-          SessionExpired(v.userId, v.joinedAt, v.username, v.message),
+          EncryptionKeyFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventSessionStarted v when SessionStarted != null => SessionStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSessionExpired v when SessionExpired != null => SessionExpired(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventSessionRefreshed v when SessionRefreshed != null =>
-          SessionRefreshed(v.userId, v.joinedAt, v.username, v.message),
+          SessionRefreshed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSessionTerminated v when SessionTerminated != null =>
-          SessionTerminated(v.userId, v.joinedAt, v.username, v.message),
+          SessionTerminated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventTypingIndicatorSent v when TypingIndicatorSent != null =>
-          TypingIndicatorSent(v.userId, v.joinedAt, v.username, v.message),
+          TypingIndicatorSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventTypingIndicatorReceived v
             when TypingIndicatorReceived != null =>
-          TypingIndicatorReceived(v.userId, v.joinedAt, v.username, v.message),
+          TypingIndicatorReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPresenceSubscribed v when PresenceSubscribed != null =>
-          PresenceSubscribed(v.userId, v.joinedAt, v.username, v.message),
+          PresenceSubscribed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPresenceUnsubscribed v when PresenceUnsubscribed != null =>
-          PresenceUnsubscribed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPresenceSync v when PresenceSync != null =>
-          PresenceSync(v.userId, v.joinedAt, v.username, v.message),
+          PresenceUnsubscribed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPresenceSync v when PresenceSync != null => PresenceSync(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventPresenceUpdateFailed v when PresenceUpdateFailed != null =>
-          PresenceUpdateFailed(v.userId, v.joinedAt, v.username, v.message),
+          PresenceUpdateFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPushNotificationSent v when PushNotificationSent != null =>
-          PushNotificationSent(v.userId, v.joinedAt, v.username, v.message),
+          PushNotificationSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPushNotificationReceived v
             when PushNotificationReceived != null =>
-          PushNotificationReceived(v.userId, v.joinedAt, v.username, v.message),
+          PushNotificationReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPushNotificationOpened v when PushNotificationOpened != null =>
-          PushNotificationOpened(v.userId, v.joinedAt, v.username, v.message),
+          PushNotificationOpened(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPushNotificationFailed v when PushNotificationFailed != null =>
-          PushNotificationFailed(v.userId, v.joinedAt, v.username, v.message),
+          PushNotificationFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReadReceiptSent v when ReadReceiptSent != null =>
-          ReadReceiptSent(v.userId, v.joinedAt, v.username, v.message),
+          ReadReceiptSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReadReceiptFailed v when ReadReceiptFailed != null =>
-          ReadReceiptFailed(v.userId, v.joinedAt, v.username, v.message),
+          ReadReceiptFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReadReceiptBlocked v when ReadReceiptBlocked != null =>
-          ReadReceiptBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBackupStarted v when BackupStarted != null =>
-          BackupStarted(v.userId, v.joinedAt, v.username, v.message),
+          ReadReceiptBlocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventBackupStarted v when BackupStarted != null => BackupStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventBackupCompleted v when BackupCompleted != null =>
-          BackupCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBackupFailed v when BackupFailed != null =>
-          BackupFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRestoreStarted v when RestoreStarted != null =>
-          RestoreStarted(v.userId, v.joinedAt, v.username, v.message),
+          BackupCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventBackupFailed v when BackupFailed != null => BackupFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventRestoreStarted v when RestoreStarted != null => RestoreStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventRestoreCompleted v when RestoreCompleted != null =>
-          RestoreCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRestoreFailed v when RestoreFailed != null =>
-          RestoreFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactSynced v when ContactSynced != null =>
-          ContactSynced(v.userId, v.joinedAt, v.username, v.message),
+          RestoreCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventRestoreFailed v when RestoreFailed != null => RestoreFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactSynced v when ContactSynced != null => ContactSynced(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventContactSyncFailed v when ContactSyncFailed != null =>
-          ContactSyncFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactAdded v when ContactAdded != null =>
-          ContactAdded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactRemoved v when ContactRemoved != null =>
-          ContactRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactBlocked v when ContactBlocked != null =>
-          ContactBlocked(v.userId, v.joinedAt, v.username, v.message),
+          ContactSyncFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventContactAdded v when ContactAdded != null => ContactAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactRemoved v when ContactRemoved != null => ContactRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactBlocked v when ContactBlocked != null => ContactBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventContactUnblocked v when ContactUnblocked != null =>
-          ContactUnblocked(v.userId, v.joinedAt, v.username, v.message),
+          ContactUnblocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCommandExecuted v when CommandExecuted != null =>
-          CommandExecuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventShortcutUsed v when ShortcutUsed != null =>
-          ShortcutUsed(v.userId, v.joinedAt, v.username, v.message),
+          CommandExecuted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventShortcutUsed v when ShortcutUsed != null => ShortcutUsed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventActionButtonClicked v when ActionButtonClicked != null =>
-          ActionButtonClicked(v.userId, v.joinedAt, v.username, v.message),
+          ActionButtonClicked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAdminMessageSent v when AdminMessageSent != null =>
-          AdminMessageSent(v.userId, v.joinedAt, v.username, v.message),
+          AdminMessageSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAdminMessageDeleted v when AdminMessageDeleted != null =>
-          AdminMessageDeleted(v.userId, v.joinedAt, v.username, v.message),
+          AdminMessageDeleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAdminAnnouncement v when AdminAnnouncement != null =>
-          AdminAnnouncement(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAdminWarning v when AdminWarning != null =>
-          AdminWarning(v.userId, v.joinedAt, v.username, v.message),
+          AdminAnnouncement(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventAdminWarning v when AdminWarning != null => AdminWarning(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAdminSilencedUser v when AdminSilencedUser != null =>
-          AdminSilencedUser(v.userId, v.joinedAt, v.username, v.message),
+          AdminSilencedUser(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSpamUserDetected v when SpamUserDetected != null =>
-          SpamUserDetected(v.userId, v.joinedAt, v.username, v.message),
+          SpamUserDetected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSpamUserBlocked v when SpamUserBlocked != null =>
-          SpamUserBlocked(v.userId, v.joinedAt, v.username, v.message),
+          SpamUserBlocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSpamUserReported v when SpamUserReported != null =>
-          SpamUserReported(v.userId, v.joinedAt, v.username, v.message),
+          SpamUserReported(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventModerationActionTaken v when ModerationActionTaken != null =>
-          ModerationActionTaken(v.userId, v.joinedAt, v.username, v.message),
+          ModerationActionTaken(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventModerationFlagReviewed v when ModerationFlagReviewed != null =>
-          ModerationFlagReviewed(v.userId, v.joinedAt, v.username, v.message),
+          ModerationFlagReviewed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventModerationMessageHidden v
             when ModerationMessageHidden != null =>
-          ModerationMessageHidden(v.userId, v.joinedAt, v.username, v.message),
+          ModerationMessageHidden(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventModerationMessageRemoved v
             when ModerationMessageRemoved != null =>
-          ModerationMessageRemoved(v.userId, v.joinedAt, v.username, v.message),
+          ModerationMessageRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventExperimentStarted v when ExperimentStarted != null =>
-          ExperimentStarted(v.userId, v.joinedAt, v.username, v.message),
+          ExperimentStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventExperimentUpdated v when ExperimentUpdated != null =>
-          ExperimentUpdated(v.userId, v.joinedAt, v.username, v.message),
+          ExperimentUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventExperimentCompleted v when ExperimentCompleted != null =>
-          ExperimentCompleted(v.userId, v.joinedAt, v.username, v.message),
+          ExperimentCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventExperimentAborted v when ExperimentAborted != null =>
-          ExperimentAborted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftSent v when GiftSent != null =>
-          GiftSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftReceived v when GiftReceived != null =>
-          GiftReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftRedeemed v when GiftRedeemed != null =>
-          GiftRedeemed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftFailed v when GiftFailed != null =>
-          GiftFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStickerSent v when StickerSent != null =>
-          StickerSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStickerDeleted v when StickerDeleted != null =>
-          StickerDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventEmojiPackAdded v when EmojiPackAdded != null =>
-          EmojiPackAdded(v.userId, v.joinedAt, v.username, v.message),
+          ExperimentAborted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventGiftSent v when GiftSent != null => GiftSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftReceived v when GiftReceived != null => GiftReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftRedeemed v when GiftRedeemed != null => GiftRedeemed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftFailed v when GiftFailed != null => GiftFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStickerSent v when StickerSent != null => StickerSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStickerDeleted v when StickerDeleted != null => StickerDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventEmojiPackAdded v when EmojiPackAdded != null => EmojiPackAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventEmojiPackRemoved v when EmojiPackRemoved != null =>
-          EmojiPackRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThemeChanged v when ThemeChanged != null =>
-          ThemeChanged(v.userId, v.joinedAt, v.username, v.message),
+          EmojiPackRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventThemeChanged v when ThemeChanged != null => ThemeChanged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventWallpaperChanged v when WallpaperChanged != null =>
-          WallpaperChanged(v.userId, v.joinedAt, v.username, v.message),
+          WallpaperChanged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventFontSizeChanged v when FontSizeChanged != null =>
-          FontSizeChanged(v.userId, v.joinedAt, v.username, v.message),
+          FontSizeChanged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSettingsUpdated v when SettingsUpdated != null =>
-          SettingsUpdated(v.userId, v.joinedAt, v.username, v.message),
+          SettingsUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventDeviceRegistered v when DeviceRegistered != null =>
-          DeviceRegistered(v.userId, v.joinedAt, v.username, v.message),
+          DeviceRegistered(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventDeviceUnregistered v when DeviceUnregistered != null =>
-          DeviceUnregistered(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventDeviceSwitched v when DeviceSwitched != null =>
-          DeviceSwitched(v.userId, v.joinedAt, v.username, v.message),
+          DeviceUnregistered(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventDeviceSwitched v when DeviceSwitched != null => DeviceSwitched(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventDeviceSyncCompleted v when DeviceSyncCompleted != null =>
-          DeviceSyncCompleted(v.userId, v.joinedAt, v.username, v.message),
+          DeviceSyncCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventDeviceSyncFailed v when DeviceSyncFailed != null =>
-          DeviceSyncFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLocationShared v when LocationShared != null =>
-          LocationShared(v.userId, v.joinedAt, v.username, v.message),
+          DeviceSyncFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventLocationShared v when LocationShared != null => LocationShared(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventLocationUpdated v when LocationUpdated != null =>
-          LocationUpdated(v.userId, v.joinedAt, v.username, v.message),
+          LocationUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLocationStopped v when LocationStopped != null =>
-          LocationStopped(v.userId, v.joinedAt, v.username, v.message),
+          LocationStopped(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLocationRequestSent v when LocationRequestSent != null =>
-          LocationRequestSent(v.userId, v.joinedAt, v.username, v.message),
+          LocationRequestSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLocationRequestAccepted v
             when LocationRequestAccepted != null =>
-          LocationRequestAccepted(v.userId, v.joinedAt, v.username, v.message),
+          LocationRequestAccepted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLocationRequestDeclined v
             when LocationRequestDeclined != null =>
-          LocationRequestDeclined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventQrScanSuccess v when QrScanSuccess != null =>
-          QrScanSuccess(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventQrScanFailed v when QrScanFailed != null =>
-          QrScanFailed(v.userId, v.joinedAt, v.username, v.message),
+          LocationRequestDeclined(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventQrScanSuccess v when QrScanSuccess != null => QrScanSuccess(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventQrScanFailed v when QrScanFailed != null => QrScanFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventQrConnectionEstablished v
             when QrConnectionEstablished != null =>
-          QrConnectionEstablished(v.userId, v.joinedAt, v.username, v.message),
+          QrConnectionEstablished(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventQrConnectionTerminated v when QrConnectionTerminated != null =>
-          QrConnectionTerminated(v.userId, v.joinedAt, v.username, v.message),
+          QrConnectionTerminated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentRequestSent v when PaymentRequestSent != null =>
-          PaymentRequestSent(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRequestSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentRequestReceived v when PaymentRequestReceived != null =>
-          PaymentRequestReceived(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRequestReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentRequestAccepted v when PaymentRequestAccepted != null =>
-          PaymentRequestAccepted(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRequestAccepted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentRequestDeclined v when PaymentRequestDeclined != null =>
-          PaymentRequestDeclined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentSent v when PaymentSent != null =>
-          PaymentSent(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRequestDeclined(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPaymentSent v when PaymentSent != null => PaymentSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventPaymentReceived v when PaymentReceived != null =>
-          PaymentReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentFailed v when PaymentFailed != null =>
-          PaymentFailed(v.userId, v.joinedAt, v.username, v.message),
+          PaymentReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPaymentFailed v when PaymentFailed != null => PaymentFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventPaymentRefunded v when PaymentRefunded != null =>
-          PaymentRefunded(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRefunded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentWalletUpdated v when PaymentWalletUpdated != null =>
-          PaymentWalletUpdated(v.userId, v.joinedAt, v.username, v.message),
+          PaymentWalletUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSubscriptionStarted v when SubscriptionStarted != null =>
-          SubscriptionStarted(v.userId, v.joinedAt, v.username, v.message),
+          SubscriptionStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSubscriptionExpired v when SubscriptionExpired != null =>
-          SubscriptionExpired(v.userId, v.joinedAt, v.username, v.message),
+          SubscriptionExpired(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSubscriptionRenewed v when SubscriptionRenewed != null =>
-          SubscriptionRenewed(v.userId, v.joinedAt, v.username, v.message),
+          SubscriptionRenewed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSubscriptionCanceled v when SubscriptionCanceled != null =>
-          SubscriptionCanceled(v.userId, v.joinedAt, v.username, v.message),
+          SubscriptionCanceled(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiSummaryGenerated v when AiSummaryGenerated != null =>
-          AiSummaryGenerated(v.userId, v.joinedAt, v.username, v.message),
+          AiSummaryGenerated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiSummaryFailed v when AiSummaryFailed != null =>
-          AiSummaryFailed(v.userId, v.joinedAt, v.username, v.message),
+          AiSummaryFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiReplySuggested v when AiReplySuggested != null =>
-          AiReplySuggested(v.userId, v.joinedAt, v.username, v.message),
+          AiReplySuggested(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiReplySelected v when AiReplySelected != null =>
-          AiReplySelected(v.userId, v.joinedAt, v.username, v.message),
+          AiReplySelected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiTranslationRequested v when AiTranslationRequested != null =>
-          AiTranslationRequested(v.userId, v.joinedAt, v.username, v.message),
+          AiTranslationRequested(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiTranslationCompleted v when AiTranslationCompleted != null =>
-          AiTranslationCompleted(v.userId, v.joinedAt, v.username, v.message),
+          AiTranslationCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiTranslationFailed v when AiTranslationFailed != null =>
-          AiTranslationFailed(v.userId, v.joinedAt, v.username, v.message),
+          AiTranslationFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCaptchaRequired v when CaptchaRequired != null =>
-          CaptchaRequired(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCaptchaPassed v when CaptchaPassed != null =>
-          CaptchaPassed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCaptchaFailed v when CaptchaFailed != null =>
-          CaptchaFailed(v.userId, v.joinedAt, v.username, v.message),
+          CaptchaRequired(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventCaptchaPassed v when CaptchaPassed != null => CaptchaPassed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCaptchaFailed v when CaptchaFailed != null => CaptchaFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventRateLimitWarning v when RateLimitWarning != null =>
-          RateLimitWarning(v.userId, v.joinedAt, v.username, v.message),
+          RateLimitWarning(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventRateLimitBlocked v when RateLimitBlocked != null =>
-          RateLimitBlocked(v.userId, v.joinedAt, v.username, v.message),
+          RateLimitBlocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLogoutRequested v when LogoutRequested != null =>
-          LogoutRequested(v.userId, v.joinedAt, v.username, v.message),
+          LogoutRequested(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLogoutCompleted v when LogoutCompleted != null =>
-          LogoutCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppOpened v when AppOpened != null =>
-          AppOpened(v.userId, v.joinedAt, v.username, v.message),
+          LogoutCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventAppOpened v when AppOpened != null => AppOpened(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAppBackgrounded v when AppBackgrounded != null =>
-          AppBackgrounded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppResumed v when AppResumed != null =>
-          AppResumed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppCrashed v when AppCrashed != null =>
-          AppCrashed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppRestarted v when AppRestarted != null =>
-          AppRestarted(v.userId, v.joinedAt, v.username, v.message),
+          AppBackgrounded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventAppResumed v when AppResumed != null => AppResumed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppCrashed v when AppCrashed != null => AppCrashed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppRestarted v when AppRestarted != null => AppRestarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         _ => orElse(),
       };
 
@@ -1977,580 +3782,1554 @@ extension $ChatEventUnion on ChatEvent {
     _$ChatEventSig0<T>? AppRestarted,
   }) =>
       switch (this) {
-        ChatEventUserJoined v when UserJoined != null =>
-          UserJoined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserRejoined v when UserRejoined != null =>
-          UserRejoined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserLeft v when UserLeft != null =>
-          UserLeft(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserLeftForced v when UserLeftForced != null =>
-          UserLeftForced(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserKicked v when UserKicked != null =>
-          UserKicked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserBanned v when UserBanned != null =>
-          UserBanned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnbanned v when UserUnbanned != null =>
-          UserUnbanned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserMuted v when UserMuted != null =>
-          UserMuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnmuted v when UserUnmuted != null =>
-          UserUnmuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserBlocked v when UserBlocked != null =>
-          UserBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnblocked v when UserUnblocked != null =>
-          UserUnblocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserReported v when UserReported != null =>
-          UserReported(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserVerified v when UserVerified != null =>
-          UserVerified(v.userId, v.joinedAt, v.username, v.message),
+        ChatEventUserJoined v when UserJoined != null => UserJoined(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserRejoined v when UserRejoined != null => UserRejoined(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserLeft v when UserLeft != null => UserLeft(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserLeftForced v when UserLeftForced != null => UserLeftForced(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserKicked v when UserKicked != null => UserKicked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserBanned v when UserBanned != null => UserBanned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnbanned v when UserUnbanned != null => UserUnbanned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserMuted v when UserMuted != null => UserMuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnmuted v when UserUnmuted != null => UserUnmuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserBlocked v when UserBlocked != null => UserBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnblocked v when UserUnblocked != null => UserUnblocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserReported v when UserReported != null => UserReported(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserVerified v when UserVerified != null => UserVerified(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventUserTypingStarted v when UserTypingStarted != null =>
-          UserTypingStarted(v.userId, v.joinedAt, v.username, v.message),
+          UserTypingStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserTypingStopped v when UserTypingStopped != null =>
-          UserTypingStopped(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserOnline v when UserOnline != null =>
-          UserOnline(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserOffline v when UserOffline != null =>
-          UserOffline(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserIdle v when UserIdle != null =>
-          UserIdle(v.userId, v.joinedAt, v.username, v.message),
+          UserTypingStopped(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventUserOnline v when UserOnline != null => UserOnline(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserOffline v when UserOffline != null => UserOffline(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserIdle v when UserIdle != null => UserIdle(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventUserStatusChanged v when UserStatusChanged != null =>
-          UserStatusChanged(v.userId, v.joinedAt, v.username, v.message),
+          UserStatusChanged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserProfileUpdated v when UserProfileUpdated != null =>
-          UserProfileUpdated(v.userId, v.joinedAt, v.username, v.message),
+          UserProfileUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserAvatarUpdated v when UserAvatarUpdated != null =>
-          UserAvatarUpdated(v.userId, v.joinedAt, v.username, v.message),
+          UserAvatarUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserUsernameChanged v when UserUsernameChanged != null =>
-          UserUsernameChanged(v.userId, v.joinedAt, v.username, v.message),
+          UserUsernameChanged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserRolePromoted v when UserRolePromoted != null =>
-          UserRolePromoted(v.userId, v.joinedAt, v.username, v.message),
+          UserRolePromoted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventUserRoleDemoted v when UserRoleDemoted != null =>
-          UserRoleDemoted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserInvited v when UserInvited != null =>
-          UserInvited(v.userId, v.joinedAt, v.username, v.message),
+          UserRoleDemoted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventUserInvited v when UserInvited != null => UserInvited(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventUserInviteRevoked v when UserInviteRevoked != null =>
-          UserInviteRevoked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserFollowed v when UserFollowed != null =>
-          UserFollowed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserUnfollowed v when UserUnfollowed != null =>
-          UserUnfollowed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventUserPinged v when UserPinged != null =>
-          UserPinged(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageSent v when MessageSent != null =>
-          MessageSent(v.userId, v.joinedAt, v.username, v.message),
+          UserInviteRevoked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventUserFollowed v when UserFollowed != null => UserFollowed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserUnfollowed v when UserUnfollowed != null => UserUnfollowed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventUserPinged v when UserPinged != null => UserPinged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageSent v when MessageSent != null => MessageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageReceived v when MessageReceived != null =>
-          MessageReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageRead v when MessageRead != null =>
-          MessageRead(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnread v when MessageUnread != null =>
-          MessageUnread(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageEdited v when MessageEdited != null =>
-          MessageEdited(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageDeleted v when MessageDeleted != null =>
-          MessageDeleted(v.userId, v.joinedAt, v.username, v.message),
+          MessageReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageRead v when MessageRead != null => MessageRead(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnread v when MessageUnread != null => MessageUnread(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageEdited v when MessageEdited != null => MessageEdited(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageDeleted v when MessageDeleted != null => MessageDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageDeletedForSelf v when MessageDeletedForSelf != null =>
-          MessageDeletedForSelf(v.userId, v.joinedAt, v.username, v.message),
+          MessageDeletedForSelf(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageDeletedForAll v when MessageDeletedForAll != null =>
-          MessageDeletedForAll(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessagePinned v when MessagePinned != null =>
-          MessagePinned(v.userId, v.joinedAt, v.username, v.message),
+          MessageDeletedForAll(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessagePinned v when MessagePinned != null => MessagePinned(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageUnpinned v when MessageUnpinned != null =>
-          MessageUnpinned(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageStarred v when MessageStarred != null =>
-          MessageStarred(v.userId, v.joinedAt, v.username, v.message),
+          MessageUnpinned(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageStarred v when MessageStarred != null => MessageStarred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageUnstarred v when MessageUnstarred != null =>
-          MessageUnstarred(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageLiked v when MessageLiked != null =>
-          MessageLiked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageUnliked v when MessageUnliked != null =>
-          MessageUnliked(v.userId, v.joinedAt, v.username, v.message),
+          MessageUnstarred(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageLiked v when MessageLiked != null => MessageLiked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageUnliked v when MessageUnliked != null => MessageUnliked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageDisliked v when MessageDisliked != null =>
-          MessageDisliked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageReacted v when MessageReacted != null =>
-          MessageReacted(v.userId, v.joinedAt, v.username, v.message),
+          MessageDisliked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageReacted v when MessageReacted != null => MessageReacted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageUnreacted v when MessageUnreacted != null =>
-          MessageUnreacted(v.userId, v.joinedAt, v.username, v.message),
+          MessageUnreacted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageForwarded v when MessageForwarded != null =>
-          MessageForwarded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageQuoted v when MessageQuoted != null =>
-          MessageQuoted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageFlagged v when MessageFlagged != null =>
-          MessageFlagged(v.userId, v.joinedAt, v.username, v.message),
+          MessageForwarded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageQuoted v when MessageQuoted != null => MessageQuoted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventMessageFlagged v when MessageFlagged != null => MessageFlagged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageUnflagged v when MessageUnflagged != null =>
-          MessageUnflagged(v.userId, v.joinedAt, v.username, v.message),
+          MessageUnflagged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageSpamDetected v when MessageSpamDetected != null =>
-          MessageSpamDetected(v.userId, v.joinedAt, v.username, v.message),
+          MessageSpamDetected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageDeliveryFailed v when MessageDeliveryFailed != null =>
-          MessageDeliveryFailed(v.userId, v.joinedAt, v.username, v.message),
+          MessageDeliveryFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageScheduled v when MessageScheduled != null =>
-          MessageScheduled(v.userId, v.joinedAt, v.username, v.message),
+          MessageScheduled(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageScheduledSent v when MessageScheduledSent != null =>
-          MessageScheduledSent(v.userId, v.joinedAt, v.username, v.message),
+          MessageScheduledSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventMessageScheduledFailed v when MessageScheduledFailed != null =>
-          MessageScheduledFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventMessageHidden v when MessageHidden != null =>
-          MessageHidden(v.userId, v.joinedAt, v.username, v.message),
+          MessageScheduledFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventMessageHidden v when MessageHidden != null => MessageHidden(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventMessageRestored v when MessageRestored != null =>
-          MessageRestored(v.userId, v.joinedAt, v.username, v.message),
+          MessageRestored(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentUploaded v when AttachmentUploaded != null =>
-          AttachmentUploaded(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentUploaded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentFailed v when AttachmentFailed != null =>
-          AttachmentFailed(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDeleted v when AttachmentDeleted != null =>
-          AttachmentDeleted(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentDeleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentPreviewGenerated v
             when AttachmentPreviewGenerated != null =>
           AttachmentPreviewGenerated(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDownloaded v when AttachmentDownloaded != null =>
-          AttachmentDownloaded(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentDownloaded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDownloadStarted v
             when AttachmentDownloadStarted != null =>
           AttachmentDownloadStarted(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDownloadCancelled v
             when AttachmentDownloadCancelled != null =>
           AttachmentDownloadCancelled(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAttachmentDownloadFailed v
             when AttachmentDownloadFailed != null =>
-          AttachmentDownloadFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageSent v when ImageSent != null =>
-          ImageSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageReceived v when ImageReceived != null =>
-          ImageReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageDeleted v when ImageDeleted != null =>
-          ImageDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageBlurred v when ImageBlurred != null =>
-          ImageBlurred(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventImageUnblurred v when ImageUnblurred != null =>
-          ImageUnblurred(v.userId, v.joinedAt, v.username, v.message),
+          AttachmentDownloadFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventImageSent v when ImageSent != null => ImageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageReceived v when ImageReceived != null => ImageReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageDeleted v when ImageDeleted != null => ImageDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageBlurred v when ImageBlurred != null => ImageBlurred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventImageUnblurred v when ImageUnblurred != null => ImageUnblurred(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventImageCompressed v when ImageCompressed != null =>
-          ImageCompressed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoSent v when VideoSent != null =>
-          VideoSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoReceived v when VideoReceived != null =>
-          VideoReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoPlayed v when VideoPlayed != null =>
-          VideoPlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoPaused v when VideoPaused != null =>
-          VideoPaused(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoStopped v when VideoStopped != null =>
-          VideoStopped(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoSeeked v when VideoSeeked != null =>
-          VideoSeeked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoDeleted v when VideoDeleted != null =>
-          VideoDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoMuted v when VideoMuted != null =>
-          VideoMuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoUnmuted v when VideoUnmuted != null =>
-          VideoUnmuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioSent v when AudioSent != null =>
-          AudioSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioReceived v when AudioReceived != null =>
-          AudioReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioPlayed v when AudioPlayed != null =>
-          AudioPlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioPaused v when AudioPaused != null =>
-          AudioPaused(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAudioDeleted v when AudioDeleted != null =>
-          AudioDeleted(v.userId, v.joinedAt, v.username, v.message),
+          ImageCompressed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventVideoSent v when VideoSent != null => VideoSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoReceived v when VideoReceived != null => VideoReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoPlayed v when VideoPlayed != null => VideoPlayed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoPaused v when VideoPaused != null => VideoPaused(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoStopped v when VideoStopped != null => VideoStopped(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoSeeked v when VideoSeeked != null => VideoSeeked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoDeleted v when VideoDeleted != null => VideoDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoMuted v when VideoMuted != null => VideoMuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventVideoUnmuted v when VideoUnmuted != null => VideoUnmuted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioSent v when AudioSent != null => AudioSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioReceived v when AudioReceived != null => AudioReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioPlayed v when AudioPlayed != null => AudioPlayed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioPaused v when AudioPaused != null => AudioPaused(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAudioDeleted v when AudioDeleted != null => AudioDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAudioTranscribed v when AudioTranscribed != null =>
-          AudioTranscribed(v.userId, v.joinedAt, v.username, v.message),
+          AudioTranscribed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAudioTranscriptionFailed v
             when AudioTranscriptionFailed != null =>
-          AudioTranscriptionFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileSent v when FileSent != null =>
-          FileSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileReceived v when FileReceived != null =>
-          FileReceived(v.userId, v.joinedAt, v.username, v.message),
+          AudioTranscriptionFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventFileSent v when FileSent != null => FileSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFileReceived v when FileReceived != null => FileReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventFilePreviewGenerated v when FilePreviewGenerated != null =>
-          FilePreviewGenerated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileDeleted v when FileDeleted != null =>
-          FileDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventFileDownloaded v when FileDownloaded != null =>
-          FileDownloaded(v.userId, v.joinedAt, v.username, v.message),
+          FilePreviewGenerated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventFileDeleted v when FileDeleted != null => FileDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventFileDownloaded v when FileDownloaded != null => FileDownloaded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventLinkPreviewGenerated v when LinkPreviewGenerated != null =>
-          LinkPreviewGenerated(v.userId, v.joinedAt, v.username, v.message),
+          LinkPreviewGenerated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLinkPreviewFailed v when LinkPreviewFailed != null =>
-          LinkPreviewFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventReactionAdded v when ReactionAdded != null =>
-          ReactionAdded(v.userId, v.joinedAt, v.username, v.message),
+          LinkPreviewFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventReactionAdded v when ReactionAdded != null => ReactionAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventReactionRemoved v when ReactionRemoved != null =>
-          ReactionRemoved(v.userId, v.joinedAt, v.username, v.message),
+          ReactionRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReactionUpdated v when ReactionUpdated != null =>
-          ReactionUpdated(v.userId, v.joinedAt, v.username, v.message),
+          ReactionUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReactionCleared v when ReactionCleared != null =>
-          ReactionCleared(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadCreated v when ThreadCreated != null =>
-          ThreadCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadUpdated v when ThreadUpdated != null =>
-          ThreadUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadDeleted v when ThreadDeleted != null =>
-          ThreadDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThreadArchived v when ThreadArchived != null =>
-          ThreadArchived(v.userId, v.joinedAt, v.username, v.message),
+          ReactionCleared(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventThreadCreated v when ThreadCreated != null => ThreadCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadUpdated v when ThreadUpdated != null => ThreadUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadDeleted v when ThreadDeleted != null => ThreadDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventThreadArchived v when ThreadArchived != null => ThreadArchived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventThreadUnarchived v when ThreadUnarchived != null =>
-          ThreadUnarchived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelCreated v when ChannelCreated != null =>
-          ChannelCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelRenamed v when ChannelRenamed != null =>
-          ChannelRenamed(v.userId, v.joinedAt, v.username, v.message),
+          ThreadUnarchived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventChannelCreated v when ChannelCreated != null => ChannelCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventChannelRenamed v when ChannelRenamed != null => ChannelRenamed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelDescriptionUpdated v
             when ChannelDescriptionUpdated != null =>
           ChannelDescriptionUpdated(
-              v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelDeleted v when ChannelDeleted != null =>
-          ChannelDeleted(v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventChannelDeleted v when ChannelDeleted != null => ChannelDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelArchived v when ChannelArchived != null =>
-          ChannelArchived(v.userId, v.joinedAt, v.username, v.message),
+          ChannelArchived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventChannelUnarchived v when ChannelUnarchived != null =>
-          ChannelUnarchived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelLocked v when ChannelLocked != null =>
-          ChannelLocked(v.userId, v.joinedAt, v.username, v.message),
+          ChannelUnarchived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventChannelLocked v when ChannelLocked != null => ChannelLocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelUnlocked v when ChannelUnlocked != null =>
-          ChannelUnlocked(v.userId, v.joinedAt, v.username, v.message),
+          ChannelUnlocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventChannelMigrated v when ChannelMigrated != null =>
-          ChannelMigrated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventChannelHidden v when ChannelHidden != null =>
-          ChannelHidden(v.userId, v.joinedAt, v.username, v.message),
+          ChannelMigrated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventChannelHidden v when ChannelHidden != null => ChannelHidden(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventChannelUnhidden v when ChannelUnhidden != null =>
-          ChannelUnhidden(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupCreated v when GroupCreated != null =>
-          GroupCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupUpdated v when GroupUpdated != null =>
-          GroupUpdated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGroupDeleted v when GroupDeleted != null =>
-          GroupDeleted(v.userId, v.joinedAt, v.username, v.message),
+          ChannelUnhidden(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventGroupCreated v when GroupCreated != null => GroupCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupUpdated v when GroupUpdated != null => GroupUpdated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGroupDeleted v when GroupDeleted != null => GroupDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventGroupIconUpdated v when GroupIconUpdated != null =>
-          GroupIconUpdated(v.userId, v.joinedAt, v.username, v.message),
+          GroupIconUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupAdminAdded v when GroupAdminAdded != null =>
-          GroupAdminAdded(v.userId, v.joinedAt, v.username, v.message),
+          GroupAdminAdded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupAdminRemoved v when GroupAdminRemoved != null =>
-          GroupAdminRemoved(v.userId, v.joinedAt, v.username, v.message),
+          GroupAdminRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupMemberAdded v when GroupMemberAdded != null =>
-          GroupMemberAdded(v.userId, v.joinedAt, v.username, v.message),
+          GroupMemberAdded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupMemberRemoved v when GroupMemberRemoved != null =>
-          GroupMemberRemoved(v.userId, v.joinedAt, v.username, v.message),
+          GroupMemberRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupMemberLeft v when GroupMemberLeft != null =>
-          GroupMemberLeft(v.userId, v.joinedAt, v.username, v.message),
+          GroupMemberLeft(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupMemberKicked v when GroupMemberKicked != null =>
-          GroupMemberKicked(v.userId, v.joinedAt, v.username, v.message),
+          GroupMemberKicked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventGroupInfoViewed v when GroupInfoViewed != null =>
-          GroupInfoViewed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallStarted v when CallStarted != null =>
-          CallStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallEnded v when CallEnded != null =>
-          CallEnded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallMissed v when CallMissed != null =>
-          CallMissed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallRejected v when CallRejected != null =>
-          CallRejected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallAccepted v when CallAccepted != null =>
-          CallAccepted(v.userId, v.joinedAt, v.username, v.message),
+          GroupInfoViewed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventCallStarted v when CallStarted != null => CallStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallEnded v when CallEnded != null => CallEnded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallMissed v when CallMissed != null => CallMissed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallRejected v when CallRejected != null => CallRejected(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCallAccepted v when CallAccepted != null => CallAccepted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventCallReconnecting v when CallReconnecting != null =>
-          CallReconnecting(v.userId, v.joinedAt, v.username, v.message),
+          CallReconnecting(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCallReconnected v when CallReconnected != null =>
-          CallReconnected(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCallNetworkLow v when CallNetworkLow != null =>
-          CallNetworkLow(v.userId, v.joinedAt, v.username, v.message),
+          CallReconnected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventCallNetworkLow v when CallNetworkLow != null => CallNetworkLow(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventCallMediaPermissionDenied v
             when CallMediaPermissionDenied != null =>
           CallMediaPermissionDenied(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCallRecordingStarted v when CallRecordingStarted != null =>
-          CallRecordingStarted(v.userId, v.joinedAt, v.username, v.message),
+          CallRecordingStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCallRecordingStopped v when CallRecordingStopped != null =>
-          CallRecordingStopped(v.userId, v.joinedAt, v.username, v.message),
+          CallRecordingStopped(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventVideoCallStarted v when VideoCallStarted != null =>
-          VideoCallStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVideoCallEnded v when VideoCallEnded != null =>
-          VideoCallEnded(v.userId, v.joinedAt, v.username, v.message),
+          VideoCallStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventVideoCallEnded v when VideoCallEnded != null => VideoCallEnded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventVideoCallMissed v when VideoCallMissed != null =>
-          VideoCallMissed(v.userId, v.joinedAt, v.username, v.message),
+          VideoCallMissed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventVideoCallRejected v when VideoCallRejected != null =>
-          VideoCallRejected(v.userId, v.joinedAt, v.username, v.message),
+          VideoCallRejected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventVideoCallAccepted v when VideoCallAccepted != null =>
-          VideoCallAccepted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventVoiceNoteSent v when VoiceNoteSent != null =>
-          VoiceNoteSent(v.userId, v.joinedAt, v.username, v.message),
+          VideoCallAccepted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventVoiceNoteSent v when VoiceNoteSent != null => VoiceNoteSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventVoiceNoteDeleted v when VoiceNoteDeleted != null =>
-          VoiceNoteDeleted(v.userId, v.joinedAt, v.username, v.message),
+          VoiceNoteDeleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventVoiceNotePlayed v when VoiceNotePlayed != null =>
-          VoiceNotePlayed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollCreated v when PollCreated != null =>
-          PollCreated(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollVoteCast v when PollVoteCast != null =>
-          PollVoteCast(v.userId, v.joinedAt, v.username, v.message),
+          VoiceNotePlayed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPollCreated v when PollCreated != null => PollCreated(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventPollVoteCast v when PollVoteCast != null => PollVoteCast(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventPollVoteRemoved v when PollVoteRemoved != null =>
-          PollVoteRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPollClosed v when PollClosed != null =>
-          PollClosed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryPosted v when StoryPosted != null =>
-          StoryPosted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryDeleted v when StoryDeleted != null =>
-          StoryDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryViewed v when StoryViewed != null =>
-          StoryViewed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStoryReacted v when StoryReacted != null =>
-          StoryReacted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotMessageSent v when BotMessageSent != null =>
-          BotMessageSent(v.userId, v.joinedAt, v.username, v.message),
+          PollVoteRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPollClosed v when PollClosed != null => PollClosed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryPosted v when StoryPosted != null => StoryPosted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryDeleted v when StoryDeleted != null => StoryDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryViewed v when StoryViewed != null => StoryViewed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStoryReacted v when StoryReacted != null => StoryReacted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotMessageSent v when BotMessageSent != null => BotMessageSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventBotMessageDeleted v when BotMessageDeleted != null =>
-          BotMessageDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotTriggered v when BotTriggered != null =>
-          BotTriggered(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotDisabled v when BotDisabled != null =>
-          BotDisabled(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBotEnabled v when BotEnabled != null =>
-          BotEnabled(v.userId, v.joinedAt, v.username, v.message),
+          BotMessageDeleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventBotTriggered v when BotTriggered != null => BotTriggered(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotDisabled v when BotDisabled != null => BotDisabled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventBotEnabled v when BotEnabled != null => BotEnabled(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventSystemBroadcast v when SystemBroadcast != null =>
-          SystemBroadcast(v.userId, v.joinedAt, v.username, v.message),
+          SystemBroadcast(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSystemMaintenanceScheduled v
             when SystemMaintenanceScheduled != null =>
           SystemMaintenanceScheduled(
-              v.userId, v.joinedAt, v.username, v.message),
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSystemMaintenanceStarted v
             when SystemMaintenanceStarted != null =>
-          SystemMaintenanceStarted(v.userId, v.joinedAt, v.username, v.message),
+          SystemMaintenanceStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSystemMaintenanceEnded v when SystemMaintenanceEnded != null =>
-          SystemMaintenanceEnded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemWarning v when SystemWarning != null =>
-          SystemWarning(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemError v when SystemError != null =>
-          SystemError(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSystemRecovery v when SystemRecovery != null =>
-          SystemRecovery(v.userId, v.joinedAt, v.username, v.message),
+          SystemMaintenanceEnded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventSystemWarning v when SystemWarning != null => SystemWarning(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemError v when SystemError != null => SystemError(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSystemRecovery v when SystemRecovery != null => SystemRecovery(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventSystemPatchApplied v when SystemPatchApplied != null =>
-          SystemPatchApplied(v.userId, v.joinedAt, v.username, v.message),
+          SystemPatchApplied(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventEncryptionEnabled v when EncryptionEnabled != null =>
-          EncryptionEnabled(v.userId, v.joinedAt, v.username, v.message),
+          EncryptionEnabled(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventEncryptionDisabled v when EncryptionDisabled != null =>
-          EncryptionDisabled(v.userId, v.joinedAt, v.username, v.message),
+          EncryptionDisabled(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventEncryptionKeyRotated v when EncryptionKeyRotated != null =>
-          EncryptionKeyRotated(v.userId, v.joinedAt, v.username, v.message),
+          EncryptionKeyRotated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventEncryptionKeyFailed v when EncryptionKeyFailed != null =>
-          EncryptionKeyFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSessionStarted v when SessionStarted != null =>
-          SessionStarted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventSessionExpired v when SessionExpired != null =>
-          SessionExpired(v.userId, v.joinedAt, v.username, v.message),
+          EncryptionKeyFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventSessionStarted v when SessionStarted != null => SessionStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventSessionExpired v when SessionExpired != null => SessionExpired(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventSessionRefreshed v when SessionRefreshed != null =>
-          SessionRefreshed(v.userId, v.joinedAt, v.username, v.message),
+          SessionRefreshed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSessionTerminated v when SessionTerminated != null =>
-          SessionTerminated(v.userId, v.joinedAt, v.username, v.message),
+          SessionTerminated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventTypingIndicatorSent v when TypingIndicatorSent != null =>
-          TypingIndicatorSent(v.userId, v.joinedAt, v.username, v.message),
+          TypingIndicatorSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventTypingIndicatorReceived v
             when TypingIndicatorReceived != null =>
-          TypingIndicatorReceived(v.userId, v.joinedAt, v.username, v.message),
+          TypingIndicatorReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPresenceSubscribed v when PresenceSubscribed != null =>
-          PresenceSubscribed(v.userId, v.joinedAt, v.username, v.message),
+          PresenceSubscribed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPresenceUnsubscribed v when PresenceUnsubscribed != null =>
-          PresenceUnsubscribed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPresenceSync v when PresenceSync != null =>
-          PresenceSync(v.userId, v.joinedAt, v.username, v.message),
+          PresenceUnsubscribed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPresenceSync v when PresenceSync != null => PresenceSync(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventPresenceUpdateFailed v when PresenceUpdateFailed != null =>
-          PresenceUpdateFailed(v.userId, v.joinedAt, v.username, v.message),
+          PresenceUpdateFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPushNotificationSent v when PushNotificationSent != null =>
-          PushNotificationSent(v.userId, v.joinedAt, v.username, v.message),
+          PushNotificationSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPushNotificationReceived v
             when PushNotificationReceived != null =>
-          PushNotificationReceived(v.userId, v.joinedAt, v.username, v.message),
+          PushNotificationReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPushNotificationOpened v when PushNotificationOpened != null =>
-          PushNotificationOpened(v.userId, v.joinedAt, v.username, v.message),
+          PushNotificationOpened(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPushNotificationFailed v when PushNotificationFailed != null =>
-          PushNotificationFailed(v.userId, v.joinedAt, v.username, v.message),
+          PushNotificationFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReadReceiptSent v when ReadReceiptSent != null =>
-          ReadReceiptSent(v.userId, v.joinedAt, v.username, v.message),
+          ReadReceiptSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReadReceiptFailed v when ReadReceiptFailed != null =>
-          ReadReceiptFailed(v.userId, v.joinedAt, v.username, v.message),
+          ReadReceiptFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventReadReceiptBlocked v when ReadReceiptBlocked != null =>
-          ReadReceiptBlocked(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBackupStarted v when BackupStarted != null =>
-          BackupStarted(v.userId, v.joinedAt, v.username, v.message),
+          ReadReceiptBlocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventBackupStarted v when BackupStarted != null => BackupStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventBackupCompleted v when BackupCompleted != null =>
-          BackupCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventBackupFailed v when BackupFailed != null =>
-          BackupFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRestoreStarted v when RestoreStarted != null =>
-          RestoreStarted(v.userId, v.joinedAt, v.username, v.message),
+          BackupCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventBackupFailed v when BackupFailed != null => BackupFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventRestoreStarted v when RestoreStarted != null => RestoreStarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventRestoreCompleted v when RestoreCompleted != null =>
-          RestoreCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventRestoreFailed v when RestoreFailed != null =>
-          RestoreFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactSynced v when ContactSynced != null =>
-          ContactSynced(v.userId, v.joinedAt, v.username, v.message),
+          RestoreCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventRestoreFailed v when RestoreFailed != null => RestoreFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactSynced v when ContactSynced != null => ContactSynced(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventContactSyncFailed v when ContactSyncFailed != null =>
-          ContactSyncFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactAdded v when ContactAdded != null =>
-          ContactAdded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactRemoved v when ContactRemoved != null =>
-          ContactRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventContactBlocked v when ContactBlocked != null =>
-          ContactBlocked(v.userId, v.joinedAt, v.username, v.message),
+          ContactSyncFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventContactAdded v when ContactAdded != null => ContactAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactRemoved v when ContactRemoved != null => ContactRemoved(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventContactBlocked v when ContactBlocked != null => ContactBlocked(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventContactUnblocked v when ContactUnblocked != null =>
-          ContactUnblocked(v.userId, v.joinedAt, v.username, v.message),
+          ContactUnblocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCommandExecuted v when CommandExecuted != null =>
-          CommandExecuted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventShortcutUsed v when ShortcutUsed != null =>
-          ShortcutUsed(v.userId, v.joinedAt, v.username, v.message),
+          CommandExecuted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventShortcutUsed v when ShortcutUsed != null => ShortcutUsed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventActionButtonClicked v when ActionButtonClicked != null =>
-          ActionButtonClicked(v.userId, v.joinedAt, v.username, v.message),
+          ActionButtonClicked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAdminMessageSent v when AdminMessageSent != null =>
-          AdminMessageSent(v.userId, v.joinedAt, v.username, v.message),
+          AdminMessageSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAdminMessageDeleted v when AdminMessageDeleted != null =>
-          AdminMessageDeleted(v.userId, v.joinedAt, v.username, v.message),
+          AdminMessageDeleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAdminAnnouncement v when AdminAnnouncement != null =>
-          AdminAnnouncement(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAdminWarning v when AdminWarning != null =>
-          AdminWarning(v.userId, v.joinedAt, v.username, v.message),
+          AdminAnnouncement(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventAdminWarning v when AdminWarning != null => AdminWarning(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAdminSilencedUser v when AdminSilencedUser != null =>
-          AdminSilencedUser(v.userId, v.joinedAt, v.username, v.message),
+          AdminSilencedUser(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSpamUserDetected v when SpamUserDetected != null =>
-          SpamUserDetected(v.userId, v.joinedAt, v.username, v.message),
+          SpamUserDetected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSpamUserBlocked v when SpamUserBlocked != null =>
-          SpamUserBlocked(v.userId, v.joinedAt, v.username, v.message),
+          SpamUserBlocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSpamUserReported v when SpamUserReported != null =>
-          SpamUserReported(v.userId, v.joinedAt, v.username, v.message),
+          SpamUserReported(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventModerationActionTaken v when ModerationActionTaken != null =>
-          ModerationActionTaken(v.userId, v.joinedAt, v.username, v.message),
+          ModerationActionTaken(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventModerationFlagReviewed v when ModerationFlagReviewed != null =>
-          ModerationFlagReviewed(v.userId, v.joinedAt, v.username, v.message),
+          ModerationFlagReviewed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventModerationMessageHidden v
             when ModerationMessageHidden != null =>
-          ModerationMessageHidden(v.userId, v.joinedAt, v.username, v.message),
+          ModerationMessageHidden(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventModerationMessageRemoved v
             when ModerationMessageRemoved != null =>
-          ModerationMessageRemoved(v.userId, v.joinedAt, v.username, v.message),
+          ModerationMessageRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventExperimentStarted v when ExperimentStarted != null =>
-          ExperimentStarted(v.userId, v.joinedAt, v.username, v.message),
+          ExperimentStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventExperimentUpdated v when ExperimentUpdated != null =>
-          ExperimentUpdated(v.userId, v.joinedAt, v.username, v.message),
+          ExperimentUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventExperimentCompleted v when ExperimentCompleted != null =>
-          ExperimentCompleted(v.userId, v.joinedAt, v.username, v.message),
+          ExperimentCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventExperimentAborted v when ExperimentAborted != null =>
-          ExperimentAborted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftSent v when GiftSent != null =>
-          GiftSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftReceived v when GiftReceived != null =>
-          GiftReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftRedeemed v when GiftRedeemed != null =>
-          GiftRedeemed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventGiftFailed v when GiftFailed != null =>
-          GiftFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStickerSent v when StickerSent != null =>
-          StickerSent(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventStickerDeleted v when StickerDeleted != null =>
-          StickerDeleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventEmojiPackAdded v when EmojiPackAdded != null =>
-          EmojiPackAdded(v.userId, v.joinedAt, v.username, v.message),
+          ExperimentAborted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventGiftSent v when GiftSent != null => GiftSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftReceived v when GiftReceived != null => GiftReceived(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftRedeemed v when GiftRedeemed != null => GiftRedeemed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventGiftFailed v when GiftFailed != null => GiftFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStickerSent v when StickerSent != null => StickerSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventStickerDeleted v when StickerDeleted != null => StickerDeleted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventEmojiPackAdded v when EmojiPackAdded != null => EmojiPackAdded(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventEmojiPackRemoved v when EmojiPackRemoved != null =>
-          EmojiPackRemoved(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventThemeChanged v when ThemeChanged != null =>
-          ThemeChanged(v.userId, v.joinedAt, v.username, v.message),
+          EmojiPackRemoved(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventThemeChanged v when ThemeChanged != null => ThemeChanged(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventWallpaperChanged v when WallpaperChanged != null =>
-          WallpaperChanged(v.userId, v.joinedAt, v.username, v.message),
+          WallpaperChanged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventFontSizeChanged v when FontSizeChanged != null =>
-          FontSizeChanged(v.userId, v.joinedAt, v.username, v.message),
+          FontSizeChanged(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSettingsUpdated v when SettingsUpdated != null =>
-          SettingsUpdated(v.userId, v.joinedAt, v.username, v.message),
+          SettingsUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventDeviceRegistered v when DeviceRegistered != null =>
-          DeviceRegistered(v.userId, v.joinedAt, v.username, v.message),
+          DeviceRegistered(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventDeviceUnregistered v when DeviceUnregistered != null =>
-          DeviceUnregistered(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventDeviceSwitched v when DeviceSwitched != null =>
-          DeviceSwitched(v.userId, v.joinedAt, v.username, v.message),
+          DeviceUnregistered(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventDeviceSwitched v when DeviceSwitched != null => DeviceSwitched(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventDeviceSyncCompleted v when DeviceSyncCompleted != null =>
-          DeviceSyncCompleted(v.userId, v.joinedAt, v.username, v.message),
+          DeviceSyncCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventDeviceSyncFailed v when DeviceSyncFailed != null =>
-          DeviceSyncFailed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventLocationShared v when LocationShared != null =>
-          LocationShared(v.userId, v.joinedAt, v.username, v.message),
+          DeviceSyncFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventLocationShared v when LocationShared != null => LocationShared(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventLocationUpdated v when LocationUpdated != null =>
-          LocationUpdated(v.userId, v.joinedAt, v.username, v.message),
+          LocationUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLocationStopped v when LocationStopped != null =>
-          LocationStopped(v.userId, v.joinedAt, v.username, v.message),
+          LocationStopped(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLocationRequestSent v when LocationRequestSent != null =>
-          LocationRequestSent(v.userId, v.joinedAt, v.username, v.message),
+          LocationRequestSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLocationRequestAccepted v
             when LocationRequestAccepted != null =>
-          LocationRequestAccepted(v.userId, v.joinedAt, v.username, v.message),
+          LocationRequestAccepted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLocationRequestDeclined v
             when LocationRequestDeclined != null =>
-          LocationRequestDeclined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventQrScanSuccess v when QrScanSuccess != null =>
-          QrScanSuccess(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventQrScanFailed v when QrScanFailed != null =>
-          QrScanFailed(v.userId, v.joinedAt, v.username, v.message),
+          LocationRequestDeclined(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventQrScanSuccess v when QrScanSuccess != null => QrScanSuccess(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventQrScanFailed v when QrScanFailed != null => QrScanFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventQrConnectionEstablished v
             when QrConnectionEstablished != null =>
-          QrConnectionEstablished(v.userId, v.joinedAt, v.username, v.message),
+          QrConnectionEstablished(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventQrConnectionTerminated v when QrConnectionTerminated != null =>
-          QrConnectionTerminated(v.userId, v.joinedAt, v.username, v.message),
+          QrConnectionTerminated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentRequestSent v when PaymentRequestSent != null =>
-          PaymentRequestSent(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRequestSent(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentRequestReceived v when PaymentRequestReceived != null =>
-          PaymentRequestReceived(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRequestReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentRequestAccepted v when PaymentRequestAccepted != null =>
-          PaymentRequestAccepted(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRequestAccepted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentRequestDeclined v when PaymentRequestDeclined != null =>
-          PaymentRequestDeclined(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentSent v when PaymentSent != null =>
-          PaymentSent(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRequestDeclined(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPaymentSent v when PaymentSent != null => PaymentSent(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventPaymentReceived v when PaymentReceived != null =>
-          PaymentReceived(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventPaymentFailed v when PaymentFailed != null =>
-          PaymentFailed(v.userId, v.joinedAt, v.username, v.message),
+          PaymentReceived(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventPaymentFailed v when PaymentFailed != null => PaymentFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventPaymentRefunded v when PaymentRefunded != null =>
-          PaymentRefunded(v.userId, v.joinedAt, v.username, v.message),
+          PaymentRefunded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventPaymentWalletUpdated v when PaymentWalletUpdated != null =>
-          PaymentWalletUpdated(v.userId, v.joinedAt, v.username, v.message),
+          PaymentWalletUpdated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSubscriptionStarted v when SubscriptionStarted != null =>
-          SubscriptionStarted(v.userId, v.joinedAt, v.username, v.message),
+          SubscriptionStarted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSubscriptionExpired v when SubscriptionExpired != null =>
-          SubscriptionExpired(v.userId, v.joinedAt, v.username, v.message),
+          SubscriptionExpired(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSubscriptionRenewed v when SubscriptionRenewed != null =>
-          SubscriptionRenewed(v.userId, v.joinedAt, v.username, v.message),
+          SubscriptionRenewed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventSubscriptionCanceled v when SubscriptionCanceled != null =>
-          SubscriptionCanceled(v.userId, v.joinedAt, v.username, v.message),
+          SubscriptionCanceled(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiSummaryGenerated v when AiSummaryGenerated != null =>
-          AiSummaryGenerated(v.userId, v.joinedAt, v.username, v.message),
+          AiSummaryGenerated(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiSummaryFailed v when AiSummaryFailed != null =>
-          AiSummaryFailed(v.userId, v.joinedAt, v.username, v.message),
+          AiSummaryFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiReplySuggested v when AiReplySuggested != null =>
-          AiReplySuggested(v.userId, v.joinedAt, v.username, v.message),
+          AiReplySuggested(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiReplySelected v when AiReplySelected != null =>
-          AiReplySelected(v.userId, v.joinedAt, v.username, v.message),
+          AiReplySelected(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiTranslationRequested v when AiTranslationRequested != null =>
-          AiTranslationRequested(v.userId, v.joinedAt, v.username, v.message),
+          AiTranslationRequested(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiTranslationCompleted v when AiTranslationCompleted != null =>
-          AiTranslationCompleted(v.userId, v.joinedAt, v.username, v.message),
+          AiTranslationCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventAiTranslationFailed v when AiTranslationFailed != null =>
-          AiTranslationFailed(v.userId, v.joinedAt, v.username, v.message),
+          AiTranslationFailed(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventCaptchaRequired v when CaptchaRequired != null =>
-          CaptchaRequired(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCaptchaPassed v when CaptchaPassed != null =>
-          CaptchaPassed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventCaptchaFailed v when CaptchaFailed != null =>
-          CaptchaFailed(v.userId, v.joinedAt, v.username, v.message),
+          CaptchaRequired(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventCaptchaPassed v when CaptchaPassed != null => CaptchaPassed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventCaptchaFailed v when CaptchaFailed != null => CaptchaFailed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventRateLimitWarning v when RateLimitWarning != null =>
-          RateLimitWarning(v.userId, v.joinedAt, v.username, v.message),
+          RateLimitWarning(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventRateLimitBlocked v when RateLimitBlocked != null =>
-          RateLimitBlocked(v.userId, v.joinedAt, v.username, v.message),
+          RateLimitBlocked(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLogoutRequested v when LogoutRequested != null =>
-          LogoutRequested(v.userId, v.joinedAt, v.username, v.message),
+          LogoutRequested(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
         ChatEventLogoutCompleted v when LogoutCompleted != null =>
-          LogoutCompleted(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppOpened v when AppOpened != null =>
-          AppOpened(v.userId, v.joinedAt, v.username, v.message),
+          LogoutCompleted(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventAppOpened v when AppOpened != null => AppOpened(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         ChatEventAppBackgrounded v when AppBackgrounded != null =>
-          AppBackgrounded(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppResumed v when AppResumed != null =>
-          AppResumed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppCrashed v when AppCrashed != null =>
-          AppCrashed(v.userId, v.joinedAt, v.username, v.message),
-        ChatEventAppRestarted v when AppRestarted != null =>
-          AppRestarted(v.userId, v.joinedAt, v.username, v.message),
+          AppBackgrounded(
+              userId: v.userId,
+              joinedAt: v.joinedAt,
+              username: v.username,
+              message: v.message),
+        ChatEventAppResumed v when AppResumed != null => AppResumed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppCrashed v when AppCrashed != null => AppCrashed(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
+        ChatEventAppRestarted v when AppRestarted != null => AppRestarted(
+            userId: v.userId,
+            joinedAt: v.joinedAt,
+            username: v.username,
+            message: v.message),
         _ => null,
       };
 
@@ -5784,6 +8563,1674 @@ extension $ChatEventUnion on ChatEvent {
       this is ChatEventAppCrashed ? this as ChatEventAppCrashed : null;
   ChatEventAppRestarted? get asAppRestarted =>
       this is ChatEventAppRestarted ? this as ChatEventAppRestarted : null;
+}
+
+extension $ChatEventCopyWith on ChatEvent {
+  ChatEvent copyWith({
+    String? userId,
+    DateTime? joinedAt,
+    String? username,
+    ChatMessage? message,
+  }) {
+    return switch (this) {
+      ChatEventUserJoined v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserRejoined v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserLeft v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserLeftForced v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserKicked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserBanned v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUnbanned v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserMuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUnmuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUnblocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserReported v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserVerified v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserTypingStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserTypingStopped v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserOnline v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserOffline v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserIdle v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserStatusChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserProfileUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserAvatarUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUsernameChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserRolePromoted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserRoleDemoted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserInvited v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserInviteRevoked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserFollowed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserUnfollowed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventUserPinged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageRead v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnread v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageEdited v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDeletedForSelf v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDeletedForAll v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessagePinned v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnpinned v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageStarred v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnstarred v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageLiked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnliked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDisliked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageReacted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnreacted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageForwarded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageQuoted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageFlagged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageUnflagged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageSpamDetected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageDeliveryFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageScheduled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageScheduledSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageScheduledFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageHidden v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventMessageRestored v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentUploaded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentPreviewGenerated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDownloaded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDownloadStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDownloadCancelled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAttachmentDownloadFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageBlurred v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageUnblurred v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventImageCompressed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoPlayed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoPaused v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoStopped v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoSeeked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoMuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoUnmuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioPlayed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioPaused v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioTranscribed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAudioTranscriptionFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFileSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFileReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFilePreviewGenerated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFileDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFileDownloaded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLinkPreviewGenerated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLinkPreviewFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReactionAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReactionRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReactionUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReactionCleared v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadCreated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadArchived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThreadUnarchived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelCreated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelRenamed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelDescriptionUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelArchived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelUnarchived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelLocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelUnlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelMigrated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelHidden v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventChannelUnhidden v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupCreated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupIconUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupAdminAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupAdminRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupMemberAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupMemberRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupMemberLeft v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupMemberKicked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGroupInfoViewed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallEnded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallMissed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallRejected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallAccepted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallReconnecting v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallReconnected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallNetworkLow v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallMediaPermissionDenied v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallRecordingStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCallRecordingStopped v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallEnded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallMissed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallRejected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVideoCallAccepted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVoiceNoteSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVoiceNoteDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventVoiceNotePlayed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPollCreated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPollVoteCast v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPollVoteRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPollClosed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStoryPosted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStoryDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStoryViewed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStoryReacted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotMessageSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotMessageDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotTriggered v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotDisabled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBotEnabled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemBroadcast v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemMaintenanceScheduled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemMaintenanceStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemMaintenanceEnded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemWarning v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemError v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemRecovery v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSystemPatchApplied v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEncryptionEnabled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEncryptionDisabled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEncryptionKeyRotated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEncryptionKeyFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSessionStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSessionExpired v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSessionRefreshed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSessionTerminated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventTypingIndicatorSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventTypingIndicatorReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPresenceSubscribed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPresenceUnsubscribed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPresenceSync v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPresenceUpdateFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPushNotificationSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPushNotificationReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPushNotificationOpened v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPushNotificationFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReadReceiptSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReadReceiptFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventReadReceiptBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBackupStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBackupCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventBackupFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRestoreStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRestoreCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRestoreFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactSynced v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactSyncFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventContactUnblocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCommandExecuted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventShortcutUsed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventActionButtonClicked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminMessageSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminMessageDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminAnnouncement v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminWarning v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAdminSilencedUser v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSpamUserDetected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSpamUserBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSpamUserReported v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventModerationActionTaken v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventModerationFlagReviewed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventModerationMessageHidden v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventModerationMessageRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventExperimentStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventExperimentUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventExperimentCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventExperimentAborted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGiftSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGiftReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGiftRedeemed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventGiftFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStickerSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventStickerDeleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEmojiPackAdded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventEmojiPackRemoved v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventThemeChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventWallpaperChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventFontSizeChanged v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSettingsUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceRegistered v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceUnregistered v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceSwitched v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceSyncCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventDeviceSyncFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationShared v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationStopped v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationRequestSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationRequestAccepted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLocationRequestDeclined v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventQrScanSuccess v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventQrScanFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventQrConnectionEstablished v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventQrConnectionTerminated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRequestSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRequestReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRequestAccepted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRequestDeclined v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentSent v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentReceived v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentRefunded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventPaymentWalletUpdated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSubscriptionStarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSubscriptionExpired v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSubscriptionRenewed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventSubscriptionCanceled v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiSummaryGenerated v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiSummaryFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiReplySuggested v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiReplySelected v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiTranslationRequested v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiTranslationCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAiTranslationFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCaptchaRequired v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCaptchaPassed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventCaptchaFailed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRateLimitWarning v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventRateLimitBlocked v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLogoutRequested v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventLogoutCompleted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppOpened v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppBackgrounded v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppResumed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppCrashed v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+      ChatEventAppRestarted v => v.copyWith(
+          userId: userId,
+          joinedAt: joinedAt,
+          username: username,
+          message: message,
+        ),
+    };
+  }
 }
 
 _Result _$ChatEventSig0FromJson<_Result>(
@@ -10834,6 +15281,1085 @@ ChatEvent _$ChatEventFromJson(Map<String, dynamic> json) {
 ChatEventUserJoined _$ChatEventUserJoinedFromJson(Map<String, dynamic> json) =>
     _$ChatEventSig0FromJson(json, ChatEventUserJoined.new);
 
+ChatEventUserRejoined _$ChatEventUserRejoinedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserRejoined.new);
+
+ChatEventUserLeft _$ChatEventUserLeftFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserLeft.new);
+
+ChatEventUserLeftForced _$ChatEventUserLeftForcedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserLeftForced.new);
+
+ChatEventUserKicked _$ChatEventUserKickedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserKicked.new);
+
+ChatEventUserBanned _$ChatEventUserBannedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserBanned.new);
+
+ChatEventUserUnbanned _$ChatEventUserUnbannedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserUnbanned.new);
+
+ChatEventUserMuted _$ChatEventUserMutedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserMuted.new);
+
+ChatEventUserUnmuted _$ChatEventUserUnmutedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserUnmuted.new);
+
+ChatEventUserBlocked _$ChatEventUserBlockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserBlocked.new);
+
+ChatEventUserUnblocked _$ChatEventUserUnblockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserUnblocked.new);
+
+ChatEventUserReported _$ChatEventUserReportedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserReported.new);
+
+ChatEventUserVerified _$ChatEventUserVerifiedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserVerified.new);
+
+ChatEventUserTypingStarted _$ChatEventUserTypingStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserTypingStarted.new);
+
+ChatEventUserTypingStopped _$ChatEventUserTypingStoppedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserTypingStopped.new);
+
+ChatEventUserOnline _$ChatEventUserOnlineFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserOnline.new);
+
+ChatEventUserOffline _$ChatEventUserOfflineFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserOffline.new);
+
+ChatEventUserIdle _$ChatEventUserIdleFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserIdle.new);
+
+ChatEventUserStatusChanged _$ChatEventUserStatusChangedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserStatusChanged.new);
+
+ChatEventUserProfileUpdated _$ChatEventUserProfileUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserProfileUpdated.new);
+
+ChatEventUserAvatarUpdated _$ChatEventUserAvatarUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserAvatarUpdated.new);
+
+ChatEventUserUsernameChanged _$ChatEventUserUsernameChangedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserUsernameChanged.new);
+
+ChatEventUserRolePromoted _$ChatEventUserRolePromotedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserRolePromoted.new);
+
+ChatEventUserRoleDemoted _$ChatEventUserRoleDemotedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserRoleDemoted.new);
+
+ChatEventUserInvited _$ChatEventUserInvitedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserInvited.new);
+
+ChatEventUserInviteRevoked _$ChatEventUserInviteRevokedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserInviteRevoked.new);
+
+ChatEventUserFollowed _$ChatEventUserFollowedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserFollowed.new);
+
+ChatEventUserUnfollowed _$ChatEventUserUnfollowedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserUnfollowed.new);
+
+ChatEventUserPinged _$ChatEventUserPingedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventUserPinged.new);
+
+ChatEventMessageSent _$ChatEventMessageSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageSent.new);
+
+ChatEventMessageReceived _$ChatEventMessageReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageReceived.new);
+
+ChatEventMessageRead _$ChatEventMessageReadFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageRead.new);
+
+ChatEventMessageUnread _$ChatEventMessageUnreadFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageUnread.new);
+
+ChatEventMessageEdited _$ChatEventMessageEditedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageEdited.new);
+
+ChatEventMessageDeleted _$ChatEventMessageDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageDeleted.new);
+
+ChatEventMessageDeletedForSelf _$ChatEventMessageDeletedForSelfFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageDeletedForSelf.new);
+
+ChatEventMessageDeletedForAll _$ChatEventMessageDeletedForAllFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageDeletedForAll.new);
+
+ChatEventMessagePinned _$ChatEventMessagePinnedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessagePinned.new);
+
+ChatEventMessageUnpinned _$ChatEventMessageUnpinnedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageUnpinned.new);
+
+ChatEventMessageStarred _$ChatEventMessageStarredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageStarred.new);
+
+ChatEventMessageUnstarred _$ChatEventMessageUnstarredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageUnstarred.new);
+
+ChatEventMessageLiked _$ChatEventMessageLikedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageLiked.new);
+
+ChatEventMessageUnliked _$ChatEventMessageUnlikedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageUnliked.new);
+
+ChatEventMessageDisliked _$ChatEventMessageDislikedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageDisliked.new);
+
+ChatEventMessageReacted _$ChatEventMessageReactedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageReacted.new);
+
+ChatEventMessageUnreacted _$ChatEventMessageUnreactedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageUnreacted.new);
+
+ChatEventMessageForwarded _$ChatEventMessageForwardedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageForwarded.new);
+
+ChatEventMessageQuoted _$ChatEventMessageQuotedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageQuoted.new);
+
+ChatEventMessageFlagged _$ChatEventMessageFlaggedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageFlagged.new);
+
+ChatEventMessageUnflagged _$ChatEventMessageUnflaggedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageUnflagged.new);
+
+ChatEventMessageSpamDetected _$ChatEventMessageSpamDetectedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageSpamDetected.new);
+
+ChatEventMessageDeliveryFailed _$ChatEventMessageDeliveryFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageDeliveryFailed.new);
+
+ChatEventMessageScheduled _$ChatEventMessageScheduledFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageScheduled.new);
+
+ChatEventMessageScheduledSent _$ChatEventMessageScheduledSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageScheduledSent.new);
+
+ChatEventMessageScheduledFailed _$ChatEventMessageScheduledFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageScheduledFailed.new);
+
+ChatEventMessageHidden _$ChatEventMessageHiddenFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageHidden.new);
+
+ChatEventMessageRestored _$ChatEventMessageRestoredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventMessageRestored.new);
+
+ChatEventAttachmentUploaded _$ChatEventAttachmentUploadedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAttachmentUploaded.new);
+
+ChatEventAttachmentFailed _$ChatEventAttachmentFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAttachmentFailed.new);
+
+ChatEventAttachmentDeleted _$ChatEventAttachmentDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAttachmentDeleted.new);
+
+ChatEventAttachmentPreviewGenerated
+    _$ChatEventAttachmentPreviewGeneratedFromJson(Map<String, dynamic> json) =>
+        _$ChatEventSig0FromJson(json, ChatEventAttachmentPreviewGenerated.new);
+
+ChatEventAttachmentDownloaded _$ChatEventAttachmentDownloadedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloaded.new);
+
+ChatEventAttachmentDownloadStarted _$ChatEventAttachmentDownloadStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloadStarted.new);
+
+ChatEventAttachmentDownloadCancelled
+    _$ChatEventAttachmentDownloadCancelledFromJson(Map<String, dynamic> json) =>
+        _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloadCancelled.new);
+
+ChatEventAttachmentDownloadFailed _$ChatEventAttachmentDownloadFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloadFailed.new);
+
+ChatEventImageSent _$ChatEventImageSentFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventImageSent.new);
+
+ChatEventImageReceived _$ChatEventImageReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventImageReceived.new);
+
+ChatEventImageDeleted _$ChatEventImageDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventImageDeleted.new);
+
+ChatEventImageBlurred _$ChatEventImageBlurredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventImageBlurred.new);
+
+ChatEventImageUnblurred _$ChatEventImageUnblurredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventImageUnblurred.new);
+
+ChatEventImageCompressed _$ChatEventImageCompressedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventImageCompressed.new);
+
+ChatEventVideoSent _$ChatEventVideoSentFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoSent.new);
+
+ChatEventVideoReceived _$ChatEventVideoReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoReceived.new);
+
+ChatEventVideoPlayed _$ChatEventVideoPlayedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoPlayed.new);
+
+ChatEventVideoPaused _$ChatEventVideoPausedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoPaused.new);
+
+ChatEventVideoStopped _$ChatEventVideoStoppedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoStopped.new);
+
+ChatEventVideoSeeked _$ChatEventVideoSeekedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoSeeked.new);
+
+ChatEventVideoDeleted _$ChatEventVideoDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoDeleted.new);
+
+ChatEventVideoMuted _$ChatEventVideoMutedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoMuted.new);
+
+ChatEventVideoUnmuted _$ChatEventVideoUnmutedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoUnmuted.new);
+
+ChatEventAudioSent _$ChatEventAudioSentFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAudioSent.new);
+
+ChatEventAudioReceived _$ChatEventAudioReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAudioReceived.new);
+
+ChatEventAudioPlayed _$ChatEventAudioPlayedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAudioPlayed.new);
+
+ChatEventAudioPaused _$ChatEventAudioPausedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAudioPaused.new);
+
+ChatEventAudioDeleted _$ChatEventAudioDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAudioDeleted.new);
+
+ChatEventAudioTranscribed _$ChatEventAudioTranscribedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAudioTranscribed.new);
+
+ChatEventAudioTranscriptionFailed _$ChatEventAudioTranscriptionFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAudioTranscriptionFailed.new);
+
+ChatEventFileSent _$ChatEventFileSentFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventFileSent.new);
+
+ChatEventFileReceived _$ChatEventFileReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventFileReceived.new);
+
+ChatEventFilePreviewGenerated _$ChatEventFilePreviewGeneratedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventFilePreviewGenerated.new);
+
+ChatEventFileDeleted _$ChatEventFileDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventFileDeleted.new);
+
+ChatEventFileDownloaded _$ChatEventFileDownloadedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventFileDownloaded.new);
+
+ChatEventLinkPreviewGenerated _$ChatEventLinkPreviewGeneratedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLinkPreviewGenerated.new);
+
+ChatEventLinkPreviewFailed _$ChatEventLinkPreviewFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLinkPreviewFailed.new);
+
+ChatEventReactionAdded _$ChatEventReactionAddedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventReactionAdded.new);
+
+ChatEventReactionRemoved _$ChatEventReactionRemovedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventReactionRemoved.new);
+
+ChatEventReactionUpdated _$ChatEventReactionUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventReactionUpdated.new);
+
+ChatEventReactionCleared _$ChatEventReactionClearedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventReactionCleared.new);
+
+ChatEventThreadCreated _$ChatEventThreadCreatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventThreadCreated.new);
+
+ChatEventThreadUpdated _$ChatEventThreadUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventThreadUpdated.new);
+
+ChatEventThreadDeleted _$ChatEventThreadDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventThreadDeleted.new);
+
+ChatEventThreadArchived _$ChatEventThreadArchivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventThreadArchived.new);
+
+ChatEventThreadUnarchived _$ChatEventThreadUnarchivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventThreadUnarchived.new);
+
+ChatEventChannelCreated _$ChatEventChannelCreatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelCreated.new);
+
+ChatEventChannelRenamed _$ChatEventChannelRenamedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelRenamed.new);
+
+ChatEventChannelDescriptionUpdated _$ChatEventChannelDescriptionUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelDescriptionUpdated.new);
+
+ChatEventChannelDeleted _$ChatEventChannelDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelDeleted.new);
+
+ChatEventChannelArchived _$ChatEventChannelArchivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelArchived.new);
+
+ChatEventChannelUnarchived _$ChatEventChannelUnarchivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelUnarchived.new);
+
+ChatEventChannelLocked _$ChatEventChannelLockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelLocked.new);
+
+ChatEventChannelUnlocked _$ChatEventChannelUnlockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelUnlocked.new);
+
+ChatEventChannelMigrated _$ChatEventChannelMigratedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelMigrated.new);
+
+ChatEventChannelHidden _$ChatEventChannelHiddenFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelHidden.new);
+
+ChatEventChannelUnhidden _$ChatEventChannelUnhiddenFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventChannelUnhidden.new);
+
+ChatEventGroupCreated _$ChatEventGroupCreatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupCreated.new);
+
+ChatEventGroupUpdated _$ChatEventGroupUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupUpdated.new);
+
+ChatEventGroupDeleted _$ChatEventGroupDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupDeleted.new);
+
+ChatEventGroupIconUpdated _$ChatEventGroupIconUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupIconUpdated.new);
+
+ChatEventGroupAdminAdded _$ChatEventGroupAdminAddedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupAdminAdded.new);
+
+ChatEventGroupAdminRemoved _$ChatEventGroupAdminRemovedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupAdminRemoved.new);
+
+ChatEventGroupMemberAdded _$ChatEventGroupMemberAddedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupMemberAdded.new);
+
+ChatEventGroupMemberRemoved _$ChatEventGroupMemberRemovedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupMemberRemoved.new);
+
+ChatEventGroupMemberLeft _$ChatEventGroupMemberLeftFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupMemberLeft.new);
+
+ChatEventGroupMemberKicked _$ChatEventGroupMemberKickedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupMemberKicked.new);
+
+ChatEventGroupInfoViewed _$ChatEventGroupInfoViewedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGroupInfoViewed.new);
+
+ChatEventCallStarted _$ChatEventCallStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallStarted.new);
+
+ChatEventCallEnded _$ChatEventCallEndedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallEnded.new);
+
+ChatEventCallMissed _$ChatEventCallMissedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallMissed.new);
+
+ChatEventCallRejected _$ChatEventCallRejectedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallRejected.new);
+
+ChatEventCallAccepted _$ChatEventCallAcceptedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallAccepted.new);
+
+ChatEventCallReconnecting _$ChatEventCallReconnectingFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallReconnecting.new);
+
+ChatEventCallReconnected _$ChatEventCallReconnectedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallReconnected.new);
+
+ChatEventCallNetworkLow _$ChatEventCallNetworkLowFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallNetworkLow.new);
+
+ChatEventCallMediaPermissionDenied _$ChatEventCallMediaPermissionDeniedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallMediaPermissionDenied.new);
+
+ChatEventCallRecordingStarted _$ChatEventCallRecordingStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallRecordingStarted.new);
+
+ChatEventCallRecordingStopped _$ChatEventCallRecordingStoppedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCallRecordingStopped.new);
+
+ChatEventVideoCallStarted _$ChatEventVideoCallStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoCallStarted.new);
+
+ChatEventVideoCallEnded _$ChatEventVideoCallEndedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoCallEnded.new);
+
+ChatEventVideoCallMissed _$ChatEventVideoCallMissedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoCallMissed.new);
+
+ChatEventVideoCallRejected _$ChatEventVideoCallRejectedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoCallRejected.new);
+
+ChatEventVideoCallAccepted _$ChatEventVideoCallAcceptedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVideoCallAccepted.new);
+
+ChatEventVoiceNoteSent _$ChatEventVoiceNoteSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVoiceNoteSent.new);
+
+ChatEventVoiceNoteDeleted _$ChatEventVoiceNoteDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVoiceNoteDeleted.new);
+
+ChatEventVoiceNotePlayed _$ChatEventVoiceNotePlayedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventVoiceNotePlayed.new);
+
+ChatEventPollCreated _$ChatEventPollCreatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPollCreated.new);
+
+ChatEventPollVoteCast _$ChatEventPollVoteCastFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPollVoteCast.new);
+
+ChatEventPollVoteRemoved _$ChatEventPollVoteRemovedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPollVoteRemoved.new);
+
+ChatEventPollClosed _$ChatEventPollClosedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPollClosed.new);
+
+ChatEventStoryPosted _$ChatEventStoryPostedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventStoryPosted.new);
+
+ChatEventStoryDeleted _$ChatEventStoryDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventStoryDeleted.new);
+
+ChatEventStoryViewed _$ChatEventStoryViewedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventStoryViewed.new);
+
+ChatEventStoryReacted _$ChatEventStoryReactedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventStoryReacted.new);
+
+ChatEventBotMessageSent _$ChatEventBotMessageSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventBotMessageSent.new);
+
+ChatEventBotMessageDeleted _$ChatEventBotMessageDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventBotMessageDeleted.new);
+
+ChatEventBotTriggered _$ChatEventBotTriggeredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventBotTriggered.new);
+
+ChatEventBotDisabled _$ChatEventBotDisabledFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventBotDisabled.new);
+
+ChatEventBotEnabled _$ChatEventBotEnabledFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventBotEnabled.new);
+
+ChatEventSystemBroadcast _$ChatEventSystemBroadcastFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSystemBroadcast.new);
+
+ChatEventSystemMaintenanceScheduled
+    _$ChatEventSystemMaintenanceScheduledFromJson(Map<String, dynamic> json) =>
+        _$ChatEventSig0FromJson(json, ChatEventSystemMaintenanceScheduled.new);
+
+ChatEventSystemMaintenanceStarted _$ChatEventSystemMaintenanceStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSystemMaintenanceStarted.new);
+
+ChatEventSystemMaintenanceEnded _$ChatEventSystemMaintenanceEndedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSystemMaintenanceEnded.new);
+
+ChatEventSystemWarning _$ChatEventSystemWarningFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSystemWarning.new);
+
+ChatEventSystemError _$ChatEventSystemErrorFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSystemError.new);
+
+ChatEventSystemRecovery _$ChatEventSystemRecoveryFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSystemRecovery.new);
+
+ChatEventSystemPatchApplied _$ChatEventSystemPatchAppliedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSystemPatchApplied.new);
+
+ChatEventEncryptionEnabled _$ChatEventEncryptionEnabledFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventEncryptionEnabled.new);
+
+ChatEventEncryptionDisabled _$ChatEventEncryptionDisabledFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventEncryptionDisabled.new);
+
+ChatEventEncryptionKeyRotated _$ChatEventEncryptionKeyRotatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventEncryptionKeyRotated.new);
+
+ChatEventEncryptionKeyFailed _$ChatEventEncryptionKeyFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventEncryptionKeyFailed.new);
+
+ChatEventSessionStarted _$ChatEventSessionStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSessionStarted.new);
+
+ChatEventSessionExpired _$ChatEventSessionExpiredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSessionExpired.new);
+
+ChatEventSessionRefreshed _$ChatEventSessionRefreshedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSessionRefreshed.new);
+
+ChatEventSessionTerminated _$ChatEventSessionTerminatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSessionTerminated.new);
+
+ChatEventTypingIndicatorSent _$ChatEventTypingIndicatorSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventTypingIndicatorSent.new);
+
+ChatEventTypingIndicatorReceived _$ChatEventTypingIndicatorReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventTypingIndicatorReceived.new);
+
+ChatEventPresenceSubscribed _$ChatEventPresenceSubscribedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPresenceSubscribed.new);
+
+ChatEventPresenceUnsubscribed _$ChatEventPresenceUnsubscribedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPresenceUnsubscribed.new);
+
+ChatEventPresenceSync _$ChatEventPresenceSyncFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPresenceSync.new);
+
+ChatEventPresenceUpdateFailed _$ChatEventPresenceUpdateFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPresenceUpdateFailed.new);
+
+ChatEventPushNotificationSent _$ChatEventPushNotificationSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPushNotificationSent.new);
+
+ChatEventPushNotificationReceived _$ChatEventPushNotificationReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPushNotificationReceived.new);
+
+ChatEventPushNotificationOpened _$ChatEventPushNotificationOpenedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPushNotificationOpened.new);
+
+ChatEventPushNotificationFailed _$ChatEventPushNotificationFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPushNotificationFailed.new);
+
+ChatEventReadReceiptSent _$ChatEventReadReceiptSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventReadReceiptSent.new);
+
+ChatEventReadReceiptFailed _$ChatEventReadReceiptFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventReadReceiptFailed.new);
+
+ChatEventReadReceiptBlocked _$ChatEventReadReceiptBlockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventReadReceiptBlocked.new);
+
+ChatEventBackupStarted _$ChatEventBackupStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventBackupStarted.new);
+
+ChatEventBackupCompleted _$ChatEventBackupCompletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventBackupCompleted.new);
+
+ChatEventBackupFailed _$ChatEventBackupFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventBackupFailed.new);
+
+ChatEventRestoreStarted _$ChatEventRestoreStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventRestoreStarted.new);
+
+ChatEventRestoreCompleted _$ChatEventRestoreCompletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventRestoreCompleted.new);
+
+ChatEventRestoreFailed _$ChatEventRestoreFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventRestoreFailed.new);
+
+ChatEventContactSynced _$ChatEventContactSyncedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventContactSynced.new);
+
+ChatEventContactSyncFailed _$ChatEventContactSyncFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventContactSyncFailed.new);
+
+ChatEventContactAdded _$ChatEventContactAddedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventContactAdded.new);
+
+ChatEventContactRemoved _$ChatEventContactRemovedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventContactRemoved.new);
+
+ChatEventContactBlocked _$ChatEventContactBlockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventContactBlocked.new);
+
+ChatEventContactUnblocked _$ChatEventContactUnblockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventContactUnblocked.new);
+
+ChatEventCommandExecuted _$ChatEventCommandExecutedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCommandExecuted.new);
+
+ChatEventShortcutUsed _$ChatEventShortcutUsedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventShortcutUsed.new);
+
+ChatEventActionButtonClicked _$ChatEventActionButtonClickedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventActionButtonClicked.new);
+
+ChatEventAdminMessageSent _$ChatEventAdminMessageSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAdminMessageSent.new);
+
+ChatEventAdminMessageDeleted _$ChatEventAdminMessageDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAdminMessageDeleted.new);
+
+ChatEventAdminAnnouncement _$ChatEventAdminAnnouncementFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAdminAnnouncement.new);
+
+ChatEventAdminWarning _$ChatEventAdminWarningFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAdminWarning.new);
+
+ChatEventAdminSilencedUser _$ChatEventAdminSilencedUserFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAdminSilencedUser.new);
+
+ChatEventSpamUserDetected _$ChatEventSpamUserDetectedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSpamUserDetected.new);
+
+ChatEventSpamUserBlocked _$ChatEventSpamUserBlockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSpamUserBlocked.new);
+
+ChatEventSpamUserReported _$ChatEventSpamUserReportedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSpamUserReported.new);
+
+ChatEventModerationActionTaken _$ChatEventModerationActionTakenFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventModerationActionTaken.new);
+
+ChatEventModerationFlagReviewed _$ChatEventModerationFlagReviewedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventModerationFlagReviewed.new);
+
+ChatEventModerationMessageHidden _$ChatEventModerationMessageHiddenFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventModerationMessageHidden.new);
+
+ChatEventModerationMessageRemoved _$ChatEventModerationMessageRemovedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventModerationMessageRemoved.new);
+
+ChatEventExperimentStarted _$ChatEventExperimentStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventExperimentStarted.new);
+
+ChatEventExperimentUpdated _$ChatEventExperimentUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventExperimentUpdated.new);
+
+ChatEventExperimentCompleted _$ChatEventExperimentCompletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventExperimentCompleted.new);
+
+ChatEventExperimentAborted _$ChatEventExperimentAbortedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventExperimentAborted.new);
+
+ChatEventGiftSent _$ChatEventGiftSentFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGiftSent.new);
+
+ChatEventGiftReceived _$ChatEventGiftReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGiftReceived.new);
+
+ChatEventGiftRedeemed _$ChatEventGiftRedeemedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGiftRedeemed.new);
+
+ChatEventGiftFailed _$ChatEventGiftFailedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventGiftFailed.new);
+
+ChatEventStickerSent _$ChatEventStickerSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventStickerSent.new);
+
+ChatEventStickerDeleted _$ChatEventStickerDeletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventStickerDeleted.new);
+
+ChatEventEmojiPackAdded _$ChatEventEmojiPackAddedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventEmojiPackAdded.new);
+
+ChatEventEmojiPackRemoved _$ChatEventEmojiPackRemovedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventEmojiPackRemoved.new);
+
+ChatEventThemeChanged _$ChatEventThemeChangedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventThemeChanged.new);
+
+ChatEventWallpaperChanged _$ChatEventWallpaperChangedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventWallpaperChanged.new);
+
+ChatEventFontSizeChanged _$ChatEventFontSizeChangedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventFontSizeChanged.new);
+
+ChatEventSettingsUpdated _$ChatEventSettingsUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSettingsUpdated.new);
+
+ChatEventDeviceRegistered _$ChatEventDeviceRegisteredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventDeviceRegistered.new);
+
+ChatEventDeviceUnregistered _$ChatEventDeviceUnregisteredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventDeviceUnregistered.new);
+
+ChatEventDeviceSwitched _$ChatEventDeviceSwitchedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventDeviceSwitched.new);
+
+ChatEventDeviceSyncCompleted _$ChatEventDeviceSyncCompletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventDeviceSyncCompleted.new);
+
+ChatEventDeviceSyncFailed _$ChatEventDeviceSyncFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventDeviceSyncFailed.new);
+
+ChatEventLocationShared _$ChatEventLocationSharedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLocationShared.new);
+
+ChatEventLocationUpdated _$ChatEventLocationUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLocationUpdated.new);
+
+ChatEventLocationStopped _$ChatEventLocationStoppedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLocationStopped.new);
+
+ChatEventLocationRequestSent _$ChatEventLocationRequestSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLocationRequestSent.new);
+
+ChatEventLocationRequestAccepted _$ChatEventLocationRequestAcceptedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLocationRequestAccepted.new);
+
+ChatEventLocationRequestDeclined _$ChatEventLocationRequestDeclinedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLocationRequestDeclined.new);
+
+ChatEventQrScanSuccess _$ChatEventQrScanSuccessFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventQrScanSuccess.new);
+
+ChatEventQrScanFailed _$ChatEventQrScanFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventQrScanFailed.new);
+
+ChatEventQrConnectionEstablished _$ChatEventQrConnectionEstablishedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventQrConnectionEstablished.new);
+
+ChatEventQrConnectionTerminated _$ChatEventQrConnectionTerminatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventQrConnectionTerminated.new);
+
+ChatEventPaymentRequestSent _$ChatEventPaymentRequestSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentRequestSent.new);
+
+ChatEventPaymentRequestReceived _$ChatEventPaymentRequestReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentRequestReceived.new);
+
+ChatEventPaymentRequestAccepted _$ChatEventPaymentRequestAcceptedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentRequestAccepted.new);
+
+ChatEventPaymentRequestDeclined _$ChatEventPaymentRequestDeclinedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentRequestDeclined.new);
+
+ChatEventPaymentSent _$ChatEventPaymentSentFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentSent.new);
+
+ChatEventPaymentReceived _$ChatEventPaymentReceivedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentReceived.new);
+
+ChatEventPaymentFailed _$ChatEventPaymentFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentFailed.new);
+
+ChatEventPaymentRefunded _$ChatEventPaymentRefundedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentRefunded.new);
+
+ChatEventPaymentWalletUpdated _$ChatEventPaymentWalletUpdatedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventPaymentWalletUpdated.new);
+
+ChatEventSubscriptionStarted _$ChatEventSubscriptionStartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSubscriptionStarted.new);
+
+ChatEventSubscriptionExpired _$ChatEventSubscriptionExpiredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSubscriptionExpired.new);
+
+ChatEventSubscriptionRenewed _$ChatEventSubscriptionRenewedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSubscriptionRenewed.new);
+
+ChatEventSubscriptionCanceled _$ChatEventSubscriptionCanceledFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventSubscriptionCanceled.new);
+
+ChatEventAiSummaryGenerated _$ChatEventAiSummaryGeneratedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAiSummaryGenerated.new);
+
+ChatEventAiSummaryFailed _$ChatEventAiSummaryFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAiSummaryFailed.new);
+
+ChatEventAiReplySuggested _$ChatEventAiReplySuggestedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAiReplySuggested.new);
+
+ChatEventAiReplySelected _$ChatEventAiReplySelectedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAiReplySelected.new);
+
+ChatEventAiTranslationRequested _$ChatEventAiTranslationRequestedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAiTranslationRequested.new);
+
+ChatEventAiTranslationCompleted _$ChatEventAiTranslationCompletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAiTranslationCompleted.new);
+
+ChatEventAiTranslationFailed _$ChatEventAiTranslationFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAiTranslationFailed.new);
+
+ChatEventCaptchaRequired _$ChatEventCaptchaRequiredFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCaptchaRequired.new);
+
+ChatEventCaptchaPassed _$ChatEventCaptchaPassedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCaptchaPassed.new);
+
+ChatEventCaptchaFailed _$ChatEventCaptchaFailedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventCaptchaFailed.new);
+
+ChatEventRateLimitWarning _$ChatEventRateLimitWarningFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventRateLimitWarning.new);
+
+ChatEventRateLimitBlocked _$ChatEventRateLimitBlockedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventRateLimitBlocked.new);
+
+ChatEventLogoutRequested _$ChatEventLogoutRequestedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLogoutRequested.new);
+
+ChatEventLogoutCompleted _$ChatEventLogoutCompletedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventLogoutCompleted.new);
+
+ChatEventAppOpened _$ChatEventAppOpenedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAppOpened.new);
+
+ChatEventAppBackgrounded _$ChatEventAppBackgroundedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAppBackgrounded.new);
+
+ChatEventAppResumed _$ChatEventAppResumedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAppResumed.new);
+
+ChatEventAppCrashed _$ChatEventAppCrashedFromJson(Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAppCrashed.new);
+
+ChatEventAppRestarted _$ChatEventAppRestartedFromJson(
+        Map<String, dynamic> json) =>
+    _$ChatEventSig0FromJson(json, ChatEventAppRestarted.new);
+
 extension $ChatEventUserJoinedJson on ChatEventUserJoined {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_joined',
@@ -10855,10 +16381,6 @@ extension $ChatEventUserJoinedCopyWith on ChatEventUserJoined {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserRejoined _$ChatEventUserRejoinedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserRejoined.new);
 
 extension $ChatEventUserRejoinedJson on ChatEventUserRejoined {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -10882,9 +16404,6 @@ extension $ChatEventUserRejoinedCopyWith on ChatEventUserRejoined {
       );
 }
 
-ChatEventUserLeft _$ChatEventUserLeftFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserLeft.new);
-
 extension $ChatEventUserLeftJson on ChatEventUserLeft {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_left',
@@ -10906,10 +16425,6 @@ extension $ChatEventUserLeftCopyWith on ChatEventUserLeft {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserLeftForced _$ChatEventUserLeftForcedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserLeftForced.new);
 
 extension $ChatEventUserLeftForcedJson on ChatEventUserLeftForced {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -10933,9 +16448,6 @@ extension $ChatEventUserLeftForcedCopyWith on ChatEventUserLeftForced {
       );
 }
 
-ChatEventUserKicked _$ChatEventUserKickedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserKicked.new);
-
 extension $ChatEventUserKickedJson on ChatEventUserKicked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_kicked',
@@ -10957,9 +16469,6 @@ extension $ChatEventUserKickedCopyWith on ChatEventUserKicked {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserBanned _$ChatEventUserBannedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserBanned.new);
 
 extension $ChatEventUserBannedJson on ChatEventUserBanned {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -10983,10 +16492,6 @@ extension $ChatEventUserBannedCopyWith on ChatEventUserBanned {
       );
 }
 
-ChatEventUserUnbanned _$ChatEventUserUnbannedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserUnbanned.new);
-
 extension $ChatEventUserUnbannedJson on ChatEventUserUnbanned {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_unbanned',
@@ -11008,9 +16513,6 @@ extension $ChatEventUserUnbannedCopyWith on ChatEventUserUnbanned {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserMuted _$ChatEventUserMutedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserMuted.new);
 
 extension $ChatEventUserMutedJson on ChatEventUserMuted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11034,10 +16536,6 @@ extension $ChatEventUserMutedCopyWith on ChatEventUserMuted {
       );
 }
 
-ChatEventUserUnmuted _$ChatEventUserUnmutedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserUnmuted.new);
-
 extension $ChatEventUserUnmutedJson on ChatEventUserUnmuted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_unmuted',
@@ -11059,10 +16557,6 @@ extension $ChatEventUserUnmutedCopyWith on ChatEventUserUnmuted {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserBlocked _$ChatEventUserBlockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserBlocked.new);
 
 extension $ChatEventUserBlockedJson on ChatEventUserBlocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11086,10 +16580,6 @@ extension $ChatEventUserBlockedCopyWith on ChatEventUserBlocked {
       );
 }
 
-ChatEventUserUnblocked _$ChatEventUserUnblockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserUnblocked.new);
-
 extension $ChatEventUserUnblockedJson on ChatEventUserUnblocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_unblocked',
@@ -11111,10 +16601,6 @@ extension $ChatEventUserUnblockedCopyWith on ChatEventUserUnblocked {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserReported _$ChatEventUserReportedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserReported.new);
 
 extension $ChatEventUserReportedJson on ChatEventUserReported {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11138,10 +16624,6 @@ extension $ChatEventUserReportedCopyWith on ChatEventUserReported {
       );
 }
 
-ChatEventUserVerified _$ChatEventUserVerifiedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserVerified.new);
-
 extension $ChatEventUserVerifiedJson on ChatEventUserVerified {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_verified',
@@ -11163,10 +16645,6 @@ extension $ChatEventUserVerifiedCopyWith on ChatEventUserVerified {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserTypingStarted _$ChatEventUserTypingStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserTypingStarted.new);
 
 extension $ChatEventUserTypingStartedJson on ChatEventUserTypingStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11190,10 +16668,6 @@ extension $ChatEventUserTypingStartedCopyWith on ChatEventUserTypingStarted {
       );
 }
 
-ChatEventUserTypingStopped _$ChatEventUserTypingStoppedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserTypingStopped.new);
-
 extension $ChatEventUserTypingStoppedJson on ChatEventUserTypingStopped {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_typing_stopped',
@@ -11215,9 +16689,6 @@ extension $ChatEventUserTypingStoppedCopyWith on ChatEventUserTypingStopped {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserOnline _$ChatEventUserOnlineFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserOnline.new);
 
 extension $ChatEventUserOnlineJson on ChatEventUserOnline {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11241,10 +16712,6 @@ extension $ChatEventUserOnlineCopyWith on ChatEventUserOnline {
       );
 }
 
-ChatEventUserOffline _$ChatEventUserOfflineFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserOffline.new);
-
 extension $ChatEventUserOfflineJson on ChatEventUserOffline {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_offline',
@@ -11266,9 +16733,6 @@ extension $ChatEventUserOfflineCopyWith on ChatEventUserOffline {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserIdle _$ChatEventUserIdleFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserIdle.new);
 
 extension $ChatEventUserIdleJson on ChatEventUserIdle {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11292,10 +16756,6 @@ extension $ChatEventUserIdleCopyWith on ChatEventUserIdle {
       );
 }
 
-ChatEventUserStatusChanged _$ChatEventUserStatusChangedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserStatusChanged.new);
-
 extension $ChatEventUserStatusChangedJson on ChatEventUserStatusChanged {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_status_changed',
@@ -11317,10 +16777,6 @@ extension $ChatEventUserStatusChangedCopyWith on ChatEventUserStatusChanged {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserProfileUpdated _$ChatEventUserProfileUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserProfileUpdated.new);
 
 extension $ChatEventUserProfileUpdatedJson on ChatEventUserProfileUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11344,10 +16800,6 @@ extension $ChatEventUserProfileUpdatedCopyWith on ChatEventUserProfileUpdated {
       );
 }
 
-ChatEventUserAvatarUpdated _$ChatEventUserAvatarUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserAvatarUpdated.new);
-
 extension $ChatEventUserAvatarUpdatedJson on ChatEventUserAvatarUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_avatar_updated',
@@ -11369,10 +16821,6 @@ extension $ChatEventUserAvatarUpdatedCopyWith on ChatEventUserAvatarUpdated {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserUsernameChanged _$ChatEventUserUsernameChangedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserUsernameChanged.new);
 
 extension $ChatEventUserUsernameChangedJson on ChatEventUserUsernameChanged {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11397,10 +16845,6 @@ extension $ChatEventUserUsernameChangedCopyWith
       );
 }
 
-ChatEventUserRolePromoted _$ChatEventUserRolePromotedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserRolePromoted.new);
-
 extension $ChatEventUserRolePromotedJson on ChatEventUserRolePromoted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_role_promoted',
@@ -11422,10 +16866,6 @@ extension $ChatEventUserRolePromotedCopyWith on ChatEventUserRolePromoted {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserRoleDemoted _$ChatEventUserRoleDemotedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserRoleDemoted.new);
 
 extension $ChatEventUserRoleDemotedJson on ChatEventUserRoleDemoted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11449,10 +16889,6 @@ extension $ChatEventUserRoleDemotedCopyWith on ChatEventUserRoleDemoted {
       );
 }
 
-ChatEventUserInvited _$ChatEventUserInvitedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserInvited.new);
-
 extension $ChatEventUserInvitedJson on ChatEventUserInvited {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_invited',
@@ -11474,10 +16910,6 @@ extension $ChatEventUserInvitedCopyWith on ChatEventUserInvited {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserInviteRevoked _$ChatEventUserInviteRevokedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserInviteRevoked.new);
 
 extension $ChatEventUserInviteRevokedJson on ChatEventUserInviteRevoked {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11501,10 +16933,6 @@ extension $ChatEventUserInviteRevokedCopyWith on ChatEventUserInviteRevoked {
       );
 }
 
-ChatEventUserFollowed _$ChatEventUserFollowedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserFollowed.new);
-
 extension $ChatEventUserFollowedJson on ChatEventUserFollowed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_followed',
@@ -11526,10 +16954,6 @@ extension $ChatEventUserFollowedCopyWith on ChatEventUserFollowed {
         message: message ?? this.message,
       );
 }
-
-ChatEventUserUnfollowed _$ChatEventUserUnfollowedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserUnfollowed.new);
 
 extension $ChatEventUserUnfollowedJson on ChatEventUserUnfollowed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11553,9 +16977,6 @@ extension $ChatEventUserUnfollowedCopyWith on ChatEventUserUnfollowed {
       );
 }
 
-ChatEventUserPinged _$ChatEventUserPingedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventUserPinged.new);
-
 extension $ChatEventUserPingedJson on ChatEventUserPinged {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'user_pinged',
@@ -11577,10 +16998,6 @@ extension $ChatEventUserPingedCopyWith on ChatEventUserPinged {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageSent _$ChatEventMessageSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageSent.new);
 
 extension $ChatEventMessageSentJson on ChatEventMessageSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11604,10 +17021,6 @@ extension $ChatEventMessageSentCopyWith on ChatEventMessageSent {
       );
 }
 
-ChatEventMessageReceived _$ChatEventMessageReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageReceived.new);
-
 extension $ChatEventMessageReceivedJson on ChatEventMessageReceived {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_received',
@@ -11629,10 +17042,6 @@ extension $ChatEventMessageReceivedCopyWith on ChatEventMessageReceived {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageRead _$ChatEventMessageReadFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageRead.new);
 
 extension $ChatEventMessageReadJson on ChatEventMessageRead {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11656,10 +17065,6 @@ extension $ChatEventMessageReadCopyWith on ChatEventMessageRead {
       );
 }
 
-ChatEventMessageUnread _$ChatEventMessageUnreadFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageUnread.new);
-
 extension $ChatEventMessageUnreadJson on ChatEventMessageUnread {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_unread',
@@ -11681,10 +17086,6 @@ extension $ChatEventMessageUnreadCopyWith on ChatEventMessageUnread {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageEdited _$ChatEventMessageEditedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageEdited.new);
 
 extension $ChatEventMessageEditedJson on ChatEventMessageEdited {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11708,10 +17109,6 @@ extension $ChatEventMessageEditedCopyWith on ChatEventMessageEdited {
       );
 }
 
-ChatEventMessageDeleted _$ChatEventMessageDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageDeleted.new);
-
 extension $ChatEventMessageDeletedJson on ChatEventMessageDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_deleted',
@@ -11733,10 +17130,6 @@ extension $ChatEventMessageDeletedCopyWith on ChatEventMessageDeleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageDeletedForSelf _$ChatEventMessageDeletedForSelfFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageDeletedForSelf.new);
 
 extension $ChatEventMessageDeletedForSelfJson
     on ChatEventMessageDeletedForSelf {
@@ -11762,10 +17155,6 @@ extension $ChatEventMessageDeletedForSelfCopyWith
       );
 }
 
-ChatEventMessageDeletedForAll _$ChatEventMessageDeletedForAllFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageDeletedForAll.new);
-
 extension $ChatEventMessageDeletedForAllJson on ChatEventMessageDeletedForAll {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_deleted_for_all',
@@ -11789,10 +17178,6 @@ extension $ChatEventMessageDeletedForAllCopyWith
       );
 }
 
-ChatEventMessagePinned _$ChatEventMessagePinnedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessagePinned.new);
-
 extension $ChatEventMessagePinnedJson on ChatEventMessagePinned {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_pinned',
@@ -11814,10 +17199,6 @@ extension $ChatEventMessagePinnedCopyWith on ChatEventMessagePinned {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageUnpinned _$ChatEventMessageUnpinnedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageUnpinned.new);
 
 extension $ChatEventMessageUnpinnedJson on ChatEventMessageUnpinned {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11841,10 +17222,6 @@ extension $ChatEventMessageUnpinnedCopyWith on ChatEventMessageUnpinned {
       );
 }
 
-ChatEventMessageStarred _$ChatEventMessageStarredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageStarred.new);
-
 extension $ChatEventMessageStarredJson on ChatEventMessageStarred {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_starred',
@@ -11866,10 +17243,6 @@ extension $ChatEventMessageStarredCopyWith on ChatEventMessageStarred {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageUnstarred _$ChatEventMessageUnstarredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageUnstarred.new);
 
 extension $ChatEventMessageUnstarredJson on ChatEventMessageUnstarred {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11893,10 +17266,6 @@ extension $ChatEventMessageUnstarredCopyWith on ChatEventMessageUnstarred {
       );
 }
 
-ChatEventMessageLiked _$ChatEventMessageLikedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageLiked.new);
-
 extension $ChatEventMessageLikedJson on ChatEventMessageLiked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_liked',
@@ -11918,10 +17287,6 @@ extension $ChatEventMessageLikedCopyWith on ChatEventMessageLiked {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageUnliked _$ChatEventMessageUnlikedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageUnliked.new);
 
 extension $ChatEventMessageUnlikedJson on ChatEventMessageUnliked {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11945,10 +17310,6 @@ extension $ChatEventMessageUnlikedCopyWith on ChatEventMessageUnliked {
       );
 }
 
-ChatEventMessageDisliked _$ChatEventMessageDislikedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageDisliked.new);
-
 extension $ChatEventMessageDislikedJson on ChatEventMessageDisliked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_disliked',
@@ -11970,10 +17331,6 @@ extension $ChatEventMessageDislikedCopyWith on ChatEventMessageDisliked {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageReacted _$ChatEventMessageReactedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageReacted.new);
 
 extension $ChatEventMessageReactedJson on ChatEventMessageReacted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -11997,10 +17354,6 @@ extension $ChatEventMessageReactedCopyWith on ChatEventMessageReacted {
       );
 }
 
-ChatEventMessageUnreacted _$ChatEventMessageUnreactedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageUnreacted.new);
-
 extension $ChatEventMessageUnreactedJson on ChatEventMessageUnreacted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_unreacted',
@@ -12022,10 +17375,6 @@ extension $ChatEventMessageUnreactedCopyWith on ChatEventMessageUnreacted {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageForwarded _$ChatEventMessageForwardedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageForwarded.new);
 
 extension $ChatEventMessageForwardedJson on ChatEventMessageForwarded {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12049,10 +17398,6 @@ extension $ChatEventMessageForwardedCopyWith on ChatEventMessageForwarded {
       );
 }
 
-ChatEventMessageQuoted _$ChatEventMessageQuotedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageQuoted.new);
-
 extension $ChatEventMessageQuotedJson on ChatEventMessageQuoted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_quoted',
@@ -12074,10 +17419,6 @@ extension $ChatEventMessageQuotedCopyWith on ChatEventMessageQuoted {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageFlagged _$ChatEventMessageFlaggedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageFlagged.new);
 
 extension $ChatEventMessageFlaggedJson on ChatEventMessageFlagged {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12101,10 +17442,6 @@ extension $ChatEventMessageFlaggedCopyWith on ChatEventMessageFlagged {
       );
 }
 
-ChatEventMessageUnflagged _$ChatEventMessageUnflaggedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageUnflagged.new);
-
 extension $ChatEventMessageUnflaggedJson on ChatEventMessageUnflagged {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_unflagged',
@@ -12126,10 +17463,6 @@ extension $ChatEventMessageUnflaggedCopyWith on ChatEventMessageUnflagged {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageSpamDetected _$ChatEventMessageSpamDetectedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageSpamDetected.new);
 
 extension $ChatEventMessageSpamDetectedJson on ChatEventMessageSpamDetected {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12153,10 +17486,6 @@ extension $ChatEventMessageSpamDetectedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageDeliveryFailed _$ChatEventMessageDeliveryFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageDeliveryFailed.new);
 
 extension $ChatEventMessageDeliveryFailedJson
     on ChatEventMessageDeliveryFailed {
@@ -12182,10 +17511,6 @@ extension $ChatEventMessageDeliveryFailedCopyWith
       );
 }
 
-ChatEventMessageScheduled _$ChatEventMessageScheduledFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageScheduled.new);
-
 extension $ChatEventMessageScheduledJson on ChatEventMessageScheduled {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_scheduled',
@@ -12207,10 +17532,6 @@ extension $ChatEventMessageScheduledCopyWith on ChatEventMessageScheduled {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageScheduledSent _$ChatEventMessageScheduledSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageScheduledSent.new);
 
 extension $ChatEventMessageScheduledSentJson on ChatEventMessageScheduledSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12234,10 +17555,6 @@ extension $ChatEventMessageScheduledSentCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageScheduledFailed _$ChatEventMessageScheduledFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageScheduledFailed.new);
 
 extension $ChatEventMessageScheduledFailedJson
     on ChatEventMessageScheduledFailed {
@@ -12263,10 +17580,6 @@ extension $ChatEventMessageScheduledFailedCopyWith
       );
 }
 
-ChatEventMessageHidden _$ChatEventMessageHiddenFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageHidden.new);
-
 extension $ChatEventMessageHiddenJson on ChatEventMessageHidden {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'message_hidden',
@@ -12288,10 +17601,6 @@ extension $ChatEventMessageHiddenCopyWith on ChatEventMessageHidden {
         message: message ?? this.message,
       );
 }
-
-ChatEventMessageRestored _$ChatEventMessageRestoredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventMessageRestored.new);
 
 extension $ChatEventMessageRestoredJson on ChatEventMessageRestored {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12315,10 +17624,6 @@ extension $ChatEventMessageRestoredCopyWith on ChatEventMessageRestored {
       );
 }
 
-ChatEventAttachmentUploaded _$ChatEventAttachmentUploadedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAttachmentUploaded.new);
-
 extension $ChatEventAttachmentUploadedJson on ChatEventAttachmentUploaded {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'attachment_uploaded',
@@ -12340,10 +17645,6 @@ extension $ChatEventAttachmentUploadedCopyWith on ChatEventAttachmentUploaded {
         message: message ?? this.message,
       );
 }
-
-ChatEventAttachmentFailed _$ChatEventAttachmentFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAttachmentFailed.new);
 
 extension $ChatEventAttachmentFailedJson on ChatEventAttachmentFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12367,10 +17668,6 @@ extension $ChatEventAttachmentFailedCopyWith on ChatEventAttachmentFailed {
       );
 }
 
-ChatEventAttachmentDeleted _$ChatEventAttachmentDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAttachmentDeleted.new);
-
 extension $ChatEventAttachmentDeletedJson on ChatEventAttachmentDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'attachment_deleted',
@@ -12392,10 +17689,6 @@ extension $ChatEventAttachmentDeletedCopyWith on ChatEventAttachmentDeleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventAttachmentPreviewGenerated
-    _$ChatEventAttachmentPreviewGeneratedFromJson(Map<String, dynamic> json) =>
-        _$ChatEventSig0FromJson(json, ChatEventAttachmentPreviewGenerated.new);
 
 extension $ChatEventAttachmentPreviewGeneratedJson
     on ChatEventAttachmentPreviewGenerated {
@@ -12421,10 +17714,6 @@ extension $ChatEventAttachmentPreviewGeneratedCopyWith
       );
 }
 
-ChatEventAttachmentDownloaded _$ChatEventAttachmentDownloadedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloaded.new);
-
 extension $ChatEventAttachmentDownloadedJson on ChatEventAttachmentDownloaded {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'attachment_downloaded',
@@ -12447,10 +17736,6 @@ extension $ChatEventAttachmentDownloadedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventAttachmentDownloadStarted _$ChatEventAttachmentDownloadStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloadStarted.new);
 
 extension $ChatEventAttachmentDownloadStartedJson
     on ChatEventAttachmentDownloadStarted {
@@ -12476,10 +17761,6 @@ extension $ChatEventAttachmentDownloadStartedCopyWith
       );
 }
 
-ChatEventAttachmentDownloadCancelled
-    _$ChatEventAttachmentDownloadCancelledFromJson(Map<String, dynamic> json) =>
-        _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloadCancelled.new);
-
 extension $ChatEventAttachmentDownloadCancelledJson
     on ChatEventAttachmentDownloadCancelled {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12503,10 +17784,6 @@ extension $ChatEventAttachmentDownloadCancelledCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventAttachmentDownloadFailed _$ChatEventAttachmentDownloadFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAttachmentDownloadFailed.new);
 
 extension $ChatEventAttachmentDownloadFailedJson
     on ChatEventAttachmentDownloadFailed {
@@ -12532,9 +17809,6 @@ extension $ChatEventAttachmentDownloadFailedCopyWith
       );
 }
 
-ChatEventImageSent _$ChatEventImageSentFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventImageSent.new);
-
 extension $ChatEventImageSentJson on ChatEventImageSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'image_sent',
@@ -12556,10 +17830,6 @@ extension $ChatEventImageSentCopyWith on ChatEventImageSent {
         message: message ?? this.message,
       );
 }
-
-ChatEventImageReceived _$ChatEventImageReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventImageReceived.new);
 
 extension $ChatEventImageReceivedJson on ChatEventImageReceived {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12583,10 +17853,6 @@ extension $ChatEventImageReceivedCopyWith on ChatEventImageReceived {
       );
 }
 
-ChatEventImageDeleted _$ChatEventImageDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventImageDeleted.new);
-
 extension $ChatEventImageDeletedJson on ChatEventImageDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'image_deleted',
@@ -12608,10 +17874,6 @@ extension $ChatEventImageDeletedCopyWith on ChatEventImageDeleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventImageBlurred _$ChatEventImageBlurredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventImageBlurred.new);
 
 extension $ChatEventImageBlurredJson on ChatEventImageBlurred {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12635,10 +17897,6 @@ extension $ChatEventImageBlurredCopyWith on ChatEventImageBlurred {
       );
 }
 
-ChatEventImageUnblurred _$ChatEventImageUnblurredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventImageUnblurred.new);
-
 extension $ChatEventImageUnblurredJson on ChatEventImageUnblurred {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'image_unblurred',
@@ -12660,10 +17918,6 @@ extension $ChatEventImageUnblurredCopyWith on ChatEventImageUnblurred {
         message: message ?? this.message,
       );
 }
-
-ChatEventImageCompressed _$ChatEventImageCompressedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventImageCompressed.new);
 
 extension $ChatEventImageCompressedJson on ChatEventImageCompressed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12687,9 +17941,6 @@ extension $ChatEventImageCompressedCopyWith on ChatEventImageCompressed {
       );
 }
 
-ChatEventVideoSent _$ChatEventVideoSentFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoSent.new);
-
 extension $ChatEventVideoSentJson on ChatEventVideoSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'video_sent',
@@ -12711,10 +17962,6 @@ extension $ChatEventVideoSentCopyWith on ChatEventVideoSent {
         message: message ?? this.message,
       );
 }
-
-ChatEventVideoReceived _$ChatEventVideoReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoReceived.new);
 
 extension $ChatEventVideoReceivedJson on ChatEventVideoReceived {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12738,10 +17985,6 @@ extension $ChatEventVideoReceivedCopyWith on ChatEventVideoReceived {
       );
 }
 
-ChatEventVideoPlayed _$ChatEventVideoPlayedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoPlayed.new);
-
 extension $ChatEventVideoPlayedJson on ChatEventVideoPlayed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'video_played',
@@ -12763,10 +18006,6 @@ extension $ChatEventVideoPlayedCopyWith on ChatEventVideoPlayed {
         message: message ?? this.message,
       );
 }
-
-ChatEventVideoPaused _$ChatEventVideoPausedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoPaused.new);
 
 extension $ChatEventVideoPausedJson on ChatEventVideoPaused {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12790,10 +18029,6 @@ extension $ChatEventVideoPausedCopyWith on ChatEventVideoPaused {
       );
 }
 
-ChatEventVideoStopped _$ChatEventVideoStoppedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoStopped.new);
-
 extension $ChatEventVideoStoppedJson on ChatEventVideoStopped {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'video_stopped',
@@ -12815,10 +18050,6 @@ extension $ChatEventVideoStoppedCopyWith on ChatEventVideoStopped {
         message: message ?? this.message,
       );
 }
-
-ChatEventVideoSeeked _$ChatEventVideoSeekedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoSeeked.new);
 
 extension $ChatEventVideoSeekedJson on ChatEventVideoSeeked {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12842,10 +18073,6 @@ extension $ChatEventVideoSeekedCopyWith on ChatEventVideoSeeked {
       );
 }
 
-ChatEventVideoDeleted _$ChatEventVideoDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoDeleted.new);
-
 extension $ChatEventVideoDeletedJson on ChatEventVideoDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'video_deleted',
@@ -12867,9 +18094,6 @@ extension $ChatEventVideoDeletedCopyWith on ChatEventVideoDeleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventVideoMuted _$ChatEventVideoMutedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoMuted.new);
 
 extension $ChatEventVideoMutedJson on ChatEventVideoMuted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12893,10 +18117,6 @@ extension $ChatEventVideoMutedCopyWith on ChatEventVideoMuted {
       );
 }
 
-ChatEventVideoUnmuted _$ChatEventVideoUnmutedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoUnmuted.new);
-
 extension $ChatEventVideoUnmutedJson on ChatEventVideoUnmuted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'video_unmuted',
@@ -12918,9 +18138,6 @@ extension $ChatEventVideoUnmutedCopyWith on ChatEventVideoUnmuted {
         message: message ?? this.message,
       );
 }
-
-ChatEventAudioSent _$ChatEventAudioSentFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAudioSent.new);
 
 extension $ChatEventAudioSentJson on ChatEventAudioSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12944,10 +18161,6 @@ extension $ChatEventAudioSentCopyWith on ChatEventAudioSent {
       );
 }
 
-ChatEventAudioReceived _$ChatEventAudioReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAudioReceived.new);
-
 extension $ChatEventAudioReceivedJson on ChatEventAudioReceived {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'audio_received',
@@ -12969,10 +18182,6 @@ extension $ChatEventAudioReceivedCopyWith on ChatEventAudioReceived {
         message: message ?? this.message,
       );
 }
-
-ChatEventAudioPlayed _$ChatEventAudioPlayedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAudioPlayed.new);
 
 extension $ChatEventAudioPlayedJson on ChatEventAudioPlayed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -12996,10 +18205,6 @@ extension $ChatEventAudioPlayedCopyWith on ChatEventAudioPlayed {
       );
 }
 
-ChatEventAudioPaused _$ChatEventAudioPausedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAudioPaused.new);
-
 extension $ChatEventAudioPausedJson on ChatEventAudioPaused {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'audio_paused',
@@ -13021,10 +18226,6 @@ extension $ChatEventAudioPausedCopyWith on ChatEventAudioPaused {
         message: message ?? this.message,
       );
 }
-
-ChatEventAudioDeleted _$ChatEventAudioDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAudioDeleted.new);
 
 extension $ChatEventAudioDeletedJson on ChatEventAudioDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13048,10 +18249,6 @@ extension $ChatEventAudioDeletedCopyWith on ChatEventAudioDeleted {
       );
 }
 
-ChatEventAudioTranscribed _$ChatEventAudioTranscribedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAudioTranscribed.new);
-
 extension $ChatEventAudioTranscribedJson on ChatEventAudioTranscribed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'audio_transcribed',
@@ -13073,10 +18270,6 @@ extension $ChatEventAudioTranscribedCopyWith on ChatEventAudioTranscribed {
         message: message ?? this.message,
       );
 }
-
-ChatEventAudioTranscriptionFailed _$ChatEventAudioTranscriptionFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAudioTranscriptionFailed.new);
 
 extension $ChatEventAudioTranscriptionFailedJson
     on ChatEventAudioTranscriptionFailed {
@@ -13102,9 +18295,6 @@ extension $ChatEventAudioTranscriptionFailedCopyWith
       );
 }
 
-ChatEventFileSent _$ChatEventFileSentFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventFileSent.new);
-
 extension $ChatEventFileSentJson on ChatEventFileSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'file_sent',
@@ -13127,10 +18317,6 @@ extension $ChatEventFileSentCopyWith on ChatEventFileSent {
       );
 }
 
-ChatEventFileReceived _$ChatEventFileReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventFileReceived.new);
-
 extension $ChatEventFileReceivedJson on ChatEventFileReceived {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'file_received',
@@ -13152,10 +18338,6 @@ extension $ChatEventFileReceivedCopyWith on ChatEventFileReceived {
         message: message ?? this.message,
       );
 }
-
-ChatEventFilePreviewGenerated _$ChatEventFilePreviewGeneratedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventFilePreviewGenerated.new);
 
 extension $ChatEventFilePreviewGeneratedJson on ChatEventFilePreviewGenerated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13180,10 +18362,6 @@ extension $ChatEventFilePreviewGeneratedCopyWith
       );
 }
 
-ChatEventFileDeleted _$ChatEventFileDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventFileDeleted.new);
-
 extension $ChatEventFileDeletedJson on ChatEventFileDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'file_deleted',
@@ -13206,10 +18384,6 @@ extension $ChatEventFileDeletedCopyWith on ChatEventFileDeleted {
       );
 }
 
-ChatEventFileDownloaded _$ChatEventFileDownloadedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventFileDownloaded.new);
-
 extension $ChatEventFileDownloadedJson on ChatEventFileDownloaded {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'file_downloaded',
@@ -13231,10 +18405,6 @@ extension $ChatEventFileDownloadedCopyWith on ChatEventFileDownloaded {
         message: message ?? this.message,
       );
 }
-
-ChatEventLinkPreviewGenerated _$ChatEventLinkPreviewGeneratedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLinkPreviewGenerated.new);
 
 extension $ChatEventLinkPreviewGeneratedJson on ChatEventLinkPreviewGenerated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13259,10 +18429,6 @@ extension $ChatEventLinkPreviewGeneratedCopyWith
       );
 }
 
-ChatEventLinkPreviewFailed _$ChatEventLinkPreviewFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLinkPreviewFailed.new);
-
 extension $ChatEventLinkPreviewFailedJson on ChatEventLinkPreviewFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'link_preview_failed',
@@ -13284,10 +18450,6 @@ extension $ChatEventLinkPreviewFailedCopyWith on ChatEventLinkPreviewFailed {
         message: message ?? this.message,
       );
 }
-
-ChatEventReactionAdded _$ChatEventReactionAddedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventReactionAdded.new);
 
 extension $ChatEventReactionAddedJson on ChatEventReactionAdded {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13311,10 +18473,6 @@ extension $ChatEventReactionAddedCopyWith on ChatEventReactionAdded {
       );
 }
 
-ChatEventReactionRemoved _$ChatEventReactionRemovedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventReactionRemoved.new);
-
 extension $ChatEventReactionRemovedJson on ChatEventReactionRemoved {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'reaction_removed',
@@ -13336,10 +18494,6 @@ extension $ChatEventReactionRemovedCopyWith on ChatEventReactionRemoved {
         message: message ?? this.message,
       );
 }
-
-ChatEventReactionUpdated _$ChatEventReactionUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventReactionUpdated.new);
 
 extension $ChatEventReactionUpdatedJson on ChatEventReactionUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13363,10 +18517,6 @@ extension $ChatEventReactionUpdatedCopyWith on ChatEventReactionUpdated {
       );
 }
 
-ChatEventReactionCleared _$ChatEventReactionClearedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventReactionCleared.new);
-
 extension $ChatEventReactionClearedJson on ChatEventReactionCleared {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'reaction_cleared',
@@ -13388,10 +18538,6 @@ extension $ChatEventReactionClearedCopyWith on ChatEventReactionCleared {
         message: message ?? this.message,
       );
 }
-
-ChatEventThreadCreated _$ChatEventThreadCreatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventThreadCreated.new);
 
 extension $ChatEventThreadCreatedJson on ChatEventThreadCreated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13415,10 +18561,6 @@ extension $ChatEventThreadCreatedCopyWith on ChatEventThreadCreated {
       );
 }
 
-ChatEventThreadUpdated _$ChatEventThreadUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventThreadUpdated.new);
-
 extension $ChatEventThreadUpdatedJson on ChatEventThreadUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'thread_updated',
@@ -13440,10 +18582,6 @@ extension $ChatEventThreadUpdatedCopyWith on ChatEventThreadUpdated {
         message: message ?? this.message,
       );
 }
-
-ChatEventThreadDeleted _$ChatEventThreadDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventThreadDeleted.new);
 
 extension $ChatEventThreadDeletedJson on ChatEventThreadDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13467,10 +18605,6 @@ extension $ChatEventThreadDeletedCopyWith on ChatEventThreadDeleted {
       );
 }
 
-ChatEventThreadArchived _$ChatEventThreadArchivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventThreadArchived.new);
-
 extension $ChatEventThreadArchivedJson on ChatEventThreadArchived {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'thread_archived',
@@ -13492,10 +18626,6 @@ extension $ChatEventThreadArchivedCopyWith on ChatEventThreadArchived {
         message: message ?? this.message,
       );
 }
-
-ChatEventThreadUnarchived _$ChatEventThreadUnarchivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventThreadUnarchived.new);
 
 extension $ChatEventThreadUnarchivedJson on ChatEventThreadUnarchived {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13519,10 +18649,6 @@ extension $ChatEventThreadUnarchivedCopyWith on ChatEventThreadUnarchived {
       );
 }
 
-ChatEventChannelCreated _$ChatEventChannelCreatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelCreated.new);
-
 extension $ChatEventChannelCreatedJson on ChatEventChannelCreated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'channel_created',
@@ -13545,10 +18671,6 @@ extension $ChatEventChannelCreatedCopyWith on ChatEventChannelCreated {
       );
 }
 
-ChatEventChannelRenamed _$ChatEventChannelRenamedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelRenamed.new);
-
 extension $ChatEventChannelRenamedJson on ChatEventChannelRenamed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'channel_renamed',
@@ -13570,10 +18692,6 @@ extension $ChatEventChannelRenamedCopyWith on ChatEventChannelRenamed {
         message: message ?? this.message,
       );
 }
-
-ChatEventChannelDescriptionUpdated _$ChatEventChannelDescriptionUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelDescriptionUpdated.new);
 
 extension $ChatEventChannelDescriptionUpdatedJson
     on ChatEventChannelDescriptionUpdated {
@@ -13599,10 +18717,6 @@ extension $ChatEventChannelDescriptionUpdatedCopyWith
       );
 }
 
-ChatEventChannelDeleted _$ChatEventChannelDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelDeleted.new);
-
 extension $ChatEventChannelDeletedJson on ChatEventChannelDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'channel_deleted',
@@ -13624,10 +18738,6 @@ extension $ChatEventChannelDeletedCopyWith on ChatEventChannelDeleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventChannelArchived _$ChatEventChannelArchivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelArchived.new);
 
 extension $ChatEventChannelArchivedJson on ChatEventChannelArchived {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13651,10 +18761,6 @@ extension $ChatEventChannelArchivedCopyWith on ChatEventChannelArchived {
       );
 }
 
-ChatEventChannelUnarchived _$ChatEventChannelUnarchivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelUnarchived.new);
-
 extension $ChatEventChannelUnarchivedJson on ChatEventChannelUnarchived {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'channel_unarchived',
@@ -13676,10 +18782,6 @@ extension $ChatEventChannelUnarchivedCopyWith on ChatEventChannelUnarchived {
         message: message ?? this.message,
       );
 }
-
-ChatEventChannelLocked _$ChatEventChannelLockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelLocked.new);
 
 extension $ChatEventChannelLockedJson on ChatEventChannelLocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13703,10 +18805,6 @@ extension $ChatEventChannelLockedCopyWith on ChatEventChannelLocked {
       );
 }
 
-ChatEventChannelUnlocked _$ChatEventChannelUnlockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelUnlocked.new);
-
 extension $ChatEventChannelUnlockedJson on ChatEventChannelUnlocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'channel_unlocked',
@@ -13728,10 +18826,6 @@ extension $ChatEventChannelUnlockedCopyWith on ChatEventChannelUnlocked {
         message: message ?? this.message,
       );
 }
-
-ChatEventChannelMigrated _$ChatEventChannelMigratedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelMigrated.new);
 
 extension $ChatEventChannelMigratedJson on ChatEventChannelMigrated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13755,10 +18849,6 @@ extension $ChatEventChannelMigratedCopyWith on ChatEventChannelMigrated {
       );
 }
 
-ChatEventChannelHidden _$ChatEventChannelHiddenFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelHidden.new);
-
 extension $ChatEventChannelHiddenJson on ChatEventChannelHidden {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'channel_hidden',
@@ -13780,10 +18870,6 @@ extension $ChatEventChannelHiddenCopyWith on ChatEventChannelHidden {
         message: message ?? this.message,
       );
 }
-
-ChatEventChannelUnhidden _$ChatEventChannelUnhiddenFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventChannelUnhidden.new);
 
 extension $ChatEventChannelUnhiddenJson on ChatEventChannelUnhidden {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13807,10 +18893,6 @@ extension $ChatEventChannelUnhiddenCopyWith on ChatEventChannelUnhidden {
       );
 }
 
-ChatEventGroupCreated _$ChatEventGroupCreatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupCreated.new);
-
 extension $ChatEventGroupCreatedJson on ChatEventGroupCreated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'group_created',
@@ -13832,10 +18914,6 @@ extension $ChatEventGroupCreatedCopyWith on ChatEventGroupCreated {
         message: message ?? this.message,
       );
 }
-
-ChatEventGroupUpdated _$ChatEventGroupUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupUpdated.new);
 
 extension $ChatEventGroupUpdatedJson on ChatEventGroupUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13859,10 +18937,6 @@ extension $ChatEventGroupUpdatedCopyWith on ChatEventGroupUpdated {
       );
 }
 
-ChatEventGroupDeleted _$ChatEventGroupDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupDeleted.new);
-
 extension $ChatEventGroupDeletedJson on ChatEventGroupDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'group_deleted',
@@ -13884,10 +18958,6 @@ extension $ChatEventGroupDeletedCopyWith on ChatEventGroupDeleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventGroupIconUpdated _$ChatEventGroupIconUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupIconUpdated.new);
 
 extension $ChatEventGroupIconUpdatedJson on ChatEventGroupIconUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13911,10 +18981,6 @@ extension $ChatEventGroupIconUpdatedCopyWith on ChatEventGroupIconUpdated {
       );
 }
 
-ChatEventGroupAdminAdded _$ChatEventGroupAdminAddedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupAdminAdded.new);
-
 extension $ChatEventGroupAdminAddedJson on ChatEventGroupAdminAdded {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'group_admin_added',
@@ -13936,10 +19002,6 @@ extension $ChatEventGroupAdminAddedCopyWith on ChatEventGroupAdminAdded {
         message: message ?? this.message,
       );
 }
-
-ChatEventGroupAdminRemoved _$ChatEventGroupAdminRemovedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupAdminRemoved.new);
 
 extension $ChatEventGroupAdminRemovedJson on ChatEventGroupAdminRemoved {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -13963,10 +19025,6 @@ extension $ChatEventGroupAdminRemovedCopyWith on ChatEventGroupAdminRemoved {
       );
 }
 
-ChatEventGroupMemberAdded _$ChatEventGroupMemberAddedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupMemberAdded.new);
-
 extension $ChatEventGroupMemberAddedJson on ChatEventGroupMemberAdded {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'group_member_added',
@@ -13988,10 +19046,6 @@ extension $ChatEventGroupMemberAddedCopyWith on ChatEventGroupMemberAdded {
         message: message ?? this.message,
       );
 }
-
-ChatEventGroupMemberRemoved _$ChatEventGroupMemberRemovedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupMemberRemoved.new);
 
 extension $ChatEventGroupMemberRemovedJson on ChatEventGroupMemberRemoved {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14015,10 +19069,6 @@ extension $ChatEventGroupMemberRemovedCopyWith on ChatEventGroupMemberRemoved {
       );
 }
 
-ChatEventGroupMemberLeft _$ChatEventGroupMemberLeftFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupMemberLeft.new);
-
 extension $ChatEventGroupMemberLeftJson on ChatEventGroupMemberLeft {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'group_member_left',
@@ -14040,10 +19090,6 @@ extension $ChatEventGroupMemberLeftCopyWith on ChatEventGroupMemberLeft {
         message: message ?? this.message,
       );
 }
-
-ChatEventGroupMemberKicked _$ChatEventGroupMemberKickedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupMemberKicked.new);
 
 extension $ChatEventGroupMemberKickedJson on ChatEventGroupMemberKicked {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14067,10 +19113,6 @@ extension $ChatEventGroupMemberKickedCopyWith on ChatEventGroupMemberKicked {
       );
 }
 
-ChatEventGroupInfoViewed _$ChatEventGroupInfoViewedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGroupInfoViewed.new);
-
 extension $ChatEventGroupInfoViewedJson on ChatEventGroupInfoViewed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'group_info_viewed',
@@ -14092,10 +19134,6 @@ extension $ChatEventGroupInfoViewedCopyWith on ChatEventGroupInfoViewed {
         message: message ?? this.message,
       );
 }
-
-ChatEventCallStarted _$ChatEventCallStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallStarted.new);
 
 extension $ChatEventCallStartedJson on ChatEventCallStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14119,9 +19157,6 @@ extension $ChatEventCallStartedCopyWith on ChatEventCallStarted {
       );
 }
 
-ChatEventCallEnded _$ChatEventCallEndedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallEnded.new);
-
 extension $ChatEventCallEndedJson on ChatEventCallEnded {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'call_ended',
@@ -14143,9 +19178,6 @@ extension $ChatEventCallEndedCopyWith on ChatEventCallEnded {
         message: message ?? this.message,
       );
 }
-
-ChatEventCallMissed _$ChatEventCallMissedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallMissed.new);
 
 extension $ChatEventCallMissedJson on ChatEventCallMissed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14169,10 +19201,6 @@ extension $ChatEventCallMissedCopyWith on ChatEventCallMissed {
       );
 }
 
-ChatEventCallRejected _$ChatEventCallRejectedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallRejected.new);
-
 extension $ChatEventCallRejectedJson on ChatEventCallRejected {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'call_rejected',
@@ -14194,10 +19222,6 @@ extension $ChatEventCallRejectedCopyWith on ChatEventCallRejected {
         message: message ?? this.message,
       );
 }
-
-ChatEventCallAccepted _$ChatEventCallAcceptedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallAccepted.new);
 
 extension $ChatEventCallAcceptedJson on ChatEventCallAccepted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14221,10 +19245,6 @@ extension $ChatEventCallAcceptedCopyWith on ChatEventCallAccepted {
       );
 }
 
-ChatEventCallReconnecting _$ChatEventCallReconnectingFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallReconnecting.new);
-
 extension $ChatEventCallReconnectingJson on ChatEventCallReconnecting {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'call_reconnecting',
@@ -14246,10 +19266,6 @@ extension $ChatEventCallReconnectingCopyWith on ChatEventCallReconnecting {
         message: message ?? this.message,
       );
 }
-
-ChatEventCallReconnected _$ChatEventCallReconnectedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallReconnected.new);
 
 extension $ChatEventCallReconnectedJson on ChatEventCallReconnected {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14273,10 +19289,6 @@ extension $ChatEventCallReconnectedCopyWith on ChatEventCallReconnected {
       );
 }
 
-ChatEventCallNetworkLow _$ChatEventCallNetworkLowFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallNetworkLow.new);
-
 extension $ChatEventCallNetworkLowJson on ChatEventCallNetworkLow {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'call_network_low',
@@ -14298,10 +19310,6 @@ extension $ChatEventCallNetworkLowCopyWith on ChatEventCallNetworkLow {
         message: message ?? this.message,
       );
 }
-
-ChatEventCallMediaPermissionDenied _$ChatEventCallMediaPermissionDeniedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallMediaPermissionDenied.new);
 
 extension $ChatEventCallMediaPermissionDeniedJson
     on ChatEventCallMediaPermissionDenied {
@@ -14327,10 +19335,6 @@ extension $ChatEventCallMediaPermissionDeniedCopyWith
       );
 }
 
-ChatEventCallRecordingStarted _$ChatEventCallRecordingStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallRecordingStarted.new);
-
 extension $ChatEventCallRecordingStartedJson on ChatEventCallRecordingStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'call_recording_started',
@@ -14353,10 +19357,6 @@ extension $ChatEventCallRecordingStartedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventCallRecordingStopped _$ChatEventCallRecordingStoppedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCallRecordingStopped.new);
 
 extension $ChatEventCallRecordingStoppedJson on ChatEventCallRecordingStopped {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14381,10 +19381,6 @@ extension $ChatEventCallRecordingStoppedCopyWith
       );
 }
 
-ChatEventVideoCallStarted _$ChatEventVideoCallStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoCallStarted.new);
-
 extension $ChatEventVideoCallStartedJson on ChatEventVideoCallStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'video_call_started',
@@ -14406,10 +19402,6 @@ extension $ChatEventVideoCallStartedCopyWith on ChatEventVideoCallStarted {
         message: message ?? this.message,
       );
 }
-
-ChatEventVideoCallEnded _$ChatEventVideoCallEndedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoCallEnded.new);
 
 extension $ChatEventVideoCallEndedJson on ChatEventVideoCallEnded {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14433,10 +19425,6 @@ extension $ChatEventVideoCallEndedCopyWith on ChatEventVideoCallEnded {
       );
 }
 
-ChatEventVideoCallMissed _$ChatEventVideoCallMissedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoCallMissed.new);
-
 extension $ChatEventVideoCallMissedJson on ChatEventVideoCallMissed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'video_call_missed',
@@ -14458,10 +19446,6 @@ extension $ChatEventVideoCallMissedCopyWith on ChatEventVideoCallMissed {
         message: message ?? this.message,
       );
 }
-
-ChatEventVideoCallRejected _$ChatEventVideoCallRejectedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoCallRejected.new);
 
 extension $ChatEventVideoCallRejectedJson on ChatEventVideoCallRejected {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14485,10 +19469,6 @@ extension $ChatEventVideoCallRejectedCopyWith on ChatEventVideoCallRejected {
       );
 }
 
-ChatEventVideoCallAccepted _$ChatEventVideoCallAcceptedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVideoCallAccepted.new);
-
 extension $ChatEventVideoCallAcceptedJson on ChatEventVideoCallAccepted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'video_call_accepted',
@@ -14510,10 +19490,6 @@ extension $ChatEventVideoCallAcceptedCopyWith on ChatEventVideoCallAccepted {
         message: message ?? this.message,
       );
 }
-
-ChatEventVoiceNoteSent _$ChatEventVoiceNoteSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVoiceNoteSent.new);
 
 extension $ChatEventVoiceNoteSentJson on ChatEventVoiceNoteSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14537,10 +19513,6 @@ extension $ChatEventVoiceNoteSentCopyWith on ChatEventVoiceNoteSent {
       );
 }
 
-ChatEventVoiceNoteDeleted _$ChatEventVoiceNoteDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVoiceNoteDeleted.new);
-
 extension $ChatEventVoiceNoteDeletedJson on ChatEventVoiceNoteDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'voice_note_deleted',
@@ -14562,10 +19534,6 @@ extension $ChatEventVoiceNoteDeletedCopyWith on ChatEventVoiceNoteDeleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventVoiceNotePlayed _$ChatEventVoiceNotePlayedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventVoiceNotePlayed.new);
 
 extension $ChatEventVoiceNotePlayedJson on ChatEventVoiceNotePlayed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14589,10 +19557,6 @@ extension $ChatEventVoiceNotePlayedCopyWith on ChatEventVoiceNotePlayed {
       );
 }
 
-ChatEventPollCreated _$ChatEventPollCreatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPollCreated.new);
-
 extension $ChatEventPollCreatedJson on ChatEventPollCreated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'poll_created',
@@ -14614,10 +19578,6 @@ extension $ChatEventPollCreatedCopyWith on ChatEventPollCreated {
         message: message ?? this.message,
       );
 }
-
-ChatEventPollVoteCast _$ChatEventPollVoteCastFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPollVoteCast.new);
 
 extension $ChatEventPollVoteCastJson on ChatEventPollVoteCast {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14641,10 +19601,6 @@ extension $ChatEventPollVoteCastCopyWith on ChatEventPollVoteCast {
       );
 }
 
-ChatEventPollVoteRemoved _$ChatEventPollVoteRemovedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPollVoteRemoved.new);
-
 extension $ChatEventPollVoteRemovedJson on ChatEventPollVoteRemoved {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'poll_vote_removed',
@@ -14666,9 +19622,6 @@ extension $ChatEventPollVoteRemovedCopyWith on ChatEventPollVoteRemoved {
         message: message ?? this.message,
       );
 }
-
-ChatEventPollClosed _$ChatEventPollClosedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPollClosed.new);
 
 extension $ChatEventPollClosedJson on ChatEventPollClosed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14692,10 +19645,6 @@ extension $ChatEventPollClosedCopyWith on ChatEventPollClosed {
       );
 }
 
-ChatEventStoryPosted _$ChatEventStoryPostedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventStoryPosted.new);
-
 extension $ChatEventStoryPostedJson on ChatEventStoryPosted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'story_posted',
@@ -14717,10 +19666,6 @@ extension $ChatEventStoryPostedCopyWith on ChatEventStoryPosted {
         message: message ?? this.message,
       );
 }
-
-ChatEventStoryDeleted _$ChatEventStoryDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventStoryDeleted.new);
 
 extension $ChatEventStoryDeletedJson on ChatEventStoryDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14744,10 +19689,6 @@ extension $ChatEventStoryDeletedCopyWith on ChatEventStoryDeleted {
       );
 }
 
-ChatEventStoryViewed _$ChatEventStoryViewedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventStoryViewed.new);
-
 extension $ChatEventStoryViewedJson on ChatEventStoryViewed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'story_viewed',
@@ -14769,10 +19710,6 @@ extension $ChatEventStoryViewedCopyWith on ChatEventStoryViewed {
         message: message ?? this.message,
       );
 }
-
-ChatEventStoryReacted _$ChatEventStoryReactedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventStoryReacted.new);
 
 extension $ChatEventStoryReactedJson on ChatEventStoryReacted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14796,10 +19733,6 @@ extension $ChatEventStoryReactedCopyWith on ChatEventStoryReacted {
       );
 }
 
-ChatEventBotMessageSent _$ChatEventBotMessageSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventBotMessageSent.new);
-
 extension $ChatEventBotMessageSentJson on ChatEventBotMessageSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'bot_message_sent',
@@ -14821,10 +19754,6 @@ extension $ChatEventBotMessageSentCopyWith on ChatEventBotMessageSent {
         message: message ?? this.message,
       );
 }
-
-ChatEventBotMessageDeleted _$ChatEventBotMessageDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventBotMessageDeleted.new);
 
 extension $ChatEventBotMessageDeletedJson on ChatEventBotMessageDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14848,10 +19777,6 @@ extension $ChatEventBotMessageDeletedCopyWith on ChatEventBotMessageDeleted {
       );
 }
 
-ChatEventBotTriggered _$ChatEventBotTriggeredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventBotTriggered.new);
-
 extension $ChatEventBotTriggeredJson on ChatEventBotTriggered {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'bot_triggered',
@@ -14873,10 +19798,6 @@ extension $ChatEventBotTriggeredCopyWith on ChatEventBotTriggered {
         message: message ?? this.message,
       );
 }
-
-ChatEventBotDisabled _$ChatEventBotDisabledFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventBotDisabled.new);
 
 extension $ChatEventBotDisabledJson on ChatEventBotDisabled {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -14900,9 +19821,6 @@ extension $ChatEventBotDisabledCopyWith on ChatEventBotDisabled {
       );
 }
 
-ChatEventBotEnabled _$ChatEventBotEnabledFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventBotEnabled.new);
-
 extension $ChatEventBotEnabledJson on ChatEventBotEnabled {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'bot_enabled',
@@ -14925,10 +19843,6 @@ extension $ChatEventBotEnabledCopyWith on ChatEventBotEnabled {
       );
 }
 
-ChatEventSystemBroadcast _$ChatEventSystemBroadcastFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSystemBroadcast.new);
-
 extension $ChatEventSystemBroadcastJson on ChatEventSystemBroadcast {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'system_broadcast',
@@ -14950,10 +19864,6 @@ extension $ChatEventSystemBroadcastCopyWith on ChatEventSystemBroadcast {
         message: message ?? this.message,
       );
 }
-
-ChatEventSystemMaintenanceScheduled
-    _$ChatEventSystemMaintenanceScheduledFromJson(Map<String, dynamic> json) =>
-        _$ChatEventSig0FromJson(json, ChatEventSystemMaintenanceScheduled.new);
 
 extension $ChatEventSystemMaintenanceScheduledJson
     on ChatEventSystemMaintenanceScheduled {
@@ -14979,10 +19889,6 @@ extension $ChatEventSystemMaintenanceScheduledCopyWith
       );
 }
 
-ChatEventSystemMaintenanceStarted _$ChatEventSystemMaintenanceStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSystemMaintenanceStarted.new);
-
 extension $ChatEventSystemMaintenanceStartedJson
     on ChatEventSystemMaintenanceStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15006,10 +19912,6 @@ extension $ChatEventSystemMaintenanceStartedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventSystemMaintenanceEnded _$ChatEventSystemMaintenanceEndedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSystemMaintenanceEnded.new);
 
 extension $ChatEventSystemMaintenanceEndedJson
     on ChatEventSystemMaintenanceEnded {
@@ -15035,10 +19937,6 @@ extension $ChatEventSystemMaintenanceEndedCopyWith
       );
 }
 
-ChatEventSystemWarning _$ChatEventSystemWarningFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSystemWarning.new);
-
 extension $ChatEventSystemWarningJson on ChatEventSystemWarning {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'system_warning',
@@ -15060,10 +19958,6 @@ extension $ChatEventSystemWarningCopyWith on ChatEventSystemWarning {
         message: message ?? this.message,
       );
 }
-
-ChatEventSystemError _$ChatEventSystemErrorFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSystemError.new);
 
 extension $ChatEventSystemErrorJson on ChatEventSystemError {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15087,10 +19981,6 @@ extension $ChatEventSystemErrorCopyWith on ChatEventSystemError {
       );
 }
 
-ChatEventSystemRecovery _$ChatEventSystemRecoveryFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSystemRecovery.new);
-
 extension $ChatEventSystemRecoveryJson on ChatEventSystemRecovery {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'system_recovery',
@@ -15112,10 +20002,6 @@ extension $ChatEventSystemRecoveryCopyWith on ChatEventSystemRecovery {
         message: message ?? this.message,
       );
 }
-
-ChatEventSystemPatchApplied _$ChatEventSystemPatchAppliedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSystemPatchApplied.new);
 
 extension $ChatEventSystemPatchAppliedJson on ChatEventSystemPatchApplied {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15139,10 +20025,6 @@ extension $ChatEventSystemPatchAppliedCopyWith on ChatEventSystemPatchApplied {
       );
 }
 
-ChatEventEncryptionEnabled _$ChatEventEncryptionEnabledFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventEncryptionEnabled.new);
-
 extension $ChatEventEncryptionEnabledJson on ChatEventEncryptionEnabled {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'encryption_enabled',
@@ -15165,10 +20047,6 @@ extension $ChatEventEncryptionEnabledCopyWith on ChatEventEncryptionEnabled {
       );
 }
 
-ChatEventEncryptionDisabled _$ChatEventEncryptionDisabledFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventEncryptionDisabled.new);
-
 extension $ChatEventEncryptionDisabledJson on ChatEventEncryptionDisabled {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'encryption_disabled',
@@ -15190,10 +20068,6 @@ extension $ChatEventEncryptionDisabledCopyWith on ChatEventEncryptionDisabled {
         message: message ?? this.message,
       );
 }
-
-ChatEventEncryptionKeyRotated _$ChatEventEncryptionKeyRotatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventEncryptionKeyRotated.new);
 
 extension $ChatEventEncryptionKeyRotatedJson on ChatEventEncryptionKeyRotated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15218,10 +20092,6 @@ extension $ChatEventEncryptionKeyRotatedCopyWith
       );
 }
 
-ChatEventEncryptionKeyFailed _$ChatEventEncryptionKeyFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventEncryptionKeyFailed.new);
-
 extension $ChatEventEncryptionKeyFailedJson on ChatEventEncryptionKeyFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'encryption_key_failed',
@@ -15245,10 +20115,6 @@ extension $ChatEventEncryptionKeyFailedCopyWith
       );
 }
 
-ChatEventSessionStarted _$ChatEventSessionStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSessionStarted.new);
-
 extension $ChatEventSessionStartedJson on ChatEventSessionStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'session_started',
@@ -15270,10 +20136,6 @@ extension $ChatEventSessionStartedCopyWith on ChatEventSessionStarted {
         message: message ?? this.message,
       );
 }
-
-ChatEventSessionExpired _$ChatEventSessionExpiredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSessionExpired.new);
 
 extension $ChatEventSessionExpiredJson on ChatEventSessionExpired {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15297,10 +20159,6 @@ extension $ChatEventSessionExpiredCopyWith on ChatEventSessionExpired {
       );
 }
 
-ChatEventSessionRefreshed _$ChatEventSessionRefreshedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSessionRefreshed.new);
-
 extension $ChatEventSessionRefreshedJson on ChatEventSessionRefreshed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'session_refreshed',
@@ -15322,10 +20180,6 @@ extension $ChatEventSessionRefreshedCopyWith on ChatEventSessionRefreshed {
         message: message ?? this.message,
       );
 }
-
-ChatEventSessionTerminated _$ChatEventSessionTerminatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSessionTerminated.new);
 
 extension $ChatEventSessionTerminatedJson on ChatEventSessionTerminated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15349,10 +20203,6 @@ extension $ChatEventSessionTerminatedCopyWith on ChatEventSessionTerminated {
       );
 }
 
-ChatEventTypingIndicatorSent _$ChatEventTypingIndicatorSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventTypingIndicatorSent.new);
-
 extension $ChatEventTypingIndicatorSentJson on ChatEventTypingIndicatorSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'typing_indicator_sent',
@@ -15375,10 +20225,6 @@ extension $ChatEventTypingIndicatorSentCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventTypingIndicatorReceived _$ChatEventTypingIndicatorReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventTypingIndicatorReceived.new);
 
 extension $ChatEventTypingIndicatorReceivedJson
     on ChatEventTypingIndicatorReceived {
@@ -15404,10 +20250,6 @@ extension $ChatEventTypingIndicatorReceivedCopyWith
       );
 }
 
-ChatEventPresenceSubscribed _$ChatEventPresenceSubscribedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPresenceSubscribed.new);
-
 extension $ChatEventPresenceSubscribedJson on ChatEventPresenceSubscribed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'presence_subscribed',
@@ -15429,10 +20271,6 @@ extension $ChatEventPresenceSubscribedCopyWith on ChatEventPresenceSubscribed {
         message: message ?? this.message,
       );
 }
-
-ChatEventPresenceUnsubscribed _$ChatEventPresenceUnsubscribedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPresenceUnsubscribed.new);
 
 extension $ChatEventPresenceUnsubscribedJson on ChatEventPresenceUnsubscribed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15457,10 +20295,6 @@ extension $ChatEventPresenceUnsubscribedCopyWith
       );
 }
 
-ChatEventPresenceSync _$ChatEventPresenceSyncFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPresenceSync.new);
-
 extension $ChatEventPresenceSyncJson on ChatEventPresenceSync {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'presence_sync',
@@ -15482,10 +20316,6 @@ extension $ChatEventPresenceSyncCopyWith on ChatEventPresenceSync {
         message: message ?? this.message,
       );
 }
-
-ChatEventPresenceUpdateFailed _$ChatEventPresenceUpdateFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPresenceUpdateFailed.new);
 
 extension $ChatEventPresenceUpdateFailedJson on ChatEventPresenceUpdateFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15510,10 +20340,6 @@ extension $ChatEventPresenceUpdateFailedCopyWith
       );
 }
 
-ChatEventPushNotificationSent _$ChatEventPushNotificationSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPushNotificationSent.new);
-
 extension $ChatEventPushNotificationSentJson on ChatEventPushNotificationSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'push_notification_sent',
@@ -15536,10 +20362,6 @@ extension $ChatEventPushNotificationSentCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventPushNotificationReceived _$ChatEventPushNotificationReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPushNotificationReceived.new);
 
 extension $ChatEventPushNotificationReceivedJson
     on ChatEventPushNotificationReceived {
@@ -15565,10 +20387,6 @@ extension $ChatEventPushNotificationReceivedCopyWith
       );
 }
 
-ChatEventPushNotificationOpened _$ChatEventPushNotificationOpenedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPushNotificationOpened.new);
-
 extension $ChatEventPushNotificationOpenedJson
     on ChatEventPushNotificationOpened {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15592,10 +20410,6 @@ extension $ChatEventPushNotificationOpenedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventPushNotificationFailed _$ChatEventPushNotificationFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPushNotificationFailed.new);
 
 extension $ChatEventPushNotificationFailedJson
     on ChatEventPushNotificationFailed {
@@ -15621,10 +20435,6 @@ extension $ChatEventPushNotificationFailedCopyWith
       );
 }
 
-ChatEventReadReceiptSent _$ChatEventReadReceiptSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventReadReceiptSent.new);
-
 extension $ChatEventReadReceiptSentJson on ChatEventReadReceiptSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'read_receipt_sent',
@@ -15646,10 +20456,6 @@ extension $ChatEventReadReceiptSentCopyWith on ChatEventReadReceiptSent {
         message: message ?? this.message,
       );
 }
-
-ChatEventReadReceiptFailed _$ChatEventReadReceiptFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventReadReceiptFailed.new);
 
 extension $ChatEventReadReceiptFailedJson on ChatEventReadReceiptFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15673,10 +20479,6 @@ extension $ChatEventReadReceiptFailedCopyWith on ChatEventReadReceiptFailed {
       );
 }
 
-ChatEventReadReceiptBlocked _$ChatEventReadReceiptBlockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventReadReceiptBlocked.new);
-
 extension $ChatEventReadReceiptBlockedJson on ChatEventReadReceiptBlocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'read_receipt_blocked',
@@ -15698,10 +20500,6 @@ extension $ChatEventReadReceiptBlockedCopyWith on ChatEventReadReceiptBlocked {
         message: message ?? this.message,
       );
 }
-
-ChatEventBackupStarted _$ChatEventBackupStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventBackupStarted.new);
 
 extension $ChatEventBackupStartedJson on ChatEventBackupStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15725,10 +20523,6 @@ extension $ChatEventBackupStartedCopyWith on ChatEventBackupStarted {
       );
 }
 
-ChatEventBackupCompleted _$ChatEventBackupCompletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventBackupCompleted.new);
-
 extension $ChatEventBackupCompletedJson on ChatEventBackupCompleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'backup_completed',
@@ -15750,10 +20544,6 @@ extension $ChatEventBackupCompletedCopyWith on ChatEventBackupCompleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventBackupFailed _$ChatEventBackupFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventBackupFailed.new);
 
 extension $ChatEventBackupFailedJson on ChatEventBackupFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15777,10 +20567,6 @@ extension $ChatEventBackupFailedCopyWith on ChatEventBackupFailed {
       );
 }
 
-ChatEventRestoreStarted _$ChatEventRestoreStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventRestoreStarted.new);
-
 extension $ChatEventRestoreStartedJson on ChatEventRestoreStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'restore_started',
@@ -15802,10 +20588,6 @@ extension $ChatEventRestoreStartedCopyWith on ChatEventRestoreStarted {
         message: message ?? this.message,
       );
 }
-
-ChatEventRestoreCompleted _$ChatEventRestoreCompletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventRestoreCompleted.new);
 
 extension $ChatEventRestoreCompletedJson on ChatEventRestoreCompleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15829,10 +20611,6 @@ extension $ChatEventRestoreCompletedCopyWith on ChatEventRestoreCompleted {
       );
 }
 
-ChatEventRestoreFailed _$ChatEventRestoreFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventRestoreFailed.new);
-
 extension $ChatEventRestoreFailedJson on ChatEventRestoreFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'restore_failed',
@@ -15854,10 +20632,6 @@ extension $ChatEventRestoreFailedCopyWith on ChatEventRestoreFailed {
         message: message ?? this.message,
       );
 }
-
-ChatEventContactSynced _$ChatEventContactSyncedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventContactSynced.new);
 
 extension $ChatEventContactSyncedJson on ChatEventContactSynced {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15881,10 +20655,6 @@ extension $ChatEventContactSyncedCopyWith on ChatEventContactSynced {
       );
 }
 
-ChatEventContactSyncFailed _$ChatEventContactSyncFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventContactSyncFailed.new);
-
 extension $ChatEventContactSyncFailedJson on ChatEventContactSyncFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'contact_sync_failed',
@@ -15906,10 +20676,6 @@ extension $ChatEventContactSyncFailedCopyWith on ChatEventContactSyncFailed {
         message: message ?? this.message,
       );
 }
-
-ChatEventContactAdded _$ChatEventContactAddedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventContactAdded.new);
 
 extension $ChatEventContactAddedJson on ChatEventContactAdded {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15933,10 +20699,6 @@ extension $ChatEventContactAddedCopyWith on ChatEventContactAdded {
       );
 }
 
-ChatEventContactRemoved _$ChatEventContactRemovedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventContactRemoved.new);
-
 extension $ChatEventContactRemovedJson on ChatEventContactRemoved {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'contact_removed',
@@ -15958,10 +20720,6 @@ extension $ChatEventContactRemovedCopyWith on ChatEventContactRemoved {
         message: message ?? this.message,
       );
 }
-
-ChatEventContactBlocked _$ChatEventContactBlockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventContactBlocked.new);
 
 extension $ChatEventContactBlockedJson on ChatEventContactBlocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -15985,10 +20743,6 @@ extension $ChatEventContactBlockedCopyWith on ChatEventContactBlocked {
       );
 }
 
-ChatEventContactUnblocked _$ChatEventContactUnblockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventContactUnblocked.new);
-
 extension $ChatEventContactUnblockedJson on ChatEventContactUnblocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'contact_unblocked',
@@ -16010,10 +20764,6 @@ extension $ChatEventContactUnblockedCopyWith on ChatEventContactUnblocked {
         message: message ?? this.message,
       );
 }
-
-ChatEventCommandExecuted _$ChatEventCommandExecutedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCommandExecuted.new);
 
 extension $ChatEventCommandExecutedJson on ChatEventCommandExecuted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16037,10 +20787,6 @@ extension $ChatEventCommandExecutedCopyWith on ChatEventCommandExecuted {
       );
 }
 
-ChatEventShortcutUsed _$ChatEventShortcutUsedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventShortcutUsed.new);
-
 extension $ChatEventShortcutUsedJson on ChatEventShortcutUsed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'shortcut_used',
@@ -16062,10 +20808,6 @@ extension $ChatEventShortcutUsedCopyWith on ChatEventShortcutUsed {
         message: message ?? this.message,
       );
 }
-
-ChatEventActionButtonClicked _$ChatEventActionButtonClickedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventActionButtonClicked.new);
 
 extension $ChatEventActionButtonClickedJson on ChatEventActionButtonClicked {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16090,10 +20832,6 @@ extension $ChatEventActionButtonClickedCopyWith
       );
 }
 
-ChatEventAdminMessageSent _$ChatEventAdminMessageSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAdminMessageSent.new);
-
 extension $ChatEventAdminMessageSentJson on ChatEventAdminMessageSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'admin_message_sent',
@@ -16115,10 +20853,6 @@ extension $ChatEventAdminMessageSentCopyWith on ChatEventAdminMessageSent {
         message: message ?? this.message,
       );
 }
-
-ChatEventAdminMessageDeleted _$ChatEventAdminMessageDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAdminMessageDeleted.new);
 
 extension $ChatEventAdminMessageDeletedJson on ChatEventAdminMessageDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16143,10 +20877,6 @@ extension $ChatEventAdminMessageDeletedCopyWith
       );
 }
 
-ChatEventAdminAnnouncement _$ChatEventAdminAnnouncementFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAdminAnnouncement.new);
-
 extension $ChatEventAdminAnnouncementJson on ChatEventAdminAnnouncement {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'admin_announcement',
@@ -16168,10 +20898,6 @@ extension $ChatEventAdminAnnouncementCopyWith on ChatEventAdminAnnouncement {
         message: message ?? this.message,
       );
 }
-
-ChatEventAdminWarning _$ChatEventAdminWarningFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAdminWarning.new);
 
 extension $ChatEventAdminWarningJson on ChatEventAdminWarning {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16195,10 +20921,6 @@ extension $ChatEventAdminWarningCopyWith on ChatEventAdminWarning {
       );
 }
 
-ChatEventAdminSilencedUser _$ChatEventAdminSilencedUserFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAdminSilencedUser.new);
-
 extension $ChatEventAdminSilencedUserJson on ChatEventAdminSilencedUser {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'admin_silenced_user',
@@ -16220,10 +20942,6 @@ extension $ChatEventAdminSilencedUserCopyWith on ChatEventAdminSilencedUser {
         message: message ?? this.message,
       );
 }
-
-ChatEventSpamUserDetected _$ChatEventSpamUserDetectedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSpamUserDetected.new);
 
 extension $ChatEventSpamUserDetectedJson on ChatEventSpamUserDetected {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16247,10 +20965,6 @@ extension $ChatEventSpamUserDetectedCopyWith on ChatEventSpamUserDetected {
       );
 }
 
-ChatEventSpamUserBlocked _$ChatEventSpamUserBlockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSpamUserBlocked.new);
-
 extension $ChatEventSpamUserBlockedJson on ChatEventSpamUserBlocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'spam_user_blocked',
@@ -16273,10 +20987,6 @@ extension $ChatEventSpamUserBlockedCopyWith on ChatEventSpamUserBlocked {
       );
 }
 
-ChatEventSpamUserReported _$ChatEventSpamUserReportedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSpamUserReported.new);
-
 extension $ChatEventSpamUserReportedJson on ChatEventSpamUserReported {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'spam_user_reported',
@@ -16298,10 +21008,6 @@ extension $ChatEventSpamUserReportedCopyWith on ChatEventSpamUserReported {
         message: message ?? this.message,
       );
 }
-
-ChatEventModerationActionTaken _$ChatEventModerationActionTakenFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventModerationActionTaken.new);
 
 extension $ChatEventModerationActionTakenJson
     on ChatEventModerationActionTaken {
@@ -16327,10 +21033,6 @@ extension $ChatEventModerationActionTakenCopyWith
       );
 }
 
-ChatEventModerationFlagReviewed _$ChatEventModerationFlagReviewedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventModerationFlagReviewed.new);
-
 extension $ChatEventModerationFlagReviewedJson
     on ChatEventModerationFlagReviewed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16354,10 +21056,6 @@ extension $ChatEventModerationFlagReviewedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventModerationMessageHidden _$ChatEventModerationMessageHiddenFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventModerationMessageHidden.new);
 
 extension $ChatEventModerationMessageHiddenJson
     on ChatEventModerationMessageHidden {
@@ -16383,10 +21081,6 @@ extension $ChatEventModerationMessageHiddenCopyWith
       );
 }
 
-ChatEventModerationMessageRemoved _$ChatEventModerationMessageRemovedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventModerationMessageRemoved.new);
-
 extension $ChatEventModerationMessageRemovedJson
     on ChatEventModerationMessageRemoved {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16411,10 +21105,6 @@ extension $ChatEventModerationMessageRemovedCopyWith
       );
 }
 
-ChatEventExperimentStarted _$ChatEventExperimentStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventExperimentStarted.new);
-
 extension $ChatEventExperimentStartedJson on ChatEventExperimentStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'experiment_started',
@@ -16437,10 +21127,6 @@ extension $ChatEventExperimentStartedCopyWith on ChatEventExperimentStarted {
       );
 }
 
-ChatEventExperimentUpdated _$ChatEventExperimentUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventExperimentUpdated.new);
-
 extension $ChatEventExperimentUpdatedJson on ChatEventExperimentUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'experiment_updated',
@@ -16462,10 +21148,6 @@ extension $ChatEventExperimentUpdatedCopyWith on ChatEventExperimentUpdated {
         message: message ?? this.message,
       );
 }
-
-ChatEventExperimentCompleted _$ChatEventExperimentCompletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventExperimentCompleted.new);
 
 extension $ChatEventExperimentCompletedJson on ChatEventExperimentCompleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16490,10 +21172,6 @@ extension $ChatEventExperimentCompletedCopyWith
       );
 }
 
-ChatEventExperimentAborted _$ChatEventExperimentAbortedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventExperimentAborted.new);
-
 extension $ChatEventExperimentAbortedJson on ChatEventExperimentAborted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'experiment_aborted',
@@ -16515,9 +21193,6 @@ extension $ChatEventExperimentAbortedCopyWith on ChatEventExperimentAborted {
         message: message ?? this.message,
       );
 }
-
-ChatEventGiftSent _$ChatEventGiftSentFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGiftSent.new);
 
 extension $ChatEventGiftSentJson on ChatEventGiftSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16541,10 +21216,6 @@ extension $ChatEventGiftSentCopyWith on ChatEventGiftSent {
       );
 }
 
-ChatEventGiftReceived _$ChatEventGiftReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGiftReceived.new);
-
 extension $ChatEventGiftReceivedJson on ChatEventGiftReceived {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'gift_received',
@@ -16566,10 +21237,6 @@ extension $ChatEventGiftReceivedCopyWith on ChatEventGiftReceived {
         message: message ?? this.message,
       );
 }
-
-ChatEventGiftRedeemed _$ChatEventGiftRedeemedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGiftRedeemed.new);
 
 extension $ChatEventGiftRedeemedJson on ChatEventGiftRedeemed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16593,9 +21260,6 @@ extension $ChatEventGiftRedeemedCopyWith on ChatEventGiftRedeemed {
       );
 }
 
-ChatEventGiftFailed _$ChatEventGiftFailedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventGiftFailed.new);
-
 extension $ChatEventGiftFailedJson on ChatEventGiftFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'gift_failed',
@@ -16617,10 +21281,6 @@ extension $ChatEventGiftFailedCopyWith on ChatEventGiftFailed {
         message: message ?? this.message,
       );
 }
-
-ChatEventStickerSent _$ChatEventStickerSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventStickerSent.new);
 
 extension $ChatEventStickerSentJson on ChatEventStickerSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16644,10 +21304,6 @@ extension $ChatEventStickerSentCopyWith on ChatEventStickerSent {
       );
 }
 
-ChatEventStickerDeleted _$ChatEventStickerDeletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventStickerDeleted.new);
-
 extension $ChatEventStickerDeletedJson on ChatEventStickerDeleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'sticker_deleted',
@@ -16669,10 +21325,6 @@ extension $ChatEventStickerDeletedCopyWith on ChatEventStickerDeleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventEmojiPackAdded _$ChatEventEmojiPackAddedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventEmojiPackAdded.new);
 
 extension $ChatEventEmojiPackAddedJson on ChatEventEmojiPackAdded {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16696,10 +21348,6 @@ extension $ChatEventEmojiPackAddedCopyWith on ChatEventEmojiPackAdded {
       );
 }
 
-ChatEventEmojiPackRemoved _$ChatEventEmojiPackRemovedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventEmojiPackRemoved.new);
-
 extension $ChatEventEmojiPackRemovedJson on ChatEventEmojiPackRemoved {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'emoji_pack_removed',
@@ -16721,10 +21369,6 @@ extension $ChatEventEmojiPackRemovedCopyWith on ChatEventEmojiPackRemoved {
         message: message ?? this.message,
       );
 }
-
-ChatEventThemeChanged _$ChatEventThemeChangedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventThemeChanged.new);
 
 extension $ChatEventThemeChangedJson on ChatEventThemeChanged {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16748,10 +21392,6 @@ extension $ChatEventThemeChangedCopyWith on ChatEventThemeChanged {
       );
 }
 
-ChatEventWallpaperChanged _$ChatEventWallpaperChangedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventWallpaperChanged.new);
-
 extension $ChatEventWallpaperChangedJson on ChatEventWallpaperChanged {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'wallpaper_changed',
@@ -16773,10 +21413,6 @@ extension $ChatEventWallpaperChangedCopyWith on ChatEventWallpaperChanged {
         message: message ?? this.message,
       );
 }
-
-ChatEventFontSizeChanged _$ChatEventFontSizeChangedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventFontSizeChanged.new);
 
 extension $ChatEventFontSizeChangedJson on ChatEventFontSizeChanged {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16800,10 +21436,6 @@ extension $ChatEventFontSizeChangedCopyWith on ChatEventFontSizeChanged {
       );
 }
 
-ChatEventSettingsUpdated _$ChatEventSettingsUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSettingsUpdated.new);
-
 extension $ChatEventSettingsUpdatedJson on ChatEventSettingsUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'settings_updated',
@@ -16825,10 +21457,6 @@ extension $ChatEventSettingsUpdatedCopyWith on ChatEventSettingsUpdated {
         message: message ?? this.message,
       );
 }
-
-ChatEventDeviceRegistered _$ChatEventDeviceRegisteredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventDeviceRegistered.new);
 
 extension $ChatEventDeviceRegisteredJson on ChatEventDeviceRegistered {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16852,10 +21480,6 @@ extension $ChatEventDeviceRegisteredCopyWith on ChatEventDeviceRegistered {
       );
 }
 
-ChatEventDeviceUnregistered _$ChatEventDeviceUnregisteredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventDeviceUnregistered.new);
-
 extension $ChatEventDeviceUnregisteredJson on ChatEventDeviceUnregistered {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'device_unregistered',
@@ -16878,10 +21502,6 @@ extension $ChatEventDeviceUnregisteredCopyWith on ChatEventDeviceUnregistered {
       );
 }
 
-ChatEventDeviceSwitched _$ChatEventDeviceSwitchedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventDeviceSwitched.new);
-
 extension $ChatEventDeviceSwitchedJson on ChatEventDeviceSwitched {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'device_switched',
@@ -16903,10 +21523,6 @@ extension $ChatEventDeviceSwitchedCopyWith on ChatEventDeviceSwitched {
         message: message ?? this.message,
       );
 }
-
-ChatEventDeviceSyncCompleted _$ChatEventDeviceSyncCompletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventDeviceSyncCompleted.new);
 
 extension $ChatEventDeviceSyncCompletedJson on ChatEventDeviceSyncCompleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16931,10 +21547,6 @@ extension $ChatEventDeviceSyncCompletedCopyWith
       );
 }
 
-ChatEventDeviceSyncFailed _$ChatEventDeviceSyncFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventDeviceSyncFailed.new);
-
 extension $ChatEventDeviceSyncFailedJson on ChatEventDeviceSyncFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'device_sync_failed',
@@ -16956,10 +21568,6 @@ extension $ChatEventDeviceSyncFailedCopyWith on ChatEventDeviceSyncFailed {
         message: message ?? this.message,
       );
 }
-
-ChatEventLocationShared _$ChatEventLocationSharedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLocationShared.new);
 
 extension $ChatEventLocationSharedJson on ChatEventLocationShared {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -16983,10 +21591,6 @@ extension $ChatEventLocationSharedCopyWith on ChatEventLocationShared {
       );
 }
 
-ChatEventLocationUpdated _$ChatEventLocationUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLocationUpdated.new);
-
 extension $ChatEventLocationUpdatedJson on ChatEventLocationUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'location_updated',
@@ -17008,10 +21612,6 @@ extension $ChatEventLocationUpdatedCopyWith on ChatEventLocationUpdated {
         message: message ?? this.message,
       );
 }
-
-ChatEventLocationStopped _$ChatEventLocationStoppedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLocationStopped.new);
 
 extension $ChatEventLocationStoppedJson on ChatEventLocationStopped {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17035,10 +21635,6 @@ extension $ChatEventLocationStoppedCopyWith on ChatEventLocationStopped {
       );
 }
 
-ChatEventLocationRequestSent _$ChatEventLocationRequestSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLocationRequestSent.new);
-
 extension $ChatEventLocationRequestSentJson on ChatEventLocationRequestSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'location_request_sent',
@@ -17061,10 +21657,6 @@ extension $ChatEventLocationRequestSentCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventLocationRequestAccepted _$ChatEventLocationRequestAcceptedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLocationRequestAccepted.new);
 
 extension $ChatEventLocationRequestAcceptedJson
     on ChatEventLocationRequestAccepted {
@@ -17090,10 +21682,6 @@ extension $ChatEventLocationRequestAcceptedCopyWith
       );
 }
 
-ChatEventLocationRequestDeclined _$ChatEventLocationRequestDeclinedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLocationRequestDeclined.new);
-
 extension $ChatEventLocationRequestDeclinedJson
     on ChatEventLocationRequestDeclined {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17118,10 +21706,6 @@ extension $ChatEventLocationRequestDeclinedCopyWith
       );
 }
 
-ChatEventQrScanSuccess _$ChatEventQrScanSuccessFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventQrScanSuccess.new);
-
 extension $ChatEventQrScanSuccessJson on ChatEventQrScanSuccess {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'qr_scan_success',
@@ -17144,10 +21728,6 @@ extension $ChatEventQrScanSuccessCopyWith on ChatEventQrScanSuccess {
       );
 }
 
-ChatEventQrScanFailed _$ChatEventQrScanFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventQrScanFailed.new);
-
 extension $ChatEventQrScanFailedJson on ChatEventQrScanFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'qr_scan_failed',
@@ -17169,10 +21749,6 @@ extension $ChatEventQrScanFailedCopyWith on ChatEventQrScanFailed {
         message: message ?? this.message,
       );
 }
-
-ChatEventQrConnectionEstablished _$ChatEventQrConnectionEstablishedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventQrConnectionEstablished.new);
 
 extension $ChatEventQrConnectionEstablishedJson
     on ChatEventQrConnectionEstablished {
@@ -17198,10 +21774,6 @@ extension $ChatEventQrConnectionEstablishedCopyWith
       );
 }
 
-ChatEventQrConnectionTerminated _$ChatEventQrConnectionTerminatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventQrConnectionTerminated.new);
-
 extension $ChatEventQrConnectionTerminatedJson
     on ChatEventQrConnectionTerminated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17226,10 +21798,6 @@ extension $ChatEventQrConnectionTerminatedCopyWith
       );
 }
 
-ChatEventPaymentRequestSent _$ChatEventPaymentRequestSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentRequestSent.new);
-
 extension $ChatEventPaymentRequestSentJson on ChatEventPaymentRequestSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'payment_request_sent',
@@ -17251,10 +21819,6 @@ extension $ChatEventPaymentRequestSentCopyWith on ChatEventPaymentRequestSent {
         message: message ?? this.message,
       );
 }
-
-ChatEventPaymentRequestReceived _$ChatEventPaymentRequestReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentRequestReceived.new);
 
 extension $ChatEventPaymentRequestReceivedJson
     on ChatEventPaymentRequestReceived {
@@ -17280,10 +21844,6 @@ extension $ChatEventPaymentRequestReceivedCopyWith
       );
 }
 
-ChatEventPaymentRequestAccepted _$ChatEventPaymentRequestAcceptedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentRequestAccepted.new);
-
 extension $ChatEventPaymentRequestAcceptedJson
     on ChatEventPaymentRequestAccepted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17307,10 +21867,6 @@ extension $ChatEventPaymentRequestAcceptedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventPaymentRequestDeclined _$ChatEventPaymentRequestDeclinedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentRequestDeclined.new);
 
 extension $ChatEventPaymentRequestDeclinedJson
     on ChatEventPaymentRequestDeclined {
@@ -17336,10 +21892,6 @@ extension $ChatEventPaymentRequestDeclinedCopyWith
       );
 }
 
-ChatEventPaymentSent _$ChatEventPaymentSentFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentSent.new);
-
 extension $ChatEventPaymentSentJson on ChatEventPaymentSent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'payment_sent',
@@ -17361,10 +21913,6 @@ extension $ChatEventPaymentSentCopyWith on ChatEventPaymentSent {
         message: message ?? this.message,
       );
 }
-
-ChatEventPaymentReceived _$ChatEventPaymentReceivedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentReceived.new);
 
 extension $ChatEventPaymentReceivedJson on ChatEventPaymentReceived {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17388,10 +21936,6 @@ extension $ChatEventPaymentReceivedCopyWith on ChatEventPaymentReceived {
       );
 }
 
-ChatEventPaymentFailed _$ChatEventPaymentFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentFailed.new);
-
 extension $ChatEventPaymentFailedJson on ChatEventPaymentFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'payment_failed',
@@ -17414,10 +21958,6 @@ extension $ChatEventPaymentFailedCopyWith on ChatEventPaymentFailed {
       );
 }
 
-ChatEventPaymentRefunded _$ChatEventPaymentRefundedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentRefunded.new);
-
 extension $ChatEventPaymentRefundedJson on ChatEventPaymentRefunded {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'payment_refunded',
@@ -17439,10 +21979,6 @@ extension $ChatEventPaymentRefundedCopyWith on ChatEventPaymentRefunded {
         message: message ?? this.message,
       );
 }
-
-ChatEventPaymentWalletUpdated _$ChatEventPaymentWalletUpdatedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventPaymentWalletUpdated.new);
 
 extension $ChatEventPaymentWalletUpdatedJson on ChatEventPaymentWalletUpdated {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17467,10 +22003,6 @@ extension $ChatEventPaymentWalletUpdatedCopyWith
       );
 }
 
-ChatEventSubscriptionStarted _$ChatEventSubscriptionStartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSubscriptionStarted.new);
-
 extension $ChatEventSubscriptionStartedJson on ChatEventSubscriptionStarted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'subscription_started',
@@ -17493,10 +22025,6 @@ extension $ChatEventSubscriptionStartedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventSubscriptionExpired _$ChatEventSubscriptionExpiredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSubscriptionExpired.new);
 
 extension $ChatEventSubscriptionExpiredJson on ChatEventSubscriptionExpired {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17521,10 +22049,6 @@ extension $ChatEventSubscriptionExpiredCopyWith
       );
 }
 
-ChatEventSubscriptionRenewed _$ChatEventSubscriptionRenewedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSubscriptionRenewed.new);
-
 extension $ChatEventSubscriptionRenewedJson on ChatEventSubscriptionRenewed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'subscription_renewed',
@@ -17547,10 +22071,6 @@ extension $ChatEventSubscriptionRenewedCopyWith
         message: message ?? this.message,
       );
 }
-
-ChatEventSubscriptionCanceled _$ChatEventSubscriptionCanceledFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventSubscriptionCanceled.new);
 
 extension $ChatEventSubscriptionCanceledJson on ChatEventSubscriptionCanceled {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17575,10 +22095,6 @@ extension $ChatEventSubscriptionCanceledCopyWith
       );
 }
 
-ChatEventAiSummaryGenerated _$ChatEventAiSummaryGeneratedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAiSummaryGenerated.new);
-
 extension $ChatEventAiSummaryGeneratedJson on ChatEventAiSummaryGenerated {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'ai_summary_generated',
@@ -17600,10 +22116,6 @@ extension $ChatEventAiSummaryGeneratedCopyWith on ChatEventAiSummaryGenerated {
         message: message ?? this.message,
       );
 }
-
-ChatEventAiSummaryFailed _$ChatEventAiSummaryFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAiSummaryFailed.new);
 
 extension $ChatEventAiSummaryFailedJson on ChatEventAiSummaryFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17627,10 +22139,6 @@ extension $ChatEventAiSummaryFailedCopyWith on ChatEventAiSummaryFailed {
       );
 }
 
-ChatEventAiReplySuggested _$ChatEventAiReplySuggestedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAiReplySuggested.new);
-
 extension $ChatEventAiReplySuggestedJson on ChatEventAiReplySuggested {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'ai_reply_suggested',
@@ -17653,10 +22161,6 @@ extension $ChatEventAiReplySuggestedCopyWith on ChatEventAiReplySuggested {
       );
 }
 
-ChatEventAiReplySelected _$ChatEventAiReplySelectedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAiReplySelected.new);
-
 extension $ChatEventAiReplySelectedJson on ChatEventAiReplySelected {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'ai_reply_selected',
@@ -17678,10 +22182,6 @@ extension $ChatEventAiReplySelectedCopyWith on ChatEventAiReplySelected {
         message: message ?? this.message,
       );
 }
-
-ChatEventAiTranslationRequested _$ChatEventAiTranslationRequestedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAiTranslationRequested.new);
 
 extension $ChatEventAiTranslationRequestedJson
     on ChatEventAiTranslationRequested {
@@ -17707,10 +22207,6 @@ extension $ChatEventAiTranslationRequestedCopyWith
       );
 }
 
-ChatEventAiTranslationCompleted _$ChatEventAiTranslationCompletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAiTranslationCompleted.new);
-
 extension $ChatEventAiTranslationCompletedJson
     on ChatEventAiTranslationCompleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17735,10 +22231,6 @@ extension $ChatEventAiTranslationCompletedCopyWith
       );
 }
 
-ChatEventAiTranslationFailed _$ChatEventAiTranslationFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAiTranslationFailed.new);
-
 extension $ChatEventAiTranslationFailedJson on ChatEventAiTranslationFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'ai_translation_failed',
@@ -17762,10 +22254,6 @@ extension $ChatEventAiTranslationFailedCopyWith
       );
 }
 
-ChatEventCaptchaRequired _$ChatEventCaptchaRequiredFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCaptchaRequired.new);
-
 extension $ChatEventCaptchaRequiredJson on ChatEventCaptchaRequired {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'captcha_required',
@@ -17787,10 +22275,6 @@ extension $ChatEventCaptchaRequiredCopyWith on ChatEventCaptchaRequired {
         message: message ?? this.message,
       );
 }
-
-ChatEventCaptchaPassed _$ChatEventCaptchaPassedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCaptchaPassed.new);
 
 extension $ChatEventCaptchaPassedJson on ChatEventCaptchaPassed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17814,10 +22298,6 @@ extension $ChatEventCaptchaPassedCopyWith on ChatEventCaptchaPassed {
       );
 }
 
-ChatEventCaptchaFailed _$ChatEventCaptchaFailedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventCaptchaFailed.new);
-
 extension $ChatEventCaptchaFailedJson on ChatEventCaptchaFailed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'captcha_failed',
@@ -17839,10 +22319,6 @@ extension $ChatEventCaptchaFailedCopyWith on ChatEventCaptchaFailed {
         message: message ?? this.message,
       );
 }
-
-ChatEventRateLimitWarning _$ChatEventRateLimitWarningFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventRateLimitWarning.new);
 
 extension $ChatEventRateLimitWarningJson on ChatEventRateLimitWarning {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17866,10 +22342,6 @@ extension $ChatEventRateLimitWarningCopyWith on ChatEventRateLimitWarning {
       );
 }
 
-ChatEventRateLimitBlocked _$ChatEventRateLimitBlockedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventRateLimitBlocked.new);
-
 extension $ChatEventRateLimitBlockedJson on ChatEventRateLimitBlocked {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'rate_limit_blocked',
@@ -17891,10 +22363,6 @@ extension $ChatEventRateLimitBlockedCopyWith on ChatEventRateLimitBlocked {
         message: message ?? this.message,
       );
 }
-
-ChatEventLogoutRequested _$ChatEventLogoutRequestedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLogoutRequested.new);
 
 extension $ChatEventLogoutRequestedJson on ChatEventLogoutRequested {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17918,10 +22386,6 @@ extension $ChatEventLogoutRequestedCopyWith on ChatEventLogoutRequested {
       );
 }
 
-ChatEventLogoutCompleted _$ChatEventLogoutCompletedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventLogoutCompleted.new);
-
 extension $ChatEventLogoutCompletedJson on ChatEventLogoutCompleted {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'logout_completed',
@@ -17943,9 +22407,6 @@ extension $ChatEventLogoutCompletedCopyWith on ChatEventLogoutCompleted {
         message: message ?? this.message,
       );
 }
-
-ChatEventAppOpened _$ChatEventAppOpenedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAppOpened.new);
 
 extension $ChatEventAppOpenedJson on ChatEventAppOpened {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -17969,10 +22430,6 @@ extension $ChatEventAppOpenedCopyWith on ChatEventAppOpened {
       );
 }
 
-ChatEventAppBackgrounded _$ChatEventAppBackgroundedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAppBackgrounded.new);
-
 extension $ChatEventAppBackgroundedJson on ChatEventAppBackgrounded {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'app_backgrounded',
@@ -17994,9 +22451,6 @@ extension $ChatEventAppBackgroundedCopyWith on ChatEventAppBackgrounded {
         message: message ?? this.message,
       );
 }
-
-ChatEventAppResumed _$ChatEventAppResumedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAppResumed.new);
 
 extension $ChatEventAppResumedJson on ChatEventAppResumed {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -18020,9 +22474,6 @@ extension $ChatEventAppResumedCopyWith on ChatEventAppResumed {
       );
 }
 
-ChatEventAppCrashed _$ChatEventAppCrashedFromJson(Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAppCrashed.new);
-
 extension $ChatEventAppCrashedJson on ChatEventAppCrashed {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'event_type': 'app_crashed',
@@ -18044,10 +22495,6 @@ extension $ChatEventAppCrashedCopyWith on ChatEventAppCrashed {
         message: message ?? this.message,
       );
 }
-
-ChatEventAppRestarted _$ChatEventAppRestartedFromJson(
-        Map<String, dynamic> json) =>
-    _$ChatEventSig0FromJson(json, ChatEventAppRestarted.new);
 
 extension $ChatEventAppRestartedJson on ChatEventAppRestarted {
   Map<String, dynamic> toJson() => <String, dynamic>{

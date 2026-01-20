@@ -144,6 +144,13 @@ Event _$EventFromJson(Map<String, dynamic> json) {
 EventUserAction _$EventUserActionFromJson(Map<String, dynamic> json) =>
     _$EventSig0FromJson(json, EventUserAction.new);
 
+EventTimestampedEvent _$EventTimestampedEventFromJson(
+        Map<String, dynamic> json) =>
+    _$EventSig0FromJson(json, EventTimestampedEvent.new);
+
+EventFullEvent _$EventFullEventFromJson(Map<String, dynamic> json) =>
+    EventFullEvent(json['userId'] as String, json['id'] as String);
+
 extension $EventUserActionJson on EventUserAction {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'type': 'userAction',
@@ -151,19 +158,12 @@ extension $EventUserActionJson on EventUserAction {
       };
 }
 
-EventTimestampedEvent _$EventTimestampedEventFromJson(
-        Map<String, dynamic> json) =>
-    _$EventSig0FromJson(json, EventTimestampedEvent.new);
-
 extension $EventTimestampedEventJson on EventTimestampedEvent {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'type': 'timestampedEvent',
         ..._$EventSig0ToJson(userId),
       };
 }
-
-EventFullEvent _$EventFullEventFromJson(Map<String, dynamic> json) =>
-    EventFullEvent(json['userId'] as String, json['id'] as String);
 
 extension $EventFullEventJson on EventFullEvent {
   Map<String, dynamic> toJson() => <String, dynamic>{

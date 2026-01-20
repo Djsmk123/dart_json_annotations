@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0.1 (Rust)
-// Checksum: 12014500964615454609
+// Checksum: 15885265219194782696
 
 part of 'analytics_event.dart';
 

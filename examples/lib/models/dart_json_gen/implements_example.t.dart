@@ -135,15 +135,19 @@ Location _$LocationFromJson(Map<String, dynamic> json) {
 LocationPerson _$LocationPersonFromJson(Map<String, dynamic> json) =>
     LocationPerson(json['name'] as String);
 
+LocationCity _$LocationCityFromJson(Map<String, dynamic> json) =>
+    LocationCity(json['name'] as String, (json['population'] as num).toInt());
+
+LocationCountry _$LocationCountryFromJson(Map<String, dynamic> json) =>
+    LocationCountry(json['name'] as String, (json['population'] as num).toInt(),
+        json['capital'] as String);
+
 extension $LocationPersonJson on LocationPerson {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'type': 'person',
         'name': name,
       };
 }
-
-LocationCity _$LocationCityFromJson(Map<String, dynamic> json) =>
-    LocationCity(json['name'] as String, (json['population'] as num).toInt());
 
 extension $LocationCityJson on LocationCity {
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -152,10 +156,6 @@ extension $LocationCityJson on LocationCity {
         'population': population,
       };
 }
-
-LocationCountry _$LocationCountryFromJson(Map<String, dynamic> json) =>
-    LocationCountry(json['name'] as String, (json['population'] as num).toInt(),
-        json['capital'] as String);
 
 extension $LocationCountryJson on LocationCountry {
   Map<String, dynamic> toJson() => <String, dynamic>{

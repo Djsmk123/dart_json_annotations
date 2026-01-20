@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // Generator: dart_json_gen v2.0.1 (Rust)
-// Checksum: 15427705027768052247
+// Checksum: 11700929767511533002
 
 part of 'generic_example.dart';
 
